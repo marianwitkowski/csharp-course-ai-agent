@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 14/46 w `wiedza/lekcje/` (moduły 1–5 kompletne; moduły 6–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 18/46 w `wiedza/lekcje/` (moduły 1–6 kompletne; moduły 7–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -77,10 +77,10 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 6.1 | Tablice — stały rozmiar, indeksowanie od zera | — | `[moduł 6]` — indeksy `^1` i zakresy `..` |
-| 6.2 | `List<T>` — kolekcja, która rośnie | — | — |
-| 6.3 | `Dictionary<TKey,TValue>` — klucz → wartość | — | `[moduł 6]` — `TryGetValue` |
-| 6.4 | Tablice wielowymiarowe i tablice tablic | — | — |
+| 6.1 | Tablice — stały rozmiar, indeksowanie od zera | `14-tablice.cs` | `[moduł 6]` — indeksy `^1` i zakresy `..` |
+| 6.2 | `List<T>` — kolekcja, która rośnie | `15-list.cs` | `[moduł 6]` |
+| 6.3 | `Dictionary<TKey,TValue>` — klucz → wartość | `16-dictionary.cs` | `[moduł 6]` — `TryGetValue` |
+| 6.4 | Tablice wielowymiarowe i tablice tablic | `17-wielowymiarowe.cs` | — |
 
 ### Moduł 7 — Metody (3)
 
