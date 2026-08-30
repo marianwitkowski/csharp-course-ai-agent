@@ -34,7 +34,7 @@ udostępniony w stanie, w jakim jest.
 ## Materiały źródłowe
 
 Treść dydaktyczna tego kursu powstała na podstawie **własnych materiałów
-autora** z prowadzonych przez niego szkoleń „Programista C# i .NET" (2020) —
+autora** z prowadzonych przez niego szkoleń „Programista C# i .NET" —
 programu zajęć, przykładów kodu i notatek wykładowych. **Marian Witkowski
 posiada do nich pełnię praw autorskich**; żaden podmiot trzeci nie rości sobie
 praw do tych materiałów ani do treści z nich wywiedzionej.

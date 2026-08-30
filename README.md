@@ -287,7 +287,7 @@ Chcesz inny model — zmień tę jedną linię (`opus`, `haiku`, albo `inherit`,
 
 ## Materiały źródłowe
 
-Treść dydaktyczna powstała na podstawie własnych materiałów autora ze szkoleń „Programista C# i .NET" (2020) — programu zajęć i przykładów kodu. Materiały te leżą poza repozytorium i nie są publikowane; do repozytorium trafia wyłącznie treść napisana od nowa.
+Treść dydaktyczna powstała na podstawie własnych materiałów autora ze szkoleń „Programista C# i .NET" — programu zajęć i przykładów kodu. Materiały te leżą poza repozytorium i nie są publikowane; do repozytorium trafia wyłącznie treść napisana od nowa.
 
 Przykłady zostały **zmodernizowane**: oryginały pisano dla .NET Framework i Visual Studio na Windows, tutaj działają na .NET 10 i na każdym systemie. Aneks [`wiedza/AKTUALIZACJE.md`](wiedza/AKTUALIZACJE.md) opisuje, co się między jednym a drugim zmieniło — i co uczeń zobaczy, gdy trafi w internecie na starszy poradnik.
 

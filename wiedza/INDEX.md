@@ -174,7 +174,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 > **Zasada „cienki `Program.cs`" jest wprowadzona w 14.1, a nie w 14.3.** Logika w klasach `public`, `Console.WriteLine` tylko w `Program.cs` — bez tego testy w 14.3 są niewykonalne i uczeń musi przepisywać działający kod. Atrybuty `[Fact]`/`[Theory]` to jedyne atrybuty w całym kursie; 14.3 nazywa je jednym zdaniem i nie rozwija.
 
-> **Lekcja 14.4 (AI) nie ma odpowiednika w materiałach źródłowych z 2020 roku.** Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
+> **Lekcja 14.4 (AI) nie ma odpowiednika w materiałach źródłowych.** Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
 
 ---
 

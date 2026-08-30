@@ -81,7 +81,7 @@ Zmieniły się trzy rzeczy naraz:
 | `string.Format("Cześć, {0}!", imie)` | jw. |
 | `"C:\\Users\\Anna\\plik.txt"` | `@"C:\Users\Anna\plik.txt"` |
 
-**Interpolacja (`$"..."`)** to C# 6, ale materiały z 2020 często jej nie używają. Ucz **wyłącznie** interpolacji — sklejanie `+` pokazujesz raz, w module 2, żeby uczeń zobaczył pułapkę `"30" + 5` dającą `"305"`.
+**Interpolacja (`$"..."`)** to C# 6, ale starsze materiały często jej nie używają. Ucz **wyłącznie** interpolacji — sklejanie `+` pokazujesz raz, w module 2, żeby uczeń zobaczył pułapkę `"30" + 5` dającą `"305"`.
 
 **Formatowanie w interpolacji** działa od razu: `$"{cena:F2}"` → dwie cyfry po przecinku, `$"{procent:P0}"` → procent, `$"{data:yyyy-MM-dd}"` → data.
 
@@ -216,7 +216,7 @@ Jeśli uczeń przyniesie kod z `JsonConvert`: „to biblioteka zewnętrzna, kied
 
 ### Dwie dyrektywy, których nie ma w żadnym poradniku
 
-To **nie jest** różnica względem 2020 roku — to konsekwencja aplikacji jednoplikowych, czyli nowości .NET 10. Poradniki jeszcze o tym nie piszą, więc uczeń nigdzie tego nie znajdzie.
+To **nie jest** różnica względem starszych materiałów — to konsekwencja aplikacji jednoplikowych, czyli nowości .NET 10. Poradniki jeszcze o tym nie piszą, więc uczeń nigdzie tego nie znajdzie.
 
 Plik uruchamiany przez `dotnet run plik.cs` ma domyślnie włączone ustawienia pod budowanie do samodzielnego pliku wykonywalnego. Skutek:
 
