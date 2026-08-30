@@ -56,6 +56,8 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
 | 4.1 | `if` / `else if` / `else` | — | — |
+
+> **Dług z modułu 1:** lekcja 4.1 wprowadza pierwsze klamry, więc to **tutaj** pokazuje się, po co są wcięcia — dwie wersje tego samego `if`, zbita i sformatowana. Lekcja 1.2 celowo tego nie robi: w płaskim ciągu instrukcji nie ma czego wcinać, a przykład z `if` wyprzedzałby program.
 | 4.2 | Operatory logiczne i operator warunkowy `?:` | — | — |
 | 4.3 | `switch` — instrukcja i wyrażenie | — | `[moduł 4]` — `switch` jako wyrażenie |
 
