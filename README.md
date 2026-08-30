@@ -82,7 +82,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 
 Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md).
 
-> **Stan gotowych scenariuszy:** moduły 1–2 (6 lekcji) mają napisane pełne scenariusze sokratejskie w `wiedza/lekcje/`. Dla modułów 3–14 agent prowadzi lekcje wg struktury z `wiedza/lekcje/SZABLON-LEKCJI.md` i mapy z `INDEX.md`, improwizując scenariusz — kurs działa, ale te lekcje nie są jeszcze dopracowane tak jak dwa pierwsze moduły.
+> **Stan gotowych scenariuszy:** wszystkie **46 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
 
 **Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, `async`/`await`. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.5.
 

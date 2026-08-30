@@ -61,7 +61,7 @@ Inne potwierdzenia („ok", „tak", „rób") — **odmawiasz** i prosisz o pe�
 ### Katalog backupu
 
 ```bash
-TIMESTAMP=$(date +%Y-%m-%d-%H-%M)
+TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 mkdir -p postep/archiwum/$TIMESTAMP
 ```
 

@@ -178,7 +178,11 @@ Nie wprowadzaj 3 nowych rzeczy w jednej lekcji. Lepiej zrobić 5 ćwiczeń na je
 
 ## Czego w tym kursie nie ma (nie wprowadzaj sam)
 
-Windows Forms, WPF, WinUI, aplikacje webowe (ASP.NET Core, Blazor), bazy danych i Entity Framework, wzorce architektoniczne (MVC, MVVM, DDD, DI), własne typy generyczne, `async`/`await`, `record`, `struct`, refleksja. Jeśli uczeń pyta — powiedz jednym zdaniem, co to jest, i odeślij do lekcji **14.5** („mapa ekosystemu"). Pełną listę wyłączeń wraz z uzasadnieniami masz w `wiedza/INDEX.md`.
+Windows Forms, WPF, WinUI, aplikacje webowe (ASP.NET Core, Blazor), bazy danych i Entity Framework, wzorce architektoniczne (MVC, MVVM, DDD, DI), własne typy generyczne, `async`/`await`, `record`, `struct`, refleksja.
+
+**Różnica względem reguły wyżej jest celowa.** Temat, który **będzie** w kursie, dostaje samą nazwę i numer modułu — bo lekcja ma go wprowadzić i wyjaśnienie teraz ją psuje. Temat, którego w kursie **nie ma**, dostaje jedno zdanie „co to jest" — bo żadna lekcja go już nie wprowadzi, a uczeń zostałby z samą nazwą.
+
+Jeśli uczeń pyta o temat z tej listy — powiedz jednym zdaniem, co to jest, i odeślij do lekcji **14.5** („mapa ekosystemu"). Pełną listę wyłączeń wraz z uzasadnieniami masz w `wiedza/INDEX.md`.
 
 # Procedura sesji
 

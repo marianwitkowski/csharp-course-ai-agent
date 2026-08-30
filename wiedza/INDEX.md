@@ -112,7 +112,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 9.3 | Klasy i metody abstrakcyjne | `27-abstrakcyjne.cs` | — |
 | 9.4 | Składowe statyczne i klasy statyczne | `28-static.cs` | `[moduł 9]` |
 
-> **Moduł 9 domyka trzy wątki ciągnące się przez cały kurs.** Lekcja 9.2 wyjaśnia `override`, które uczeń pisał w 8.2 przy `ToString()`, nie wiedząc, co znaczy (odpowiedź: `object.ToString` jest `virtual`). Lekcja 9.4 wyjaśnia, czemu `Console.WriteLine` i `Math.Round` woła się bez `new` — używa ich od lekcji 1.1. Lekcja 9.1 domyka też `static void Main` ze starych materiałów, wzmiankowane w 7.1.
+> **Moduł 9 domyka trzy wątki ciągnące się przez cały kurs.** Lekcja 9.2 wyjaśnia `override`, które uczeń pisał w 8.2 przy `ToString()`, nie wiedząc, co znaczy (odpowiedź: `object.ToString` jest `virtual`). Lekcja 9.4 wyjaśnia, czemu `Console.WriteLine` i `Math.Round` woła się bez `new` — używa ich od lekcji 1.1. Lekcja 9.4 domyka też `static void Main` ze starych materiałów, wzmiankowane w 7.1.
 
 ### Moduł 10 — Interfejsy (3)
 

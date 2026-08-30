@@ -190,14 +190,30 @@ Przeczytaj lekcję tak, jakbyś ją miał czytać na głos. Zdania, w których s
 
 Zmiana w kroku środkowym unieważnia zwykle: sekcję **Pułapki**, **Notatki tutora**, treść **ćwiczeń** (odsyłają do wzorca z lekcji) i **frontmatter**. Po każdej większej edycji przeczytaj plik od początku, nie tylko zmieniony fragment.
 
+## 8. Metody biblioteki standardowej też są materiałem
+
+Punkt 2 łapie konstrukcje **języka** (`foreach`, `List<>`, `try`). Nie łapie **metod**, a te wyciekają równie łatwo — `ToUpper`, `StartsWith`, `AddRange`, `Substring`, `Math.Min` potrafią pojawić się w ćwiczeniu jako coś oczywistego, choć żadna lekcja ich nie pokazywała.
+
+Reguła: metoda spoza wcześniejszych lekcji jest dopuszczalna **tylko** wtedy, gdy jest jawnie oznaczona jako do sprawdzenia w dokumentacji („kurs jej nie pokazywał — zajrzyj, co zwraca"). Nigdy jako odsyłacz do lekcji, w której jej nie ma.
+
+## 9. Jeden język cytowanych komunikatów w obrębie lekcji
+
+.NET tłumaczy komunikaty kompilatora na język systemu — uczeń z polskim systemem zobaczy `CS0029` po polsku, uczeń z angielskim po angielsku. **Kod `CSxxxx` jest ten sam i to on jest treścią.**
+
+W jednej lekcji nie mieszaj: albo wszystkie cytaty po polsku, albo wszystkie po angielsku. Gdy cytujesz wersję angielską, a uczeń pracuje po polsku (albo odwrotnie), powiedz mu jednym zdaniem, że treść się zgadza mimo innego brzmienia.
+
 ## Ostatni przebieg — komendy zbiorcze
 
 ```sh
 L=wiedza/lekcje/NN.MM-temat.md
 grep -nE 'if \(|for \(|while \(|foreach|\$"|List<|\.Parse|TryParse|ReadLine' "$L"
+grep -nE '\.[A-Z][a-zA-Z]+\(' "$L"        # metody biblioteki — każdą sprawdź, czy była (punkt 8)
 grep -nE 'lekcj[ięa] [0-9]|moduł[uie]* [0-9]' "$L"
 grep -nE 'w innych języka|w niektórych języka|innym języku' "$L"
+grep -nE 'error CS|warning CS' "$L"        # jeden język w całej lekcji (punkt 9)
 head -9 "$L"     # frontmatter: zalozenia, przyklady, aktualizacja, czas_min — aktualne?
 ```
 
-Lekcja jest gotowa, gdy wszystkie siedem punktów przechodzi, a każdy wynik pokazany uczniowi widziałeś na własnym ekranie.
+Sprawdź jeszcze, czy pole `zalozenia` we frontmatterze wymienia **wszystkie** lekcje, do których treść się odwołuje — rozjazd między nim a `grep`-iem odsyłaczy to najczęstsza usterka porządkowa.
+
+Lekcja jest gotowa, gdy wszystkie dziewięć punktów przechodzi, a każdy wynik pokazany uczniowi widziałeś na własnym ekranie.

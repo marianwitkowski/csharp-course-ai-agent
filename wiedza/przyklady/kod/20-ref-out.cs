@@ -34,8 +34,9 @@ bool SprobujPodzielic(int x, int y, out int wynik)
 if (SprobujPodzielic(10, 0, out int w)) Console.WriteLine($"Wynik: {w}");
 else Console.WriteLine("Nie da się podzielić przez zero.");
 
-// ref: daj metodzie dostęp do samej zmiennej. Używaj rzadko —
-// z wywołania nie widać, że coś się zmieniło.
+// ref: daj metodzie dostęp do samej zmiennej. Używaj rzadko — zwykle
+// czytelniej jest zwrócić nową wartość. C# wymaga słowa ref także
+// w wywołaniu, więc zmiana jest widoczna w obu miejscach.
 void ZwiekszNaprawde(ref int x) { x = x + 1; }
 ZwiekszNaprawde(ref a);
 Console.WriteLine($"po ref: {a}");   // teraz 6

@@ -61,7 +61,8 @@ List<string> lista = new List<string>();
 
 if (File.Exists("stan.txt"))
 {
-    lista = new List<string>(File.ReadAllLines("stan.txt"));
+    // AddRange dopisuje całą kolekcję naraz, zamiast dodawać element po elemencie.
+    lista.AddRange(File.ReadAllLines("stan.txt"));
 }
 
 lista.Add($"wpis nr {lista.Count + 1}");

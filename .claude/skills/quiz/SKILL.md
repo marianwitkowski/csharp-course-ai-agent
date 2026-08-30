@@ -114,7 +114,7 @@ Pytania **generuj na żywo** pod to, co uczeń przerobił. Poniżej szablony jak
 - C: Co się stanie przy `slownik["brak"]`, gdy takiego klucza nie ma?
 
 ## Moduł 7 (metody)
-- A: Co wypisze metoda zadeklarowana jako `void`, gdy spróbujesz przypisać jej wynik?
+- A: Co znaczy `void` w nagłówku metody?
 - B: Po co metodzie parametry, skoro mogłaby czytać zmienne z zewnątrz?
 - C: Czemu ta metoda nie zmienia wartości u wywołującego? `void Zwieksz(int x) { x++; }`
 

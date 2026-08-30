@@ -77,7 +77,7 @@ Wskazuj **maksymalnie 2 rzeczy**. Priorytety, od góry:
 | `"Cześć, " + imie + "! Masz " + wiek + " lat."` | `$"Cześć, {imie}! Masz {wiek} lat."` | 3.1 |
 | `int.Parse(Console.ReadLine())` | `int.TryParse(Console.ReadLine(), out int x)` | 3.2 |
 | `if (x == true)` | `if (x)` | 4.2 |
-| `for (int i = 0; i < lista.Count; i++) { lista[i] }` | `foreach (var element in lista)` | 5.3 |
+| `for (int i = 0; i < tablica.Length; i++) { tablica[i] }` | `foreach (var element in tablica)` | 6.1 |
 | długi łańcuch `if/else if` na jednej zmiennej | `switch` | 4.3 |
 | tablica, do której trzeba dopisywać | `List<T>` | 6.2 |
 | `lista.Count() == 0` | `lista.Count == 0` | 6.2 |

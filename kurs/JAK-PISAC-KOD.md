@@ -62,7 +62,7 @@ Włącz **„Format on Save"** (Settings → wyszukaj „format on save"). Od te
 
 - **Rider** (JetBrains) — pełne IDE, bezpłatne do użytku niekomercyjnego
 - **Visual Studio** — tylko Windows, kilkanaście gigabajtów. Kurs go nie potrzebuje; jeśli już go masz, możesz używać
-- **NIE używaj:** Worda, TextEdit na macOS w trybie sformatowanym, Notatnika Windows w domyślnej konfiguracji — wstawiają znaki, których kompilator nie zrozumie (najczęściej cudzysłowy typograficzne „ ” zamiast zwykłych " ")
+- **NIE używaj:** Worda ani TextEdit na macOS w trybie sformatowanym — zamieniają zwykłe cudzysłowy " na typograficzne „ ”, których kompilator nie rozumie. Notatnik Windows jest pod tym względem bezpieczny (nie zmienia znaków), ale nie koloruje składni ani nie podpowiada — nadaje się awaryjnie, nie na stałe
 
 ### Co musi umieć Twój edytor
 
@@ -293,8 +293,8 @@ Strzałka w górę to ta, której będziesz używać najczęściej: poprawka w k
 | Komenda | Co robi | Od lekcji |
 | --- | --- | --- |
 | `dotnet --version` | Pokaż wersję SDK | 1.1 |
-| `dotnet run nazwa.cs` | Uruchom program | 1.2 |
-| `dotnet build nazwa.cs` | Sprawdź, czy się kompiluje — bez uruchamiania | 1.3 |
+| `dotnet run nazwa.cs` | Uruchom program | 1.1 |
+| `dotnet build nazwa.cs` | Sprawdź, czy się kompiluje — bez uruchamiania | 1.2 |
 | `dotnet new console -o nazwa` | Załóż projekt | 14.1 |
 | `dotnet test` | Uruchom testy | 14.3 |
 | `dotnet publish` | Zbuduj program do rozdania innym | 14.3 |
@@ -303,7 +303,7 @@ Nie musisz ich pamiętać teraz. Agent poda właściwą, gdy przyjdzie na nią c
 
 ---
 
-## 9. Nie ma trybu interaktywnego — i co z tego wynika
+## 9. Nie ma wbudowanego trybu interaktywnego — i co z tego wynika
 
 W niektórych językach można otworzyć konsolę i pisać kod linijka po linijce. **C# tego nie ma** — jest językiem kompilowanym: program musi zostać zbudowany w całości, zanim ruszy.
 

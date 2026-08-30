@@ -51,7 +51,7 @@ Wypisz w czacie poniższą listę. **Nie modyfikuj** kategorii ani ikon — ucze
   • zresetuj kurs              → reset miękki (z backupem)
   • pełny reset kursu          → reset pełny (z backupem)
   • cofnij reset               → przywrócenie z archiwum
-  • pokaż backupy              → lista postep/archiwum/
+  • pokaż backupy              → lista postep/backups/ (kopie stanu) i postep/archiwum/ (archiwa po resecie)
 
 🛠️  Środowisko i pomoc
   • sprawdź .NET               → weryfikacja `dotnet --version` (min. 10.0)
