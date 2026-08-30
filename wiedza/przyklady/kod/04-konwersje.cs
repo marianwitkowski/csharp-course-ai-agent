@@ -25,15 +25,16 @@ Console.WriteLine(liczba + 1);          // 43
 
 // 5. TryParse — wersja, która nie wywala programu. To jest ta,
 //    której będziesz używać przy danych od użytkownika.
+//    Zwraca bool: czy się udało. Liczbę wkłada do zmiennej po `out`.
 string podejrzane = "czterdzieści dwa";
-if (int.TryParse(podejrzane, out int wynik))
-{
-    Console.WriteLine($"Udało się: {wynik}");
-}
-else
-{
-    Console.WriteLine($"\"{podejrzane}\" to nie jest liczba.");
-}
+bool sieUdalo = int.TryParse(podejrzane, out int wynik);
+Console.WriteLine(sieUdalo);   // False
+Console.WriteLine(wynik);      // 0 — wartość domyślna, nie wynik konwersji
+
+// To samo z tekstem, który jest liczbą:
+bool sieUdalo2 = int.TryParse("42", out int wynik2);
+Console.WriteLine(sieUdalo2);  // True
+Console.WriteLine(wynik2);     // 42
 
 // 6. Liczba na tekst.
 Console.WriteLine(liczba.ToString() + "0");   // 420 — sklejenie, nie dodawanie

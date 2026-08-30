@@ -5,7 +5,8 @@
 const double StawkaVat = 0.23;
 const string NazwaSklepu = "Warzywniak";
 
-Console.WriteLine($"{NazwaSklepu}: VAT wynosi {StawkaVat:P0}");
+// Sklejanie tekstu przez + — interpolację `$"..."` poznasz w lekcji 3.1.
+Console.WriteLine(NazwaSklepu + ": VAT wynosi " + StawkaVat);
 
 // StawkaVat = 0.08;   // CS0131 — stałej nie da się zmienić. O to chodzi.
 
