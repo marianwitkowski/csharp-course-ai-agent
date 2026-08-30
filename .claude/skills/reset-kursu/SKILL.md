@@ -58,23 +58,38 @@ Inne potwierdzenia („ok", „tak", „rób") — **odmawiasz** i prosisz o pe�
 
 ## Krok 4: wykonaj reset
 
+**Sprawdź `srodowisko.system` w `student.json`.** Poniżej dwie wersje tych samych operacji — POSIX dla macOS/Linuksa i PowerShell dla Windows. Wykonują dokładnie to samo: przenoszą pliki do `postep/archiwum/<znacznik czasu>/`. Na Windows z Git Bash działa też wersja POSIX; przy wątpliwości użyj PowerShella.
+
 ### Katalog backupu
 
 ```bash
+# macOS / Linux
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 mkdir -p postep/archiwum/$TIMESTAMP
+```
+```powershell
+# Windows PowerShell
+$TIMESTAMP = Get-Date -Format "yyyy-MM-dd-HH-mm-ss"
+New-Item -ItemType Directory -Force -Path "postep/archiwum/$TIMESTAMP" | Out-Null
 ```
 
 ### Miękki reset
 
 ```bash
+# macOS / Linux
 mv postep/student.json postep/archiwum/$TIMESTAMP/ 2>/dev/null
 mv kurs/program.md postep/archiwum/$TIMESTAMP/ 2>/dev/null
+```
+```powershell
+# Windows PowerShell
+Move-Item postep/student.json "postep/archiwum/$TIMESTAMP/" -ErrorAction SilentlyContinue
+Move-Item kurs/program.md     "postep/archiwum/$TIMESTAMP/" -ErrorAction SilentlyContinue
 ```
 
 ### Pełny reset
 
 ```bash
+# macOS / Linux
 mv postep/student.json postep/archiwum/$TIMESTAMP/ 2>/dev/null
 mv kurs/program.md postep/archiwum/$TIMESTAMP/ 2>/dev/null
 [ -d kurs/lekcje ]  && mv kurs/lekcje  postep/archiwum/$TIMESTAMP/lekcje
@@ -84,6 +99,18 @@ mv kurs/program.md postep/archiwum/$TIMESTAMP/ 2>/dev/null
 # Odtwórz strukturę
 mkdir -p kurs/lekcje kurs/zadania
 touch kurs/lekcje/.gitkeep kurs/zadania/.gitkeep
+```
+```powershell
+# Windows PowerShell
+Move-Item postep/student.json "postep/archiwum/$TIMESTAMP/" -ErrorAction SilentlyContinue
+Move-Item kurs/program.md     "postep/archiwum/$TIMESTAMP/" -ErrorAction SilentlyContinue
+foreach ($k in "lekcje", "zadania", "projekt") {
+    if (Test-Path "kurs/$k") { Move-Item "kurs/$k" "postep/archiwum/$TIMESTAMP/$k" }
+}
+
+# Odtwórz strukturę
+New-Item -ItemType Directory -Force -Path kurs/lekcje, kurs/zadania | Out-Null
+New-Item -ItemType File -Force -Path kurs/lekcje/.gitkeep, kurs/zadania/.gitkeep | Out-Null
 ```
 
 **Po pełnym resecie nie trzeba odtwarzać żadnego pliku metryczki.** Ćwiczenia w tym kursie to samodzielne pliki `.cs` — pusty katalog `kurs/zadania/` wystarczy, żeby pierwsze zadanie ruszyło.

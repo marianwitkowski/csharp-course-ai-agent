@@ -257,8 +257,14 @@ Narzędzie tworzy backup do `postep/backups/student.{TS}.json` przed każdą mod
 
 Po `tak`:
 ```bash
+# macOS / Linux
 mkdir -p postep/backups/_old
 # wypisz listę, przenieś przez mv — NIGDY find -delete
+```
+```powershell
+# Windows PowerShell
+New-Item -ItemType Directory -Force -Path postep/backups/_old | Out-Null
+# wypisz listę, przenieś przez Move-Item — NIGDY Remove-Item
 ```
 
 # Przy >7 dniach przerwy
@@ -306,10 +312,18 @@ P read
 **Sprzątanie po teście — archiwizuj, nie kasuj.** Obowiązuje ta sama zasada co wszędzie: żadnego `rm -rf` na `postep/`.
 
 ```bash
+# macOS / Linux
 TS=$(date +%Y-%m-%d-%H-%M-%S)
 mkdir -p postep/archiwum/test-$TS
 mv postep/student.json postep/archiwum/test-$TS/ 2>/dev/null
 [ -d postep/backups ] && mv postep/backups postep/archiwum/test-$TS/backups
+```
+```powershell
+# Windows PowerShell
+$TS = Get-Date -Format "yyyy-MM-dd-HH-mm-ss"
+New-Item -ItemType Directory -Force -Path "postep/archiwum/test-$TS" | Out-Null
+Move-Item postep/student.json "postep/archiwum/test-$TS/" -ErrorAction SilentlyContinue
+if (Test-Path postep/backups) { Move-Item postep/backups "postep/archiwum/test-$TS/backups" }
 ```
 
 Katalog `postep/archiwum/test-*` możesz potem usunąć ręcznie, świadomie i patrząc na zawartość — ale to decyzja człowieka, nie skrypt w dokumentacji.
