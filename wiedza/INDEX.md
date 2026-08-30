@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 38/46 w `wiedza/lekcje/` (moduły 1–12 kompletne; moduły 13–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 41/46 w `wiedza/lekcje/` (moduły 1–13 kompletne; moduł 14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -150,9 +150,13 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 13.1 | LINQ — `Where`, `Select`, `OrderBy` | — | — |
-| 13.2 | Agregacje i grupowanie — `Count`, `Sum`, `Max`, `GroupBy` | — | — |
-| 13.3 | Wyrażenia lambda i `Func<>` — co siedzi pod LINQ | — | — |
+| 13.1 | LINQ — `Where`, `Select`, `OrderBy` | `38-linq.cs` | — |
+| 13.2 | Agregacje i grupowanie — `Count`, `Sum`, `Max`, `GroupBy` | `39-agregacje.cs` | — |
+| 13.3 | Wyrażenia lambda i `Func<>` — co siedzi pod LINQ | `40-lambdy.cs` | — |
+
+> **Lambda dostaje wyjaśnienie dopiero w 13.3, po dwóch lekcjach używania.** Odwrotna kolejność — najpierw `Func<>` i delegaty, potem LINQ — wymaga od ucznia przyjęcia na wiarę, po co komu funkcja w zmiennej. Lekcje 13.1-13.2 budują tę potrzebę, a 13.3 pokazuje, że `Where` da się napisać samemu w ośmiu liniach. Wtedy `Func<>` jest odpowiedzią na pytanie, które uczeń już ma.
+
+> **Typów anonimowych (`new { u.Imie, u.Punkty }`) kurs nie wprowadza.** W `Select` są kuszące, ale to nowy rodzaj typu tuż przed końcem kursu. Uczeń, który potrzebuje dwóch wartości naraz, wypisuje je w `foreach` albo mapuje na własną klasę.
 
 ### Moduł 14 — Projekt i dalsze kroki (5)
 
