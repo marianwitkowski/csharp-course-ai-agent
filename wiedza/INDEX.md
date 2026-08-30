@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 18/46 w `wiedza/lekcje/` (moduły 1–6 kompletne; moduły 7–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 21/46 w `wiedza/lekcje/` (moduły 1–7 kompletne; moduły 8–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -86,9 +86,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 7.1 | Metody — parametry, wartość zwracana, `void` | — | — |
-| 7.2 | Przeciążanie, parametry domyślne i nazwane | — | — |
-| 7.3 | `ref`, `out`, zasięg zmiennych | — | — |
+| 7.1 | Metody — parametry, wartość zwracana, `void` | `18-metody.cs` | — |
+| 7.2 | Parametry domyślne i nazwane; przeciążanie do rozpoznania | `19-parametry.cs` | — |
+| 7.3 | `ref`, `out`, zasięg zmiennych | `20-ref-out.cs` | — |
+
+> **Przeciążania uczeń w module 7 nie napisze — i to jest celowe.** Metody pisane w pliku bez klasy to funkcje lokalne, a tych nie da się przeciążać (`CS0128`). Lekcja 7.2 pokazuje więc przeciążanie do **rozpoznania**: `Console.WriteLine` przyjmuje `int`, `string`, `bool`, `double` i `char`, czyli uczeń używa przeciążeń od lekcji 1.1, nie wiedząc o tym. Własne napisze w module 8 — i to jest pierwszy konkretny powód, dla którego klasy istnieją. Parametry domyślne i nazwane działają w funkcjach lokalnych bez przeszkód i te uczeń pisze sam.
 
 ### Moduł 8 — Klasy i obiekty (4)
 
