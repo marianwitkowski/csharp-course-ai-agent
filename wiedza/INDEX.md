@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 11/46 w `wiedza/lekcje/` (moduły 1–4 kompletne; moduły 5–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 14/46 w `wiedza/lekcje/` (moduły 1–5 kompletne; moduły 6–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -67,9 +67,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 5.1 | `while` i `do...while` | — | — |
-| 5.2 | `for` | — | — |
-| 5.3 | `foreach`, `break`, `continue` | — | — |
+| 5.1 | `while` i `do...while` | `11-while.cs` | — |
+| 5.2 | `for` | `12-for.cs` | — |
+| 5.3 | `foreach`, `break`, `continue` | `13-foreach.cs` | — |
+
+> **`foreach` przed kolekcjami — świadoma decyzja.** W lekcji 5.3 uczeń nie zna jeszcze tablic ani list, więc `foreach` chodzi po **znakach tekstu** (`foreach (char znak in "Anna")`). To jedyna sekwencja, którą zna, a `char` był wzmiankowany w 2.1. Dzięki temu w module 6 `foreach` jest już opanowany i kolekcje można wprowadzić bez uczenia dwóch rzeczy naraz.
 
 ### Moduł 6 — Kolekcje (4)
 
