@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 6/46 w `wiedza/lekcje/` (moduły 1–2 kompletne; moduły 3–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 8/46 w `wiedza/lekcje/` (moduły 1–3 kompletne; moduły 4–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -48,8 +48,10 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 3.1 | Wypisywanie — `WriteLine`, interpolacja `$"..."`, formatowanie | — | `[moduł 3]` |
-| 3.2 | Wejście — `Console.ReadLine`, walidacja przez `TryParse` | — | `[moduł 3]` |
+| 3.1 | Wypisywanie — `WriteLine`, interpolacja `$"..."`, formatowanie | `06-interpolacja.cs` | `[moduł 3]` |
+| 3.2 | Wejście — `Console.ReadLine`, walidacja przez `TryParse` | `07-wejscie.cs` | `[moduł 3]` |
+
+> **Moduł 3 obywa się bez `if`.** `TryParse` zwraca `bool`, a `bool` się wypisuje — uczeń potrafi więc **wykryć** złe dane, zanim pozna instrukcję warunkową. Brak reakcji na wykryty błąd jest celowy: to motywacja wejściowa do modułu 4 i lekcja 3.2 kończy się właśnie tym.
 
 ### Moduł 4 — Decyzje (3)
 

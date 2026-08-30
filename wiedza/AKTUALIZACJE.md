@@ -85,6 +85,19 @@ Zmieniły się trzy rzeczy naraz:
 
 **Formatowanie w interpolacji** działa od razu: `$"{cena:F2}"` → dwie cyfry po przecinku, `$"{procent:P0}"` → procent, `$"{data:yyyy-MM-dd}"` → data.
 
+### Wczytywanie danych od użytkownika
+
+| Stare materiały | Dzisiaj |
+| --- | --- |
+| `Convert.ToInt32(Console.ReadLine())` | `int.TryParse(Console.ReadLine(), out int x)` |
+| `int.Parse(Console.ReadLine())` | jw. |
+
+`Convert.ToInt32` i `Parse` zachowują się tak samo: przy tekście, który nie jest liczbą, **przerywają program** wyjątkiem `FormatException`. Na danych wpisywanych z klawiatury to kwestia czasu, nie ryzyka. Kurs używa wyłącznie `TryParse`.
+
+**Ostrzeżenie `CS8600` przy `string x = Console.ReadLine();`** jest nowe — mechanizm ostrzegania o wartościach, których może nie być, włączono domyślnie dopiero w nowszych projektach. W poradniku z 2018 roku tego ostrzeżenia nie zobaczysz, choć kod jest identyczny.
+
+Uczniowi wystarczy: **`warning` to nie `error`, program się buduje i działa.** Nie tłumacz `null`, `string?` ani `??` — kurs świadomie ich nie ma (patrz `INDEX.md`). Ostrzeżenie znika samo, gdy wstawi się `Console.ReadLine()` wprost do `TryParse`, bez zmiennej pośredniej.
+
 ---
 
 ## `[moduł 4]` — `switch` w dwóch postaciach
