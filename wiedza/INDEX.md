@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 41/46 w `wiedza/lekcje/` (moduły 1–13 kompletne; moduł 14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 46/46 w `wiedza/lekcje/` — **kurs kompletny**.
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -167,6 +167,14 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 14.3 | Testy xUnit, README, `dotnet publish` | — | `[moduł 14]` |
 | 14.4 | AI w pracy programisty — jak korzystać i jak weryfikować | — | `[moduł 14]` |
 | 14.5 | Mapa ekosystemu — co dalej (ASP.NET Core, EF Core, Blazor, WPF) | — | `[moduł 14]` |
+
+> **Moduł 14 to jedyne miejsce w kursie z projektem i `.csproj`.** Przez trzynaście modułów uczeń pracuje na plikach pojedynczych (`dotnet run plik.cs`), bo projekt wymagałby tłumaczenia `.csproj`, katalogów `bin`/`obj` i budowania, zanim uczeń napisze cokolwiek. Lekcja 14.1 wprowadza projekt wtedy, gdy jest do czego: wiele plików, testy, wydanie programu.
+
+> **Kanoniczną drogą jest `dotnet new console`, nie `dotnet project convert`.** Konwersja przenosi ustawienia pliku pojedynczego, w tym `PublishAot=true`, przy którym JSON z lekcji 12.3 rzuca ten sam wyjątek, co bez dyrektywy. Świeży `dotnet new console` tego ustawienia nie ma, więc obietnica z 12.3 („w projekcie żadna dyrektywa nie będzie potrzebna") jest prawdziwa. Konwersja pojawia się w 14.1 jako uwaga na marginesie, wraz z instrukcją usunięcia tej linii.
+
+> **Zasada „cienki `Program.cs`" jest wprowadzona w 14.1, a nie w 14.3.** Logika w klasach `public`, `Console.WriteLine` tylko w `Program.cs` — bez tego testy w 14.3 są niewykonalne i uczeń musi przepisywać działający kod. Atrybuty `[Fact]`/`[Theory]` to jedyne atrybuty w całym kursie; 14.3 nazywa je jednym zdaniem i nie rozwija.
+
+> **Lekcja 14.4 (AI) nie ma odpowiednika w materiałach źródłowych z 2020 roku.** Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
 
 ---
 
