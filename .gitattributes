@@ -1,0 +1,13 @@
+# Pliki C#, skrypty i metryczki projektów zostają z LF — narzędzia .NET
+# radzą sobie z każdą konwencją, ale mieszanka końców linii w repozytorium
+# generuje fałszywe różnice przy każdym checkoucie na innym systemie.
+*.cs      text eol=lf
+*.csproj  text eol=lf
+*.sln     text eol=crlf
+*.sh      text eol=lf
+
+# Markdown, JSON i .editorconfig: normalizacja w repozytorium,
+# w katalogu roboczym jak u autora.
+*.md   text
+*.json text
+.editorconfig text

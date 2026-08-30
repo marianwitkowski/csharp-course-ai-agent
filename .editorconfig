@@ -1,0 +1,42 @@
+# Konwencje formatowania kodu C# w tym kursie.
+#
+# Plik czyta edytor (VS Code z rozszerzeniem C#, Visual Studio, Rider) —
+# przy włączonym "Format on Save" uczeń nie musi pamiętać o niczym.
+# .NET nie ma jednego narzędzia wymuszającego format globalnie; `.editorconfig`
+# jest standardowym sposobem zapisania konwencji dla całego repozytorium.
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{md,json,yml,yaml}]
+indent_size = 2
+
+[*.cs]
+indent_size = 4
+
+# Nawias klamrowy w nowej linii — konwencja .NET, inna niż w większości
+# języków z rodziny C. Uczeń zobaczy ją w każdym przykładzie z dokumentacji
+# Microsoftu, więc kurs się jej trzyma.
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+# using na górze pliku, System.* pierwsze
+dotnet_sort_system_directives_first = true
+
+# Nazewnictwo: PascalCase dla typów i składowych publicznych,
+# camelCase dla zmiennych lokalnych i parametrów.
+dotnet_naming_rule.typy_pascal_case.severity = suggestion
+dotnet_naming_rule.typy_pascal_case.symbols = typy
+dotnet_naming_rule.typy_pascal_case.style = pascal_case
+
+dotnet_naming_symbols.typy.applicable_kinds = class, struct, interface, enum, method, property
+dotnet_naming_style.pascal_case.capitalization = pascal_case
