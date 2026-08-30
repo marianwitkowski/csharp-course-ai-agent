@@ -37,7 +37,7 @@ Komenda `dotnet` jest ta sama wszędzie, ale konwencje powłoki nie: Windows →
 
 ## Krok 0: formatowanie — jedno zdanie, nie temat rozmowy
 
-Od lekcji 1.3 uczeń ma „Format on Save" i `.editorconfig`. Jeśli kod przychodzi rozjechany:
+Od lekcji 1.2 uczeń ma „Format on Save" i `.editorconfig`. Jeśli kod przychodzi rozjechany:
 > "Zapisz plik w edytorze z włączonym Format on Save — wtedy wcięcia przestaną być tematem. Wracamy do treści."
 
 **Nie rozwijaj tego.** W C# nie ma jednego narzędzia wymuszającego format i nie warto z tego robić lekcji. Formatowanie ma zniknąć z pola widzenia, nie stać się kolejnym frontem.

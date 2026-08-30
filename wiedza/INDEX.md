@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 7/47 w `wiedza/lekcje/` (moduły 1–2 kompletne; moduły 3–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 6/46 w `wiedza/lekcje/` (moduły 1–2 kompletne; moduły 3–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -14,7 +14,7 @@
 
 | Katalog | Zawartość | Rola |
 | --- | --- | --- |
-| `wiedza/lekcje/` | 47 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
+| `wiedza/lekcje/` | 46 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
 | `wiedza/przyklady/kod/` | minimalne, działające programy `.cs` | materiał do eksperymentów i inspiracja na ćwiczenia |
 | `wiedza/AKTUALIZACJE.md` | delta „.NET Framework (2020) → .NET 10 (2026)" | prostuje to, co uczeń znajdzie w starszych poradnikach |
 
@@ -24,15 +24,16 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 ---
 
-## Program — 14 modułów, 47 lekcji
+## Program — 14 modułów, 46 lekcji
 
-### Moduł 1 — Wprowadzenie i środowisko (3)
+### Moduł 1 — Wprowadzenie i środowisko (2)
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 1.1 | Czym jest C# i .NET — do czego to służy | — | `[ogólne]` |
-| 1.2 | Pierwszy program — `dotnet run`, `Console.WriteLine` | `01-hello.cs` | `[moduł 1]` |
-| 1.3 | Edytor, terminal, `.editorconfig` — workflow ucznia | — | `[moduł 1]` |
+| 1.1 | Czym jest C# i .NET — i pierwszy program (`dotnet run`, `Console.WriteLine`) | `01-hello.cs` | `[ogólne]`, `[moduł 1]` |
+| 1.2 | Edytor, terminal, `.editorconfig` — workflow ucznia | — | `[moduł 1]` |
+
+> Lekcja 1.1 jest **najdłuższa w kursie** (60-75 min) i jako jedyna bywa dzielona na dwie sesje — naturalna przerwa jest po kroku 2, gdy uczeń ma już działający program. Powstała ze sklejenia dawnych 1.1 i 1.2: pierwsza lekcja bez ani jednej linii kodu zniechęcała, a lekcja o samym `Console.WriteLine` była za cienka na osobne posiedzenie.
 
 ### Moduł 2 — Zmienne i typy (4)
 
@@ -149,7 +150,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Moduł | Lekcje |
 | --- | --- |
-| 1. Wprowadzenie i środowisko | 3 |
+| 1. Wprowadzenie i środowisko | 2 |
 | 2. Zmienne i typy | 4 |
 | 3. Rozmowa z użytkownikiem | 2 |
 | 4. Decyzje | 3 |
@@ -163,9 +164,9 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 12. Pliki i dane | 4 |
 | 13. LINQ | 3 |
 | 14. Projekt i dalsze kroki | 5 |
-| **Razem** | **47** |
+| **Razem** | **46** |
 
-**Ten plik jest źródłem prawdy dla liczby 47.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
+**Ten plik jest źródłem prawdy dla liczby 46.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
 
 ---
 
@@ -184,7 +185,7 @@ zależnie od tego, na czym uczniowi zależy.
 
 ## Czego w kursie nie ma (świadome decyzje)
 
-Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 47 lekcji.
+Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 46 lekcji.
 Poniższe tematy są **świadomie** poza kursem dla początkujących — nie jako
 przeoczenie, tylko dlatego, że każdy z nich wymaga fundamentu, który ten kurs
 dopiero buduje.

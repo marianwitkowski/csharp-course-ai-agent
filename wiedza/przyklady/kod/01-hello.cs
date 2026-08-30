@@ -1,4 +1,4 @@
-// Pierwszy program — lekcja 1.2
+// Pierwszy program — lekcja 1.1
 //
 // Uruchomienie:  dotnet run 01-hello.cs
 //

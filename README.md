@@ -2,7 +2,7 @@
 
 Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta Claude Code metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
 
-Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **47 lekcji w 14 modułach**.
+Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **46 lekcji w 14 modułach**.
 
 ## Dla kogo
 
@@ -44,7 +44,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 │       ├── pomoc/                      # lista komend w czacie
 │       └── postep/                     # śledzenie postępu (narzędzie w C#)
 ├── wiedza/                             # baza wiedzy kursu
-│   ├── INDEX.md                        # struktura 47 lekcji — źródło prawdy
+│   ├── INDEX.md                        # struktura 46 lekcji — źródło prawdy
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework (2020) → .NET 10
@@ -61,11 +61,11 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 └── .editorconfig                       # konwencje formatowania — czyta je edytor
 ```
 
-## Program kursu — 14 modułów, 47 lekcji
+## Program kursu — 14 modułów, 46 lekcji
 
 | Moduł | Temat | Lekcje |
 | --- | --- | --- |
-| 1 | Wprowadzenie i środowisko | 3 |
+| 1 | Wprowadzenie i środowisko | 2 |
 | 2 | Zmienne i typy — `int`, `double`, `string`, `bool`, `const`, `enum`, konwersje | 4 |
 | 3 | Rozmowa z użytkownikiem — wypisywanie, interpolacja, wejście | 2 |
 | 4 | Decyzje — `if`, operatory logiczne, `switch` | 3 |
@@ -82,7 +82,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 
 Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md).
 
-> **Stan gotowych scenariuszy:** moduły 1–2 (7 lekcji) mają napisane pełne scenariusze sokratejskie w `wiedza/lekcje/`. Dla modułów 3–14 agent prowadzi lekcje wg struktury z `wiedza/lekcje/SZABLON-LEKCJI.md` i mapy z `INDEX.md`, improwizując scenariusz — kurs działa, ale te lekcje nie są jeszcze dopracowane tak jak dwa pierwsze moduły.
+> **Stan gotowych scenariuszy:** moduły 1–2 (6 lekcji) mają napisane pełne scenariusze sokratejskie w `wiedza/lekcje/`. Dla modułów 3–14 agent prowadzi lekcje wg struktury z `wiedza/lekcje/SZABLON-LEKCJI.md` i mapy z `INDEX.md`, improwizując scenariusz — kurs działa, ale te lekcje nie są jeszcze dopracowane tak jak dwa pierwsze moduły.
 
 **Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, `async`/`await`. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.5.
 

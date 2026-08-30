@@ -92,9 +92,9 @@ Jeśli uczeń pyta „jakie są komendy .NET?" (a nie komendy kursu), pokaż to:
 ```
 🔧 KOMENDY .NET, KTÓRE POZNASZ W TYM KURSIE
 
-  dotnet run nazwa.cs        uruchom program              (lekcja 1.2)
+  dotnet run nazwa.cs        uruchom program              (lekcja 1.1)
   dotnet --version           sprawdź wersję SDK           (lekcja 1.1)
-  dotnet build nazwa.cs      skompiluj bez uruchamiania   (lekcja 1.3)
+  dotnet build nazwa.cs      skompiluj bez uruchamiania   (lekcja 1.2)
   dotnet new console         załóż projekt                (lekcja 14.1)
   dotnet test                uruchom testy                (lekcja 14.3)
   dotnet publish             zbuduj program do rozdania   (lekcja 14.3)

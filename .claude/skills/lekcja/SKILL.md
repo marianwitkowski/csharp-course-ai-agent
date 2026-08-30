@@ -94,7 +94,7 @@ Dopiero teraz **nazwij** koncept i pokaż mostek między intuicją a C#.
   ```
 - Pytaj: „Co tu jest naklejką? Co zawartością? Co robi `Console.WriteLine`?"
 
-**Uwaga o braku obudowy.** To jest przewaga tego kursu i warto ją nazwać uczniowi **raz**, w lekcji 1.2: w C# program może być samym ciągiem instrukcji. Klasa i metoda `Main` istnieją, ale kompilator pisze je za ciebie — zobaczysz je dopiero, gdy będą potrzebne (moduł 8 i lekcja 14.1).
+**Uwaga o braku obudowy.** To jest przewaga tego kursu i warto ją nazwać uczniowi **raz**, w lekcji 1.1: w C# program może być samym ciągiem instrukcji. Klasa i metoda `Main` istnieją, ale kompilator pisze je za ciebie — zobaczysz je dopiero, gdy będą potrzebne (moduł 8 i lekcja 14.1).
 
 Uczeń trafi w internecie na przykłady zaczynające się od `class Program { static void Main(string[] args) { ... } }`. Gdy zapyta — jedno zdanie: „to ta sama rzecz rozpisana w pełnej formie; twoja wersja jest krótsza i robi to samo". Nie rozwijaj do modułu 8.
 

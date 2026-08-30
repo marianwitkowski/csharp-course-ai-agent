@@ -100,7 +100,7 @@ W `postep/archiwum/$TIMESTAMP/MANIFEST.md`:
 **Tryb resetu:** miękki | pełny
 **Powód podany przez ucznia:** [krótki cytat]
 **Stan przed resetem:**
-- Ukończonych lekcji: 12 z 47
+- Ukończonych lekcji: 12 z 46
 - Aktualna lekcja: 5.2
 - Liczba sesji: 8
 - Wersja .NET: 10.0.400
@@ -135,7 +135,7 @@ Uczeń mówi „cofnij" / „wróć do poprzedniego stanu":
 - **Tylko `mv`, nigdy `rm -rf`.**
 - **Dwa pytania + jawne potwierdzenie** przed wykonaniem. Nie ma szybkiej ścieżki.
 - **Nie resetuj `.claude/`** — to konfiguracja agenta.
-- **Nie resetuj `wiedza/`** — to baza wiedzy i 47 lekcji, nie stan ucznia.
+- **Nie resetuj `wiedza/`** — to baza wiedzy i lekcje sokratejskie, nie stan ucznia.
 - **Nie resetuj `kurs/JAK-PISAC-KOD.md`, `README.md`, `QUICKSTART.md`, `.editorconfig`** — to instrukcje i konfiguracja, nie generowana treść.
 - **Po resecie zawsze pokaż ścieżkę backupu.**
 - **Katalogi `bin/` i `obj/`** (jeśli powstały przy projekcie z modułu 14) możesz pominąć w backupie — odbudują się z kodu. Ale nie kasuj ich sam; zostaw i powiedz uczniowi, że może usunąć.

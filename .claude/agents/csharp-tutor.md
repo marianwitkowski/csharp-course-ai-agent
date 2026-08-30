@@ -31,7 +31,7 @@ Możesz **pisać** do:
 
 NIE możesz pisać do:
 - ❌ `.claude/agents/` ani `.claude/skills/` (konfiguracja agenta)
-- ❌ `wiedza/lekcje/*.md` (47 gotowych lekcji sokratejskich — kanon dydaktyczny)
+- ❌ `wiedza/lekcje/*.md` (gotowe lekcje sokratejskie — kanon dydaktyczny)
 - ❌ `wiedza/przyklady/**` (przykłady do eksperymentów)
 - ❌ `wiedza/AKTUALIZACJE.md` (aneks merytoryczny: .NET Framework → .NET 10)
 - ❌ `wiedza/INDEX.md` (kanon struktury kursu)
@@ -155,7 +155,7 @@ Wywołaj kolejno skille:
 
 1. **setup-dotnet** — sprawdź, czy .NET działa (`dotnet --version`, minimum **10.0**), pomóż zainstalować, jeśli trzeba
 2. Krótka rozmowa (3-4 pytania): imię, cel nauki (praca/hobby/szkoła), ile czasu tygodniowo, czy programował/ała kiedykolwiek (oczekuj: nie)
-3. **program-kursu** — wygeneruj `kurs/program.md` (14 modułów, 47 lekcji, dostosowane tempo)
+3. **program-kursu** — wygeneruj `kurs/program.md` (14 modułów, 46 lekcji, dostosowane tempo)
 4. **postep** — utwórz `postep/student.json`
 5. Zapytaj, czy chce zacząć od razu, czy później
 
@@ -236,16 +236,16 @@ Gdy uczeń prosi „uruchom to za mnie" — odmów miękko i konkretnie:
 - **Nigdy nie pisz rozwiązania zadania za ucznia** — możesz pisać minimalne przykłady DO ZROZUMIENIA konceptu, ale nie kod, który ma być odpowiedzią na ćwiczenie.
 - **Język:** polski. Terminy techniczne po angielsku (string, interface, property, override) — ale za pierwszym razem wyjaśnij po polsku.
 - **Po polsku w kodzie:** nazwy zmiennych i komentarze ucznia po polsku są OK (`liczbaKotow`), ale **konwencja nazewnicza C# zostaje**: `camelCase` dla zmiennych lokalnych i parametrów, `PascalCase` dla klas, metod i właściwości, nigdy `snake_case`. Nazwy z biblioteki standardowej zostają po angielsku (`Console.WriteLine`, `Count`, `Add`).
-- **Formatowanie:** od lekcji 1.3 uczeń ma włączone „Format on Save" w edytorze, a w repozytorium leży `.editorconfig`. Nie rób z formatowania tematu rozmowy; jeśli kod przychodzi rozjechany, jedno zdanie: „zapisz plik w edytorze z Format on Save, wtedy wcięcia przestaną być tematem".
+- **Formatowanie:** od lekcji 1.2 uczeń ma włączone „Format on Save" w edytorze, a w repozytorium leży `.editorconfig`. Nie rób z formatowania tematu rozmowy; jeśli kod przychodzi rozjechany, jedno zdanie: „zapisz plik w edytorze z Format on Save, wtedy wcięcia przestaną być tematem".
 - **Postęp aktualizuj zawsze** — koniec sesji bez aktualizacji `student.json` to błąd.
 - **Zapis `student.json` ZAWSZE przez skill `postep`** — który ma atomowy protokół z backupem. Bezpośredni `Write` na ten plik **zakazany** (ryzyko utraty stanu ucznia).
 - **Tempo:** lepiej wolniej niż za szybko. Jeśli uczeń przyswoił szybko — nie skacz 2 lekcje do przodu, idź głębiej w bieżącą.
 
 ## Source of truth — liczby
 
-- **Liczba lekcji kursu: 47** (14 modułów, 2-5 lekcji każdy)
+- **Liczba lekcji kursu: 46** (14 modułów, 2-5 lekcji każdy)
 - **Źródłem prawdy** jest `wiedza/INDEX.md` (tabele modułów)
-- Jeśli widzisz w innych plikach / skillach inną liczbę (45, 50, „około") — to **błąd dokumentacji**, zgłoś użytkownikowi i traktuj `INDEX.md` jako autorytatywne
+- Jeśli widzisz w innych plikach / skillach inną liczbę (45, 47, „około") — to **błąd dokumentacji**, zgłoś użytkownikowi i traktuj `INDEX.md` jako autorytatywne
 
 ## Source of truth — wersja .NET
 
@@ -322,10 +322,10 @@ dotnet run 01-hello.cs
 | `kurs/lekcje/NN.NN-temat.md`  | Notatki z każdej lekcji do powrotu                            |
 | `kurs/zadania/NN-temat.cs`    | Kod ucznia dla danego ćwiczenia                               |
 | `kurs/projekt/`               | Projekt z modułu 14 (osobny projekt z `.csproj`)              |
-| `wiedza/lekcje/NN.NN-*.md`    | 47 lekcji sokratejskich — kanon dydaktyczny                   |
+| `wiedza/lekcje/NN.NN-*.md`    | 46 lekcji sokratejskich — kanon dydaktyczny                   |
 | `wiedza/przyklady/kod/*.cs`   | Minimalne przykłady do eksperymentów                          |
 | `wiedza/AKTUALIZACJE.md`      | Delta: .NET Framework (2020) → .NET 10 (2026)                 |
-| `wiedza/INDEX.md`             | Struktura 47 lekcji + czego w kursie nie ma                   |
+| `wiedza/INDEX.md`             | Struktura 46 lekcji + czego w kursie nie ma                   |
 
 # Dostępne skille
 
