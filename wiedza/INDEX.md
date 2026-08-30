@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 25/46 w `wiedza/lekcje/` (moduły 1–8 kompletne; moduły 9–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 29/46 w `wiedza/lekcje/` (moduły 1–9 kompletne; moduły 10–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -107,10 +107,12 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 9.1 | Dziedziczenie — `:` i `base` | — | — |
-| 9.2 | `virtual` / `override` — polimorfizm | — | — |
-| 9.3 | Klasy i metody abstrakcyjne | — | — |
-| 9.4 | Składowe statyczne i klasy statyczne | — | — |
+| 9.1 | Dziedziczenie — `:` i `base` | `25-dziedziczenie.cs` | — |
+| 9.2 | `virtual` / `override` — polimorfizm | `26-polimorfizm.cs` | — |
+| 9.3 | Klasy i metody abstrakcyjne | `27-abstrakcyjne.cs` | — |
+| 9.4 | Składowe statyczne i klasy statyczne | `28-static.cs` | `[moduł 9]` |
+
+> **Moduł 9 domyka trzy wątki ciągnące się przez cały kurs.** Lekcja 9.2 wyjaśnia `override`, które uczeń pisał w 8.2 przy `ToString()`, nie wiedząc, co znaczy (odpowiedź: `object.ToString` jest `virtual`). Lekcja 9.4 wyjaśnia, czemu `Console.WriteLine` i `Math.Round` woła się bez `new` — używa ich od lekcji 1.1. Lekcja 9.1 domyka też `static void Main` ze starych materiałów, wzmiankowane w 7.1.
 
 ### Moduł 10 — Interfejsy (3)
 
