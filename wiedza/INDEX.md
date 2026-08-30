@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 21/46 w `wiedza/lekcje/` (moduły 1–7 kompletne; moduły 8–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 25/46 w `wiedza/lekcje/` (moduły 1–8 kompletne; moduły 9–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -96,10 +96,12 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 8.1 | Klasa jako własny typ — pola i obiekty | — | — |
-| 8.2 | Konstruktory | — | `[moduł 8]` — konstruktory podstawowe |
-| 8.3 | Właściwości — `get`/`set`, właściwości automatyczne | — | — |
-| 8.4 | Modyfikatory dostępu i enkapsulacja | — | — |
+| 8.1 | Klasa jako własny typ — pola i obiekty | `21-klasy.cs` | `[moduł 8]` |
+| 8.2 | Konstruktory | `22-konstruktory.cs` | `[moduł 8]` — konstruktory podstawowe |
+| 8.3 | Właściwości — `get`/`set`, właściwości automatyczne | `23-wlasciwosci.cs` | `[moduł 8]` |
+| 8.4 | Modyfikatory dostępu i enkapsulacja | `24-enkapsulacja.cs` | — |
+
+> **Moduł 8 spłaca dwa długi z modułu 7.** Lekcja 8.2 pokazuje przeciążone konstruktory — czyli dokładnie to, czego uczeń nie mógł napisać w 7.2 (`CS0128`), bo funkcji lokalnych nie da się przeciążać. Lekcja 8.1 odpowiada też na pytanie z końca 7.3 („a jak oddać z metody trzy rzeczy") — własnym typem zamiast trzech `out`.
 
 ### Moduł 9 — Programowanie obiektowe (4)
 
