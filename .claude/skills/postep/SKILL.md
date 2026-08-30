@@ -1,22 +1,32 @@
 ---
 name: postep
-description: Czyta i atomowo aktualizuje plik postep/student.json przez narzędzie postep napisane w C#. Każda modyfikacja przechodzi przez atomowy protokół (backup + walidacja + atomowa podmiana) wykonywany przez narzędzie — agent NIE składa JSON-a samodzielnie. Użyj na początku sesji (odczyt) i po każdej istotnej zmianie (zapis).
+description: Atomowo zapisuje plik postep/student.json przez narzędzie postep napisane w C#. Każda modyfikacja przechodzi przez protokół backup + walidacja + atomowa podmiana — agent NIE składa JSON-a samodzielnie i nie edytuje tego pliku ręcznie. Odczyt stanu robi się zwykłym Read, nie przez narzędzie. Użyj po każdej istotnej zmianie stanu ucznia.
 ---
 
 # Cel
 
-Trzymać **jeden** plik z pełnym stanem ucznia (`postep/student.json`), z gwarancją, że żadna operacja go nie uszkodzi — wszystkie zapisy idą przez deterministyczne narzędzie, **nie przez ręczne składanie JSON-a przez agenta**.
+Trzymać **jeden** plik z pełnym stanem ucznia (`postep/student.json`), z gwarancją, że żadna operacja go nie uszkodzi — wszystkie zapisy idą przez deterministyczne narzędzie, **nie przez ręczne składanie JSON-a przez agenta**. Odczyt jest wyjątkiem i robi się go zwykłym `Read` — powód niżej.
 
 # Zasada twarda — kluczowa
 
 **Agent NIGDY nie wykonuje `Write` ani `Edit` na `postep/student.json` bezpośrednio.**
 
-Wszystkie operacje przez:
+Każdy **zapis** przez:
 ```bash
 dotnet run .claude/skills/postep/postep.cs -- <komenda> [argumenty]
 ```
 
 Narzędzie wykonuje protokół: odczyt → sprawdzenie wersji schematu → backup → modyfikacja → zapis `.tmp` → walidacja → atomowa podmiana. Agent tylko **woła je z argumentami**.
+
+## Odczyt jest wyjątkiem — rób go `Read`-em
+
+**Do odczytu stanu używaj zwykłego narzędzia `Read` na `postep/student.json`.** Komenda `read` istnieje w narzędziu i jest poprawna, ale nie polegaj na niej jako na jedynej drodze.
+
+Powód: `postep` uruchamia się przez `dotnet`. Gdy `dotnet` nie jest w `PATH` (częstsze, niż się wydaje — instalacja skryptem ląduje w `~/.dotnet`), ratuje cię pełna ścieżka z pola `srodowisko.dotnet_cmd`. Ta ścieżka leży **w środku pliku, którego wtedy nie możesz odczytać**. Odczyt przez narzędzie zawodzi dokładnie w sytuacji, w której jest najbardziej potrzebny.
+
+Odczyt niczego nie modyfikuje, więc pominięcie protokołu nic nie kosztuje. **Czytasz `Read`-em, piszesz `postep`-em.**
+
+Wniosek praktyczny: gdy `dotnet run …postep.cs` zwraca `command not found`, **nie kombinuj** — odczytaj `student.json` przez `Read`, weź z niego `srodowisko.dotnet_cmd` i wołaj narzędzie przez tę ścieżkę do końca sesji.
 
 ## Co to jest i dlaczego tak
 
@@ -188,12 +198,9 @@ Narzędzie szuka najnowszego **działającego** backupu w `postep/backups/`, prz
 
 ## Start sesji
 
-1. **Odczyt:**
-   ```bash
-   dotnet run .claude/skills/postep/postep.cs -- read
-   ```
-2. Błąd „plik nie istnieje" → uczeń nowy, uruchom onboarding
-3. Błąd „nie jest poprawnym JSON-em" → `recovery` (zapytaj ucznia najpierw)
+1. **Odczyt:** `Read` na `postep/student.json` (nie przez narzędzie — patrz wyżej)
+2. Plik nie istnieje → uczeń nowy, uruchom onboarding
+3. Plik jest, ale nie parsuje się jako JSON → `recovery` (zapytaj ucznia najpierw). Tu **musisz** użyć narzędzia; jeśli `dotnet` nie startuje, weź ścieżkę z najnowszego backupu w `postep/backups/`, który da się odczytać
 4. W normalnym przypadku zwróć agentowi:
    - `imie`, `aktualna_lekcja`
    - 2-3 ostatnie wpisy z `ukonczone_lekcje`

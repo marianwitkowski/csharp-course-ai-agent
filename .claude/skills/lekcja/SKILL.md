@@ -13,11 +13,9 @@ Doprowadzić ucznia do **samodzielnego zrozumienia** jednego konceptu C# w ciąg
 
 ## A. Odczytaj środowisko ucznia
 
-```bash
-dotnet run .claude/skills/postep/postep.cs -- read --field srodowisko
-```
+Otwórz `postep/student.json` narzędziem **`Read`** i weź z niego sekcję `srodowisko`. Nie przez `postep` — narzędzie wymaga działającego `dotnet`, a ścieżka ratunkowa do `dotnet` leży w tym właśnie pliku. Szczegóły w skillu `postep`, sekcja „Odczyt jest wyjątkiem".
 
-Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` na całą sesję.
+Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` na całą sesję. **Zapisy** w trakcie lekcji idą już przez `postep`, wołany przez odczytane `dotnet_cmd`.
 
 - Lekcje w `wiedza/lekcje/` używają konwencji **macOS/Linux**. Uczeń na Windows → tłumacz `cat` na `type`, `ls -l` na `dir`, ścieżki na `\`. Sama komenda `dotnet` jest identyczna wszędzie i to jest największe ułatwienie tego kursu — nie komplikuj go z powrotem.
 - **Sprawdź `dotnet_version`.** Jeśli < 10.0 → zatrzymaj lekcję i wywołaj skill `setup-dotnet`. Bez .NET 10 nie zadziała ani jedno ćwiczenie (aplikacje jednoplikowe).

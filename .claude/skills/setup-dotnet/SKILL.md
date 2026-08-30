@@ -234,7 +234,9 @@ Nie idź dalej, dopóki uczeń nie potwierdzi.
 
 # Zapis środowiska do `student.json`
 
-Po zakończonym setupie ZAWSZE zapisz środowisko (podczas onboardingu może być od razu w `init`, później przez `update-srodowisko`):
+Po zakończonym setupie ZAWSZE zapisz środowisko (podczas onboardingu może być od razu w `init`, później przez `update-srodowisko`).
+
+> **Jeśli `dotnet` nie jest w `PATH`** i pracujesz na pełnej ścieżce z kroku 3B — użyj jej **także do wywołania `postep`**, np. `/Users/ola/.dotnet/dotnet run .claude/skills/postep/postep.cs -- init …`. Tę samą ścieżkę wpisz w `--dotnet-cmd`; od następnej sesji agent odczyta ją z `student.json` (zwykłym `Read`) i będzie miał czym wołać narzędzie.
 
 ```bash
 dotnet run .claude/skills/postep/postep.cs -- update-srodowisko \

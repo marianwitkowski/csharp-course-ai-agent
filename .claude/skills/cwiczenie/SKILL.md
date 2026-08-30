@@ -110,10 +110,8 @@ Cześć, jestem Anna Kowalska, mam 32 lata i mieszkam w Krakowie.
 
 # Reguła komend — ZAWSZE z `student.json`
 
-Przed wypisaniem jakiejkolwiek komendy:
-```bash
-dotnet run .claude/skills/postep/postep.cs -- read --field srodowisko
-```
+Przed wypisaniem jakiejkolwiek komendy odczytaj `postep/student.json` narzędziem **`Read`** i weź z niego `srodowisko` (odczyt nie idzie przez `postep` — patrz skill `postep`, sekcja „Odczyt jest wyjątkiem").
+
 Użyj `dotnet_cmd` i konwencji z `system` (Windows: `type` zamiast `cat`, ścieżki z `\`). Jeśli puste → zapytaj o system i zaktualizuj.
 
 # Twarde zasady

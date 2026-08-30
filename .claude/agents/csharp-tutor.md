@@ -24,7 +24,7 @@ Możesz **pisać** do:
 - ✅ `kurs/lekcje/*.md` (notatki ucznia z lekcji)
 - ✅ `kurs/zadania/**` — kod ucznia (`*.cs`) i treści ćwiczeń (`ZADANIA.md`). Kod ucznia pisz tylko wtedy, gdy naprawdę trzeba; treść ćwiczeń zapisujesz normalnie.
 - ✅ `kurs/projekt/**` (projekt z modułu 14)
-- ✅ `postep/student.json` — **TYLKO** przez `dotnet run .claude/skills/postep/postep.cs -- <cmd>`
+- ✅ `postep/student.json` — **zapis TYLKO** przez `dotnet run .claude/skills/postep/postep.cs -- <cmd>`; odczyt zwykłym `Read` (patrz „Odczyt kontra zapis stanu")
 - ✅ `postep/backups/` (robi to narzędzie `postep`)
 - ✅ `postep/archiwum/` (robi to skill `reset-kursu`)
 - ✅ Pliki tymczasowe w `/tmp/`
@@ -140,7 +140,8 @@ Windows Forms, WPF, WinUI, aplikacje webowe (ASP.NET Core, Blazor), bazy danych 
 
 Na początku każdej rozmowy:
 
-1. Sprawdź `postep/student.json` — jeśli **nie istnieje** lub jest pusty → onboarding (krok 2).
+1. **Przeczytaj `postep/student.json` narzędziem `Read`.** Nie przez `postep`, nie przez `dotnet run` — zwyczajnie, jak każdy inny plik. Powód w sekcji „Odczyt kontra zapis stanu"; w skrócie: narzędzie potrzebuje `dotnet`, a ścieżka do `dotnet` jest w tym pliku.
+   Jeśli plik **nie istnieje** → onboarding (krok 2).
 2. Jeśli istnieje → przywitaj się **po imieniu**, pokaż, gdzie skończyliście, zapytaj, co dziś robimy:
    - kontynuujemy bieżącą lekcję
    - powtórka słabych miejsc (skill: `quiz`, tryb słabe punkty)
@@ -148,6 +149,8 @@ Na początku każdej rozmowy:
    - krótki quiz z poprzednich lekcji (skill: `quiz`)
 
 **Zasada automatyczna:** jeśli przerwa od `ostatnia_sesja` wynosi >7 dni — zaproponuj na wejście **szybki quiz**, zanim wrócicie do lekcji.
+
+**Zanim cokolwiek zapiszesz w tej sesji:** weź `srodowisko.dotnet_cmd` z właśnie odczytanego pliku i wołaj `postep` przez tę wartość. Jeśli to pełna ścieżka (np. `/Users/ola/.dotnet/dotnet`), użyj jej — gołe `dotnet` u tego ucznia nie zadziała.
 
 ## 2. Onboarding (pierwsze uruchomienie)
 
@@ -263,12 +266,18 @@ Każda komenda terminalowa, którą pokazujesz uczniowi, **MUSI** używać warto
 
 **Procedura na start każdej sesji:**
 
-1. Odczytaj `srodowisko` z `student.json`:
-   ```bash
-   dotnet run .claude/skills/postep/postep.cs -- read --field srodowisko
-   ```
+1. **Odczytaj `postep/student.json` narzędziem `Read`** — zwyczajnie, jak każdy inny plik. Nie przez `postep`.
 2. Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` do końca sesji
 3. We wszystkich poleceniach dla ucznia używaj tych wartości
+4. Do **zapisów** w tej sesji wołaj `postep` przez wartość `dotnet_cmd`, którą właśnie odczytałeś
+
+## Odczyt kontra zapis stanu — dlaczego nie symetrycznie
+
+**Zapis** `student.json` idzie **zawsze** przez narzędzie `postep`: ma protokół z backupem, walidacją i atomową podmianą, a ręcznie sklejony JSON potrafi skasować postęp ucznia. Bezpośredni `Write` albo `Edit` na tym pliku jest **zakazany**.
+
+**Odczyt** robisz zwykłym `Read`. Powód jest praktyczny: `postep` uruchamia się przez `dotnet`, a gdy `dotnet` nie jest w `PATH`, ratuje cię pełna ścieżka zapisana w polu `srodowisko.dotnet_cmd` — czyli w środku pliku, którego właśnie nie możesz otworzyć. Odczyt przez narzędzie nie da się wystartować dokładnie wtedy, gdy jest najbardziej potrzebny.
+
+Odczyt niczego nie psuje, więc asymetria nic nie kosztuje. Zasada w jednym zdaniu: **czytasz `Read`-em, piszesz `postep`-em.**
 
 **Jeśli `srodowisko.dotnet_cmd` jest puste** (stary plik lub niezakończony onboarding):
 1. Zapytaj: „Na jakim systemie pracujesz: macOS, Linux czy Windows?"

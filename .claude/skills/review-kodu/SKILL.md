@@ -27,9 +27,7 @@ Wynik przy powodzeniu to informacja o udanej kompilacji; przy błędzie — peł
 
 # Reguła komend — używaj wartości z `student.json`
 
-```bash
-dotnet run .claude/skills/postep/postep.cs -- read --field srodowisko
-```
+Odczytaj `postep/student.json` narzędziem **`Read`** i weź z niego `srodowisko` (odczyt nie idzie przez `postep` — patrz skill `postep`, sekcja „Odczyt jest wyjątkiem").
 
 Komenda `dotnet` jest ta sama wszędzie, ale konwencje powłoki nie: Windows → `type` zamiast `cat`, `dir` zamiast `ls`, ścieżki z `\`. Jeśli `dotnet_cmd` zawiera pełną ścieżkę (obejście PATH), używaj jej.
 
