@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 32/46 w `wiedza/lekcje/` (moduły 1–10 kompletne; moduły 11–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 34/46 w `wiedza/lekcje/` (moduły 1–11 kompletne; moduły 12–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -128,8 +128,10 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 11.1 | `try` / `catch` / `finally` | — | — |
-| 11.2 | `throw`, własne wyjątki, `using` i `IDisposable` | — | — |
+| 11.1 | `try` / `catch` / `finally` | `32-try-catch.cs` | — |
+| 11.2 | `throw`, własne wyjątki, `using` i `IDisposable` | `33-throw-using.cs` | `[moduł 11]` |
+
+> **Moduł 11 jest krótki celowo.** Uczeń poznał już trzy inne sposoby radzenia sobie z błędami: metody `TryCoś` (2.3, 6.3), wartości specjalne jak `-1` z `IndexOf` (6.2) i walidację w konstruktorze (8.2). Lekcja 11.2 zbiera to w jedną tabelę „co kiedy" — wyjątki są **jednym z czterech** narzędzi, nie domyślnym.
 
 ### Moduł 12 — Pliki i dane (4)
 
