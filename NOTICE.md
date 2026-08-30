@@ -39,11 +39,6 @@ programu zajęć, przykładów kodu i notatek wykładowych. **Marian Witkowski
 posiada do nich pełnię praw autorskich**; żaden podmiot trzeci nie rości sobie
 praw do tych materiałów ani do treści z nich wywiedzionej.
 
-Same materiały źródłowe nie są częścią tego repozytorium; leżą poza nim,
-w katalogu `.kb/`, świadomie wyłączonym z kontroli wersji (wpis
-w `.gitignore`). To decyzja porządkowa, nie licencyjna — nie ma tam nic,
-czego nie wolno byłoby opublikować.
-
 Do repozytorium trafia wyłącznie treść napisana od nowa: lekcje sokratejskie
 w `wiedza/lekcje/` i przykłady w `wiedza/przyklady/`. Przykłady zostały
 **zmodernizowane** — oryginały pisano dla .NET Framework i Visual Studio na
