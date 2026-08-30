@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 34/46 w `wiedza/lekcje/` (moduły 1–11 kompletne; moduły 12–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 38/46 w `wiedza/lekcje/` (moduły 1–12 kompletne; moduły 13–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -137,10 +137,14 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 12.1 | Pliki tekstowe — `File`, `StreamReader` / `StreamWriter` | — | `[moduł 12]` |
-| 12.2 | Ścieżki i katalogi — `Path`, `Directory` | — | — |
-| 12.3 | JSON — `System.Text.Json` | — | `[moduł 12]` — `System.Text.Json` zamiast Newtonsoft |
-| 12.4 | Argumenty wiersza poleceń (`args`) | — | — |
+| 12.1 | Pliki tekstowe — `File`, `StreamReader` / `StreamWriter` | `34-pliki.cs` | `[moduł 12]` |
+| 12.2 | Ścieżki i katalogi — `Path`, `Directory` | `35-sciezki.cs` | — |
+| 12.3 | JSON — `System.Text.Json` | `36-json.cs` | `[moduł 12]` — `System.Text.Json` zamiast Newtonsoft |
+| 12.4 | Argumenty wiersza poleceń (`args`) | `37-argumenty.cs` | — |
+
+> **JSON w pliku jednoplikowym wymaga dwóch dyrektyw.** Program uruchamiany przez `dotnet run plik.cs` ma domyślnie **wyłączoną** serializację opartą na refleksji — bez `#:property JsonSerializerIsReflectionEnabledByDefault=true` każdy przykład z lekcji 12.3 kończy się `InvalidOperationException`. Druga linia, `#:property PublishAot=false`, wycisza kilkanaście ostrzeżeń `IL2026`/`IL3050`, które inaczej zasypują wynik przy pierwszym uruchomieniu. Obie znikają w module 14, gdzie uczeń przechodzi na zwykły projekt z `.csproj`. To jedyne miejsce w kursie, gdzie dyrektywa `#:property` jest obowiązkowa.
+
+> **`System.Text.Json` serializuje właściwości, nie pola.** Klasa z publicznym polem daje `{}` — bez błędu i bez ostrzeżenia. To najkonkretniejszy argument za właściwościami w całym kursie i domyka lekcję 8.3, która podawała cztery powody teoretyczne.
 
 ### Moduł 13 — LINQ (3)
 
@@ -218,7 +222,7 @@ dopiero buduje.
 | Metody rozszerzające | Wymagają klas statycznych (9.4) i pewności w czytaniu sygnatur. Uczeń **korzysta** z nich w module 13 (LINQ to metody rozszerzające), ale swoich nie pisze | 13.1 — jedno zdanie |
 | `record`, `struct`, typy nullowalne (`string?`) | Każdy z nich to wariant czegoś, co uczeń dopiero co poznał. Wprowadzone równolegle z klasą rozmywają obraz | 14.5 |
 | Refleksja, `unsafe`, wskaźniki | Nigdy dla początkującego | — |
-| Visual Studio (pełne IDE) | Tylko Windows, ciężkie, ukrywa `dotnet` za przyciskami. Kurs uczy narzędzi wiersza poleceń, bo one działają wszędzie i pokazują, co się naprawdę dzieje | 1.3 — wzmianka jako alternatywa dla użytkowników Windows |
+| Visual Studio (pełne IDE) | Tylko Windows, ciężkie, ukrywa `dotnet` za przyciskami. Kurs uczy narzędzi wiersza poleceń, bo one działają wszędzie i pokazują, co się naprawdę dzieje | 1.2 — wzmianka jako alternatywa dla użytkowników Windows |
 
 **Uczeń pytający o którykolwiek z tych tematów** dostaje jedno zdanie, co to
 jest, i odesłanie do lekcji **14.5** („mapa ekosystemu"). Nie rozwijaj — to
