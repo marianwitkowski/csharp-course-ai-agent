@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 8/46 w `wiedza/lekcje/` (moduły 1–3 kompletne; moduły 4–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 11/46 w `wiedza/lekcje/` (moduły 1–4 kompletne; moduły 5–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -57,11 +57,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 4.1 | `if` / `else if` / `else` | — | — |
+| 4.1 | `if` / `else if` / `else` | `08-if.cs` | — |
 
 > **Dług z modułu 1:** lekcja 4.1 wprowadza pierwsze klamry, więc to **tutaj** pokazuje się, po co są wcięcia — dwie wersje tego samego `if`, zbita i sformatowana. Lekcja 1.2 celowo tego nie robi: w płaskim ciągu instrukcji nie ma czego wcinać, a przykład z `if` wyprzedzałby program.
-| 4.2 | Operatory logiczne i operator warunkowy `?:` | — | — |
-| 4.3 | `switch` — instrukcja i wyrażenie | — | `[moduł 4]` — `switch` jako wyrażenie |
+| 4.2 | Operatory logiczne i operator warunkowy `?:` | `09-logiczne.cs` | — |
+| 4.3 | `switch` — instrukcja i wyrażenie | `10-switch.cs` | `[moduł 4]` — `switch` jako wyrażenie |
 
 ### Moduł 5 — Pętle (3)
 
