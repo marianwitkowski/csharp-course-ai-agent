@@ -163,6 +163,26 @@ string opis = ocena switch
 
 ---
 
+## `[moduł 9]` — gdzie się podziało `static`
+
+W materiałach sprzed 2021 roku **każdy** program zaczynał się od:
+```csharp
+class Program
+{
+    static void Main(string[] args) { ... }
+}
+```
+
+Uczeń widział `static` w pierwszej minucie nauki, nie mając szans go zrozumieć — i zwykle zapamiętywał jako „słowo, które trzeba napisać, żeby działało".
+
+Dziś instrukcje najwyższego poziomu usuwają to z drogi: `static` pojawia się dopiero w lekcji 9.4, gdy uczeń sam potrzebuje składowej wspólnej dla wszystkich obiektów.
+
+**Jedno zdanie dla ucznia:** „W starych przykładach `static` stoi przy `Main`, bo cały program był jedną metodą w klasie. Tobie nie jest tam potrzebne."
+
+Reszta modułu 9 — dziedziczenie, `virtual`/`override`, klasy abstrakcyjne — **nie zmieniła się** od dwudziestu lat. Stary poradnik o dziedziczeniu jest w porządku.
+
+---
+
 ## `[moduł 11]` — wyjątki i `using`
 
 | Stare materiały | Dzisiaj | Od |
@@ -190,6 +210,28 @@ Jeśli uczeń przyniesie kod z `JsonConvert`: „to biblioteka zewnętrzna, kied
 - nie serializuje pól, tylko **właściwości** (kolejny powód, żeby moduł 8 był solidny)
 - domyślnie **rozróżnia wielkość liter** przy odczycie nazw
 
+`Newtonsoft.Json` zachowywał się w obu punktach odwrotnie — stąd kod przepisany ze starego poradnika potrafi cicho wczytać puste właściwości.
+
+**Trzecia różnica: polskie znaki.** `System.Text.Json` domyślnie zapisuje je kodami (`"Żółw"` → `"\u017B\u00F3\u0142w"`). Plik jest poprawny i każdy program odczyta z niego z powrotem »Żółw«, ale człowiek tego nie przeczyta. Naprawa: `Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping` w `JsonSerializerOptions` (`using System.Text.Encodings.Web`). Nazwa „Unsafe" dotyczy wklejania takiego tekstu wprost na stronę WWW, nie zapisu do pliku.
+
+### Dwie dyrektywy, których nie ma w żadnym poradniku
+
+To **nie jest** różnica względem 2020 roku — to konsekwencja aplikacji jednoplikowych, czyli nowości .NET 10. Poradniki jeszcze o tym nie piszą, więc uczeń nigdzie tego nie znajdzie.
+
+Plik uruchamiany przez `dotnet run plik.cs` ma domyślnie włączone ustawienia pod budowanie do samodzielnego pliku wykonywalnego. Skutek:
+
+```csharp
+#:property JsonSerializerIsReflectionEnabledByDefault=true
+#:property PublishAot=false
+```
+
+- **bez pierwszej linii** program przewraca się: `InvalidOperationException: Reflection-based serialization has been disabled for this application`
+- **bez drugiej** przed wynikiem wypisuje się kilkanaście ostrzeżeń `IL2026` i `IL3050` — nieszkodliwych, ale przy pierwszym uruchomieniu wyglądających jak awaria (znikają przy kolejnym, bo plik nie jest budowany od nowa)
+
+Obie linie muszą stać **na samej górze pliku**, przed `using`.
+
+**W projekcie z modułu 14 żadna nie jest potrzebna** — `dotnet new console` nie ustawia `PublishAot`. Wyjątkiem jest projekt powstały przez `dotnet project convert`: konwersja przenosi ustawienia pliku jednoplikowego i JSON wywraca się tak samo. Wtedy usuwa się linię `PublishAot` z `.csproj`.
+
 ---
 
 ## `[moduł 14]` — projekt, testy, dystrybucja
@@ -199,9 +241,21 @@ Jeśli uczeń przyniesie kod z `JsonConvert`: „to biblioteka zewnętrzna, kied
 | Nowy projekt przez kreator w Visual Studio | `dotnet new console -o nazwa` |
 | MSTest / NUnit z konfiguracją w GUI | `dotnet new xunit`, `dotnet test` |
 | `packages.config`, folder `packages/` | `<PackageReference>` w `.csproj`, bez folderu w repozytorium |
-| Instalator albo folder z kilkunastoma plikami `.dll` | `dotnet publish` — jeden plik wykonywalny |
+| Instalator albo folder z kilkunastoma plikami `.dll` | `dotnet publish` — katalog z kilkoma plikami albo, na żądanie, jeden plik wykonywalny |
 
-**`dotnet publish`** potrafi zbudować program niewymagający zainstalowanego .NET u odbiorcy. To dobra puenta kursu: uczeń oddaje komuś jeden plik i ten ktoś go po prostu uruchamia.
+**`dotnet publish` ma trzy warianty** i warto ich nie mylić — lekcja 14.3 pokazuje dwa pierwsze:
+
+| Komenda | Co powstaje | Wymaga .NET u odbiorcy |
+| --- | --- | --- |
+| `dotnet publish -c Release` | katalog, 5 plików, ok. 150 kB | **tak** |
+| `... -r <system> --self-contained` | katalog, kilkadziesiąt MB | nie |
+| `... -r <system> --self-contained -p:PublishSingleFile=true` | **jeden plik**, ok. 76 MB (plus `.pdb`) | nie |
+
+Identyfikator systemu dobiera się do **odbiorcy**, nie do siebie: `win-x64`, `linux-x64`, `osx-arm64`, `osx-x64`.
+
+**Pułapka pierwszego wariantu:** program zbudował się, ale `./nazwa` kończy się komunikatem „Download the .NET runtime", jeśli uczeń instalował .NET skryptem `dotnet-install.sh` — czyli do katalogu `~/.dotnet`, a nie systemowo. Działa wtedy `dotnet nazwa.dll` albo `DOTNET_ROOT=$HOME/.dotnet ./nazwa`.
+
+**`PublishSingleFile` pokazuj tylko na pytanie.** Puenta kursu — „oddajesz komuś jeden plik i ten ktoś go uruchamia" — jest prawdziwa, ale wymaga wszystkich trzech przełączników naraz.
 
 ---
 
