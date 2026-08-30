@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 29/46 w `wiedza/lekcje/` (moduły 1–9 kompletne; moduły 10–14 w przygotowaniu).
+> **Status gotowych lekcji sokratejskich:** 32/46 w `wiedza/lekcje/` (moduły 1–10 kompletne; moduły 11–14 w przygotowaniu).
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -118,9 +118,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 10.1 | Interfejs jako kontrakt | — | — |
-| 10.2 | `ToString()`, `IComparable`, `IEnumerable` | — | — |
-| 10.3 | Kompozycja zamiast dziedziczenia — kiedy co | — | — |
+| 10.1 | Interfejs jako kontrakt | `29-interfejsy.cs` | — |
+| 10.2 | `ToString()`, `IComparable`, `IEnumerable` | `30-icomparable.cs` | — |
+| 10.3 | Kompozycja zamiast dziedziczenia — kiedy co | `31-kompozycja.cs` | — |
+
+> **`IEnumerable` uczeń rozpoznaje, nie implementuje.** Własna implementacja wymaga jawnej wersji nieogólnej i `IEnumerator` — trzech nowych rzeczy naraz, bez zysku dydaktycznego. Lekcja 10.2 wyjaśnia natomiast, **dlaczego** `foreach` działa jednakowo na tekście, tablicy, liście i słowniku: wszystkie implementują ten sam kontrakt. `IComparable<T>` uczeń pisze sam — to jedna metoda.
 
 ### Moduł 11 — Wyjątki (2)
 
