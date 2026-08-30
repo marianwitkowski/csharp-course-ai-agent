@@ -202,6 +202,17 @@ Reguła: metoda spoza wcześniejszych lekcji jest dopuszczalna **tylko** wtedy, 
 
 W jednej lekcji nie mieszaj: albo wszystkie cytaty po polsku, albo wszystkie po angielsku. Gdy cytujesz wersję angielską, a uczeń pracuje po polsku (albo odwrotnie), powiedz mu jednym zdaniem, że treść się zgadza mimo innego brzmienia.
 
+## 10. Ćwiczenia sprawdzasz tak samo jak kroki lekcji
+
+Punkty 1-9 dotyczą scenariusza. **Treści zadań z kroku 5 podlegają im wszystkim tak samo** — to tam najłatwiej o błąd, bo autor pisze je z pamięci, na końcu, patrząc na wersję kodu, którą ma w głowie, a nie na tę, którą uczeń zobaczy na ekranie.
+
+Dla każdego z trzech poziomów sprawdź:
+
+- **Da się to rozwiązać wyłącznie materiałem do tej lekcji włącznie?** Rozpisz w myślach rozwiązanie i wypisz użyte konstrukcje oraz metody. Każda musi być wcześniej wprowadzona.
+- **Jeśli nie da się — czy to celowa ściana i czy jest oznaczona?** Kurs świadomie stawia zadania, których uczeń nie domknie (motywacja do następnej lekcji), ale **musi to być napisane wprost**: „tak ma być, brakuje ci klocka z lekcji N". Nieoznaczona ściana to nie ćwiczenie, tylko cicha porażka ucznia.
+- **Czy zapowiedziany wynik ćwiczenia zgadza się z kodem, który uczeń faktycznie napisze?** Jeśli zadanie opiera się na klasie z kroku 3, weź tę klasę w wersji z kroku 3 — nie w tej, którą pamiętasz.
+- **Czy podsumowanie pod listą ćwiczeń wymienia tylko to, co w nich naprawdę jest?** Zdanie „gwiazdka łączy X, Y i Z" bywa pisane przed ostateczną wersją zadania i zostaje niezgodne z treścią.
+
 ## Ostatni przebieg — komendy zbiorcze
 
 ```sh
