@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 48/48 w `wiedza/lekcje/` — **kurs kompletny**.
+> **Status gotowych lekcji sokratejskich:** 49/49 w `wiedza/lekcje/` — **kurs kompletny**.
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -14,7 +14,7 @@
 
 | Katalog | Zawartość | Rola |
 | --- | --- | --- |
-| `wiedza/lekcje/` | 48 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
+| `wiedza/lekcje/` | 49 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
 | `wiedza/przyklady/kod/` | minimalne, działające programy `.cs` | materiał do eksperymentów i inspiracja na ćwiczenia |
 | `wiedza/AKTUALIZACJE.md` | delta „.NET Framework (2020) → .NET 10 (2026)" | prostuje to, co uczeń znajdzie w starszych poradnikach |
 
@@ -24,7 +24,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 ---
 
-## Program — 14 modułów, 48 lekcji
+## Program — 14 modułów, 49 lekcji
 
 ### Moduł 1 — Wprowadzenie i środowisko (2)
 
@@ -92,7 +92,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 > **Przeciążania uczeń w module 7 nie napisze — i to jest celowe.** Metody pisane w pliku bez klasy to funkcje lokalne, a tych nie da się przeciążać (`CS0128`). Lekcja 7.2 pokazuje więc przeciążanie do **rozpoznania**: `Console.WriteLine` przyjmuje `int`, `string`, `bool`, `double` i `char`, czyli uczeń używa przeciążeń od lekcji 1.1, nie wiedząc o tym. Własne napisze w module 8 — i to jest pierwszy konkretny powód, dla którego klasy istnieją. Parametry domyślne i nazwane działają w funkcjach lokalnych bez przeszkód i te uczeń pisze sam.
 
-### Moduł 8 — Klasy i obiekty (4)
+### Moduł 8 — Klasy i obiekty (5)
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
@@ -100,6 +100,9 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 8.2 | Konstruktory | `22-konstruktory.cs` | `[moduł 8]` — konstruktory podstawowe |
 | 8.3 | Właściwości — `get`/`set`, właściwości automatyczne | `23-wlasciwosci.cs` | `[moduł 8]` |
 | 8.4 | Modyfikatory dostępu i enkapsulacja | `24-enkapsulacja.cs` | — |
+| 8.5 | `null` i typy nullowalne — `string?`, `is null`, `??`, `?.`, ostrzeżenia `CS86xx` | — | `[moduł 8]` — sprawdzanie `null` przez kompilator |
+
+> **Lekcja 8.5 spłaca dług z lekcji 3.2.** Uczeń widzi `CS8600` od modułu 3 i słyszy „ostrzeżenie to nie błąd, wrócimy do tego". Wyjaśnienie wymaga `null` (8.1), `if` (4.1) i właściwości z `CS8618` (8.2-8.3) — dlatego dopiero tutaj, w pół godziny, a nie w module 3 w dwie. Lekcja jest krótka i celowo **zamyka** moduł 8: zanim uczeń napisze `Kot` i `Pies` (9.1), umie powiedzieć, których wartości w jego klasach może brakować. `??` wraca w 12.3 (`Deserialize`) i w projekcie (14.3), `?` w typie zwracanym — w 13.1 (`FirstOrDefault`).
 
 > **Moduł 8 spłaca dwa długi z modułu 7.** Lekcja 8.2 pokazuje przeciążone konstruktory — czyli dokładnie to, czego uczeń nie mógł napisać w 7.2 (`CS0128`), bo funkcji lokalnych nie da się przeciążać. Lekcja 8.1 odpowiada też na pytanie z końca 7.3 („a jak oddać z metody trzy rzeczy") — własnym typem zamiast trzech `out`.
 
@@ -195,16 +198,16 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 5. Pętle | 3 |
 | 6. Kolekcje | 4 |
 | 7. Metody | 3 |
-| 8. Klasy i obiekty | 4 |
+| 8. Klasy i obiekty | 5 |
 | 9. Programowanie obiektowe | 4 |
 | 10. Interfejsy | 3 |
 | 11. Wyjątki | 2 |
 | 12. Pliki i dane | 4 |
 | 13. LINQ | 3 |
 | 14. Projekt i dalsze kroki | 7 |
-| **Razem** | **48** |
+| **Razem** | **49** |
 
-**Ten plik jest źródłem prawdy dla liczby 48.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
+**Ten plik jest źródłem prawdy dla liczby 49.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
 
 ---
 
@@ -224,7 +227,7 @@ zależnie od tego, na czym uczniowi zależy.
 
 ## Czego w kursie nie ma (świadome decyzje)
 
-Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 48 lekcji.
+Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 49 lekcji.
 Poniższe tematy są **świadomie** poza kursem dla początkujących — nie jako
 przeoczenie, tylko dlatego, że każdy z nich wymaga fundamentu, który ten kurs
 dopiero buduje.
@@ -239,7 +242,8 @@ dopiero buduje.
 | Typy generyczne własne (`class Pudelko<T>`) | Uczeń **używa** `List<T>` i `Dictionary<K,V>` od modułu 6, ale własnych generyków nie pisze — potrzeba pojawia się dopiero przy bibliotekach | 14.7 |
 | `async` / `await`, wielowątkowość | Sensowne dopiero przy sieci, plikach o dużym rozmiarze i UI. Wprowadzone za wcześnie daje kod, który „działa dziwnie" bez widocznej przyczyny | 14.7 |
 | Metody rozszerzające | Wymagają klas statycznych (9.4) i pewności w czytaniu sygnatur. Uczeń **korzysta** z nich w module 13 (LINQ to metody rozszerzające), ale swoich nie pisze | 13.1 — jedno zdanie |
-| `record`, `struct`, typy nullowalne (`string?`) | Każdy z nich to wariant czegoś, co uczeń dopiero co poznał. Wprowadzone równolegle z klasą rozmywają obraz | 14.7 |
+| `record`, `struct` | Każdy z nich to wariant czegoś, co uczeń dopiero co poznał. Wprowadzone równolegle z klasą rozmywają obraz | 14.7 |
+| `!` (null-forgiving), `required`, `??=`, `Nullable<T>` z `HasValue` | Podstawy `null` i `string?` są w 8.5; te cztery to warianty dla zaawansowanych, a `!` uczy uciszać kompilator zamiast go słuchać | 8.5 — jedno zdanie w Pułapkach |
 | Refleksja, `unsafe`, wskaźniki | Nigdy dla początkującego | — |
 | Visual Studio (pełne IDE) | Tylko Windows, ciężkie, ukrywa `dotnet` za przyciskami. Kurs uczy narzędzi wiersza poleceń, bo one działają wszędzie i pokazują, co się naprawdę dzieje | 1.2 — wzmianka jako alternatywa dla użytkowników Windows |
 

@@ -96,7 +96,7 @@ Zmieniły się trzy rzeczy naraz:
 
 `Convert.ToInt32` i `Parse` zachowują się tak samo: przy tekście, który nie jest liczbą, **przerywają program** wyjątkiem `FormatException`. Na danych wpisywanych z klawiatury to kwestia czasu, nie ryzyka. Kurs używa wyłącznie `TryParse`.
 
-**Ostrzeżenie `CS8600` przy `string x = Console.ReadLine();`** jest nowe — mechanizm ostrzegania o wartościach, których może nie być, włączono domyślnie dopiero w nowszych projektach. W poradniku z 2018 roku tego ostrzeżenia nie zobaczysz, choć kod jest identyczny.
+**Ostrzeżenie `CS8600` przy `string x = Console.ReadLine();`** jest nowe — mechanizm ostrzegania o wartościach, których może nie być, włączono domyślnie dopiero w nowszych projektach. W poradniku z 2018 roku tego ostrzeżenia nie zobaczysz, choć kod jest identyczny. W module 3 wystarczy „ostrzeżenie to nie błąd"; pełne wyjaśnienie (`string?`, `is null`, `??`, `?.`) to lekcja **8.5**.
 
 Uczniowi wystarczy: **`warning` to nie `error`, program się buduje i działa.** Nie tłumacz `null`, `string?` ani `??` — kurs świadomie ich nie ma (patrz `INDEX.md`). Ostrzeżenie znika samo, gdy wstawi się `Console.ReadLine()` wprost do `TryParse`, bez zmiennej pośredniej.
 
@@ -284,7 +284,8 @@ Nowość nie jest wartością sama w sobie. Poniższe konstrukcje są dzisiejsze
 | --- | --- |
 | `record` | Wygląda jak klasa, zachowuje się inaczej. Dwa modele naraz w module 8 to o jeden za dużo |
 | Dopasowywanie wzorców (`is { Wiek: > 18 }`) | Zwięzłe dla kogoś, kto już czyta C#. Dla początkującego nieczytelne |
-| Typy nullowalne (`string?`) jako temat | Uczeń **zobaczy** ostrzeżenia `CS8600`; wyjaśnij je jednym zdaniem („to może nie mieć wartości — sprawdź"), ale nie rób z tego lekcji |
+| Typy nullowalne (`string?`) **przed modułem 8** | Uczeń **zobaczy** `CS8600` już w 3.2; wyjaśnij je jednym zdaniem („to może nie mieć wartości — sprawdź"). Pełna lekcja czeka do 8.5, bo wymaga `if`, `null` z 8.1 i `CS8618` z właściwości |
+| `!` (null-forgiving), `required`, `??=` | Warianty tematu z 8.5. `!` uczy uciszać kompilator zamiast go słuchać — w kursie tylko ostrzeżenie w Pułapkach 8.5 |
 | `async` / `await` | Bez sieci i plików o dużym rozmiarze nie ma problemu, który to rozwiązuje |
 | Wyrażenia kolekcji `[..]` przed modułem 6 | Skrót zapisu czegoś, czego uczeń jeszcze nie zna |
 | Instrukcje najwyższego poziomu **w projekcie** z modułu 14 | Tu akurat ich używamy — ale świadomie, po tym jak uczeń zobaczył `Main` w module 8 |

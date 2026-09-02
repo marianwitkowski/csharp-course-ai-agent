@@ -2,7 +2,7 @@
 
 Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta Claude Code metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
 
-Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **48 lekcji w 14 modułach**.
+Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **49 lekcji w 14 modułach**.
 
 ## Dla kogo
 
@@ -44,7 +44,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 │       ├── pomoc/                      # lista komend w czacie
 │       └── postep/                     # śledzenie postępu (narzędzie w C#)
 ├── wiedza/                             # baza wiedzy kursu
-│   ├── INDEX.md                        # struktura 48 lekcji — źródło prawdy
+│   ├── INDEX.md                        # struktura 49 lekcji — źródło prawdy
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework → .NET 10
@@ -63,7 +63,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 └── .editorconfig                       # konwencje formatowania — czyta je edytor
 ```
 
-## Program kursu — 14 modułów, 48 lekcji
+## Program kursu — 14 modułów, 49 lekcji
 
 | Moduł | Temat | Lekcje |
 | --- | --- | --- |
@@ -74,7 +74,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 | 5 | Pętle — `while`, `for`, `foreach` | 3 |
 | 6 | Kolekcje — tablice, `List<T>`, `Dictionary<K,V>` | 4 |
 | 7 | Metody — parametry, przeciążanie, `ref` i `out` | 3 |
-| 8 | Klasy i obiekty — konstruktory, właściwości, enkapsulacja | 4 |
+| 8 | Klasy i obiekty — konstruktory, właściwości, enkapsulacja, `null` i `string?` | 5 |
 | 9 | Programowanie obiektowe — dziedziczenie, polimorfizm, `abstract`, `static` | 4 |
 | 10 | Interfejsy — kontrakt, `IComparable`, kompozycja | 3 |
 | 11 | Wyjątki — `try`/`catch`, własne wyjątki, `using` | 2 |
@@ -84,7 +84,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 
 Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md).
 
-> **Stan gotowych scenariuszy:** wszystkie **48 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
+> **Stan gotowych scenariuszy:** wszystkie **49 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
 
 **Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, `async`/`await`. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.7.
 

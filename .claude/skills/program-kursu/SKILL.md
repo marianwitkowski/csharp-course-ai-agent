@@ -1,6 +1,6 @@
 ---
 name: program-kursu
-description: Generuje plik kurs/program.md — spersonalizowany program 14 modułów / 48 lekcji podstaw języka C# i platformy .NET, na podstawie wiedza/INDEX.md. Dostosowuje akcenty do celu ucznia (praca/narzędzia/hobby/szkoła) i deklarowanego tempa. Użyj raz, podczas onboardingu, po krótkim wywiadzie z uczniem.
+description: Generuje plik kurs/program.md — spersonalizowany program 14 modułów / 49 lekcji podstaw języka C# i platformy .NET, na podstawie wiedza/INDEX.md. Dostosowuje akcenty do celu ucznia (praca/narzędzia/hobby/szkoła) i deklarowanego tempa. Użyj raz, podczas onboardingu, po krótkim wywiadzie z uczniem.
 ---
 
 # Cel
@@ -9,7 +9,7 @@ Stworzyć `kurs/program.md` — plan kursu, do którego uczeń i tutor będą wr
 
 # Źródło prawdy
 
-**Zawsze** opieraj plan na pliku `wiedza/INDEX.md`. Nie wymyślaj modułów ani lekcji — tabele w INDEX.md to kanon: **14 modułów, 48 lekcji**.
+**Zawsze** opieraj plan na pliku `wiedza/INDEX.md`. Nie wymyślaj modułów ani lekcji — tabele w INDEX.md to kanon: **14 modułów, 49 lekcji**.
 
 Jeśli `wiedza/INDEX.md` nie istnieje → coś jest nie tak z repozytorium. Powiedz uczniowi i nie generuj programu z pamięci.
 
@@ -23,14 +23,14 @@ Wymagane od ucznia (przed wywołaniem skill):
 # Procedura
 
 1. **Wczytaj** `wiedza/INDEX.md` — źródło struktury kursu
-2. **Skopiuj kanon** (14 modułów, 48 lekcji)
+2. **Skopiuj kanon** (14 modułów, 49 lekcji)
 3. **Personalizuj** akcenty wg celu (patrz niżej)
 4. **Dostosuj tempo** wg dostępnego czasu
 5. **Zapisz** do `kurs/program.md`
 
 # Personalizacja wg celu
 
-Personalizacja dotyczy **akcentów i projektu końcowego**, nie struktury. Wszystkie 48 lekcji zostaje w tej samej kolejności.
+Personalizacja dotyczy **akcentów i projektu końcowego**, nie struktury. Wszystkie 49 lekcji zostaje w tej samej kolejności.
 
 - **Cel: praca (programista .NET)** → mocniej moduły 8-10 (klasy, OOP, interfejsy — to jest to, o co pytają na rozmowach) i 14.4 (testy); projekt: narzędzie przetwarzające dane z pliku, z testami
 - **Cel: narzędzia i automatyzacja** → mocniej moduł 12 (pliki, JSON, argumenty CLI) i 13 (LINQ do przemielenia danych); projekt: narzędzie zastępujące ręczną czynność, którą uczeń faktycznie wykonuje
@@ -46,7 +46,7 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 
 | Czas/tydz | Lekcji/tydz | Czas trwania kursu |
 | --------- | ----------- | ------------------ |
-| <2h       | 1           | ~48 tygodni        |
+| <2h       | 1           | ~49 tygodni        |
 | 2-5h      | 2-3         | ~16-24 tygodni     |
 | 5-10h     | 3-5         | ~10-16 tygodni     |
 | 10+h      | 5-7         | ~7-10 tygodni      |
@@ -86,7 +86,7 @@ gdzie skończyłeś.
 - Lekcja 2.3: Konwersje typów — `Parse`, `TryParse`
 - Lekcja 2.4: Operatory i wyrażenia
 
-[...kontynuuj wg INDEX.md, wszystkie 14 modułów, 48 lekcji...]
+[...kontynuuj wg INDEX.md, wszystkie 14 modułów, 49 lekcji...]
 
 ## Projekt końcowy (Moduł 14)
 
@@ -114,4 +114,4 @@ Mapa dalszych kroków czeka w lekcji 14.7.
 
 Pokaż uczniowi **spis modułów** (nie cały plik) i zapytaj, czy chce coś zmienić, zanim ruszycie z lekcją 1.1. Dodaj jedno zdanie kotwiczące:
 
-> „Czterdzieści osiem lekcji brzmi dużo, ale pierwsze siedem to podstawy, które przerobisz szybciej, niż myślisz. Prawdziwy próg jest w module 8 — tam zaczyna się to, co w C# jest naprawdę własne."
+> „Czterdzieści dziewięć lekcji brzmi dużo, ale pierwsze siedem to podstawy, które przerobisz szybciej, niż myślisz. Prawdziwy próg jest w module 8 — tam zaczyna się to, co w C# jest naprawdę własne."

@@ -136,6 +136,7 @@ Po 3-4 cyklach pytanie→brak postępu→wyjaśnienie→pytanie bez ruchu:
   | wiele wartości, „100 imion", tablice | tablica / lista | 6 |
   | słownik, „szukanie po nazwie" | słownik | 6 |
   | własne typy, obiekty, `class` | klasa | 8 |
+  | `null`, `string?`, „czemu to ostrzeżenie `CS8600`" | typ nullowalny | 8 |
   | dziedziczenie, „wspólne cechy" | dziedziczenie | 9 |
   | interfejsy | interfejs | 10 |
   | błędy w trakcie działania, `try` | wyjątki | 11 |
@@ -209,7 +210,7 @@ Wywołaj kolejno skille:
 
 1. **setup-dotnet** — sprawdź, czy .NET działa (`dotnet --version`, minimum **10.0**), pomóż zainstalować, jeśli trzeba
 2. Krótka rozmowa (3-4 pytania): imię, cel nauki (praca/hobby/szkoła), ile czasu tygodniowo, czy programował/ała kiedykolwiek (oczekuj: nie)
-3. **program-kursu** — wygeneruj `kurs/program.md` (14 modułów, 48 lekcji, dostosowane tempo)
+3. **program-kursu** — wygeneruj `kurs/program.md` (14 modułów, 49 lekcji, dostosowane tempo)
 4. **postep** — utwórz `postep/student.json`
 5. Zapytaj, czy chce zacząć od razu, czy później
 
@@ -299,7 +300,7 @@ Gdy uczeń prosi „uruchom to za mnie" — odmów miękko i konkretnie:
 
 ## Source of truth — liczby
 
-- **Liczba lekcji kursu: 48** (14 modułów, 2-7 lekcji każdy)
+- **Liczba lekcji kursu: 49** (14 modułów, 2-7 lekcji każdy)
 - **Źródłem prawdy** jest `wiedza/INDEX.md` (tabele modułów)
 - Jeśli widzisz w innych plikach / skillach inną liczbę (45, 47, „około") — to **błąd dokumentacji**, zgłoś użytkownikowi i traktuj `INDEX.md` jako autorytatywne
 
@@ -384,10 +385,10 @@ dotnet run 01-hello.cs
 | `kurs/lekcje/NN.NN-temat.md`  | Notatki z każdej lekcji do powrotu                            |
 | `kurs/zadania/NN-temat.cs`    | Kod ucznia dla danego ćwiczenia                               |
 | `kurs/projekt/`               | Projekt z modułu 14 (osobny projekt z `.csproj`) i jego repozytorium Git (od 14.2) |
-| `wiedza/lekcje/NN.NN-*.md`    | 48 lekcji sokratejskich — kanon dydaktyczny                   |
+| `wiedza/lekcje/NN.NN-*.md`    | 49 lekcji sokratejskich — kanon dydaktyczny                   |
 | `wiedza/przyklady/kod/*.cs`   | Minimalne przykłady do eksperymentów                          |
 | `wiedza/AKTUALIZACJE.md`      | Delta: .NET Framework (2020) → .NET 10 (2026)                 |
-| `wiedza/INDEX.md`             | Struktura 48 lekcji + czego w kursie nie ma                   |
+| `wiedza/INDEX.md`             | Struktura 49 lekcji + czego w kursie nie ma                   |
 
 # Dostępne skille
 
