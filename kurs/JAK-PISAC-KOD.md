@@ -268,7 +268,7 @@ Dwie najczęstsze przyczyny:
 
 ### ❌ Zobaczyłem w internecie zupełnie inny kod niż piszę
 
-To normalne i nie znaczy, że robisz źle. C# zmienił się mocno po 2020 roku: dziś program może być samym ciągiem instrukcji, bez klasy i bez projektu. Starsze materiały pokazują dłuższą formę. **Obie działają**; Twoja jest krótsza.
+To normalne i nie znaczy, że robisz źle. Dwie zmiany, w różnym czasie: od C# 9 (2020) program może być samym ciągiem instrukcji, bez `class Program` i `Main`; od .NET 10 (2025) pojedynczy plik `.cs` uruchamia się bez projektu. Starsze materiały pokazują dłuższą formę i kreator projektu. **Obie formy działają**; Twoja jest krótsza.
 
 ---
 
