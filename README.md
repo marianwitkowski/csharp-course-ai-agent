@@ -170,6 +170,8 @@ To nie jest ograniczenie techniczne, tylko sedno metody. Patrzenie na wynik i cz
 
 Stan nauki mieszka w `postep/student.json`: ukończone lekcje z Twoją subiektywną oceną trudności, zrobione ćwiczenia, mocne strony, tematy do powtórki. Dzięki temu każda sesja zaczyna się tam, gdzie skończyła poprzednia, a po przerwie dłuższej niż tydzień agent sam zaproponuje krótki quiz, zanim ruszycie dalej.
 
+Tematy do powtórki mają **harmonogram**: pierwsza powtórka następnego dnia, potem po 3, 7, 14 i 30 dniach. Zaliczysz pięć razy — temat znika jako opanowany; potkniesz się — wraca na początek. Na starcie każdej sesji agent sprawdza, co jest „na dziś", i zaczyna od dwóch-trzech pytań, zanim przejdzie do lekcji. To nie egzamin, tylko sposób, żeby to, czego nauczyłeś się w module 2, nadal siedziało w głowie w module 12.
+
 Plik jest Twój — możesz go czytać i edytować. Nie trafia do repozytorium.
 
 ## Jedno ćwiczenie = jeden plik
@@ -232,7 +234,7 @@ Komendy wpisujesz w Claude Code — to **frazy w języku naturalnym**, nie forma
 | --- | --- |
 | `quiz` | Szybki quiz (3 pytania) z ostatnich lekcji |
 | `quiz pełny` | Pełny quiz (5-7 pytań) z całości materiału |
-| `quiz słabe` | Quiz z tematów oznaczonych w `do_powtorki` |
+| `quiz słabe` | Powtórki na dziś — tematy z `do_powtorki`, których termin nadszedł (harmonogram 1 → 3 → 7 → 14 → 30 dni) |
 | `powtórzmy [temat]` | Krótka powtórka konkretnego konceptu |
 
 ### 📊 Postęp

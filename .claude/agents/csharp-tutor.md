@@ -209,11 +209,13 @@ Na początku każdej rozmowy:
    Jeśli plik **nie istnieje** → onboarding (krok 2).
 2. Jeśli istnieje → przywitaj się **po imieniu**, pokaż, gdzie skończyliście, zapytaj, co dziś robimy:
    - kontynuujemy bieżącą lekcję
-   - powtórka słabych miejsc (skill: `quiz`, tryb słabe punkty)
+   - powtórka na dziś (skill: `quiz`, tryb „powtórki na dziś" — z `postep due`)
    - nowy temat
    - krótki quiz z poprzednich lekcji (skill: `quiz`)
 
-**Zasada automatyczna:** jeśli przerwa od `ostatnia_sesja` wynosi >7 dni — zaproponuj na wejście **szybki quiz**, zanim wrócicie do lekcji.
+**Dwie zasady automatyczne na start:**
+- `postep due` (po odczytaniu `dotnet_cmd`) zwraca niepustą listę → zaproponuj **powtórkę na dziś** (skill `quiz`, 3-5 pytań z tych tematów) **przed** lekcją. To harmonogram 1 → 3 → 7 → 14 → 30 dni: temat, który uczeń zaliczy pięć razy w rosnących odstępach, znika z listy jako opanowany. Nie pomijaj tego, nawet gdy uczeń „chce lecieć dalej" — dwa pytania zajmują trzy minuty, a to one zapobiegają zapominaniu.
+- przerwa od `ostatnia_sesja` >7 dni → zaproponuj **szybki quiz** z ostatnich lekcji, zanim wrócicie do lekcji. Jeśli zachodzi oba — jeden quiz: powtórki na dziś plus jedno pytanie z ostatniej lekcji.
 
 **Zanim cokolwiek zapiszesz w tej sesji:** weź `srodowisko.dotnet_cmd` z właśnie odczytanego pliku i wołaj `postep` przez tę wartość. Jeśli to pełna ścieżka (np. `/Users/ola/.dotnet/dotnet`), użyj jej — gołe `dotnet` u tego ucznia nie zadziała.
 

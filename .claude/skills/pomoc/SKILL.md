@@ -39,7 +39,7 @@ Wypisz w czacie poniższą listę. **Nie modyfikuj** kategorii ani ikon — ucze
 🎯 Quizy i powtórki
   • quiz                       → szybki (3 pytania)
   • quiz pełny                 → pełny (5-7 pytań)
-  • quiz słabe                 → z tematów do powtórki
+  • quiz słabe                 → powtórki na dziś (tematy do powtórki, których termin nadszedł)
 
 📊 Postęp
   • pokaż postępy              → podsumowanie student.json

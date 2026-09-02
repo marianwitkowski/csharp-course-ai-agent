@@ -1,6 +1,6 @@
 ---
 name: quiz
-description: Przeprowadza krótki quiz powtórkowy (3-7 pytań) z ukończonych przez ucznia lekcji C#. Trzy tryby — szybki (3 pyt), pełny (5-7 pyt), słabe punkty (z do_powtorki). Pyta jedno pytanie naraz, czeka na odpowiedź, daje sokratejski feedback. Użyj gdy uczeń mówi "quiz", "powtórka", "sprawdź mnie", między lekcjami lub gdy przerwa była >7 dni.
+description: 'Przeprowadza krótki quiz powtórkowy (3-7 pytań) z ukończonych przez ucznia lekcji C#. Trzy tryby — szybki (3 pyt), pełny (5-7 pyt), powtórki na dziś (z `postep due`, harmonogram 1/3/7/14/30 dni, wynik zapisywany przez review-do-powtorki). Pyta jedno pytanie naraz, czeka na odpowiedź, daje sokratejski feedback. Użyj gdy uczeń mówi "quiz", "powtórka", "sprawdź mnie", na starcie sesji gdy due nie jest puste, lub gdy przerwa była >7 dni.'
 ---
 
 # Cel
@@ -13,18 +13,33 @@ Utrwalić wiedzę z **ukończonych** lekcji przez krótkie, interaktywne pytania
 | --------------- | ------------ | --------------------------------------- | ------------------------------------- |
 | Szybki ⚡       | 3            | 1-2 ostatnio ukończone lekcje           | Rozgrzewka na początku sesji          |
 | Pełny 📋        | 5-7          | Wszystkie ukończone lekcje (losowy mix) | Co kilka lekcji, na życzenie ucznia   |
-| Słabe punkty 🎯 | 3-5          | Tematy z `do_powtorki` w `student.json` | Gdy `do_powtorki` ma ≥3 pozycje       |
+| Powtórki na dziś 🎯 | 3-5      | Tematy z `postep due` (termin minął albo jest dziś) | Na starcie sesji, gdy `due` nie jest puste |
 
-Domyślny tryb przy „quiz" bez doprecyzowania: **szybki**.
+Fraza ucznia `quiz słabe` (z listy komend) uruchamia tryb **powtórki na dziś**; jeśli `due` jest puste, weź pozostałe wpisy `do_powtorki` w kolejności najbliższego `next_review` i powiedz uczniowi, że wyprzedzacie harmonogram.
+
+Domyślny tryb przy „quiz" bez doprecyzowania: **szybki**. Ale gdy `postep due` zwraca cokolwiek — **najpierw powtórki na dziś**, dopiero potem wybrany tryb; zaległe tematy mają pierwszeństwo, bo to one wypadają z pamięci.
+
+## Harmonogram powtórek — jak działa
+
+Każdy temat w `do_powtorki` ma `poziom` (0-4) i `next_review`. Narzędzie `postep` liczy terminy samo:
+
+| Wynik powtórki | Co się dzieje |
+| --- | --- |
+| `ok` | poziom +1, następna powtórka za 1 → 3 → 7 → 14 → 30 dni |
+| `zle` | poziom 0, powtórka jutro |
+| piąte `ok` z rzędu | temat **znika** z listy — opanowany |
+
+Agent nie liczy dat i nie ustawia pól ręcznie: `postep due` mówi, co pytać, `postep review-do-powtorki` zapisuje wynik.
 
 # Procedura
 
 ## Krok 1: wybór zakresu
 
-1. Odczytaj `postep/student.json` (skill: **postep**)
-2. Sprawdź `ukonczone_lekcje` i `do_powtorki`
+1. Odczytaj `postep/student.json` narzędziem `Read` (skill: **postep**) — weź `ukonczone_lekcje` i `srodowisko.dotnet_cmd`
+2. Uruchom `postep due` (przez `dotnet_cmd`) — to lista tematów do powtórki **na dziś**, z polem `lekcja`
 3. Jeśli `ukonczone_lekcje` ma <2 pozycje → powiedz, że za wcześnie na quiz, zaproponuj lekcję
-4. Wybierz tryb (z prośby ucznia lub z kontekstu)
+4. `due` niepuste → tryb **powtórki na dziś**: jedno pytanie na temat, najwyżej pięć; pozostałe tematy zostają na następną sesję. Potem ewentualnie tryb z prośby ucznia
+5. `due` puste → wybierz tryb z prośby ucznia lub z kontekstu
 
 ## Krok 2: dobór pytań
 
@@ -68,7 +83,11 @@ Schemat dla każdego pytania:
    - **Poprawna** → krótkie potwierdzenie + pytanie pogłębiające („A gdyby `b` było `2.0`?")
    - **Częściowo** → naprowadzenie („Blisko. Jakiego typu są obie liczby?")
    - **Błędna** → NIE podawaj odpowiedzi, naprowadź pytaniem. Po 2 nieudanych próbach pokaż odpowiedź i dopisz temat do `do_powtorki`
-4. Następne pytanie
+4. **Pytanie z trybu „powtórki na dziś" → od razu zapisz wynik**, zanim zadasz następne:
+   - poprawna albo poprawna po jednym naprowadzeniu → `postep review-do-powtorki --temat "<temat>" --wynik ok`
+   - błędna po dwóch próbach → `--wynik zle`
+   Pytaj o temat **w kształcie z lekcji**, w której go zapisano (pole `lekcja` wpisu): pytanie o `TryParse` przy temacie „konwersje" z 2.3, nie o LINQ.
+5. Następne pytanie
 
 **Bez punktacji po każdym pytaniu** — to nie test.
 
@@ -76,8 +95,8 @@ Schemat dla każdego pytania:
 
 - Ile było **na pewno OK**, ile **z pomocą**, ile **do powtórki**
 - Wymień konkretnie 1-2 tematy do utrwalenia
-- Uczeń zaliczył temat z `do_powtorki` → skill **postep**, `remove-do-powtorki`
-- Nowe luki → `add-do-powtorki`
+- Tematy z „powtórek na dziś" są już zapisane przez `review-do-powtorki` po każdym pytaniu — **nie** wołaj dla nich `remove-do-powtorki`; narzędzie samo usuwa temat po piątym `ok`. Jeśli któryś zniknął z listą komunikatem „opanowane" — powiedz to uczniowi, to jest osiągnięcie
+- Nowe luki → `add-do-powtorki` (pierwsza powtórka wypadnie jutro — zapowiedz to)
 - Zaproponuj następny krok: „Wracamy do lekcji X" albo „Krótkie ćwiczenie na [temat]?"
 
 # Bank pytań — przykłady wg modułów
@@ -142,7 +161,8 @@ Pytania **generuj na żywo** pod to, co uczeń przerobił. Poniżej szablony jak
 - **Nie uruchamiaj kodu z pytań**, żeby sprawdzić własną odpowiedź. Jeśli nie jesteś pewien wyniku — nie dawaj tego pytania.
 - **Sokratejskie naprowadzanie**, nie podpowiedzi typu „to chyba dzielenie całkowite".
 - **Bez ocen liczbowych** („5/7", „70%"). Mów jakościowo.
-- **Aktualizuj `student.json`** przez skill **postep** po każdym quizie.
+- **Aktualizuj `student.json`** przez skill **postep** po każdym quizie — a w trybie „powtórki na dziś" po **każdym pytaniu** (`review-do-powtorki`), żeby przerwana sesja nie zgubiła wyniku.
+- **Nie przesuwaj terminów ręcznie.** Ani `set` na `next_review`, ani zgadywanie dat — od tego jest narzędzie.
 - **Quiz to nie lekcja.** Duża luka → zaproponuj powrót do lekcji, ale nie tłumacz materiału w trakcie quizu.
 
 # Gdy uczeń wszystko wie
