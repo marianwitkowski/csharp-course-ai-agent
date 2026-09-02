@@ -12,14 +12,16 @@
 
 | Stare materiały | Dzisiaj |
 | --- | --- |
-| **.NET Framework** (do 4.8) — tylko Windows, wersja przypisana do systemu | **.NET** (10) — macOS, Linux, Windows, instalowany jak zwykły program |
+| **.NET Framework** (do 4.8.1) — tylko Windows, wersja przypisana do systemu | **.NET** (10) — macOS, Linux, Windows, instalowany jak zwykły program |
 | Visual Studio jako jedyna droga | `dotnet` w terminalu + dowolny edytor |
 | Solucja (`.sln`) + projekt (`.csproj`) zanim napiszesz pierwszą linię | Plik `.cs` uruchamiany wprost |
 
 **Jak to powiedzieć uczniowi (raz, w lekcji 1.1):**
-> „Do 2020 roku C# działał praktycznie tylko na Windows i wymagał wielkiego programu o nazwie Visual Studio. Dziś działa wszędzie i wystarczy jeden plik. Jeśli trafisz na poradnik, który każe ci zakładać »solucję« — to poradnik z tamtego świata."
+> „Starsze poradniki mogą dotyczyć **.NET Framework** — starszej, windowsowej gałęzi platformy, w której program zaczynało się od Visual Studio i »solucji«. Dzisiejszy .NET działa wszędzie i wystarczy jeden plik. Jeśli trafisz na poradnik, który każe ci zakładać solucję i klikać w kreatorze — to poradnik z tamtej gałęzi."
 
 **Nie rozwijaj tego.** Uczeń nie musi rozumieć różnicy między .NET Framework, .NET Core i .NET 5+. Musi tylko wiedzieć, że stary poradnik może wyglądać inaczej i to nie jego wina.
+
+**Dla ścisłości — tylko jeśli uczeń dopyta o daty:** wieloplatformowy .NET Core istnieje od 2016 roku i od początku miał narzędzia wiersza poleceń; .NET 5 (2020) połączył obie gałęzie w jeden .NET. Zdanie „do 2020 C# działał tylko na Windows" jest **nieprawdziwe** i nie mów go uczniowi — prawdziwe jest to, że **większość poradników** z tamtych lat pokazuje .NET Framework i Visual Studio, bo tak wtedy uczyła większość kursów.
 
 ---
 

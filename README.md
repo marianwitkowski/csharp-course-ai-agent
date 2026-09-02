@@ -47,7 +47,9 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 │   ├── INDEX.md                        # struktura 48 lekcji — źródło prawdy
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
-│   └── AKTUALIZACJE.md                 # delta: .NET Framework (2020) → .NET 10
+│   └── AKTUALIZACJE.md                 # delta: .NET Framework → .NET 10
+├── narzedzia/
+│   └── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)
 ├── kurs/
 │   ├── JAK-PISAC-KOD.md                # ⬅ przeczytaj na początku: workflow ćwiczeń
 │   ├── program.md                      # Twój program kursu (powstanie po onboardingu)

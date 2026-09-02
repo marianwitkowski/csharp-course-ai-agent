@@ -3,7 +3,7 @@ lekcja: X.Y
 tytul: Krótki, konkretny tytuł
 modul: NN-nazwa-modulu
 przyklady: NN-plik.cs (jeśli w wiedza/przyklady/kod/ jest coś na temat)
-aktualizacja: [moduł NN], [ogólne]
+aktualizacja: "[moduł NN], [ogólne]"
 czas_min: 30-60
 zalozenia: co uczeń musi już umieć (lekcje poprzedzające)
 ---
@@ -213,6 +213,18 @@ Dla każdego z trzech poziomów sprawdź:
 - **Czy zapowiedziany wynik ćwiczenia zgadza się z kodem, który uczeń faktycznie napisze?** Jeśli zadanie opiera się na klasie z kroku 3, weź tę klasę w wersji z kroku 3 — nie w tej, którą pamiętasz.
 - **Czy podsumowanie pod listą ćwiczeń wymienia tylko to, co w nich naprawdę jest?** Zdanie „gwiazdka łączy X, Y i Z" bywa pisane przed ostateczną wersją zadania i zostaje niezgodne z treścią.
 
+## 11. Nagłówek YAML parsuje się naprawdę
+
+**Wystąpiła 5 razy, wykryta dopiero przez recenzję zewnętrzną po publikacji na GitHubie** (GitHub pokazuje błąd nad plikiem). Claude Code toleruje część usterek, więc lekcje działały — ale parser YAML nie.
+
+Dwie klasy: dwukropek ze spacją w niecytowanej wartości (`zalozenia: moduły 1-10; wyjątki: ...`) i dwie listy po przecinku (`aktualizacja: [ogólne], [moduł 1]`). W obu przypadkach ratuje cudzysłów wokół całej wartości.
+
+```sh
+ruby narzedzia/sprawdz-frontmatter.rb
+```
+
+Sprawdza też: unikalność numeru lekcji, zgodność numeru z nazwą pliku, istnienie plików z pola `przyklady`. Uruchom przed każdym commitem, który dotyka nagłówka.
+
 ## Ostatni przebieg — komendy zbiorcze
 
 ```sh
@@ -227,4 +239,7 @@ head -9 "$L"     # frontmatter: zalozenia, przyklady, aktualizacja, czas_min —
 
 Sprawdź jeszcze, czy pole `zalozenia` we frontmatterze wymienia **wszystkie** lekcje, do których treść się odwołuje — rozjazd między nim a `grep`-iem odsyłaczy to najczęstsza usterka porządkowa.
 
-Lekcja jest gotowa, gdy wszystkie dziewięć punktów przechodzi, a każdy wynik pokazany uczniowi widziałeś na własnym ekranie.
+ruby narzedzia/sprawdz-frontmatter.rb    # nagłówek YAML (punkt 11)
+```
+
+Lekcja jest gotowa, gdy wszystkie jedenaście punktów przechodzi, a każdy wynik pokazany uczniowi widziałeś na własnym ekranie.

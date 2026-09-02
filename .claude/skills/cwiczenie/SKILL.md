@@ -1,6 +1,6 @@
 ---
 name: cwiczenie
-description: Generuje 1-3 ćwiczenia w C# do samodzielnego rozwiązania przez ucznia, dopasowane do bieżącej lekcji i poziomu trudności. Trzy poziomy: rozgrzewka, główne, gwiazdka. Użyj na końcu lekcji lub gdy uczeń prosi o "więcej zadań".
+description: 'Generuje 1-3 ćwiczenia w C# do samodzielnego rozwiązania przez ucznia, dopasowane do bieżącej lekcji i poziomu trudności. Trzy poziomy: rozgrzewka, główne, gwiazdka. Użyj na końcu lekcji lub gdy uczeń prosi o "więcej zadań".'
 ---
 
 # Cel
