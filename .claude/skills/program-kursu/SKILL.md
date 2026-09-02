@@ -19,6 +19,7 @@ Wymagane od ucznia (przed wywołaniem skill):
 - **Cel:** praca / narzędzia i automatyzacja / hobby / szkoła / inne
 - **Czas tygodniowo:** <2h / 2-5h / 5-10h / 10+h
 - **Doświadczenie z programowania:** brak (domyślnie) / coś dotykał / inny język
+- **Ścieżka:** `pelna` (domyślnie) albo `skrocona` — wynik diagnostyki wejściowej z onboardingu (`csharp-tutor.md`, sekcja „Onboarding"). „Inny język" bez zdanej diagnostyki to nadal `pelna`.
 
 # Procedura
 
@@ -53,6 +54,8 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 
 **Uwaga o module 14:** projekt rozciąga się na kilka sesji (lekcja 14.3 jest prowadzona wielokrotnie). Do szacunku doliczaj 2-4 dodatkowe sesje.
 
+**Uwaga o ścieżce skróconej:** lekcje modułów 2-7 (19 lekcji) trwają wtedy 20-30 minut zamiast 45-60 — odejmij od szacunku około 8-10 godzin. W `program.md` dopisz przy nagłówkach modułów 2-7: „*(ścieżka skrócona: eksperymenty i ćwiczenie ⭐; bramka — ⭐ samodzielnie)*". Struktura, numeracja i kolejność lekcji **bez zmian** — skrócona jest lekcja, nie program.
+
 **Nie sprzedawaj tych liczb jako obietnicy.** Uczeń, który usłyszy „10 tygodni" i po 12 jest w połowie, uzna, że mu nie idzie — a idzie mu normalnie.
 
 # Format pliku `kurs/program.md`
@@ -61,6 +64,7 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 # Program kursu C# / .NET — [imię]
 
 **Cel:** [praca / narzędzia / hobby / szkoła]
+**Ścieżka:** [pełna / skrócona w modułach 2-7]
 **Tempo:** [X lekcji / tydzień]
 **Rozpoczęto:** YYYY-MM-DD
 **Wersja .NET:** [z srodowisko.dotnet_version] (minimum kursu: 10.0)

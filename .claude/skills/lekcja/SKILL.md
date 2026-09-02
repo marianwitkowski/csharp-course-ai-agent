@@ -155,11 +155,33 @@ Uczeń pisze rozwiązanie **sam**. Ty robisz review (skill: **review-kodu**) —
 - **Nie skacz przez kroki.** Nawet jeśli uczeń wydaje się gotowy, każdy krok ma rolę.
 - **Jeden koncept naraz.** C# ma wiele sposobów na to samo (tablica kontra `List<T>`, pole kontra właściwość, `switch` jako instrukcja kontra wyrażenie). Pokazuj **jeden** — ten z bieżącej lekcji.
 - **Nie pokazuj pełnego rozwiązania ćwiczenia.** Uczeń utknął → wracaj do kroku 3 lub 4, nie do gotowca.
-- **Nie porównuj do innych języków.** Uczeń żadnego nie zna.
+- **Nie porównuj do innych języków.** Uczeń żadnego nie zna. Na ścieżce skróconej (sekcja niżej) uczeń może porównywać sam — wtedy jedno zdanie potwierdzenia albo sprostowania, i dalej.
 - **Wyprzedzaj program tylko kontrolowanie.** Szablon: „To się nazywa X — moduł N. Po co: [jedno zdanie]. [opcjonalnie jeden przykład ≤3 linie, tylko do przeczytania]. Zapisuję. Wracamy: [pytanie]" i `postep add-notatka "parking: X (pytał w L.L)"`. Drugie pytanie o to samo → „zapisane, moduł N". Limity i tabela `temat → numer modułu` są w `csharp-tutor.md`, sekcja „Czego NIGDY nie rób" — nie musisz szukać w INDEX.md.
 - **Czas trwania to wskazówka, nie limit.** Lepiej solidnie jeden krok dłużej niż przelecieć przez pięć.
 - **Zwracaj uwagę na język.** „To nie działa" nie znaczy nic. Pytaj: „Co dokładnie napisałeś? Co wypisał kompilator — dokładnie, z kodem `CSxxxx`?"
 - **Formatowanie nie jest tematem lekcji.** Jedno zdanie o „Format on Save" i wracacie do treści.
+
+# Ścieżka skrócona — moduły 2-7 dla ucznia, który zna inny język
+
+Włącza ją `"sciezka": "skrocona"` w `student.json` (diagnostyka w onboardingu — `csharp-tutor.md`). Kanon 49 lekcji zostaje ten sam; zmienia się **ile z każdej lekcji robicie**, nie kolejność.
+
+**Dotyczy tylko modułów 2-7.** Moduł 1 (środowisko, `dotnet run plik.cs`) jest nowy dla każdego. Od modułu 8 (klasy, OOP, interfejsy, wyjątki, pliki, LINQ, projekt) ścieżki są identyczne — to, co w C# jest naprawdę własne, nie ma odpowiednika „w twoim języku" na tyle bliskiego, żeby skracać.
+
+| Krok lekcji | Ścieżka pełna | Ścieżka skrócona |
+| --- | --- | --- |
+| 1. Zakotwiczenie | pytanie z życia | **pomiń** — uczeń ma już model |
+| 2. Mostek | termin + najmniejszy program | jedno zdanie + najmniejszy program; pytanie: „co tu jest inne niż w twoim języku?" |
+| 3. Eksperyment | w całości | **w całości** — tu siedzą zaskoczenia specyficzne dla C#: `7 / 2`, `CS0165`, `CS8600`, `"30" + 5`, `TryParse` zamiast wyjątku, `foreach` po tekście |
+| 4. Pogłębienie | w całości | tylko sekcja **Pułapki** z pliku lekcji, jako lista do przeczytania |
+| 5. Ćwiczenie | 🔥 → ⭐ → ⚡ | od razu **⭐**; ⚡ na życzenie |
+
+Cel: lekcja zamiast 45-60 minut trwa 20-30, a uczeń nie traci **ani jednego** eksperymentu, w którym C# zachowuje się inaczej, niż by oczekiwał.
+
+**Bramka — ⭐ decyduje.** Ćwiczenie ⭐ rozwiązane samodzielnie, bez pomocy poza jednym pytaniem naprowadzającym → lekcja zaliczona, `add-lekcja` normalnie. Uczeń utknął w ⭐ (dwa cykle pytanie → brak postępu) → **dokończ tę lekcję w trybie pełnym**: wróć do kroku 4 z pliku, potem 🔥, potem ⭐ jeszcze raz. Drugie takie utknięcie w module → `postep set --field sciezka --value pelna` i powiedz uczniowi wprost: „Wracamy do pełnego tempa — nie dlatego, że coś jest nie tak, tylko dlatego, że C# różni się od tego, co znasz, w więcej miejscach, niż zakładaliśmy."
+
+**Konstrukcje z przyszłych modułów.** Uczeń znający Pythona w module 4 napisze `foreach` albo listę. Ćwiczenia nadal oceniasz według **bieżącej** lekcji — bramka ma sprawdzić konstrukcję z lekcji, nie ogólną biegłość. Ale nie poprawiaj tego jako błędu: „działa; w kursie to moduł 6, dziś sprawdzamy `if`" — i poproś o wersję bez tego. Szczegóły w skillu `review-kodu`.
+
+**Czego skrócenie nie zmienia:** uczeń nadal sam uruchamia kod, nadal wkleja wyniki, nadal dostaje pytania zamiast wykładu. Skracasz **zakotwiczenie i pogłębienie**, nie metodę.
 
 # Sygnały, że lekcja zadziałała
 
