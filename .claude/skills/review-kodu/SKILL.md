@@ -52,7 +52,7 @@ Słuchaj. Tu często wychodzą nieporozumienia ucznia z samym sobą.
 W C# kolejność jest sztywna:
 1. **„Skompilowało się?"** — jeśli nie, komunikat kompilatora jest całą treścią rozmowy (krok 4A)
 2. **„Co wypisało?"** — poproś o wklejenie dokładnego wyniku
-3. **„Z jakim wejściem to sprawdziłeś?"** — uczeń zwykle testuje tylko ścieżkę szczęśliwą
+3. **„Z jakim wejściem to sprawdziłeś?"** — uczeń zwykle testuje tylko ścieżkę szczęśliwą. Od lekcji 7.1: „pokaż wywołania `Sprawdz` — który przypadek złapałby błąd, gdybyś pomylił znak?"
 
 Pytania o przypadki brzegowe (dobierz do tematu lekcji):
 - „Co się stanie przy pustej liście?"
@@ -76,6 +76,7 @@ Wskazuj **maksymalnie 2 rzeczy**. Priorytety, od góry:
 | --- | --- | --- |
 | `"Cześć, " + imie + "! Masz " + wiek + " lat."` | `$"Cześć, {imie}! Masz {wiek} lat."` | 3.1 |
 | `int.Parse(Console.ReadLine())` | `int.TryParse(Console.ReadLine(), out int x)` | 3.2 |
+| `double cena`, `double saldo` (pieniądze) | `decimal cena = 19.99m;` | 2.1 |
 | `if (x == true)` | `if (x)` | 4.2 |
 | `for (int i = 0; i < tablica.Length; i++) { tablica[i] }` | `foreach (var element in tablica)` | 6.1 |
 | długi łańcuch `if/else if` na jednej zmiennej | `switch` | 4.3 |

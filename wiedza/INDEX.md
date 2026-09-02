@@ -86,9 +86,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
-| 7.1 | Metody — parametry, wartość zwracana, `void` | `18-metody.cs` | — |
+| 7.1 | Metody — parametry, wartość zwracana, `void`; kontrakt metody sprawdzany przez kod (`Sprawdz`) | `18-metody.cs` | — |
 | 7.2 | Parametry domyślne i nazwane; przeciążanie do rozpoznania | `19-parametry.cs` | — |
 | 7.3 | `ref`, `out`, zasięg zmiennych | `20-ref-out.cs` | — |
+
+> **Testowanie zaczyna się w 7.1, nie w 14.4.** Krok 3.G lekcji 7.1 wprowadza `Sprawdz(opis, wynik, oczekiwane)` — sprawdzenie kontraktu metody napisane z `if` i interpolacji, bez żadnego narzędzia. Uczeń psuje `Dodaj` i widzi, że jedno z trzech sprawdzeń błędu nie łapie — to uczy doboru przypadków wcześniej niż xUnit. Od 7.1 ćwiczenia ⭐ i ⚡ mogą wymagać wywołań `Sprawdz`; xUnit w 14.4 jest wtedy „gotowym `Sprawdz`", nie nową filozofią.
 
 > **Przeciążania uczeń w module 7 nie napisze — i to jest celowe.** Metody pisane w pliku bez klasy to funkcje lokalne, a tych nie da się przeciążać (`CS0128`). Lekcja 7.2 pokazuje więc przeciążanie do **rozpoznania**: `Console.WriteLine` przyjmuje `int`, `string`, `bool`, `double` i `char`, czyli uczeń używa przeciążeń od lekcji 1.1, nie wiedząc o tym. Własne napisze w module 8 — i to jest pierwszy konkretny powód, dla którego klasy istnieją. Parametry domyślne i nazwane działają w funkcjach lokalnych bez przeszkód i te uczeń pisze sam.
 
