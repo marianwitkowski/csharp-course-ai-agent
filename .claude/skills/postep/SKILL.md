@@ -43,14 +43,15 @@ To **jedyne** miejsce, w którym wolno ci uruchomić program w tym repozytorium,
 
 > **Uwaga:** `postep` to narzędzie kursu, nie materiał do nauki. Uczeń nigdy go nie uruchamia ani nie czyta — robisz to wyłącznie ty. Nie omawiaj go na lekcji, nawet gdy jesteście przy module 12 i wygląda na dobry przykład pracy z JSON-em.
 
-# Schemat student.json (schema_version 1)
+# Schemat student.json (schema_version 2)
 
 ```json
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "imie": "Anna",
   "cel": "praca",
   "tempo_godz_tydz": "2-5",
+  "sciezka": "pelna",
   "rozpoczeto": "2026-08-30",
   "ostatnia_sesja": "2026-08-30",
   "liczba_sesji": 3,
@@ -70,11 +71,17 @@ To **jedyne** miejsce, w którym wolno ci uruchomić program w tym repozytorium,
   ],
   "mocne_strony": ["czytanie komunikatów kompilatora"],
   "do_powtorki": [
-    {"temat": "różnica między polem a właściwością", "lekcja": "8.3", "data_zauwazenia": "2026-08-31"}
+    {"temat": "różnica między polem a właściwością", "lekcja": "8.3", "data_zauwazenia": "2026-08-31", "poziom": 0, "next_review": "2026-09-01"}
   ],
-  "notatki_tutora": ["Anna lubi konkretne przykłady z życia"]
+  "notatki_tutora": ["Anna lubi konkretne przykłady z życia", "parking: lista (pytał w 2.1)"]
 }
 ```
+
+**`sciezka`** — `pelna` (domyślnie) albo `skrocona` (uczeń zna inny język; moduły 2-7 w trybie skróconym — patrz skill `lekcja`). Zmiana: `set --field sciezka --value pelna`.
+
+**`do_powtorki` ma harmonogram.** `poziom` 0-4 i `next_review` (data) — narzędzie liczy je samo w `add-do-powtorki` i `review-do-powtorki`; agent nigdy nie ustawia ich ręcznie. Odstępy: 1 → 3 → 7 → 14 → 30 dni; po piątej udanej powtórce temat znika jako opanowany.
+
+**Plik w schemacie 1 jest migrowany automatycznie** przy pierwszym zapisie: dostaje `sciezka: "pelna"`, a stare wpisy `do_powtorki` — `poziom: 0` i `next_review` na dziś (czyli od razu są zaległe).
 
 **Pola z nowszego schematu są zachowywane.** Narzędzie trzyma stan jako drzewo JSON, a nie jako klasę z polami — klucze, których nie zna, przechodzą przez odczyt i zapis nietknięte. Plik z `schema_version` wyższą niż obsługiwana jest odrzucany, a nie nadpisywany.
 
@@ -100,10 +107,11 @@ dotnet run .claude/skills/postep/postep.cs -- init \
   --dotnet-cmd "dotnet" \
   --dotnet-version "10.0.100" \
   --shell "zsh" \
-  --edytor "VS Code"
+  --edytor "VS Code" \
+  --sciezka "pelna"
 ```
 
-Tworzy plik z danymi z onboardingu + **pełen snapshot środowiska**. Listy puste, `liczba_sesji=1`, `aktualna_lekcja="1.1"`.
+Tworzy plik z danymi z onboardingu + **pełen snapshot środowiska**. Listy puste, `liczba_sesji=1`, `aktualna_lekcja="1.1"`. `--sciezka` to `pelna` (domyślnie) albo `skrocona` — wynik diagnostyki wejściowej z onboardingu (agent, sekcja „Onboarding").
 
 Błąd, jeśli plik już istnieje (ochrona przed nadpisaniem).
 
@@ -152,7 +160,19 @@ P remove-do-powtorki --temat "różnica między polem a właściwością"
 ```
 
 `add-mocna-strona` trzyma max 7 najnowszych, duplikaty pomija.
-`add-do-powtorki` nie dubluje tego samego tematu.
+`add-do-powtorki` nie dubluje tego samego tematu i ustawia pierwszą powtórkę na **jutro**.
+
+## Powtórki z harmonogramem
+
+```bash
+P due                                                  # tematy, których termin minął albo jest dziś (tylko odczyt)
+P review-do-powtorki --temat "konwersje" --wynik ok    # zaliczone → dłuższy odstęp (1 → 3 → 7 → 14 → 30 dni)
+P review-do-powtorki --temat "konwersje" --wynik zle   # nie → poziom 0, powtórka jutro
+```
+
+`due` wypisuje tablicę JSON na standardowe wyjście i liczbę na standardowe wyjście błędów. Po piątym `ok` temat jest **usuwany** z `do_powtorki` z komunikatem „opanowane" — nie wołaj wtedy `remove-do-powtorki`. `remove-do-powtorki` zostaje do ręcznego sprzątania (temat wpisany przez pomyłkę).
+
+Skill `quiz` woła `review-do-powtorki` po **każdym** pytaniu z trybu „powtórki na dziś"; agent na starcie sesji woła `due` i proponuje powtórkę, gdy lista nie jest pusta.
 
 ## Środowisko
 
@@ -174,7 +194,7 @@ Można podać dowolny podzbiór pól — tylko one się zmienią. Brak flagi **n
 P add-notatka "Anna chce kiedyś napisać narzędzie do porządkowania zdjęć"
 ```
 
-Max 20 najnowszych. **Nie pokazuj uczniowi**, jeśli sam nie zapyta.
+Max 40 najnowszych (limit podniesiony z 20, żeby wpisy `parking:` przeżyły kilka modułów). **Nie pokazuj uczniowi**, jeśli sam nie zapyta.
 
 **Dobre kandydatki na notatkę:** pomysł ucznia na własny program (wraca w lekcji 14.1), co go zniechęca, co go wciąga, jak reaguje na utknięcie.
 
@@ -210,7 +230,8 @@ Narzędzie szuka najnowszego **działającego** backupu w `postep/backups/`, prz
 4. W normalnym przypadku zwróć agentowi:
    - `imie`, `aktualna_lekcja`
    - 2-3 ostatnie wpisy z `ukonczone_lekcje`
-   - `do_powtorki` (jeśli niepusta)
+   - `do_powtorki` (jeśli niepusta) — i wynik `P due`: tematy zaległe na dziś (niepusta lista → zaproponuj powtórkę, niezależnie od dni przerwy)
+   - `sciezka` — `skrocona` zmienia sposób prowadzenia lekcji w modułach 2-7 (skill `lekcja`)
    - liczbę dni od `ostatnia_sesja` (>7 → quiz odświeżający)
    - **`srodowisko.dotnet_cmd`, `srodowisko.dotnet_version`, `srodowisko.system`** — potrzebne w każdej komendzie pokazywanej uczniowi
 5. **Sprawdź `dotnet_version`.** Jeśli < 10.0 → zatrzymaj i wywołaj skill `setup-dotnet` przed lekcją.
@@ -308,7 +329,11 @@ P init --imie Test --cel hobby --tempo "2-5" --system macOS --dotnet-cmd dotnet 
 P add-lekcja --id 1.1 --trudnosc 2
 P add-cwiczenie --lekcja 1.1 --poziom warmup
 P add-do-powtorki --temat "konwersje" --lekcja 2.3
+P due
+P review-do-powtorki --temat "konwersje" --wynik zle
+P review-do-powtorki --temat "konwersje" --wynik ok
 P remove-do-powtorki --temat "konwersje"
+P set --field sciezka --value skrocona
 P set --field aktualna_lekcja --value 1.2
 P read --field srodowisko.dotnet_version
 P end-session
