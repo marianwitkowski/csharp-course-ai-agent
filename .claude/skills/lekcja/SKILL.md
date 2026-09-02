@@ -41,7 +41,15 @@ Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` na całą sesję. **Zapisy
 - `AKTUALIZACJE.md` prostuje to, co uczeń znajdzie w starszych poradnikach (`Newtonsoft.Json` → `System.Text.Json`, `class Program { static void Main }` → instrukcje najwyższego poziomu, `ArrayList` → `List<T>`)
 - Pierwszeństwo: **najpierw** uczeń poznaje bieżący, poprawny sposób. Stare formy pokazuj tylko jako „spotkasz to w cudzym kodzie, to znaczy tyle a tyle" — nigdy jako to, czego ma używać.
 
-## C. Sprawdź katalog zadań
+## C. Sprawdź parking — czy uczeń pytał już o ten temat
+
+W `notatki_tutora` (odczytane w kroku A) szukaj wpisów zaczynających się od `parking:`. Jeśli któryś dotyczy tematu **tej** lekcji — **zacznij od niego**, przed krokiem 1:
+
+> „Pytałeś o to w lekcji 2.1 — »czy na sto imion potrzeba stu zmiennych«. Dziś jest odpowiedź."
+
+Uczeń, który sam odkrył potrzebę tematu trzy moduły wcześniej, ma **własne** pytanie wejściowe — lepsze niż zakotwiczenie ze scenariusza. Krok 1 możesz wtedy skrócić do jednego zdania. Po lekcji notatka parkingowa nie jest już potrzebna, ale nie kasuj jej — narzędzie `postep` samo przycina najstarsze.
+
+## D. Sprawdź katalog zadań
 
 Uczeń pracuje w `kurs/zadania/`. Każde ćwiczenie to **jeden plik `.cs`**. Uruchamianie **z katalogu `kurs/zadania/`**:
 ```sh
@@ -148,7 +156,7 @@ Uczeń pisze rozwiązanie **sam**. Ty robisz review (skill: **review-kodu**) —
 - **Jeden koncept naraz.** C# ma wiele sposobów na to samo (tablica kontra `List<T>`, pole kontra właściwość, `switch` jako instrukcja kontra wyrażenie). Pokazuj **jeden** — ten z bieżącej lekcji.
 - **Nie pokazuj pełnego rozwiązania ćwiczenia.** Uczeń utknął → wracaj do kroku 3 lub 4, nie do gotowca.
 - **Nie porównuj do innych języków.** Uczeń żadnego nie zna.
-- **Nie wyprzedzaj programu.** Jedno zdanie z szablonu: „To się nazywa X — moduł N. Wracamy: [pytanie]". Bez metafory, składni, definicji, obietnic i mgły typu „dość szybko". Tabela `temat → numer modułu` jest w `csharp-tutor.md`, sekcja „Czego NIGDY nie rób" — nie musisz szukać w INDEX.md.
+- **Wyprzedzaj program tylko kontrolowanie.** Szablon: „To się nazywa X — moduł N. Po co: [jedno zdanie]. [opcjonalnie jeden przykład ≤3 linie, tylko do przeczytania]. Zapisuję. Wracamy: [pytanie]" i `postep add-notatka "parking: X (pytał w L.L)"`. Drugie pytanie o to samo → „zapisane, moduł N". Limity i tabela `temat → numer modułu` są w `csharp-tutor.md`, sekcja „Czego NIGDY nie rób" — nie musisz szukać w INDEX.md.
 - **Czas trwania to wskazówka, nie limit.** Lepiej solidnie jeden krok dłużej niż przelecieć przez pięć.
 - **Zwracaj uwagę na język.** „To nie działa" nie znaczy nic. Pytaj: „Co dokładnie napisałeś? Co wypisał kompilator — dokładnie, z kodem `CSxxxx`?"
 - **Formatowanie nie jest tematem lekcji.** Jedno zdanie o „Format on Save" i wracacie do treści.

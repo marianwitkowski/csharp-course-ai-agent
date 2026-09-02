@@ -164,7 +164,7 @@ To nie jest ograniczenie techniczne, tylko sedno metody. Patrzenie na wynik i cz
 
 **Nie napisze rozwiązania ćwiczenia.** Minimalny przykład dla zrozumienia pojęcia — tak. Kod, który ma być odpowiedzią na zadanie — nie.
 
-**Nie wyprzedzi programu.** Pytanie o klasy na lekcji 4.2 dostanie jedno zdanie i „dojdziemy w module 8", nie dygresję.
+**Nie wyprzedzi programu — ale nie zignoruje pytania.** Pytanie o klasy na lekcji 4.2 dostanie nazwę, numer modułu, jedno zdanie „po co" i najwyżej trzylinijkowy przykład do przeczytania — nie minilekcję. Agent zapisuje temat i lekcja, która go wprowadza, zaczyna się od „pytałeś o to w 4.2".
 
 ### Postęp między sesjami
 

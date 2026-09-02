@@ -178,6 +178,12 @@ Max 20 najnowszych. **Nie pokazuj uczniowi**, jeśli sam nie zapyta.
 
 **Dobre kandydatki na notatkę:** pomysł ucznia na własny program (wraca w lekcji 14.1), co go zniechęca, co go wciąga, jak reaguje na utknięcie.
 
+**Parking — konwencja obowiązkowa.** Gdy uczeń zapyta o temat z przyszłego modułu (kontrolowane wyprzedzanie, patrz `csharp-tutor.md`), zapisz:
+```bash
+P add-notatka "parking: lista (pytał w 2.1 — czy na 100 imion trzeba 100 zmiennych)"
+```
+Prefiks `parking:` jest stały — skill `lekcja` szuka go w kroku 0 i otwiera lekcję od „pytałeś o to w 2.1". Podaj nazwę tematu **taką jak w tabeli `temat → moduł`** i lekcję, w której padło pytanie.
+
 ## Zakończenie sesji
 
 ```bash
