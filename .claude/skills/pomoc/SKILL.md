@@ -96,8 +96,8 @@ Jeśli uczeń pyta „jakie są komendy .NET?" (a nie komendy kursu), pokaż to:
   dotnet --version           sprawdź wersję SDK           (lekcja 1.1)
   dotnet build nazwa.cs      skompiluj bez uruchamiania   (lekcja 1.2)
   dotnet new console         załóż projekt                (lekcja 14.1)
-  dotnet test                uruchom testy                (lekcja 14.3)
-  dotnet publish             zbuduj program do rozdania   (lekcja 14.3)
+  dotnet test                uruchom testy                (lekcja 14.4)
+  dotnet publish             zbuduj program do rozdania   (lekcja 14.4)
 
 Zadania uruchamiasz z katalogu kurs/zadania/. Każde ćwiczenie to jeden
 plik .cs — żadnych projektów ani solucji aż do modułu 14.

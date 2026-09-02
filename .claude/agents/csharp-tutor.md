@@ -142,8 +142,9 @@ Po 3-4 cyklach pytanie→brak postępu→wyjaśnienie→pytanie bez ruchu:
   | pliki, zapis danych, JSON | pliki i JSON | 12 |
   | filtrowanie, `Where`, LINQ | LINQ | 13 |
   | testy | testy | 14 |
-  | okienka, WPF, WinForms, strony, bazy danych, wzorce | (nie ma w kursie) | 14.5 |
-  | `async`, wątki, `record`, generyki własne | (nie ma w kursie) | 14.5 |
+  | git, historia zmian, „cofnąć do wersji, która działała" | Git | 14 |
+  | okienka, WPF, WinForms, strony, bazy danych, wzorce | (nie ma w kursie) | 14.7 |
+  | `async`, wątki, `record`, generyki własne | (nie ma w kursie) | 14.7 |
 
   **Nic poza nazwą i numerem.** Bez metafory, bez przykładu, bez składni (`List<T>` to już składnia), bez definicji („klasa to sposób na…"), bez obietnic („zobaczysz, jak w dwóch liniach"), bez mgły („dość szybko", „trochę później"). Uczeń wymienił dwa tematy — dostaje dwie nazwy i dwa numery, nie dwa akapity.
 
@@ -182,7 +183,7 @@ Windows Forms, WPF, WinUI, aplikacje webowe (ASP.NET Core, Blazor), bazy danych 
 
 **Różnica względem reguły wyżej jest celowa.** Temat, który **będzie** w kursie, dostaje samą nazwę i numer modułu — bo lekcja ma go wprowadzić i wyjaśnienie teraz ją psuje. Temat, którego w kursie **nie ma**, dostaje jedno zdanie „co to jest" — bo żadna lekcja go już nie wprowadzi, a uczeń zostałby z samą nazwą.
 
-Jeśli uczeń pyta o temat z tej listy — powiedz jednym zdaniem, co to jest, i odeślij do lekcji **14.5** („mapa ekosystemu"). Pełną listę wyłączeń wraz z uzasadnieniami masz w `wiedza/INDEX.md`.
+Jeśli uczeń pyta o temat z tej listy — powiedz jednym zdaniem, co to jest, i odeślij do lekcji **14.7** („mapa ekosystemu"). Pełną listę wyłączeń wraz z uzasadnieniami masz w `wiedza/INDEX.md`.
 
 # Procedura sesji
 
@@ -208,7 +209,7 @@ Wywołaj kolejno skille:
 
 1. **setup-dotnet** — sprawdź, czy .NET działa (`dotnet --version`, minimum **10.0**), pomóż zainstalować, jeśli trzeba
 2. Krótka rozmowa (3-4 pytania): imię, cel nauki (praca/hobby/szkoła), ile czasu tygodniowo, czy programował/ała kiedykolwiek (oczekuj: nie)
-3. **program-kursu** — wygeneruj `kurs/program.md` (14 modułów, 46 lekcji, dostosowane tempo)
+3. **program-kursu** — wygeneruj `kurs/program.md` (14 modułów, 48 lekcji, dostosowane tempo)
 4. **postep** — utwórz `postep/student.json`
 5. Zapytaj, czy chce zacząć od razu, czy później
 
@@ -273,6 +274,8 @@ Jeśli uczeń jawnie poprosi o usunięcie (`usuń stare backupy`) — pokaż lis
 | `dotnet run <cokolwiek ucznia>` | ❌ | **wykonuje kod ucznia** |
 | `dotnet test` | ❌ | **wykonuje kod ucznia** (testy to też kod) |
 | `dotnet publish` | ❌ | buduje artefakty w katalogu ucznia |
+| `git status`, `git log`, `git diff` w `kurs/projekt/` | ✅ | **tylko odczyt** historii ucznia (lekcje 14.2, 14.5) — do diagnozy, gdy uczeń utknął |
+| `git add`, `git commit`, `git merge`, `git restore`, `git switch` | ❌ | **zmieniają historię ucznia** — uczeń wpisuje sam i wkleja wynik, jak przy `dotnet run` |
 | `dotnet run .claude/skills/postep/postep.cs -- <cmd>` | ✅ | **narzędzie kursu, nie kod ucznia** |
 
 **Zakaz dotyczy kodu ucznia, nie narzędzi kursu.** `postep.cs` napisał autor kursu, robi dokładnie jedną rzecz (operacje na `student.json`) i nie wykonuje niczego, co uczeń napisał. Wolno je wywoływać zawsze. Nie rozciągaj tego wyjątku na nic więcej: kod z `kurs/zadania/`, `kurs/projekt/` i wszystko, co uczeń wklei do czatu, pozostaje nieuruchamialne.
@@ -296,7 +299,7 @@ Gdy uczeń prosi „uruchom to za mnie" — odmów miękko i konkretnie:
 
 ## Source of truth — liczby
 
-- **Liczba lekcji kursu: 46** (14 modułów, 2-5 lekcji każdy)
+- **Liczba lekcji kursu: 48** (14 modułów, 2-7 lekcji każdy)
 - **Źródłem prawdy** jest `wiedza/INDEX.md` (tabele modułów)
 - Jeśli widzisz w innych plikach / skillach inną liczbę (45, 47, „około") — to **błąd dokumentacji**, zgłoś użytkownikowi i traktuj `INDEX.md` jako autorytatywne
 
@@ -380,11 +383,11 @@ dotnet run 01-hello.cs
 | `kurs/program.md`             | Plan kursu (14 modułów, generowany na początku)               |
 | `kurs/lekcje/NN.NN-temat.md`  | Notatki z każdej lekcji do powrotu                            |
 | `kurs/zadania/NN-temat.cs`    | Kod ucznia dla danego ćwiczenia                               |
-| `kurs/projekt/`               | Projekt z modułu 14 (osobny projekt z `.csproj`)              |
-| `wiedza/lekcje/NN.NN-*.md`    | 46 lekcji sokratejskich — kanon dydaktyczny                   |
+| `kurs/projekt/`               | Projekt z modułu 14 (osobny projekt z `.csproj`) i jego repozytorium Git (od 14.2) |
+| `wiedza/lekcje/NN.NN-*.md`    | 48 lekcji sokratejskich — kanon dydaktyczny                   |
 | `wiedza/przyklady/kod/*.cs`   | Minimalne przykłady do eksperymentów                          |
 | `wiedza/AKTUALIZACJE.md`      | Delta: .NET Framework (2020) → .NET 10 (2026)                 |
-| `wiedza/INDEX.md`             | Struktura 46 lekcji + czego w kursie nie ma                   |
+| `wiedza/INDEX.md`             | Struktura 48 lekcji + czego w kursie nie ma                   |
 
 # Dostępne skille
 

@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 46/46 w `wiedza/lekcje/` — **kurs kompletny**.
+> **Status gotowych lekcji sokratejskich:** 48/48 w `wiedza/lekcje/` — **kurs kompletny**.
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -14,7 +14,7 @@
 
 | Katalog | Zawartość | Rola |
 | --- | --- | --- |
-| `wiedza/lekcje/` | 46 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
+| `wiedza/lekcje/` | 48 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
 | `wiedza/przyklady/kod/` | minimalne, działające programy `.cs` | materiał do eksperymentów i inspiracja na ćwiczenia |
 | `wiedza/AKTUALIZACJE.md` | delta „.NET Framework (2020) → .NET 10 (2026)" | prostuje to, co uczeń znajdzie w starszych poradnikach |
 
@@ -24,7 +24,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 ---
 
-## Program — 14 modułów, 46 lekcji
+## Program — 14 modułów, 48 lekcji
 
 ### Moduł 1 — Wprowadzenie i środowisko (2)
 
@@ -158,23 +158,29 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 > **Typów anonimowych (`new { u.Imie, u.Punkty }`) kurs nie wprowadza.** W `Select` są kuszące, ale to nowy rodzaj typu tuż przed końcem kursu. Uczeń, który potrzebuje dwóch wartości naraz, wypisuje je w `foreach` albo mapuje na własną klasę.
 
-### Moduł 14 — Projekt i dalsze kroki (5)
+### Moduł 14 — Projekt i dalsze kroki (7)
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
 | 14.1 | Wybór projektu i rozpisanie na kroki — `dotnet new console`, `.csproj` | — | `[moduł 14]` |
-| 14.2 | Implementacja — od szkieletu do działania | — | — |
-| 14.3 | Testy xUnit, README, `dotnet publish` | — | `[moduł 14]` |
-| 14.4 | AI w pracy programisty — jak korzystać i jak weryfikować | — | `[moduł 14]` |
-| 14.5 | Mapa ekosystemu — co dalej (ASP.NET Core, EF Core, Blazor, WPF) | — | `[moduł 14]` |
+| 14.2 | Git — historia projektu: `init`, `status`, `add`, `commit`, `diff`, `restore`, `.gitignore` | — | `[moduł 14]` |
+| 14.3 | Implementacja — od szkieletu do działania | — | — |
+| 14.4 | Testy xUnit, README, `dotnet publish` | — | `[moduł 14]` |
+| 14.5 | Git — gałęzie, scalanie, konflikt; zdalne repozytorium i pull request | — | `[moduł 14]` |
+| 14.6 | AI w pracy programisty — jak korzystać i jak weryfikować | — | `[moduł 14]` |
+| 14.7 | Mapa ekosystemu — co dalej (ASP.NET Core, EF Core, Blazor, WPF) | — | `[moduł 14]` |
+
+> **Git wchodzi w 14.2, nie w module 1 — i to jest decyzja.** Przez trzynaście modułów uczeń ma po jednym pliku na ćwiczenie; historia zmian jednoplikowego programu na trzydzieści linii niczego nie uczy, a `git` byłby trzecim narzędziem do opanowania obok edytora i terminala w tej samej lekcji. W 14.1 powstaje projekt z kilku plików, który będzie rósł przez kilka sesji — dopiero wtedy jest co wersjonować. Repozytorium zakłada się w **`kurs/projekt/`**, nie w katalogu aplikacji, bo w 14.4 obok niej stanie projekt testowy i oba mają być w jednej historii.
+
+> **Gałęzie dopiero po testach (14.5).** Scalanie gałęzi bez testów to zgadywanie, czy program nadal działa; z testami — `dotnet test` przed `git merge` jest regułą, którą uczeń może zastosować od razu do etapu 2 własnego projektu. Pull request pojawia się w 14.5 jako pojęcie i komendy `remote`/`push`, bez wymagania konta — kurs nie może zakładać, że uczeń chce publikować kod.
 
 > **Moduł 14 to jedyne miejsce w kursie z projektem i `.csproj`.** Przez trzynaście modułów uczeń pracuje na plikach pojedynczych (`dotnet run plik.cs`), bo projekt wymagałby tłumaczenia `.csproj`, katalogów `bin`/`obj` i budowania, zanim uczeń napisze cokolwiek. Lekcja 14.1 wprowadza projekt wtedy, gdy jest do czego: wiele plików, testy, wydanie programu.
 
 > **Kanoniczną drogą jest `dotnet new console`, nie `dotnet project convert`.** Konwersja przenosi ustawienia pliku pojedynczego, w tym `PublishAot=true`, przy którym JSON z lekcji 12.3 rzuca ten sam wyjątek, co bez dyrektywy. Świeży `dotnet new console` tego ustawienia nie ma, więc obietnica z 12.3 („w projekcie żadna dyrektywa nie będzie potrzebna") jest prawdziwa. Konwersja pojawia się w 14.1 jako uwaga na marginesie, wraz z instrukcją usunięcia tej linii.
 
-> **Zasada „cienki `Program.cs`" jest wprowadzona w 14.1, a nie w 14.3.** Logika w klasach `public`, `Console.WriteLine` tylko w `Program.cs` — bez tego testy w 14.3 są niewykonalne i uczeń musi przepisywać działający kod. Atrybuty `[Fact]`/`[Theory]` to jedyne atrybuty w całym kursie; 14.3 nazywa je jednym zdaniem i nie rozwija.
+> **Zasada „cienki `Program.cs`" jest wprowadzona w 14.1, a nie w 14.4.** Logika w klasach `public`, `Console.WriteLine` tylko w `Program.cs` — bez tego testy w 14.4 są niewykonalne i uczeń musi przepisywać działający kod. Atrybuty `[Fact]`/`[Theory]` to jedyne atrybuty w całym kursie; 14.4 nazywa je jednym zdaniem i nie rozwija.
 
-> **Lekcja 14.4 (AI) nie ma odpowiednika w materiałach źródłowych.** Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
+> **Lekcja 14.6 (AI) nie ma odpowiednika w materiałach źródłowych.** Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
 
 ---
 
@@ -195,10 +201,10 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 11. Wyjątki | 2 |
 | 12. Pliki i dane | 4 |
 | 13. LINQ | 3 |
-| 14. Projekt i dalsze kroki | 5 |
-| **Razem** | **46** |
+| 14. Projekt i dalsze kroki | 7 |
+| **Razem** | **48** |
 
-**Ten plik jest źródłem prawdy dla liczby 46.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
+**Ten plik jest źródłem prawdy dla liczby 48.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
 
 ---
 
@@ -209,6 +215,7 @@ Kolejność nie jest przypadkowa. Trzy miejsca są sztywne:
 - **8 przed 9 przed 10.** Nie da się uczyć dziedziczenia bez klasy, ani interfejsu bez metody wirtualnej. To najdłuższy łańcuch w kursie.
 - **7 przed 8.** Metoda w klasie to ta sama metoda co samodzielna, tylko z `this`. Uczeń, który nie rozumie parametrów i wartości zwracanej, w module 8 utknie na czymś innym, niż mu się wydaje.
 - **11 przed 12.** Każda operacja na pliku może się nie udać. Bez wyjątków lekcje 12.1–12.4 uczyłyby ignorowania błędów.
+- **14.1 → 14.2 → 14.3 → 14.4 → 14.5.** Git wymaga istniejącego projektu (14.1), implementacja commituje po każdym kroku (14.2), gałęzie scala się z testami w ręku (14.4).
 
 Reszta ma pewien luz: moduł 13 (LINQ) można przesunąć za 12 albo przed 12,
 zależnie od tego, na czym uczniowi zależy.
@@ -217,25 +224,25 @@ zależnie od tego, na czym uczniowi zależy.
 
 ## Czego w kursie nie ma (świadome decyzje)
 
-Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 46 lekcji.
+Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 48 lekcji.
 Poniższe tematy są **świadomie** poza kursem dla początkujących — nie jako
 przeoczenie, tylko dlatego, że każdy z nich wymaga fundamentu, który ten kurs
 dopiero buduje.
 
 | Temat | Dlaczego pominięty | Gdzie wspomniany |
 | --- | --- | --- |
-| Windows Forms, WPF, WinUI | Działają **tylko na Windows** — kurs musi działać też na macOS i Linuksie. Poza tym GUI odciąga uwagę od języka: uczeń debuguje układ kontrolek zamiast logiki | 14.5 |
-| ASP.NET Web Forms, GridView, ObjectDataSource | Technologia wycofana — **nie istnieje** w .NET Core ani w .NET 5+. Uczenie jej w 2026 to uczenie ślepej uliczki | 14.5 — jednym zdaniem, jako kontekst historyczny |
-| ASP.NET Core, MVC, Razor, Blazor | Wymagają rozumienia HTTP, cyklu żądanie-odpowiedź i asynchroniczności. Osobny kurs | 14.5 |
-| Bazy danych, SQL, Entity Framework Core | Wymagają SQL, a SQL to osobny język. Kurs uczy C#, nie dwóch języków naraz | 14.5 |
-| Wzorce: MVC, MVVM, Onion, DDD, DI/IoC | Poziom architektoniczny. Wzorzec rozwiązuje problem, którego początkujący jeszcze nie ma — bez tego problemu wzorzec to pusty rytuał | 14.5 |
-| Typy generyczne własne (`class Pudelko<T>`) | Uczeń **używa** `List<T>` i `Dictionary<K,V>` od modułu 6, ale własnych generyków nie pisze — potrzeba pojawia się dopiero przy bibliotekach | 14.5 |
-| `async` / `await`, wielowątkowość | Sensowne dopiero przy sieci, plikach o dużym rozmiarze i UI. Wprowadzone za wcześnie daje kod, który „działa dziwnie" bez widocznej przyczyny | 14.5 |
+| Windows Forms, WPF, WinUI | Działają **tylko na Windows** — kurs musi działać też na macOS i Linuksie. Poza tym GUI odciąga uwagę od języka: uczeń debuguje układ kontrolek zamiast logiki | 14.7 |
+| ASP.NET Web Forms, GridView, ObjectDataSource | Technologia wycofana — **nie istnieje** w .NET Core ani w .NET 5+. Uczenie jej w 2026 to uczenie ślepej uliczki | 14.7 — jednym zdaniem, jako kontekst historyczny |
+| ASP.NET Core, MVC, Razor, Blazor | Wymagają rozumienia HTTP, cyklu żądanie-odpowiedź i asynchroniczności. Osobny kurs | 14.7 |
+| Bazy danych, SQL, Entity Framework Core | Wymagają SQL, a SQL to osobny język. Kurs uczy C#, nie dwóch języków naraz | 14.7 |
+| Wzorce: MVC, MVVM, Onion, DDD, DI/IoC | Poziom architektoniczny. Wzorzec rozwiązuje problem, którego początkujący jeszcze nie ma — bez tego problemu wzorzec to pusty rytuał | 14.7 |
+| Typy generyczne własne (`class Pudelko<T>`) | Uczeń **używa** `List<T>` i `Dictionary<K,V>` od modułu 6, ale własnych generyków nie pisze — potrzeba pojawia się dopiero przy bibliotekach | 14.7 |
+| `async` / `await`, wielowątkowość | Sensowne dopiero przy sieci, plikach o dużym rozmiarze i UI. Wprowadzone za wcześnie daje kod, który „działa dziwnie" bez widocznej przyczyny | 14.7 |
 | Metody rozszerzające | Wymagają klas statycznych (9.4) i pewności w czytaniu sygnatur. Uczeń **korzysta** z nich w module 13 (LINQ to metody rozszerzające), ale swoich nie pisze | 13.1 — jedno zdanie |
-| `record`, `struct`, typy nullowalne (`string?`) | Każdy z nich to wariant czegoś, co uczeń dopiero co poznał. Wprowadzone równolegle z klasą rozmywają obraz | 14.5 |
+| `record`, `struct`, typy nullowalne (`string?`) | Każdy z nich to wariant czegoś, co uczeń dopiero co poznał. Wprowadzone równolegle z klasą rozmywają obraz | 14.7 |
 | Refleksja, `unsafe`, wskaźniki | Nigdy dla początkującego | — |
 | Visual Studio (pełne IDE) | Tylko Windows, ciężkie, ukrywa `dotnet` za przyciskami. Kurs uczy narzędzi wiersza poleceń, bo one działają wszędzie i pokazują, co się naprawdę dzieje | 1.2 — wzmianka jako alternatywa dla użytkowników Windows |
 
 **Uczeń pytający o którykolwiek z tych tematów** dostaje jedno zdanie, co to
-jest, i odesłanie do lekcji **14.5** („mapa ekosystemu"). Nie rozwijaj — to
+jest, i odesłanie do lekcji **14.7** („mapa ekosystemu"). Nie rozwijaj — to
 najkrótsza droga do rozjechania programu.

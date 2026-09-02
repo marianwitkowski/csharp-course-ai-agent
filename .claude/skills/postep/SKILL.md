@@ -235,12 +235,12 @@ P add-cwiczenie --lekcja <X.Y> --poziom <warmup|main|star>
 
 ## Moduł 14 — projekt
 
-Lekcja 14.2 rozciąga się na kilka sesji. Nie czekaj z zapisem do jej końca:
+Lekcja 14.3 rozciąga się na kilka sesji. Nie czekaj z zapisem do jej końca:
 ```bash
 P add-notatka "projekt: dodany zapis do JSON, działa; następnie argumenty CLI"
 P end-session
 ```
-`add-lekcja --id 14.2` dopisz dopiero, gdy etap projektu jest skończony.
+`add-lekcja --id 14.3` dopisz dopiero, gdy etap projektu jest skończony.
 
 ## Koniec sesji rozmowy
 

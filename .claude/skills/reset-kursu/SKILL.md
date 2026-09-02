@@ -127,7 +127,7 @@ W `postep/archiwum/$TIMESTAMP/MANIFEST.md`:
 **Tryb resetu:** miękki | pełny
 **Powód podany przez ucznia:** [krótki cytat]
 **Stan przed resetem:**
-- Ukończonych lekcji: 12 z 46
+- Ukończonych lekcji: 12 z 48
 - Aktualna lekcja: 5.2
 - Liczba sesji: 8
 - Wersja .NET: 10.0.400

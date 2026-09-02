@@ -296,8 +296,10 @@ Strzałka w górę to ta, której będziesz używać najczęściej: poprawka w k
 | `dotnet run nazwa.cs` | Uruchom program | 1.1 |
 | `dotnet build nazwa.cs` | Sprawdź, czy się kompiluje — bez uruchamiania | 1.2 |
 | `dotnet new console -o nazwa` | Załóż projekt | 14.1 |
-| `dotnet test` | Uruchom testy | 14.3 |
-| `dotnet publish` | Zbuduj program do rozdania innym | 14.3 |
+| `dotnet test` | Uruchom testy | 14.4 |
+| `dotnet publish` | Zbuduj program do rozdania innym | 14.4 |
+
+Historię zmian projektu (`git`) poznasz w lekcjach 14.2 i 14.5 — to osobne narzędzie, nie część `dotnet`.
 
 Nie musisz ich pamiętać teraz. Agent poda właściwą, gdy przyjdzie na nią czas. Pierwsze trzy wystarczą Ci przez trzynaście modułów.
 

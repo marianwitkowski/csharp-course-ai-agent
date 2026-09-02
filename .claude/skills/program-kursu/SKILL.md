@@ -1,6 +1,6 @@
 ---
 name: program-kursu
-description: Generuje plik kurs/program.md — spersonalizowany program 14 modułów / 46 lekcji podstaw języka C# i platformy .NET, na podstawie wiedza/INDEX.md. Dostosowuje akcenty do celu ucznia (praca/narzędzia/hobby/szkoła) i deklarowanego tempa. Użyj raz, podczas onboardingu, po krótkim wywiadzie z uczniem.
+description: Generuje plik kurs/program.md — spersonalizowany program 14 modułów / 48 lekcji podstaw języka C# i platformy .NET, na podstawie wiedza/INDEX.md. Dostosowuje akcenty do celu ucznia (praca/narzędzia/hobby/szkoła) i deklarowanego tempa. Użyj raz, podczas onboardingu, po krótkim wywiadzie z uczniem.
 ---
 
 # Cel
@@ -9,7 +9,7 @@ Stworzyć `kurs/program.md` — plan kursu, do którego uczeń i tutor będą wr
 
 # Źródło prawdy
 
-**Zawsze** opieraj plan na pliku `wiedza/INDEX.md`. Nie wymyślaj modułów ani lekcji — tabele w INDEX.md to kanon: **14 modułów, 46 lekcji**.
+**Zawsze** opieraj plan na pliku `wiedza/INDEX.md`. Nie wymyślaj modułów ani lekcji — tabele w INDEX.md to kanon: **14 modułów, 48 lekcji**.
 
 Jeśli `wiedza/INDEX.md` nie istnieje → coś jest nie tak z repozytorium. Powiedz uczniowi i nie generuj programu z pamięci.
 
@@ -23,16 +23,16 @@ Wymagane od ucznia (przed wywołaniem skill):
 # Procedura
 
 1. **Wczytaj** `wiedza/INDEX.md` — źródło struktury kursu
-2. **Skopiuj kanon** (14 modułów, 46 lekcji)
+2. **Skopiuj kanon** (14 modułów, 48 lekcji)
 3. **Personalizuj** akcenty wg celu (patrz niżej)
 4. **Dostosuj tempo** wg dostępnego czasu
 5. **Zapisz** do `kurs/program.md`
 
 # Personalizacja wg celu
 
-Personalizacja dotyczy **akcentów i projektu końcowego**, nie struktury. Wszystkie 46 lekcji zostaje w tej samej kolejności.
+Personalizacja dotyczy **akcentów i projektu końcowego**, nie struktury. Wszystkie 48 lekcji zostaje w tej samej kolejności.
 
-- **Cel: praca (programista .NET)** → mocniej moduły 8-10 (klasy, OOP, interfejsy — to jest to, o co pytają na rozmowach) i 14.3 (testy); projekt: narzędzie przetwarzające dane z pliku, z testami
+- **Cel: praca (programista .NET)** → mocniej moduły 8-10 (klasy, OOP, interfejsy — to jest to, o co pytają na rozmowach) i 14.4 (testy); projekt: narzędzie przetwarzające dane z pliku, z testami
 - **Cel: narzędzia i automatyzacja** → mocniej moduł 12 (pliki, JSON, argumenty CLI) i 13 (LINQ do przemielenia danych); projekt: narzędzie zastępujące ręczną czynność, którą uczeń faktycznie wykonuje
 - **Cel: hobby / gry tekstowe** → mocniej moduły 4-5 (decyzje, pętle) i 6 (kolekcje); projekt: gra tekstowa z tabelą wyników zapisywaną do pliku
 - **Cel: szkoła / algorytmy** → mocniej moduł 7 (metody) i 6 (tablice, listy); projekt: kalkulator albo solver z testami
@@ -46,12 +46,12 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 
 | Czas/tydz | Lekcji/tydz | Czas trwania kursu |
 | --------- | ----------- | ------------------ |
-| <2h       | 1           | ~46 tygodni        |
+| <2h       | 1           | ~48 tygodni        |
 | 2-5h      | 2-3         | ~16-24 tygodni     |
 | 5-10h     | 3-5         | ~10-16 tygodni     |
 | 10+h      | 5-7         | ~7-10 tygodni      |
 
-**Uwaga o module 14:** projekt rozciąga się na kilka sesji (lekcja 14.2 jest prowadzona wielokrotnie). Do szacunku doliczaj 2-4 dodatkowe sesje.
+**Uwaga o module 14:** projekt rozciąga się na kilka sesji (lekcja 14.3 jest prowadzona wielokrotnie). Do szacunku doliczaj 2-4 dodatkowe sesje.
 
 **Nie sprzedawaj tych liczb jako obietnicy.** Uczeń, który usłyszy „10 tygodni" i po 12 jest w połowie, uzna, że mu nie idzie — a idzie mu normalnie.
 
@@ -86,7 +86,7 @@ gdzie skończyłeś.
 - Lekcja 2.3: Konwersje typów — `Parse`, `TryParse`
 - Lekcja 2.4: Operatory i wyrażenia
 
-[...kontynuuj wg INDEX.md, wszystkie 14 modułów, 46 lekcji...]
+[...kontynuuj wg INDEX.md, wszystkie 14 modułów, 48 lekcji...]
 
 ## Projekt końcowy (Moduł 14)
 
@@ -98,14 +98,14 @@ gdzie skończyłeś.
 Aplikacji okienkowych (Windows Forms, WPF), aplikacji webowych (ASP.NET Core,
 Blazor), baz danych i Entity Framework, wzorców architektonicznych. To nie
 przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje.
-Mapa dalszych kroków czeka w lekcji 14.5.
+Mapa dalszych kroków czeka w lekcji 14.7.
 ```
 
 # Twarde zasady
 
 - **Źródłem prawdy jest `wiedza/INDEX.md`.** Nie wymyślaj lekcji, nie pomijaj modułów bez zgody ucznia.
 - **Trzymaj się 14 modułów i kolejności.** Sekcja „Zależności między modułami" w INDEX.md wymienia trzy miejsca, których przestawić nie wolno: 7→8→9→10 (metody → klasy → dziedziczenie → interfejsy) oraz 11 przed 12 (wyjątki przed plikami).
-- **Nie wymyślaj modułów typu „ASP.NET", „Entity Framework", „WPF"** — te tematy są wzmiankowane w lekcji 14.5 (mapa ekosystemu), nigdy jako osobne lekcje. Uczeń, który prosi o taki moduł, prosi o inny kurs; powiedz to życzliwie i wprost.
+- **Nie wymyślaj modułów typu „ASP.NET", „Entity Framework", „WPF"** — te tematy są wzmiankowane w lekcji 14.7 (mapa ekosystemu), nigdy jako osobne lekcje. Uczeń, który prosi o taki moduł, prosi o inny kurs; powiedz to życzliwie i wprost.
 - **Nie skracaj kursu przez wycięcie modułów 8-9 (klasy i OOP)** — nawet jeśli uczeń chce szybciej. W C# klasa jest jednostką organizacji kodu; bez modułów 8-9 lekcje 10-14 nie mają się o co oprzeć.
 - Jeśli uczeń chce krótszej wersji → zaproponuj zatrzymanie się po module 10 i wrócenie do 11-14 później. Nie wycinaj środka.
 - Plik nadpisujesz **tylko jeśli** uczeń świadomie chce zmienić program (np. zmienił się cel).
@@ -114,4 +114,4 @@ Mapa dalszych kroków czeka w lekcji 14.5.
 
 Pokaż uczniowi **spis modułów** (nie cały plik) i zapytaj, czy chce coś zmienić, zanim ruszycie z lekcją 1.1. Dodaj jedno zdanie kotwiczące:
 
-> „Czterdzieści sześć lekcji brzmi dużo, ale pierwsze siedem to podstawy, które przerobisz szybciej, niż myślisz. Prawdziwy próg jest w module 8 — tam zaczyna się to, co w C# jest naprawdę własne."
+> „Czterdzieści osiem lekcji brzmi dużo, ale pierwsze siedem to podstawy, które przerobisz szybciej, niż myślisz. Prawdziwy próg jest w module 8 — tam zaczyna się to, co w C# jest naprawdę własne."

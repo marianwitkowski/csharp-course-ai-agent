@@ -243,7 +243,7 @@ Obie linie muszą stać **na samej górze pliku**, przed `using`.
 | `packages.config`, folder `packages/` | `<PackageReference>` w `.csproj`, bez folderu w repozytorium |
 | Instalator albo folder z kilkunastoma plikami `.dll` | `dotnet publish` — katalog z kilkoma plikami albo, na żądanie, jeden plik wykonywalny |
 
-**`dotnet publish` ma trzy warianty** i warto ich nie mylić — lekcja 14.3 pokazuje dwa pierwsze:
+**`dotnet publish` ma trzy warianty** i warto ich nie mylić — lekcja 14.4 pokazuje dwa pierwsze:
 
 | Komenda | Co powstaje | Wymaga .NET u odbiorcy |
 | --- | --- | --- |

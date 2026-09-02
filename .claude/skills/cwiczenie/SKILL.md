@@ -79,7 +79,7 @@ Zapisz w `kurs/zadania/NN-temat-ZADANIA.md`:
 - **Nie wprowadzaj konstrukcji spoza dotychczasowych lekcji.** Zajrzyj do `wiedza/INDEX.md`, żeby sprawdzić, co uczeń już miał. Typowe wpadki: `List<T>` przed 6.2, `foreach` przed 5.3, LINQ gdziekolwiek przed 13.1, własna klasa przed 8.1, `try/catch` przed 11.1.
 - **Od modułu 3 każde ćwiczenie czytające wejście musi używać `TryParse`, nie `Parse`.** `int.Parse(Console.ReadLine())` wywala program przy pierwszej literówce użytkownika — to nauka złego nawyku od pierwszego dnia.
 - **Od modułu 11 każde ćwiczenie dotykające plików musi obsłużyć wyjątek.** Plik może nie istnieć i to nie jest przypadek egzotyczny.
-- **Od lekcji 14.3 dołączaj do gwiazdki wymóg testu** — jeden test xUnit z dwoma przypadkami. Wcześniej uczeń nie widział ani `[Fact]`, ani `dotnet test`.
+- **Od lekcji 14.4 dołączaj do gwiazdki wymóg testu** — jeden test xUnit z dwoma przypadkami. Wcześniej uczeń nie widział ani `[Fact]`, ani `dotnet test`.
 
 # Przykłady (lekcja 2.1: zmienne i typy)
 

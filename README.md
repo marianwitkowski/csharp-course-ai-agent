@@ -2,7 +2,7 @@
 
 Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta Claude Code metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
 
-Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **46 lekcji w 14 modułach**.
+Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **48 lekcji w 14 modułach**.
 
 ## Dla kogo
 
@@ -44,7 +44,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 │       ├── pomoc/                      # lista komend w czacie
 │       └── postep/                     # śledzenie postępu (narzędzie w C#)
 ├── wiedza/                             # baza wiedzy kursu
-│   ├── INDEX.md                        # struktura 46 lekcji — źródło prawdy
+│   ├── INDEX.md                        # struktura 48 lekcji — źródło prawdy
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework (2020) → .NET 10
@@ -61,7 +61,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 └── .editorconfig                       # konwencje formatowania — czyta je edytor
 ```
 
-## Program kursu — 14 modułów, 46 lekcji
+## Program kursu — 14 modułów, 48 lekcji
 
 | Moduł | Temat | Lekcje |
 | --- | --- | --- |
@@ -78,13 +78,13 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 | 11 | Wyjątki — `try`/`catch`, własne wyjątki, `using` | 2 |
 | 12 | Pliki i dane — pliki tekstowe, ścieżki, JSON, argumenty CLI | 4 |
 | 13 | LINQ — filtrowanie, agregacje, lambdy | 3 |
-| 14 | Projekt i dalsze kroki — własne narzędzie, testy, AI, mapa ekosystemu | 5 |
+| 14 | Projekt i dalsze kroki — własne narzędzie, Git, testy, gałęzie i scalanie, AI, mapa ekosystemu | 7 |
 
 Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md).
 
-> **Stan gotowych scenariuszy:** wszystkie **46 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
+> **Stan gotowych scenariuszy:** wszystkie **48 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
 
-**Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, `async`/`await`. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.5.
+**Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, `async`/`await`. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.7.
 
 ## Dlaczego konsola, a nie okienka
 
@@ -94,7 +94,7 @@ Program szkolenia, z którego wyrósł ten kurs, obejmował Windows Forms i ASP.
 - **ASP.NET Web Forms nie istnieje w nowoczesnym .NET.** Nie został przeniesiony z .NET Framework i nie zostanie
 - **GUI odciąga uwagę od języka.** Uczeń debuguje układ kontrolek zamiast logiki — a uczy się właśnie logiki
 
-Konsola pokazuje dokładnie to, co program robi, i nic więcej. Co postawić na tym fundamencie, jest tematem lekcji 14.5.
+Konsola pokazuje dokładnie to, co program robi, i nic więcej. Co postawić na tym fundamencie, jest tematem lekcji 14.7.
 
 ## Zanim zaczniesz pierwszą lekcję
 

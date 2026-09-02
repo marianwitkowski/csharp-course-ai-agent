@@ -36,7 +36,7 @@ Agent automatycznie:
 3. Sprawdzi, czy działają aplikacje jednoplikowe (`dotnet run plik.cs`)
 4. Każe Ci przeczytać `kurs/JAK-PISAC-KOD.md` (5 min)
 5. Zapyta o imię, cel (praca / narzędzia / hobby / szkoła), tempo (h/tydzień)
-6. Wygeneruje **Twój** `kurs/program.md` (46 lekcji dopasowanych do celu)
+6. Wygeneruje **Twój** `kurs/program.md` (48 lekcji dopasowanych do celu)
 7. Utworzy `postep/student.json` ze stanem początkowym
 8. Zaproponuje rozpoczęcie lekcji 1.1
 
@@ -159,7 +159,7 @@ Agent: Super. Teraz 4 pytania, żeby dopasować kurs:
        4. Programowałaś już kiedyś w innym języku?
 
 Ty:    Anna, praca, 3-5h tygodniowo, nigdy nie programowałam
-Agent: [generuje program.md, student.json] Mam dla Ciebie 46 lekcji w 14 modułach,
+Agent: [generuje program.md, student.json] Mam dla Ciebie 48 lekcji w 14 modułach,
        tempo ~3 lekcje/tydzień. Na końcu napiszesz własne narzędzie
        wiersza poleceń z testami.
        Zaczynamy od lekcji 1.1 — "Czym jest C# i pierwszy program"?
@@ -227,7 +227,7 @@ Repozytorium ma plik [`LICENSE`](LICENSE) (MIT) i [`NOTICE.md`](NOTICE.md) z wyj
 
 - **[README.md](README.md)** — pełna dokumentacja, struktura, lista komend
 - **[kurs/JAK-PISAC-KOD.md](kurs/JAK-PISAC-KOD.md)** — workflow pisania i uruchamiania kodu (przeczytaj raz na początku)
-- **[wiedza/INDEX.md](wiedza/INDEX.md)** — mapa 46 lekcji i lista tego, czego w kursie nie ma
+- **[wiedza/INDEX.md](wiedza/INDEX.md)** — mapa 48 lekcji i lista tego, czego w kursie nie ma
 - **[wiedza/AKTUALIZACJE.md](wiedza/AKTUALIZACJE.md)** — co się zmieniło między .NET Framework a .NET 10
 
 ---
