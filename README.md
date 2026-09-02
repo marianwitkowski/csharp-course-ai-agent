@@ -4,6 +4,12 @@ Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony
 
 Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **49 lekcji w 14 modułach**.
 
+## Czym ten kurs jest, a czym nie jest
+
+To kurs **fundamentów języka C#** z osobistym tutorem AI — **pierwszy etap** drogi do zawodowego .NET, nie cała droga. Po jego ukończeniu uczeń umie samodzielnie zaprojektować, napisać, uruchomić, przetestować i poprawić niewielką aplikację konsolową, trzymać ją w Gicie i krytycznie korzystać z asystenta AI. Umie też przeczytać dokumentację i większość kodu C#, jaki spotka.
+
+Nie jest to jeszcze przygotowanie do pracy jako junior .NET developer. Drugi etap — osobny kurs albo własna nauka według mapy z lekcji 14.7 — powinien objąć co najmniej: `async`/`await` w praktyce, HTTP i korzystanie z API, ASP.NET Core, wstrzykiwanie zależności, SQL i Entity Framework Core, konfigurację i logowanie, testy integracyjne, podstawy Dockera i bezpieczeństwa aplikacji webowych. Każda z tych rzeczy zakłada fundament, który buduje ten kurs, i żadna nie ma sensu bez niego.
+
 ## Dla kogo
 
 - Osoby, które **nigdy nie programowały** — kurs nie zakłada znajomości żadnego innego języka
