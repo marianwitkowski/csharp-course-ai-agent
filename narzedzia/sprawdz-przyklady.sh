@@ -17,7 +17,22 @@ done
 
 if [ "$bledy" -eq 0 ]; then
   echo "OK: wszystkie przykłady i postep.cs kompilują się"
-else
-  echo "BŁĘDY: $bledy plików"
+fi
+
+# Zepsute programy (ćwiczenia 🔧): plik z „nie kompiluje się" w nagłówku MA nie kompilować się,
+# każdy inny ma się kompilować (błąd jest w logice albo wychodzi dopiero w trakcie działania).
+for plik in wiedza/przyklady/zepsute/*.cs; do
+  if head -4 "$plik" | grep -q "nie kompiluje się"; then
+    if dotnet build "$plik" >/dev/null 2>&1; then
+      echo "ZEPSUTY POWINIEN NIE KOMPILOWAĆ SIĘ, A KOMPILUJE: $plik"; bledy=$((bledy + 1))
+    fi
+  elif ! dotnet build "$plik" >/dev/null 2>&1; then
+    echo "ZEPSUTY NIE KOMPILUJE SIĘ, A POWINIEN: $plik"; bledy=$((bledy + 1))
+  fi
+done
+
+if [ "$bledy" -ne 0 ]; then
+  echo "BŁĘDY (zepsute): $bledy plików"
   exit 1
 fi
+echo "OK: zepsute programy zachowują się jak opisano w nagłówkach"

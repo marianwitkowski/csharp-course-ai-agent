@@ -53,6 +53,7 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 │   ├── INDEX.md                        # struktura 49 lekcji — źródło prawdy
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
+│   ├── przyklady/zepsute/              # 10 programów z jednym błędem — ćwiczenia „napraw"
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework → .NET 10
 ├── narzedzia/
 │   ├── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)
@@ -154,7 +155,7 @@ Przejście do wyjaśnienia nie jest kwestią wyczucia — agent ma listę sygna�
 | **2. Mostek** | Dopiero teraz pada termin techniczny i najmniejszy działający program |
 | **3. Eksperyment** | Piszesz, uruchamiasz, wklejasz wynik. Po każdym kroku pytanie: „czy tego się spodziewałeś?" |
 | **4. Pogłębienie** | Przypadki brzegowe i celowe psucie kodu, żeby zobaczyć komunikaty błędów |
-| **5. Ćwiczenie** | Zadania w trzech poziomach: 🔥 rozgrzewka, ⭐ główne, ⚡ gwiazdka |
+| **5. Ćwiczenie** | Zadania w trzech poziomach: 🔥 rozgrzewka, ⭐ główne, ⚡ gwiazdka — a od modułu 4 także 🔧 naprawa: dostajesz cudzy program z jednym błędem i objawem w nagłówku, bez przyczyny |
 
 Najcenniejszy moment lekcji to ten, w którym program **działa**, ale wypisuje coś innego, niż zakładałeś. Materiały są tak napisane, żeby to prowokować — lekcja o zmiennych kończy się pytaniem, czemu `7 / 2` daje `3`, i **nie odpowiada na nie**. Odpowiedź przychodzi lekcję później, gdy pytanie już zdążyło uwierać.
 
