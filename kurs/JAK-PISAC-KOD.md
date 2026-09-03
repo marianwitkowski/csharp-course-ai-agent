@@ -50,7 +50,7 @@ Chcesz coś sprawdzić „na brudno" — utwórz `kurs/zadania/99-notatnik.cs`. 
 1. Pobierz z https://code.visualstudio.com/
 2. Zainstaluj rozszerzenie **C# Dev Kit** (Extensions → wyszukaj „C# Dev Kit")
 3. Przy pierwszym otwarciu pliku `.cs` rozszerzenie dociągnie narzędzia → **zgódź się**
-4. **Otwórz cały katalog kursu**, nie pojedynczy plik: `File → Open Folder` → `claude-agent-csharp-course`
+4. **Otwórz cały katalog kursu**, nie pojedynczy plik: `File → Open Folder` → `csharp-course-ai-agent`
 
 Punkt 4 jest ważniejszy, niż wygląda. Przy otwartym całym katalogu edytor widzi plik `.editorconfig` i wie, jak formatować Twój kod. Przy otwartym pojedynczym pliku — nie wie.
 
@@ -101,7 +101,7 @@ Agent dopasuje komendy do Twojego systemu — powiedz mu na początku, jakiego u
 #### 1. Przejdź do katalogu z zadaniami
 
 ```sh
-cd ~/Projects/claude-agent-csharp-course/kurs/zadania
+cd ~/Projects/csharp-course-ai-agent/kurs/zadania
 ```
 
 `cd` = „change directory". Sprawdź, gdzie jesteś:
@@ -233,7 +233,7 @@ Polskie nazwy zmiennych są w porządku (`cenaBrutto`, `liczbaKotow`). Polskie z
 ### ❌ Uruchamiam z niewłaściwego katalogu
 
 ```
-Couldn't find a project to run. Ensure a project exists in /Users/anna/Projects/claude-agent-csharp-course,
+Couldn't find a project to run. Ensure a project exists in /Users/anna/Projects/csharp-course-ai-agent,
 or pass the path to the project using --project.
 ```
 
