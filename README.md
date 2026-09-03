@@ -1,6 +1,6 @@
 # Kurs języka C# i .NET z tutorem AI
 
-Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta AI (działającego w Claude Code) metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
+Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta AI (działającego w Claude Code/Codex) metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
 
 Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **49 lekcji w 14 modułach**.
 
