@@ -14,6 +14,8 @@ To są **testy regresyjne** agenta. Uruchom ponownie (co najmniej A i B, najlepi
 
 Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich nie nadpisuj — różnica między przebiegami jest informacją.
 
+**Skąd biorą się nowe scenariusze.** Z realnych sesji uczniów. Każdy **powtarzający się** problem zaobserwowany w prawdziwej nauce kończy się jednym z dwojga: nowym scenariuszem (jeśli to przebieg, który trzeba odtworzyć) albo nową asercją twardą w istniejącym (jeśli to zachowanie, którego nie wolno dopuścić). Poprawka w agencie bez odpowiadającej asercji nie jest domknięta — następna zmiana promptu może ją cofnąć i nikt tego nie zauważy.
+
 ## Jak uruchomić
 
 1. Repozytorium bez stanu ucznia (`postep/student.json` nie istnieje, `kurs/zadania/` i `kurs/lekcje/` zawierają tylko `.gitkeep`). Jeśli jest stan — skill `reset-kursu` albo ręczne przeniesienie do `postep/archiwum/`.
@@ -87,6 +89,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] Pytania w kształcie z lekcji 2.3, jedno naraz.
 - [ ] `[T]` Po pytaniu 3: `review-do-powtorki --temat "dzielenie całkowite" --wynik ok` → poziom 2, termin +7 dni.
 - [ ] `[T]` Po pytaniu 4: dwie próby naprowadzenia, potem **podana odpowiedź** i `--wynik zle` → poziom 0, termin jutro.
+- [ ] `[T]` Odpowiedź **nie** pada wcześniej niż po drugiej nieudanej próbie — pierwsza błędna odpowiedź dostaje naprowadzenie, nie rozwiązanie (asercja przeciw nadmiernej korekcie po poprawce z 2026-09-03).
 - [ ] `[T]` Brak `remove-do-powtorki`, brak `set` na `next_review`.
 - [ ] Brak punktacji („1/2", „50%").
 - [ ] Lekcja 4.2 zaczyna się od zakotwiczenia z pliku lekcji.
