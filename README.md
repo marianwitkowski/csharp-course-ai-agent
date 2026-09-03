@@ -1,6 +1,6 @@
 # Kurs języka C# i .NET z tutorem AI
 
-Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta AI (działającego w Claude Code/Codex) metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
+Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta AI (działającego w Claude Code lub Codex) metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
 
 Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **49 lekcji w 14 modułach**.
 
@@ -15,29 +15,52 @@ Nie jest to jeszcze przygotowanie do pracy jako junior .NET developer. Drugi eta
 - Osoby, które **nigdy nie programowały** — kurs nie zakłada znajomości żadnego innego języka
 - Chcące uczyć się w swoim tempie, z prowadzącym, który nie podaje gotowców
 - Pracujące na **dowolnym systemie** — macOS, Linux, Windows; kurs jest konsolowy i wieloplatformowy
-- Mające zainstalowane lub gotowe zainstalować Claude Code
+- Mające zainstalowane lub gotowe zainstalować Claude Code albo Codex
 
-Kurs można też uruchomić przez Codex. Do nauki potrzebny jest jeden z tych dwóch hostów, nie oba jednocześnie.
+Kurs działa w Claude Code i Codex. Do nauki potrzebny jest jeden z tych dwóch hostów, nie oba jednocześnie.
 
 ## Jak zacząć
 
 > 🚀 **Szybki start:** zobacz **[QUICKSTART.md](QUICKSTART.md)** — przewodnik krok po kroku z przykładami.
 
-W katalogu kursu uruchom Claude Code i napisz:
+Kurs działa w jednym z dwóch hostów. Wybierz swój i wykonaj tylko tę ścieżkę — obie prowadzą do tego samego tutora i tego samego stanu w `postep/student.json`.
+
+### Ścieżka A — Claude Code
+
+W katalogu kursu uruchom Claude Code:
+
+```sh
+claude
+```
+
+W czacie napisz:
 
 ```
 ucz mnie C#
 ```
 
-Alternatywnie uruchom Codex w tym samym katalogu:
+Claude Code wczyta agenta `csharp-tutor` z `.claude/agents/` i skille z `.claude/skills/`. Od tej chwili rozmawiasz z tutorem; nic więcej nie trzeba konfigurować.
+
+### Ścieżka B — Codex
+
+W katalogu kursu uruchom Codex:
 
 ```sh
 codex
 ```
 
-Jeśli Codex zapyta o zaufanie do projektu, zaakceptuj je, a następnie wpisz `ucz mnie C#`. Główny wątek Codex uruchomi jednego projektowego agenta `csharp_tutor` i będzie przekazywał mu kolejne wiadomości w tej sesji.
+Jeśli Codex zapyta o zaufanie do projektu, zaakceptuj je. Potem w czacie napisz tę samą frazę:
 
-Agent `csharp-tutor` przeprowadzi Cię przez:
+```
+ucz mnie C#
+```
+
+Codex wczyta `AGENTS.md`, uruchomi jednego projektowego agenta `csharp_tutor` (definicja w `.codex/agents/csharp-tutor.toml`, skille jako adaptery w `.agents/skills/`) i będzie przekazywał mu kolejne wiadomości w tej sesji. Materiał kursu, lekcje i narzędzie `postep` są wspólne dla obu ścieżek.
+
+### Co dalej — niezależnie od hosta
+
+Tutor kursu (`csharp-tutor` w Claude Code, `csharp_tutor` w Codex) przeprowadzi Cię przez:
+
 1. Sprawdzenie środowiska (.NET SDK 10.0+, edytor)
 2. Krótki wywiad (cel, dostępny czas)
 3. Wygenerowanie programu kursu dopasowanego do Ciebie
@@ -47,9 +70,14 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 
 ```
 .
+├── AGENTS.md                           # kontroler routingu w Codex
+├── .codex/
+│   ├── agents/csharp-tutor.toml        # definicja tutora dla Codex
+│   └── config.toml                     # konfiguracja agentów Codex
+├── .agents/skills/                     # adaptery skilli dla Codex
 ├── .claude/
-│   ├── agents/csharp-tutor.md          # główny agent
-│   └── skills/                         # specjalistyczne umiejętności
+│   ├── agents/csharp-tutor.md          # kanoniczne instrukcje tutora
+│   └── skills/                         # kanoniczne umiejętności kursu
 │       ├── setup-dotnet/               # sprawdzenie środowiska, instalacja .NET
 │       ├── program-kursu/              # generator programu
 │       ├── lekcja/                     # prowadzenie lekcji
@@ -211,7 +239,7 @@ To jest cały program. Starsze materiały pokazują tę samą rzecz otoczoną `n
 
 ## Lista komend
 
-Komendy wpisujesz w Claude Code — to **frazy w języku naturalnym**, nie formalne komendy. Agent rozpozna intencję, nawet jeśli sformułujesz to inaczej. Poniżej wersje kanoniczne.
+Komendy wpisujesz w Claude Code albo Codex — to **frazy w języku naturalnym**, nie formalne komendy. Agent rozpozna intencję, nawet jeśli sformułujesz to inaczej. Poniżej wersje kanoniczne.
 
 ### 🚀 Start i kontynuacja
 
@@ -294,15 +322,19 @@ Komendy wpisujesz w Claude Code — to **frazy w języku naturalnym**, nie forma
 
 - **System operacyjny:** macOS, Linux lub Windows. Komendy `dotnet` są identyczne na każdym z nich; różnią się wyłącznie komendy powłoki (`cat` kontra `type`, `ls` kontra `dir`), które agent tłumaczy automatycznie
 - **.NET SDK 10.0 lub nowszy** — to twarda granica. Cały kurs opiera się na aplikacjach jednoplikowych (`dotnet run plik.cs`), które pojawiły się dopiero w .NET 10. Sprawdzenie i instalacja przez skill `setup-dotnet`
-- **Claude Code** (https://claude.com/code)
-- **Codex** (https://developers.openai.com/codex/) — alternatywny host agenta; nie jest wymagany, jeśli używasz Claude Code
+- **Claude Code** (https://claude.com/code) — jeden z dwóch obsługiwanych hostów; nie jest wymagany, jeśli używasz Codex
+- **Codex** (https://developers.openai.com/codex/) — jeden z dwóch obsługiwanych hostów; nie jest wymagany, jeśli używasz Claude Code
 - **Edytor tekstu** — rekomendacja: VS Code + rozszerzenie C# Dev Kit (działa identycznie na każdym systemie)
 
 > **Czego NIE potrzebujesz:** Visual Studio. To kilkanaście gigabajtów, tylko na Windows, i nic w tym kursie tego nie wymaga.
 
 ## Model
 
-Agent jest przypięty do **Sonnet** — w nagłówku `.claude/agents/csharp-tutor.md`:
+Sposób wyboru modelu zależy od używanego hosta.
+
+### Claude Code
+
+W Claude Code agent jest przypięty do **Sonnet** — w nagłówku `.claude/agents/csharp-tutor.md`:
 
 ```yaml
 model: sonnet
@@ -311,6 +343,8 @@ model: sonnet
 Wybór podyktowany kosztem: kurs to dziesiątki długich sesji, a instrukcje w skillach są na tyle szczegółowe, że nie wymagają od modelu domyślania się.
 
 Chcesz inny model — zmień tę jedną linię (`opus`, `haiku`, albo `inherit`, żeby użyć modelu bieżącej sesji Claude Code). Kurs był budowany na Sonnecie; na innych modelach powinien działać, bo instrukcje są jawne i nie polegają na niedopowiedzeniach. Jeśli przesiadka coś zepsuje, najbardziej podatne są dwie rzeczy: **trzymanie rytmu 3-krokowego** (model gadatliwszy chętniej tłumaczy, zamiast pytać) i **respektowanie zakazu uruchamiania kodu ucznia**.
+
+### Codex
 
 W Codex `csharp_tutor` dziedziczy model i poziom rozumowania z bieżącej sesji. Zmiana modelu wymaga ponownego przejścia testów behawioralnych; wynik należy zapisać z nazwą modelu i wersją klienta Codex.
 
