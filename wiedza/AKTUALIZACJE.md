@@ -261,6 +261,22 @@ Identyfikator systemu dobiera się do **odbiorcy**, nie do siebie: `win-x64`, `l
 
 ---
 
+## `[moduł 15]` — asynchroniczność (dodatek po kursie)
+
+Materiały źródłowe nie miały `async`/`await` jako tematu. Poradniki sprzed C# 5 (2012) i wiele późniejszych, pisanych z przyzwyczajenia, pokazują starsze mechanizmy:
+
+| Stare materiały | Dzisiaj |
+| --- | --- |
+| `new Thread(() => ...)`, `BackgroundWorker` | `async`/`await` — bez ręcznego zarządzania wątkami |
+| `task.ContinueWith(t => ...)` | `await task` — ten sam efekt, czytelny jak kod synchroniczny |
+| `Task.Run(() => File.ReadAllText(...))` dla dysku | `File.ReadAllTextAsync` — biblioteka ma wersje `Async` dla dysku i sieci; `Task.Run` zostaje dla obliczeń |
+| `.Result`, `.Wait()`, `Task.WaitAll` | `await`, `await Task.WhenAll` — bez blokowania; `WaitAll` i `WhenAll` różnią się literą i całym zachowaniem |
+| `static void Main` + `.GetAwaiter().GetResult()` | `await` na najwyższym poziomie pliku (C# 7.1 dla `Main`, w aplikacjach jednoplikowych od razu) |
+
+**Czego moduł 15 celowo nie ma:** `Task.Run`, `Parallel`, `Thread`, `lock`, `SemaphoreSlim`, `CancellationToken`, `ConfigureAwait`, `IAsyncEnumerable`. Dwie lekcje uczą **czekania bez blokowania** i **czekania na kilka rzeczy naraz** — to wystarcza na pierwszy dzień z ASP.NET Core. Równoległe obliczenia to osobny temat.
+
+---
+
 ## Rzeczy, które się **nie** zmieniły
 
 Warto to uczniowi powiedzieć, gdy zaczyna nie ufać starym materiałom:

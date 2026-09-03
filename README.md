@@ -8,7 +8,7 @@ Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z tes
 
 To kurs **fundamentów języka C#** z osobistym tutorem AI — **pierwszy etap** drogi do zawodowego .NET, nie cała droga. Po jego ukończeniu uczeń umie samodzielnie zaprojektować, napisać, uruchomić, przetestować i poprawić niewielką aplikację konsolową, trzymać ją w Gicie i krytycznie korzystać z asystenta AI. Umie też przeczytać dokumentację i większość kodu C#, jaki spotka.
 
-Nie jest to jeszcze przygotowanie do pracy jako junior .NET developer. Drugi etap — osobny kurs albo własna nauka według mapy z lekcji 14.7 — powinien objąć co najmniej: `async`/`await` w praktyce, HTTP i korzystanie z API, ASP.NET Core, wstrzykiwanie zależności, SQL i Entity Framework Core, konfigurację i logowanie, testy integracyjne, podstawy Dockera i bezpieczeństwa aplikacji webowych. Każda z tych rzeczy zakłada fundament, który buduje ten kurs, i żadna nie ma sensu bez niego.
+Nie jest to jeszcze przygotowanie do pracy jako junior .NET developer. Drugi etap — osobny kurs albo własna nauka według mapy z lekcji 14.7 — powinien objąć co najmniej: `async`/`await` w praktyce (podstawy daje opcjonalny moduł 15), HTTP i korzystanie z API, ASP.NET Core, wstrzykiwanie zależności, SQL i Entity Framework Core, konfigurację i logowanie, testy integracyjne, podstawy Dockera i bezpieczeństwa aplikacji webowych. Każda z tych rzeczy zakłada fundament, który buduje ten kurs, i żadna nie ma sensu bez niego.
 
 ## Dla kogo
 
@@ -90,12 +90,13 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 | 12 | Pliki i dane — pliki tekstowe, ścieżki, JSON, argumenty CLI | 4 |
 | 13 | LINQ — filtrowanie, agregacje, lambdy | 3 |
 | 14 | Projekt i dalsze kroki — własne narzędzie, Git, testy, gałęzie i scalanie, AI, mapa ekosystemu | 7 |
+| 15 | **Dodatek po kursie (opcjonalny):** `Task`, `async`/`await`, `Task.WhenAll` — na własnym projekcie, z testami | 2 |
 
-Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md).
+Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md). Moduł 15 nie wlicza się do 49 lekcji kursu — to dwie lekcje dla tych, którzy idą dalej w stronę ASP.NET Core.
 
 > **Stan gotowych scenariuszy:** wszystkie **49 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
 
-**Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, `async`/`await`. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.7.
+**Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, wielowątkowości. `async`/`await` jest w **dodatku** (moduł 15), nie w rdzeniu. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.7.
 
 ## Dlaczego konsola, a nie okienka
 
