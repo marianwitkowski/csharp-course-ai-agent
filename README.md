@@ -140,7 +140,7 @@ Integrację z Codex tworzą `AGENTS.md` (routing), `.codex/agents/csharp-tutor.t
 
 ## Dlaczego konsola, a nie okienka
 
-Program szkolenia, z którego wyrósł ten kurs, obejmował Windows Forms i ASP.NET Web Forms. Tutaj ich nie ma i to jest decyzja, nie zaniedbanie:
+Materiały autora, z których wyrósł ten kurs, obejmowały Windows Forms i ASP.NET Web Forms. Tutaj ich nie ma i to jest decyzja, nie zaniedbanie:
 
 - **Windows Forms i WPF działają wyłącznie na Windows.** Kurs, który połowie uczniów nie ruszy, nie jest kursem dla początkujących
 - **ASP.NET Web Forms nie istnieje w nowoczesnym .NET.** Nie został przeniesiony z .NET Framework i nie zostanie
@@ -350,7 +350,7 @@ W Codex `csharp_tutor` dziedziczy model i poziom rozumowania z bieżącej sesji.
 
 ## Materiały źródłowe
 
-Treść dydaktyczna powstała na podstawie własnych materiałów autora ze szkoleń „Programista C# i .NET" — programu zajęć i przykładów kodu. Materiały te leżą poza repozytorium i nie są publikowane; do repozytorium trafia wyłącznie treść napisana od nowa.
+Treść dydaktyczna tego kursu powstała na podstawie własnych materiałów autora. Marian Witkowski posiada do nich pełnię praw autorskich; żaden podmiot trzeci nie rości sobie praw do tych materiałów ani do treści z nich wywiedzionej. Materiały te leżą poza repozytorium i nie są publikowane; do repozytorium trafia wyłącznie treść napisana od nowa.
 
 Przykłady zostały **zmodernizowane**: oryginały pisano dla .NET Framework i Visual Studio na Windows, tutaj działają na .NET 10 i na każdym systemie. Aneks [`wiedza/AKTUALIZACJE.md`](wiedza/AKTUALIZACJE.md) opisuje, co się między jednym a drugim zmieniło — i co uczeń zobaczy, gdy trafi w internecie na starszy poradnik.
 
