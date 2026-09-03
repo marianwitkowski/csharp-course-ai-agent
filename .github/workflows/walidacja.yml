@@ -1,0 +1,22 @@
+name: walidacja
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  walidacja:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Nagłówki YAML lekcji, skilli i agenta
+        run: ruby narzedzia/sprawdz-frontmatter.rb
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Przykłady .cs i narzędzie postep kompilują się na .NET 10
+        run: bash narzedzia/sprawdz-przyklady.sh

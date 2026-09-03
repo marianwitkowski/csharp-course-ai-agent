@@ -55,7 +55,9 @@ Agent `csharp-tutor` przeprowadzi Cię przez:
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework → .NET 10
 ├── narzedzia/
-│   └── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)
+│   ├── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)
+│   └── sprawdz-przyklady.sh            # kompilacja wszystkich przykładów .cs i postep.cs
+├── .github/workflows/walidacja.yml     # to samo w GitHub Actions przy każdym push i PR
 ├── kurs/
 │   ├── JAK-PISAC-KOD.md                # ⬅ przeczytaj na początku: workflow ćwiczeń
 │   ├── program.md                      # Twój program kursu (powstanie po onboardingu)
