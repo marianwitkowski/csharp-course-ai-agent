@@ -186,7 +186,18 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 > **Zasada „cienki `Program.cs`" jest wprowadzona w 14.1, a nie w 14.4.** Logika w klasach `public`, `Console.WriteLine` tylko w `Program.cs` — bez tego testy w 14.4 są niewykonalne i uczeń musi przepisywać działający kod. Atrybuty `[Fact]`/`[Theory]` to jedyne atrybuty w całym kursie; 14.4 nazywa je jednym zdaniem i nie rozwija.
 
-> **Lekcja 14.6 (AI) nie ma odpowiednika w materiałach źródłowych.** Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
+> **Lekcja 14.6 (AI) nie ma odpowiednika w materiałach źródłowych.** Jej sens jest praktyczny — patrz niżej.
+
+### Moduł 15 — Dodatek po kursie: asynchroniczność (2, opcjonalny)
+
+| Lekcja | Temat | Przykłady | Aktualizacja |
+| --- | --- | --- | --- |
+| 15.1 | `Task`, `async` i `await` — czekanie bez stania w miejscu; `CS4014`, `CS4032` | — | `[moduł 15]` |
+| 15.2 | Kilka operacji naraz — `Task.WhenAll`, kolejność wyników, wyjątek z jednego zadania | — | `[moduł 15]` |
+
+> **Moduł 15 nie jest częścią kursu fundamentów — jest dodatkiem po nim.** Lekcja 14.7 kończy kurs (`aktualna_lekcja` → `ukończony`); moduł 15 uruchamia się na życzenie ucznia („chcę async", „co dalej po kursie"), agent ustawia wtedy `aktualna_lekcja` na `15.1`. Powód: asynchroniczność jest pierwszą rzeczą, o którą uczeń potknie się w ASP.NET Core, i recenzja zewnętrzna wskazała ją jako największą lukę merytoryczną — ale wprowadzona w rdzeniu kursu (przed projektem) dawałaby kod, który „działa dziwnie" bez widocznej przyczyny. Po projekcie uczeń ma `Magazyn`, testy i `Stopwatch`, więc może **zmierzyć** różnicę, zamiast w nią wierzyć.
+
+> **Bez sieci — nadal.** `Task.Delay` udaje wolną operację; pliki na dysku są za szybkie, żeby zobaczyć różnicę między „po kolei" a „naraz". `HttpClient` zostaje w mapie 14.7. Jej sens jest praktyczny: asystenci masowo podpowiadają `class Program`, `static void Main` i `Newtonsoft.Json`, bo takich przykładów widzieli najwięcej. Wiedza z `AKTUALIZACJE.md` jest dokładnie tym, co pozwala uczniowi odsiać przestarzałą odpowiedź — i to czyni lekcję ćwiczeniem z całego kursu, nie dygresją.
 
 ---
 
@@ -208,9 +219,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 12. Pliki i dane | 4 |
 | 13. LINQ | 3 |
 | 14. Projekt i dalsze kroki | 7 |
-| **Razem** | **49** |
+| **Razem — kurs** | **49** |
+| 15. Dodatek po kursie: asynchroniczność (opcjonalny) | 2 |
+| **Razem — pliki lekcji** | **51** |
 
-**Ten plik jest źródłem prawdy dla liczby 49.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
+**Ten plik jest źródłem prawdy dla liczby 49** (lekcje kursu) i **51** (pliki w `wiedza/lekcje/`, z dodatkiem). Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
 
 ---
 
@@ -264,7 +277,8 @@ dopiero buduje.
 | Bazy danych, SQL, Entity Framework Core | Wymagają SQL, a SQL to osobny język. Kurs uczy C#, nie dwóch języków naraz | 14.7 |
 | Wzorce: MVC, MVVM, Onion, DDD, DI/IoC | Poziom architektoniczny. Wzorzec rozwiązuje problem, którego początkujący jeszcze nie ma — bez tego problemu wzorzec to pusty rytuał | 14.7 |
 | Typy generyczne własne (`class Pudelko<T>`) | Uczeń **używa** `List<T>` i `Dictionary<K,V>` od modułu 6, ale własnych generyków nie pisze — potrzeba pojawia się dopiero przy bibliotekach | 14.7 |
-| `async` / `await`, wielowątkowość | Sensowne dopiero przy sieci, plikach o dużym rozmiarze i UI. Wprowadzone za wcześnie daje kod, który „działa dziwnie" bez widocznej przyczyny | 14.7 |
+| `async` / `await` **w rdzeniu kursu** | Wprowadzone przed projektem daje kod, który „działa dziwnie" bez widocznej przyczyny. Jest **dodatkiem po kursie**: moduł 15 (2 lekcje, opcjonalny), na plikach i `Task.Delay`, bez sieci | 14.7 → 15.1 |
+| wielowątkowość (`Thread`, `Parallel`, `lock`), `Task.Run`, `CancellationToken` | Moduł 15 uczy czekania bez blokowania, nie równoległych obliczeń. To osobny temat z własnymi pułapkami | 15.1 — jedno zdanie |
 | Metody rozszerzające | Wymagają klas statycznych (9.4) i pewności w czytaniu sygnatur. Uczeń **korzysta** z nich w module 13 (LINQ to metody rozszerzające), ale swoich nie pisze | 13.1 — jedno zdanie |
 | `record`, `struct` | Każdy z nich to wariant czegoś, co uczeń dopiero co poznał. Wprowadzone równolegle z klasą rozmywają obraz | 14.7 |
 | `!` (null-forgiving), `required`, `??=`, `Nullable<T>` z `HasValue` | Podstawy `null` i `string?` są w 8.5; te cztery to warianty dla zaawansowanych, a `!` uczy uciszać kompilator zamiast go słuchać | 8.5 — jedno zdanie w Pułapkach |

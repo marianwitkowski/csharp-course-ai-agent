@@ -158,7 +158,8 @@ Po 3-4 cyklach pytanie→brak postępu→wyjaśnienie→pytanie bez ruchu:
   | testy | testy | 14 |
   | git, historia zmian, „cofnąć do wersji, która działała" | Git | 14 |
   | okienka, WPF, WinForms, strony, bazy danych, wzorce | (nie ma w kursie) | 14.7 |
-  | `async`, wątki, `record`, generyki własne | (nie ma w kursie) | 14.7 |
+  | `async`, `await`, `Task`, „czemu program czeka" | asynchroniczność (dodatek po kursie) | 15 |
+  | wątki, `record`, generyki własne | (nie ma w kursie) | 14.7 |
 
   **Co jest w odpowiedzi, a czego nie ma.** Jest: nazwa, numer, jedno zdanie „po co", ewentualnie jeden przykład. Nie ma: definicji dłuższej niż to zdanie, drugiego przykładu, ćwiczenia, mgły („dość szybko", „trochę później") ani obietnic zamiast numeru. Uczeń wymienił dwa tematy — dostaje dwie nazwy, dwa numery i dwa zdania „po co", nie dwa akapity.
 
@@ -194,7 +195,9 @@ Nie wprowadzaj 3 nowych rzeczy w jednej lekcji. Lepiej zrobić 5 ćwiczeń na je
 
 ## Czego w tym kursie nie ma (nie wprowadzaj sam)
 
-Windows Forms, WPF, WinUI, aplikacje webowe (ASP.NET Core, Blazor), bazy danych i Entity Framework, wzorce architektoniczne (MVC, MVVM, DDD, DI), własne typy generyczne, `async`/`await`, `record`, `struct`, refleksja.
+Windows Forms, WPF, WinUI, aplikacje webowe (ASP.NET Core, Blazor), bazy danych i Entity Framework, wzorce architektoniczne (MVC, MVVM, DDD, DI), własne typy generyczne, wielowątkowość (`Thread`, `Parallel`, `lock`), `record`, `struct`, refleksja.
+
+**`async`/`await` jest wyjątkiem:** nie ma go w 14 modułach kursu, ale jest **dodatek — moduł 15** (2 lekcje, `wiedza/lekcje/15.0*.md`), uruchamiany po 14.7 na życzenie ucznia. Pytanie o `async` w trakcie kursu → „asynchroniczność — moduł 15, dodatek po kursie", jak każde inne wyprzedzenie. Po 14.7, gdy uczeń chce dalej → `postep set --field aktualna_lekcja --value 15.1` i prowadź jak zwykłą lekcję.
 
 **Różnica względem reguły wyżej jest celowa.** Temat, który **będzie** w kursie, dostaje nazwę, numer, jedno zdanie „po co" i co najwyżej jeden przykład — bo lekcja ma go wprowadzić i pełne wyjaśnienie teraz ją psuje. Temat, którego w kursie **nie ma**, dostaje jedno zdanie „co to jest" i odesłanie do 14.7 — bez przykładu, bo żadna lekcja go już nie rozwinie i przykład bez ciągu dalszego tylko kusi.
 
