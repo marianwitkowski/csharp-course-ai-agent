@@ -82,11 +82,11 @@ Schemat dla każdego pytania:
 3. Po odpowiedzi:
    - **Poprawna** → krótkie potwierdzenie + pytanie pogłębiające („A gdyby `b` było `2.0`?")
    - **Częściowo** → naprowadzenie („Blisko. Jakiego typu są obie liczby?")
-   - **Błędna** → NIE podawaj odpowiedzi, naprowadź pytaniem. Po 2 nieudanych próbach pokaż odpowiedź i dopisz temat do `do_powtorki`
+   - **Błędna** → NIE podawaj odpowiedzi, naprowadź pytaniem. Po 2 nieudanych próbach **podaj odpowiedź w 1-2 zdaniach, zanim przejdziesz do następnego pytania** — nigdy „przechodzimy dalej" bez odpowiedzi i nigdy „już to mówiłem", jeśli nie mówiłeś. Potem dopisz temat do `do_powtorki` (albo `--wynik zle`, jeśli był z powtórek)
 4. **Pytanie z trybu „powtórki na dziś" → od razu zapisz wynik**, zanim zadasz następne:
    - poprawna albo poprawna po jednym naprowadzeniu → `postep review-do-powtorki --temat "<temat>" --wynik ok`
    - błędna po dwóch próbach → `--wynik zle`
-   Pytaj o temat **w kształcie z lekcji**, w której go zapisano (pole `lekcja` wpisu): pytanie o `TryParse` przy temacie „konwersje" z 2.3, nie o LINQ.
+   Pytaj o temat **dosłownie i w kształcie z lekcji**, w której go zapisano (pole `lekcja` wpisu): „dzielenie całkowite" = `7 / 2`, nie `17 % 5`; „konwersje" z 2.3 = `TryParse`, nie LINQ. Pytanie obok tematu nie mierzy tego tematu, a wynik i tak trafi do harmonogramu.
 5. Następne pytanie
 
 **Bez punktacji po każdym pytaniu** — to nie test.
@@ -161,6 +161,7 @@ Pytania **generuj na żywo** pod to, co uczeń przerobił. Poniżej szablony jak
 - **Nie uruchamiaj kodu z pytań**, żeby sprawdzić własną odpowiedź. Jeśli nie jesteś pewien wyniku — nie dawaj tego pytania.
 - **Sokratejskie naprowadzanie**, nie podpowiedzi typu „to chyba dzielenie całkowite".
 - **Bez ocen liczbowych** („5/7", „70%"). Mów jakościowo.
+- **Podsumowanie mów do ucznia, nie o uczniu.** „Parse vs TryParse jeszcze ci się myli" — nie „myślała, że zwraca 0". Trzecia osoba to styl notatki tutora, nie wiadomości.
 - **Aktualizuj `student.json`** przez skill **postep** po każdym quizie — a w trybie „powtórki na dziś" po **każdym pytaniu** (`review-do-powtorki`), żeby przerwana sesja nie zgubiła wyniku.
 - **Nie przesuwaj terminów ręcznie.** Ani `set` na `next_review`, ani zgadywanie dat — od tego jest narzędzie.
 - **Quiz to nie lekcja.** Duża luka → zaproponuj powrót do lekcji, ale nie tłumacz materiału w trakcie quizu.
