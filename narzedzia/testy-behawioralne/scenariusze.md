@@ -4,6 +4,16 @@ Pliki lekcji i skilli opisują, jak agent **ma** się zachować. Te scenariusze 
 
 Każdy scenariusz to: persona ucznia, stan startowy (`postep/student.json` i pliki w `kurs/`), przebieg rozmowy prowadzony przez osobę grającą ucznia, i lista kontrolna zachowań. Uczeń **naprawdę** pisze i uruchamia kod — agent nie może go uruchamiać, więc ktoś musi.
 
+## Kiedy uruchamiać
+
+To są **testy regresyjne** agenta. Uruchom ponownie (co najmniej A i B, najlepiej wszystkie) po każdej istotnej zmianie:
+- `.claude/agents/csharp-tutor.md` — reguły, tabele, onboarding
+- dowolnego skilla w `.claude/skills/` (zwłaszcza `lekcja`, `quiz`, `cwiczenie`, `review-kodu`)
+- `model:` w nagłówku agenta — wyniki dotyczą konkretnego modelu, nie plików
+- schematu `postep/student.json` albo `postep.cs`
+
+Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich nie nadpisuj — różnica między przebiegami jest informacją.
+
 ## Jak uruchomić
 
 1. Repozytorium bez stanu ucznia (`postep/student.json` nie istnieje, `kurs/zadania/` i `kurs/lekcje/` zawierają tylko `.gitkeep`). Jeśli jest stan — skill `reset-kursu` albo ręczne przeniesienie do `postep/archiwum/`.
