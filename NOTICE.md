@@ -53,3 +53,4 @@ szkoleń nie są w tym repozytorium powielane.
 C#, .NET, Visual Studio, Windows i Microsoft SQL Server są znakami towarowymi
 Microsoft Corporation. Claude i Claude Code są znakami towarowymi Anthropic
 PBC. Ten kurs nie jest powiązany z żadną z tych firm ani przez nie wspierany.
+OpenAI i Codex są znakami towarowymi OpenAI. Kurs nie jest powiązany z OpenAI ani przez OpenAI wspierany.

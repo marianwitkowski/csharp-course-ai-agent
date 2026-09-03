@@ -42,6 +42,16 @@ Agent automatycznie:
 7. Utworzy `postep/student.json` ze stanem początkowym
 8. Zaproponuje rozpoczęcie lekcji 1.1
 
+### Alternatywa: uruchomienie przez Codex
+
+Zamiast kroku 2 możesz uruchomić:
+
+```sh
+codex
+```
+
+Przy pierwszym uruchomieniu zaakceptuj zaufanie do projektu, jeśli Codex o nie zapyta, i wpisz tę samą frazę: `ucz mnie C#`. Codex wczyta `AGENTS.md`, uruchomi jednego agenta `csharp_tutor` i zachowa jego wątek przez bieżącą sesję. Stan między sesjami nadal znajduje się w `postep/student.json`.
+
 ---
 
 ## 📚 Typowa sesja nauki
@@ -61,6 +71,8 @@ Agent automatycznie:
 ```
 
 VS Code ma wbudowany terminal (`Terminal → New Terminal`, Ctrl+`) — nie potrzebujesz trzeciego okna.
+
+Jeśli używasz Codex, każde wystąpienie „Claude Code” w opisie przebiegu oznacza po prostu lewe okno rozmowy z agentem; sposób pracy ucznia pozostaje taki sam.
 
 ### Przebieg lekcji
 
@@ -131,6 +143,8 @@ csharp-course-ai-agent/
 ```
 
 Zwróć uwagę na `kurs/zadania/` — **płaska lista plików**, żadnych podkatalogów, żadnych projektów. Jedno ćwiczenie to jeden plik `.cs`.
+
+W wariancie Codex pliki `AGENTS.md`, `.codex/` i `.agents/skills/` są konfiguracją kontrolera i adapterami. Nie zawierają drugiej kopii materiałów dydaktycznych — źródłem prawdy pozostaje `.claude/`.
 
 ---
 
