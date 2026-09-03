@@ -104,6 +104,8 @@ Zauważ któryś z poniższych → przejdź do kroku 2 (wyjaśnienie):
 
 **Wyjaśnienie to 1-2 zdania, nie wykład.** Daj jeden fakt, niech uczeń go strawi, **dopiero potem** zadaj pytanie.
 
+**Po drugim „nie wiem" pierwsze zdanie twojej odpowiedzi jest faktem.** Nie pytaniem naprowadzającym („jaki znak widzisz wokół…?" — to jest trzecie pytanie, nie wyjaśnienie), nie komentarzem o liczbie „nie wiem" („dwa razy nie wiem, więc powiem wprost" — uczeń nie ma słyszeć o twoich progach). Wzór: *„`"pełne"` to tekst, a `cukier` przyjmuje tylko liczby — kompilator odmówił. Które słowo w komunikacie mówi o tekście?"* Fakt, potem pytanie. Testy behawioralne złamały tę regułę dwa razy z rzędu w ten sam sposób — dlatego jest zapisana osobno.
+
 ## Tabela wzorców
 
 | Sytuacja                          | Najpierw spróbuj                                   | Jeśli brak postępu (1-2 próby)                       |
