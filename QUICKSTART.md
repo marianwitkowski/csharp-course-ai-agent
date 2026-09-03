@@ -15,9 +15,11 @@ Krótki przewodnik dla osoby zaczynającej naukę C# z tym kursem.
 
 ### 1. Sprawdź, gdzie jesteś
 ```sh
-cd ~/Projects/claude-agent-csharp-course
+cd ~/Projects/csharp-course-ai-agent
 pwd
 ```
+
+> Katalog nazywa się tak, jak sklonowałeś repozytorium — jeśli pobrałeś je wcześniej pod inną nazwą, użyj swojej. Komendy w kursie zakładają, że jesteś **w katalogu kursu**, niezależnie od jego nazwy.
 Musisz być **w tym katalogu** — agent i skille są lokalne (`.claude/`).
 
 ### 2. Uruchom Claude Code
@@ -106,7 +108,7 @@ Po prostu napisz `ucz mnie C#` albo `kontynuujemy`:
 ## 📂 Co jest gdzie
 
 ```
-claude-agent-csharp-course/
+csharp-course-ai-agent/
 │
 ├── .claude/                      ← agent + 9 skilli (NIE dotykaj)
 ├── wiedza/                       ← baza wiedzy (lekcje sokratejskie + przykłady)
@@ -206,7 +208,7 @@ Jeśli chcesz udostępnić kurs:
 git add .
 git status                # sprawdź, czy nic prywatnego (student.json, .kb/ są ignorowane)
 git commit -m "Agent kursu C#: szkielet, skille, moduły 1-2"
-gh repo create claude-agent-csharp-course --public --source=. --push
+gh repo create csharp-course-ai-agent --public --source=. --push
 ```
 
 `.gitignore` zadba, żeby Twój postęp, Twój kod i katalog `.kb/` z materiałami źródłowymi nie trafiły do publicznego repozytorium — można bezpiecznie udostępnić **strukturę kursu**, a każdy uczeń sklonuje i ma własny `student.json`.
