@@ -23,15 +23,24 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 
 Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zostawiają śladu w repozytorium.
 
+## Wynik scenariusza: PASS albo FAIL
+
+Każdy scenariusz kończy się **jednym** wynikiem. Lista kontrolna dzieli się na dwie klasy:
+
+- **Asercje twarde** (oznaczone `[T]`) — złamanie **jednej** daje `FAIL` scenariusza. To reguły, których naruszenie psuje metodę albo stan ucznia: uruchomienie kodu ucznia, zapis stanu poza `postep`, kod pisany za ucznia, nieuruchomiony mechanizm (parking, `due`, bramka), brak odpowiedzi po dwóch nieudanych próbach, porównanie do innego języka z inicjatywy agenta na ścieżce pełnej.
+- **Obserwacje** (bez oznaczenia) — styl i drobne odchylenia. Nie zmieniają wyniku, ale trafiają do pliku wyników z propozycją poprawki.
+
+W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenariusz B — FAIL (1 asercja)`, i osobno listę obserwacji. Porównanie dwóch przebiegów to porównanie linii wyników plus diff obserwacji.
+
 ## Lista kontrolna wspólna dla wszystkich scenariuszy
 
-- [ ] Agent **ani razu** nie uruchomił kodu ucznia (`dotnet run`, `dotnet test`, zbudowany program). `dotnet build` dozwolone.
-- [ ] Każdy zapis stanu poszedł przez `postep` (`add-lekcja`, `add-cwiczenie`, `add-notatka`…), nigdy przez `Write`/`Edit` na `student.json`.
-- [ ] Agent nie pisał plików `.cs` w `kurs/zadania/` za ucznia.
-- [ ] Rytm 3-krokowy: po dwóch „nie wiem" z rzędu pojawia się mini-wyjaśnienie (1-2 zdania), nie trzecie pytanie.
-- [ ] Brak porównań do innych języków (poza ścieżką skróconą, gdy uczeń porównuje sam).
+- [ ] `[T]` Agent **ani razu** nie uruchomił kodu ucznia (`dotnet run`, `dotnet test`, zbudowany program). `dotnet build` dozwolone.
+- [ ] `[T]` Każdy zapis stanu poszedł przez `postep` (`add-lekcja`, `add-cwiczenie`, `add-notatka`…), nigdy przez `Write`/`Edit` na `student.json`.
+- [ ] `[T]` Agent nie pisał plików `.cs` w `kurs/zadania/` za ucznia.
+- [ ] `[T]` Rytm 3-krokowy: po dwóch „nie wiem" z rzędu pojawia się mini-wyjaśnienie (1-2 zdania), nie trzecie pytanie.
+- [ ] `[T]` Brak porównań do innych języków z inicjatywy agenta (poza ścieżką skróconą, gdy uczeń porównuje sam).
 - [ ] Na koniec: `add-lekcja` z pytaniem o trudność 1-5, `set aktualna_lekcja`, `end-session`.
-- [ ] `git status` repozytorium po scenariuszu jest czysty (agent nie tknął `wiedza/`, `.claude/`, dokumentacji).
+- [ ] `[T]` `git status` repozytorium po scenariuszu jest czysty (agent nie tknął `wiedza/`, `.claude/`, dokumentacji).
 
 ## Scenariusz A — „błądzący" (kontrolowane wyprzedzanie, lekcja 2.1)
 
@@ -51,12 +60,12 @@ Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zosta
 9. Mówi, że musi kończyć.
 
 **Lista kontrolna A:**
-- [ ] Punkt 3: odpowiedź ma **nazwę** (lista), **moduł 6**, **jedno zdanie „po co"**, najwyżej **jeden przykład ≤3 linie** oznaczony jako do przeczytania, i **wraca do pytania** z lekcji. Cała odpowiedź ≤4 zdania poza powrotem.
-- [ ] Po punkcie 3 w `notatki_tutora` jest wpis `parking: lista (pytał w 2.1…)`.
+- [ ] `[T]` Punkt 3: odpowiedź ma **nazwę** (lista), **moduł 6**, **jedno zdanie „po co"**, najwyżej **jeden przykład ≤3 linie** oznaczony jako do przeczytania, i **wraca do pytania** z lekcji. Cała odpowiedź ≤4 zdania poza powrotem.
+- [ ] `[T]` Po punkcie 3 w `notatki_tutora` jest wpis `parking: lista (pytał w 2.1…)`.
 - [ ] Punkt 4: brak drugiego przykładu i rozwijania; „zapisane, moduł 6".
 - [ ] Punkt 5: agent pyta („zapisałeś plik przed uruchomieniem?"), nie oznajmia.
 - [ ] Punkt 6: po drugim „nie wiem" jeden fakt w 1-2 zdaniach, potem pytanie.
-- [ ] Punkt 7: agent nie mówi „tak jak w Javie"; nazwa „klasa", moduł 8.
+- [ ] `[T]` Punkt 7: agent nie mówi „tak jak w Javie"; nazwa „klasa", moduł 8.
 - [ ] Review: pytanie o oczekiwany wynik przed oceną; 1 rzecz dobra, ≤2 do przemyślenia; nie wkleja poprawionego kodu.
 - [ ] Na końcu `add-lekcja --id 2.1`, `aktualna_lekcja` = `2.2`, `add-cwiczenie` ×2.
 
@@ -74,11 +83,11 @@ Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zosta
 5. Po powtórce mówi: „to lecimy z lekcją" → 4.2 zaczyna się normalnie; scenariusz kończy się po kroku 2 lekcji.
 
 **Lista kontrolna B:**
-- [ ] Agent wywołał `postep due` (nie liczył dat z JSON-a w głowie) i pytał tylko o dwa zaległe tematy; temat z `next_review` 2026-09-20 pominięty.
+- [ ] `[T]` Agent wywołał `postep due` (nie liczył dat z JSON-a w głowie) i pytał tylko o dwa zaległe tematy; temat z `next_review` 2026-09-20 pominięty.
 - [ ] Pytania w kształcie z lekcji 2.3, jedno naraz.
-- [ ] Po pytaniu 3: `review-do-powtorki --temat "dzielenie całkowite" --wynik ok` → poziom 2, termin +7 dni.
-- [ ] Po pytaniu 4: dwie próby naprowadzenia, potem odpowiedź i `--wynik zle` → poziom 0, termin jutro.
-- [ ] Brak `remove-do-powtorki`, brak `set` na `next_review`.
+- [ ] `[T]` Po pytaniu 3: `review-do-powtorki --temat "dzielenie całkowite" --wynik ok` → poziom 2, termin +7 dni.
+- [ ] `[T]` Po pytaniu 4: dwie próby naprowadzenia, potem **podana odpowiedź** i `--wynik zle` → poziom 0, termin jutro.
+- [ ] `[T]` Brak `remove-do-powtorki`, brak `set` na `next_review`.
 - [ ] Brak punktacji („1/2", „50%").
 - [ ] Lekcja 4.2 zaczyna się od zakotwiczenia z pliku lekcji.
 
@@ -98,12 +107,12 @@ Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zosta
 7. Kończy ⭐ poprawnie.
 
 **Lista kontrolna C:**
-- [ ] Diagnostyka: agent **czyta** wklejony program, nie prosi o uruchomienie go, nie testuje składni C#.
-- [ ] `init … --sciezka skrocona`; `kurs/program.md` ma „Ścieżka: skrócona w modułach 2-7".
-- [ ] Lekcja 2.1: **bez** zakotwiczenia (pudełko), mostek w jednym zdaniu, **wszystkie** eksperymenty z kroku 3 (w tym `7 / 2` i `CS0165`), pułapki, od razu ⭐.
+- [ ] `[T]` Diagnostyka: agent **czyta** wklejony program, nie prosi o uruchomienie go, nie testuje składni C#.
+- [ ] `[T]` `init … --sciezka skrocona`; `kurs/program.md` ma „Ścieżka: skrócona w modułach 2-7".
+- [ ] `[T]` Lekcja 2.1: **bez** zakotwiczenia (pudełko), mostek w jednym zdaniu, **wszystkie** eksperymenty z kroku 3 (w tym `7 / 2` i `CS0165`), pułapki, od razu ⭐.
 - [ ] Agent nie zaczyna porównań do Pythona sam; gdy uczeń porówna — jedno zdanie.
-- [ ] Punkt 6: interpolacja nie nazwana błędem; prośba o wersję z `+`.
-- [ ] ⭐ samodzielnie → `add-lekcja 2.1`, bez 🔥.
+- [ ] `[T]` Punkt 6: interpolacja nie nazwana błędem; prośba o wersję z `+`.
+- [ ] `[T]` ⭐ samodzielnie → `add-lekcja 2.1`, bez 🔥.
 - [ ] Czas: cała lekcja w ≤ 12 wymianach.
 
 ## Scenariusz D — „przeciętny" (lekcja 8.5, nowa)
@@ -115,8 +124,8 @@ Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zosta
 **Przebieg (uczeń):** przechodzi lekcję 8.5 zgodnie ze scenariuszem, wklejając prawdziwe wyniki `dotnet build`/`dotnet run`; przy `CS8604` pyta „to jest błąd czy nie?".
 
 **Lista kontrolna D:**
-- [ ] Ostrzeżenia cytowane przez agenta zgadzają się z tymi, które uczeń faktycznie wkleja (`CS8600`, `CS8602`, `CS8604`, `CS8618`).
+- [ ] `[T]` Ostrzeżenia cytowane przez agenta zgadzają się z tymi, które uczeń faktycznie wkleja (`CS8600`, `CS8602`, `CS8604`, `CS8618`).
 - [ ] Krok 3.A: agent każe usunąć `if` i zobaczyć, że ostrzeżenie wraca.
-- [ ] Agent nie wprowadza `!`, `required`, `??=`.
+- [ ] `[T]` Agent nie wprowadza `!`, `required`, `??=`.
 - [ ] Lekcja mieści się w ~40 min (≤ 18 wymian).
 - [ ] `aktualna_lekcja` → `9.1`, zapowiedź modułu 9.
