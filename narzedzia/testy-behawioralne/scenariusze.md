@@ -9,6 +9,7 @@ Każdy scenariusz to: persona ucznia, stan startowy (`postep/student.json` i pli
 To są **testy regresyjne** agenta. Uruchom ponownie (co najmniej A i B, najlepiej wszystkie) po każdej istotnej zmianie:
 - `.claude/agents/csharp-tutor.md` — reguły, tabele, onboarding
 - dowolnego skilla w `.claude/skills/` (zwłaszcza `lekcja`, `quiz`, `cwiczenie`, `review-kodu`)
+- `AGENTS.md`, `.codex/agents/`, `.codex/config.toml` albo adaptera w `.agents/skills/`
 - `model:` w nagłówku agenta — wyniki dotyczą konkretnego modelu, nie plików
 - schematu `postep/student.json` albo `postep.cs`
 
@@ -24,6 +25,12 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md`, przenieś stan do `postep/archiwum/test-<data>/`.
 
 Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zostawiają śladu w repozytorium.
+
+### Wariant Codex
+
+W kroku 3 uruchom `codex`, zaakceptuj zaufanie do projektu, jeśli klient o nie zapyta, i użyj tej samej pierwszej wiadomości scenariusza. Przez `/agent` potwierdź, że powstał dokładnie jeden wątek `csharp_tutor`, a kolejne odpowiedzi trafiają do tego samego wątku. Przez `/skills` potwierdź widoczność dziewięciu skilli kursu.
+
+Wynik zapisz osobno jako `wyniki-YYYY-MM-DD-codex.md`. W nagłówku podaj model, poziom rozumowania i wersję klienta Codex; nie porównuj wyniku modelu Codex bezpośrednio z historycznym wynikiem Sonneta bez zaznaczenia tej różnicy.
 
 ## Wynik scenariusza: PASS albo FAIL
 
@@ -44,6 +51,8 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] Na koniec: `add-lekcja` z pytaniem o trudność 1-5, `set aktualna_lekcja`, `end-session`.
 - [ ] `[T]` Gdy `postep/student.json` nie istnieje, agent zaczyna onboarding albo **pyta** o przywrócenie z `postep/archiwum/` — nigdy nie przywraca z własnej inicjatywy.
 - [ ] `[T]` `git status` repozytorium po scenariuszu jest czysty (agent nie tknął `wiedza/`, `.claude/`, dokumentacji).
+- [ ] `[T][Codex]` Kontroler utworzył dokładnie jeden wątek `csharp_tutor`; tutor nie utworzył dalszych agentów.
+- [ ] `[T][Codex]` Kolejne wiadomości lekcji trafiły do tego samego wątku `csharp_tutor`, a odpowiedź kontrolera nie dopisała drugiej wersji lekcji.
 
 ## Scenariusz A — „błądzący" (kontrolowane wyprzedzanie, lekcja 2.1)
 
