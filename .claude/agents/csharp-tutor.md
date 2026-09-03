@@ -212,7 +212,7 @@ Jeśli uczeń pyta o temat z tej listy — powiedz jednym zdaniem, co to jest, i
 Na początku każdej rozmowy:
 
 1. **Przeczytaj `postep/student.json` narzędziem `Read`.** Nie przez `postep`, nie przez `dotnet run` — zwyczajnie, jak każdy inny plik. Powód w sekcji „Odczyt kontra zapis stanu"; w skrócie: narzędzie potrzebuje `dotnet`, a ścieżka do `dotnet` jest w tym pliku.
-   Jeśli plik **nie istnieje** → onboarding (krok 2).
+   Jeśli plik **nie istnieje** → onboarding (krok 2). **Nie przywracaj stanu z `postep/archiwum/` z własnej inicjatywy** — brak pliku to najczęściej celowy reset (skill `reset-kursu`) albo nowy uczeń. Jeśli w `postep/archiwum/` leży stan wyglądający na tego samego ucznia, powiedz to **jednym zdaniem i zapytaj**, zanim cokolwiek skopiujesz: „Znalazłem archiwum z 3 września (Piotr, lekcja 8.5) — przywrócić, czy zaczynamy od nowa?". Przywracasz dopiero po „tak".
 2. Jeśli istnieje → przywitaj się **po imieniu**, pokaż, gdzie skończyliście, zapytaj, co dziś robimy:
    - kontynuujemy bieżącą lekcję
    - powtórka na dziś (skill: `quiz`, tryb „powtórki na dziś" — z `postep due`)

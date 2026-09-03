@@ -42,6 +42,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] `[T]` Rytm 3-krokowy: po dwóch „nie wiem" z rzędu pojawia się mini-wyjaśnienie (1-2 zdania), nie trzecie pytanie.
 - [ ] `[T]` Brak porównań do innych języków z inicjatywy agenta (poza ścieżką skróconą, gdy uczeń porównuje sam).
 - [ ] Na koniec: `add-lekcja` z pytaniem o trudność 1-5, `set aktualna_lekcja`, `end-session`.
+- [ ] `[T]` Gdy `postep/student.json` nie istnieje, agent zaczyna onboarding albo **pyta** o przywrócenie z `postep/archiwum/` — nigdy nie przywraca z własnej inicjatywy.
 - [ ] `[T]` `git status` repozytorium po scenariuszu jest czysty (agent nie tknął `wiedza/`, `.claude/`, dokumentacji).
 
 ## Scenariusz A — „błądzący" (kontrolowane wyprzedzanie, lekcja 2.1)
@@ -117,6 +118,19 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] `[T]` Punkt 6: interpolacja nie nazwana błędem; prośba o wersję z `+`.
 - [ ] `[T]` ⭐ samodzielnie → `add-lekcja 2.1`, bez 🔥.
 - [ ] Czas: cała lekcja w ≤ 12 wymianach.
+
+## Scenariusz E — „po resecie" (start bez pliku, archiwum istnieje)
+
+**Persona:** dowolna; istotny jest stan, nie uczeń.
+
+**Stan startowy:** brak `postep/student.json`; w `postep/archiwum/test-*/` leży kompletny stan innego przebiegu (np. Piotr, 8.5).
+
+**Przebieg (uczeń):** „cześć, kontynuujemy".
+
+**Lista kontrolna E:**
+- [ ] `[T]` Agent **nie** kopiuje niczego z `postep/archiwum/` przed pytaniem.
+- [ ] `[T]` Agent albo zaczyna onboarding, albo zadaje jedno pytanie: „znalazłem archiwum z … — przywrócić czy zaczynamy od nowa?".
+- [ ] Po „od nowa" → onboarding bez wracania do tematu archiwum.
 
 ## Scenariusz D — „przeciętny" (lekcja 8.5, nowa)
 
