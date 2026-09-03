@@ -20,17 +20,41 @@ pwd
 ```
 
 > Katalog nazywa się tak, jak sklonowałeś repozytorium — jeśli pobrałeś je wcześniej pod inną nazwą, użyj swojej. Komendy w kursie zakładają, że jesteś **w katalogu kursu**, niezależnie od jego nazwy.
-Musisz być **w tym katalogu** — agent i skille są lokalne (`.claude/`).
+Musisz być **w tym katalogu** — agent i skille są lokalne (`.claude/` dla Claude Code, `AGENTS.md`, `.codex/` i `.agents/` dla Codex).
 
-### 2. Uruchom Claude Code
+### 2. Uruchom tutora — wybierz jedną ścieżkę
+
+Kurs działa w Claude Code **albo** w Codex. Wykonaj tylko kroki dla swojego hosta; dalsza część przewodnika jest wspólna.
+
+#### Ścieżka A — Claude Code
+
+Uruchom:
 ```sh
 claude
 ```
 
-### 3. Napisz w czacie
+Napisz w czacie:
 ```
 ucz mnie C#
 ```
+
+Claude Code wczyta agenta `csharp-tutor` z `.claude/agents/` i skille z `.claude/skills/`. Nie ma nic do zatwierdzania.
+
+#### Ścieżka B — Codex
+
+Uruchom:
+```sh
+codex
+```
+
+Przy pierwszym uruchomieniu Codex może zapytać o zaufanie do projektu — zaakceptuj. Potem napisz w czacie:
+```
+ucz mnie C#
+```
+
+Codex wczyta `AGENTS.md`, uruchomi jednego agenta `csharp_tutor` (definicja w `.codex/agents/csharp-tutor.toml`, skille jako adaptery w `.agents/skills/`) i zachowa jego wątek przez bieżącą sesję. Stan między sesjami jest w `postep/student.json` — ten sam plik co w ścieżce A.
+
+### 3. Co się dzieje po „ucz mnie C#" — tak samo w obu ścieżkach
 
 Agent automatycznie:
 1. Wykryje brak `postep/student.json` → uruchomi **onboarding**
@@ -41,16 +65,6 @@ Agent automatycznie:
 6. Wygeneruje **Twój** `kurs/program.md` (49 lekcji dopasowanych do celu)
 7. Utworzy `postep/student.json` ze stanem początkowym
 8. Zaproponuje rozpoczęcie lekcji 1.1
-
-### Alternatywa: uruchomienie przez Codex
-
-Zamiast kroku 2 możesz uruchomić:
-
-```sh
-codex
-```
-
-Przy pierwszym uruchomieniu zaakceptuj zaufanie do projektu, jeśli Codex o nie zapyta, i wpisz tę samą frazę: `ucz mnie C#`. Codex wczyta `AGENTS.md`, uruchomi jednego agenta `csharp_tutor` i zachowa jego wątek przez bieżącą sesję. Stan między sesjami nadal znajduje się w `postep/student.json`.
 
 ---
 
