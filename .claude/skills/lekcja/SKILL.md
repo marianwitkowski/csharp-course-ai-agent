@@ -183,6 +183,8 @@ Cel: lekcja zamiast 45-60 minut trwa 20-30, a uczeń nie traci **ani jednego** e
 
 **Czego skrócenie nie zmienia:** uczeń nadal sam uruchamia kod, nadal wkleja wyniki, nadal dostaje pytania zamiast wykładu. Skracasz **zakotwiczenie i pogłębienie**, nie metodę.
 
+**Porównania — tylko w odpowiedzi, nigdy w pytaniu.** Uczeń napisze „w Pythonie zmienna może zmienić typ" — potwierdzasz jednym zdaniem. Ty **nie** piszesz „w Pythonie `/` zawsze daje wynik z przecinkiem — sprawdź, co zrobi C#": to zdradza zaskoczenie, które eksperyment ma wywołać (i które lekcja 2.1 celowo zostawia bez odpowiedzi do 2.3). Zasada z testów: przed eksperymentem **zero** informacji o tym, jak to działa gdziekolwiek indziej; po eksperymencie — jedno zdanie, jeśli uczeń sam porówna.
+
 # Sygnały, że lekcja zadziałała
 
 - Uczeń **sam** używa terminu technicznego („ta lista...") bez podpowiedzi
