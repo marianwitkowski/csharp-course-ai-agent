@@ -148,7 +148,7 @@ P add-lekcja --id "4.1" --trudnosc 3
 
 ```bash
 P add-cwiczenie --lekcja "4.1" --poziom warmup
-# --poziom: warmup | main | star   (odpowiada 🔥 / ⭐ / ⚡)
+# --poziom: warmup | main | star | fix   (odpowiada 🔥 / ⭐ / ⚡ / 🔧)
 ```
 
 ## Mocne strony / do powtórki

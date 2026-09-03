@@ -16,6 +16,7 @@
 | --- | --- | --- |
 | `wiedza/lekcje/` | 49 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
 | `wiedza/przyklady/kod/` | minimalne, działające programy `.cs` | materiał do eksperymentów i inspiracja na ćwiczenia |
+| `wiedza/przyklady/zepsute/` | 10 programów z **jednym** błędem każdy, z objawem w nagłówku | ćwiczenia 🔧 naprawa — patrz sekcja „Zepsute programy" |
 | `wiedza/AKTUALIZACJE.md` | delta „.NET Framework (2020) → .NET 10 (2026)" | prostuje to, co uczeń znajdzie w starszych poradnikach |
 
 W tym kursie **nie ma katalogu `zrodlo/`**. Materiały źródłowe autora leżą poza
@@ -212,6 +213,27 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 **Ten plik jest źródłem prawdy dla liczby 49.** Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
 
 ---
+
+## Zepsute programy — ćwiczenia 🔧 naprawa
+
+Realna praca częściej wygląda jak *przeczytaj → zrozum → znajdź → popraw* niż *napisz od zera*. Od modułu 4 dziesięć lekcji ma czwarty poziom ćwiczenia: uczeń dostaje program z **jednym** błędem, **objawem** w nagłówku i bez przyczyny. Pliki pisze i weryfikuje autor kursu (objaw i naprawa uruchomione na .NET 10); agent ich nie tworzy — to jedyny sposób, żeby dać uczniowi cudzy zepsuty kod bez łamania zasady „agent nie pisze `.cs` za ucznia".
+
+| Lekcja | Plik | Rodzaj błędu | Objaw |
+| --- | --- | --- | --- |
+| 4.1 | `08-if-zepsute.cs` | liczy źle | `18` → „niepełnoletni" (`>` zamiast `>=`) |
+| 5.1 | `11-while-zepsute.cs` | liczy źle | 11 liczb od `0` zamiast 10 od `1` |
+| 6.1 | `14-tablice-zepsute.cs` | wywraca się | `IndexOutOfRangeException` po ostatnim elemencie (`<=` `Length`) |
+| 7.1 | `18-metody-zepsute.cs` | liczy źle | `Sprawdz` mówi `BŁĄD`: `3` zamiast `3,5` (dzielenie całkowite w `double`) |
+| 8.2 | `22-konstruktory-zepsute.cs` | liczy źle | kot ma `0 lat`; dwa ostrzeżenia `CS1717`, `CS0649` (`Wiek = Wiek` bez `this`) |
+| 9.2 | `26-polimorfizm-zepsute.cs` | liczy źle | pies „wydaje dźwięk"; `CS0114` (brak `override`) |
+| 10.1 | `29-interfejsy-zepsute.cs` | nie kompiluje się | `CS0535` (`opis` zamiast `Opis`) |
+| 11.1 | `32-try-catch-zepsute.cs` | liczy źle | „Podwojone: 0" po `abc`, bez komunikatu (pusty `catch`) |
+| 12.1 | `34-pliki-zepsute.cs` | liczy źle | w pliku tylko ostatnia linia (`WriteAllText` w pętli) |
+| 13.1 | `38-linq-zepsute.cs` | liczy źle | `OrderBy` „nie sortuje" (wynik nieprzypisany) |
+
+Każdy plik jest w materiale **do tej lekcji włącznie** — bez konstrukcji z przodu. Dobór: jeden błąd na plik, z klasy, której uczy lekcja; proporcja trzech rodzajów (kompilacja / logika / wyjątek) celowo przechylona ku „kompiluje się i liczy źle", bo to te błędy uczeń będzie znajdował najdłużej. Skrypt `narzedzia/sprawdz-przyklady.sh` buduje je i pilnuje, że `29` nadal **nie** kompiluje się, a reszta tak.
+
+Reszta lekcji (moduły 2-3 i pozostałe lekcje modułów 4-13) nie ma jeszcze plików 🔧 — to pierwsza partia; format sprawdzony na dziesięciu.
 
 ## Zależności między modułami — czego nie wolno przestawić
 

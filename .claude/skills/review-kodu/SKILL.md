@@ -136,6 +136,17 @@ Komunikaty C# bywają długie i naszpikowane pełnymi nazwami typów (`System.Co
 | `foreach` i próba modyfikacji kolekcji | „Co się dzieje z listą, po której właśnie idziesz?" (6.2) |
 | Polskie znaki jako krzaczki | „W jakim kodowaniu edytor zapisuje plik? Powinno być UTF-8." |
 
+## Krok 4C: Ćwiczenie 🔧 naprawa (zepsuty plik z `wiedza/przyklady/zepsute/`)
+
+Uczeń nie napisał tego kodu, więc krok 1 („opowiedz, co spodziewasz się, że zrobi") zamienia się w: **„opowiedz, co ten program próbuje zrobić, linia po linii — zanim powiesz, co jest nie tak."** Diagnoza cudzego kodu zaczyna się od zrozumienia zamiaru.
+
+Potem zwykła sekwencja 4A/4B. Trzy pytania, które w naprawie działają najlepiej:
+- „Dla jakiego wejścia objaw występuje, a dla jakiego nie?" (granica = przyczyna: `18` kontra `17` i `19`)
+- „W której linii wartość jest jeszcze dobra, a w której już zła?" (wstaw `Console.WriteLine`)
+- „Co kompilator powiedział **przed** uruchomieniem?" (ostrzeżenia w 22 i 26 mówią wszystko)
+
+Po naprawie: „Uruchom jeszcze raz dla wejścia z objawu **i** dla dwóch innych." Naprawa, która działa tylko dla przypadku z nagłówka, nie jest naprawą. Zapis: `postep add-cwiczenie --lekcja X.Y --poziom fix`.
+
 ## Krok 5: Podsumuj review
 
 - **1 rzecz, która jest dobra** — konkretnie, nie „ogólnie OK"

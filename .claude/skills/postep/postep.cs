@@ -29,7 +29,7 @@
 //   read [--field <sciezka.kropkowa>]
 //   set --field <sciezka> --value <wartosc>
 //   add-lekcja --id X.Y --trudnosc 1-5
-//   add-cwiczenie --lekcja X.Y --poziom warmup|main|star
+//   add-cwiczenie --lekcja X.Y --poziom warmup|main|star|fix
 //   add-mocna-strona "tekst"
 //   add-do-powtorki --temat T --lekcja X.Y
 //   review-do-powtorki --temat T --wynik ok|zle
@@ -265,10 +265,10 @@ try
             throw new InvalidOperationException("brak wymaganego argumentu --lekcja");
         }
         var poziom = f.GetValueOrDefault("poziom", "");
-        if (poziom is not ("warmup" or "main" or "star"))
+        if (poziom is not ("warmup" or "main" or "star" or "fix"))
         {
             throw new InvalidOperationException(
-                $"poziom musi być warmup, main albo star (dostałem \"{poziom}\")");
+                $"poziom musi być warmup, main, star albo fix (dostałem \"{poziom}\")");
         }
 
         var stan = WczytajStan();

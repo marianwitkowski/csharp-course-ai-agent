@@ -1,6 +1,6 @@
 ---
 name: cwiczenie
-description: 'Generuje 1-3 ćwiczenia w C# do samodzielnego rozwiązania przez ucznia, dopasowane do bieżącej lekcji i poziomu trudności. Trzy poziomy: rozgrzewka, główne, gwiazdka. Użyj na końcu lekcji lub gdy uczeń prosi o "więcej zadań".'
+description: 'Generuje 1-3 ćwiczenia w C# do samodzielnego rozwiązania przez ucznia, dopasowane do bieżącej lekcji i poziomu trudności. Cztery poziomy: rozgrzewka, główne, gwiazdka i — od modułu 4 — naprawa zepsutego programu z wiedza/przyklady/zepsute. Użyj na końcu lekcji lub gdy uczeń prosi o "więcej zadań".'
 ---
 
 # Cel
@@ -18,6 +18,25 @@ Dla każdej lekcji wygeneruj zestaw 3 ćwiczeń:
 | Gwiazdka ⚡   | Wyzwanie — łączy bieżącą lekcję z poprzednimi    | 20-30 min  | „Może być trudne, to OK" |
 
 Uczeń wybiera, ile robi. Minimum: rozgrzewka + główne.
+
+## Czwarty poziom — 🔧 naprawa (od modułu 4, w lekcjach, które mają zepsuty plik)
+
+| Poziom | Cel | Czas | Wskazówka |
+| --- | --- | --- | --- |
+| Naprawa 🔧 | Diagnoza cudzego kodu: przeczytaj → zrozum → znajdź → popraw | 10-20 min | „Objaw masz w nagłówku, przyczyny nie" |
+
+Pliki leżą w `wiedza/przyklady/zepsute/NN-temat-zepsute.cs` — po jednym dla lekcji 4.1, 5.1, 6.1, 7.1, 8.2, 9.2, 10.1, 11.1, 12.1, 13.1 (lista w `wiedza/INDEX.md`, sekcja „Zepsute programy"). Każdy ma w nagłówku **objaw** (co robi źle), nie przyczynę, i dokładnie **jeden** błąd z klasy, której uczy ta lekcja: nie kompiluje się / kompiluje i liczy źle / wywraca się w trakcie. Autor kursu napisał te pliki i zweryfikował objaw i naprawę — ty ich **nie piszesz** i nie modyfikujesz.
+
+Procedura:
+1. Uczeń **kopiuje** plik do `kurs/zadania/` (`cp wiedza/przyklady/zepsute/08-if-zepsute.cs kurs/zadania/`, na Windows `copy`) i uruchamia. Ty nie kopiujesz za niego.
+2. Zanim zacznie poprawiać: „Powtórz objaw własnymi słowami. Dla jakiego wejścia? Co powinno być?"
+3. Diagnoza jak w `review-kodu`, krok 4A/4B: komunikat kompilatora albo wyjątek → linia; program liczy źle → `Console.WriteLine` wartości w podejrzanym miejscu albo `Sprawdz` z 7.1.
+4. Po naprawie uczeń **uruchamia ponownie** i wkleja wynik; od lekcji 7.1 dodaje sprawdzenie, które przed naprawą mówiło `BŁĄD`.
+5. `postep add-cwiczenie --lekcja X.Y --poziom fix`.
+
+Kolejność: 🔧 po ⭐, przed ⚡. Uczeń, który zrobił ⭐ i 🔧, ma lekcję zaliczoną tak samo jak po ⭐ i ⚡. Na ścieżce skróconej 🔧 jest **obowiązkowe** — to ono najlepiej łapie różnice między C# a językiem, który uczeń zna.
+
+**Nie mów, gdzie jest błąd.** Nagłówek pliku celowo podaje objaw, nie przyczynę. Jeśli uczeń utknął po dwóch cyklach — zawęź: „w której linii wartość jest jeszcze dobra, a w której już zła?"
 
 **Sekcja „Krok 5 — Ćwiczenie" w pliku lekcji zwykle podaje już trzy propozycje.** Zacznij od nich — są dopasowane do materiału. Generuj nowe tylko, gdy uczeń prosi o więcej albo tamte okazały się źle wycelowane.
 
