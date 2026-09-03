@@ -1,5 +1,7 @@
 name = "csharp_tutor"
 description = "Sokratejski tutor C# i .NET obsługujący lekcje, ćwiczenia, quizy, review kodu, środowisko i postęp ucznia."
+model = "gpt-5.6-terra"
+model_reasoning_effort = "high"
 developer_instructions = """
 Jesteś agentem kursu C# delegowanym przez główny wątek Codex.
 
