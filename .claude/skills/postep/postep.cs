@@ -53,6 +53,7 @@ using System.Text.Json;
 using System.Text.Json.Nodes;
 
 const int WersjaSchematu = 3;
+const string KursUkonczony = "ukończony";
 const int MaxMocnychStron = 7;
 const int MaxNotatek = 40; // wpisy "parking:" muszą przeżyć kilka modułów
 
@@ -216,9 +217,20 @@ try
         }
         var wartosc = f.GetValueOrDefault("value", "");
 
-        if (pole == "aktualna_lekcja")
+        // Koniec kursu (14.7 / 15.2) zapisuje dosłownie „ukończony" — jedyna wartość
+        // spoza kanonu M.L, i tylko tutaj, nigdy w add-*.
+        if (pole == "aktualna_lekcja" && wartosc != KursUkonczony)
         {
-            SprawdzIdLekcji(wartosc);
+            try
+            {
+                wartosc = SprawdzIdLekcji(wartosc);
+            }
+            catch (InvalidOperationException e)
+            {
+                // Literówka w „ukończony" (np. bez ogonków) wyglądałaby jak zły numer lekcji.
+                throw new InvalidOperationException(
+                    $"{e.Message}; koniec kursu zapisuje się dokładnie jako \"{KursUkonczony}\"");
+            }
         }
         var stan = WczytajStan();
         UstawSciezke(stan, pole, wartosc);
@@ -239,7 +251,7 @@ try
         {
             throw new InvalidOperationException("trudnosc musi być liczbą 1-5");
         }
-        SprawdzIdLekcji(id);
+        id = SprawdzIdLekcji(id);
 
         var stan = WczytajStan();
         var lekcje = Tablica(stan, "ukonczone_lekcje");
@@ -277,7 +289,7 @@ try
         {
             throw new InvalidOperationException("brak wymaganego argumentu --lekcja");
         }
-        SprawdzIdLekcji(lekcja);
+        lekcja = SprawdzIdLekcji(lekcja);
         var poziom = f.GetValueOrDefault("poziom", "");
         if (poziom is not ("warmup" or "main" or "star" or "fix" or "projekt"))
         {
@@ -341,6 +353,7 @@ try
         {
             throw new InvalidOperationException("wymagane argumenty: --temat i --lekcja");
         }
+        lekcja = SprawdzIdLekcji(lekcja);
 
         var stan = WczytajStan();
         var powtorki = Tablica(stan, "do_powtorki");
@@ -540,9 +553,15 @@ try
                 $"cwiczenie musi być warmup, main, star, fix albo projekt (dostałem \"{cwiczenie}\")");
         }
 
+        var aktualna = stan["aktualna_lekcja"]?.GetValue<string>() ?? "";
+        if (aktualna == KursUkonczony)
+        {
+            throw new InvalidOperationException("kurs jest ukończony — nie ma lekcji do wznowienia");
+        }
+
         stan["wznowienie"] = new JsonObject
         {
-            ["lekcja"] = stan["aktualna_lekcja"]?.GetValue<string>() ?? "",
+            ["lekcja"] = aktualna,
             ["krok"] = krok,
             ["cwiczenie"] = cwiczenie,
             ["przeszkoda"] = f.GetValueOrDefault("przeszkoda", ""),
@@ -630,6 +649,7 @@ try
     JsonObject WczytajStan()
     {
         var stan = Sparsuj(WczytajSurowo());
+        SprawdzStrukture(stan);
 
         var wersja = stan["schema_version"]?.GetValue<int>() ?? 0;
         if (wersja > WersjaSchematu)
@@ -660,6 +680,52 @@ try
 
         return stan;
     }
+
+    // Poprawny składniowo JSON to za mało: lista zamieniona na tekst albo brak imienia
+    // oznacza uszkodzony stan, a nie „inny stan". Sprawdzane PRZED migracją, bo Tablica()
+    // po cichu zastąpiłaby nie-tablicę pustą listą — i tak znika historia ucznia.
+    static void SprawdzStrukture(JsonObject stan)
+    {
+        foreach (var klucz in new[] { "imie", "aktualna_lekcja" })
+        {
+            if (stan[klucz] is null)
+            {
+                throw new InvalidOperationException(
+                    $"struktura pliku uszkodzona: brak pola \"{klucz}\". Uruchom `recovery`");
+            }
+        }
+
+        var oczekiwane = new (string Klucz, string Opis, Func<JsonNode, bool> Ok)[]
+        {
+            ("imie", "tekst", n => JestTekstem(n)),
+            ("cel", "tekst", n => JestTekstem(n)),
+            ("tempo_godz_tydz", "tekst", n => JestTekstem(n)),
+            ("sciezka", "tekst", n => JestTekstem(n)),
+            ("rozpoczeto", "tekst", n => JestTekstem(n)),
+            ("ostatnia_sesja", "tekst", n => JestTekstem(n)),
+            ("aktualna_lekcja", "tekst", n => JestTekstem(n)),
+            ("schema_version", "liczba", n => n is JsonValue v && v.GetValueKind() == JsonValueKind.Number),
+            ("liczba_sesji", "liczba", n => n is JsonValue v && v.GetValueKind() == JsonValueKind.Number),
+            ("srodowisko", "obiekt", n => n is JsonObject),
+            ("wznowienie", "obiekt", n => n is JsonObject),
+            ("ukonczone_lekcje", "lista", n => n is JsonArray),
+            ("ukonczone_cwiczenia", "lista", n => n is JsonArray),
+            ("mocne_strony", "lista", n => n is JsonArray),
+            ("do_powtorki", "lista", n => n is JsonArray),
+            ("notatki_tutora", "lista", n => n is JsonArray),
+        };
+        foreach (var (klucz, opis, ok) in oczekiwane)
+        {
+            // Brak klucza jest dozwolony (migracja / stara wersja); zły typ — nie.
+            if (stan[klucz] is JsonNode wartosc && !ok(wartosc))
+            {
+                throw new InvalidOperationException(
+                    $"struktura pliku uszkodzona: pole \"{klucz}\" powinno być typu {opis}. Uruchom `recovery`");
+            }
+        }
+    }
+
+    static bool JestTekstem(JsonNode n) => n is JsonValue v && v.GetValueKind() == JsonValueKind.String;
 
     JsonObject Sparsuj(string dane)
     {
@@ -727,10 +793,13 @@ try
 
     // Id lekcji „M.L" musi mieć plik wiedza/lekcje/MM.LL-*.md — inaczej agent
     // zapisałby literówkę („4.11") albo lekcję spoza kursu („99.99") jako ukończoną.
-    void SprawdzIdLekcji(string id)
+    // Zwraca postać kanoniczną bez zer wiodących („7.04" → „7.4"), żeby upsert
+    // po id nie rozdwoił tej samej lekcji.
+    string SprawdzIdLekcji(string id)
     {
         var czesci = id.Split('.');
-        if (czesci.Length != 2 || !int.TryParse(czesci[0], out var m) || !int.TryParse(czesci[1], out var l))
+        if (czesci.Length != 2 || !int.TryParse(czesci[0], out var m) || !int.TryParse(czesci[1], out var l)
+            || m < 1 || l < 1)
         {
             throw new InvalidOperationException($"id lekcji ma postać M.L, np. 4.1 (dostałem \"{id}\")");
         }
@@ -739,6 +808,7 @@ try
         {
             throw new InvalidOperationException($"lekcja {id} nie istnieje w wiedza/lekcje/");
         }
+        return $"{m}.{l}";
     }
 
     void PrzytnijDoOstatnich(JsonObject stan, string klucz, int ile)

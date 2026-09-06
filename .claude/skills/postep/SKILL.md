@@ -323,7 +323,7 @@ Powiedz uczniowi:
 - **NIGDY** nie buduj nowego JSON-a „z pamięci" — narzędzie czyta, modyfikuje wskazane pola, zapisuje. To chroni przed utratą pól z przyszłych wersji schematu.
 - **Nie zapominaj o `--`** w wywołaniu. To najczęstsza pomyłka przy `dotnet run`.
 - **Nie wymyślaj danych.** Nie znasz wartości → pytaj ucznia.
-- **Narzędzie odrzuca błędne operacje bez zmiany pliku:** `set` tylko na polach tekstowych (listy i obiekty mają własne komendy), `sciezka` tylko `pelna`/`skrocona`, id lekcji w `add-lekcja`, `add-cwiczenie` i `aktualna_lekcja` musi mieć plik w `wiedza/lekcje/`. Komunikat `BŁĄD:` = nic nie zapisano; popraw argument, nie obchodź narzędzia.
+- **Narzędzie odrzuca błędne operacje bez zmiany pliku:** `set` tylko na polach tekstowych (listy i obiekty mają własne komendy), `sciezka` tylko `pelna`/`skrocona`, id lekcji w `add-lekcja`, `add-cwiczenie`, `add-do-powtorki` i `aktualna_lekcja` musi mieć plik w `wiedza/lekcje/` i jest zapisywany w postaci kanonicznej (`7.04` → `7.4`). Jedyna wartość spoza kanonu to `ukończony` w `set aktualna_lekcja` (koniec kursu, 14.7 / 15.2). Plik ze złym typem pola (lista zamieniona na tekst) albo bez `imie` / `aktualna_lekcja` jest odrzucany przy każdym zapisie — `recovery`. Komunikat `BŁĄD:` = nic nie zapisano; popraw argument, nie obchodź narzędzia.
 - **`notatki_tutora` są prywatne** — nie pokazuj bez prośby.
 - **Daty** zawsze ISO `YYYY-MM-DD` — narzędzie robi to samo.
 - **`student.json` jest w `.gitignore`** — to stan konkretnego ucznia, nie część kursu.

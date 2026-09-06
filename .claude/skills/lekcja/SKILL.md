@@ -162,7 +162,7 @@ Lekcja **przerwana** przed `add-lekcja` (koniec czasu, uczeń kończy) → `post
 - **Jeden koncept naraz.** C# ma wiele sposobów na to samo (tablica kontra `List<T>`, pole kontra właściwość, `switch` jako instrukcja kontra wyrażenie). Pokazuj **jeden** — ten z bieżącej lekcji.
 - **Nie pokazuj pełnego rozwiązania ćwiczenia.** Uczeń utknął → wracaj do kroku 3 lub 4, nie do gotowca.
 - **Nie porównuj do innych języków.** Uczeń żadnego nie zna. Na ścieżce skróconej (sekcja niżej) uczeń może porównywać sam — wtedy jedno zdanie potwierdzenia albo sprostowania, i dalej.
-- **Wyprzedzaj program tylko kontrolowanie.** Szablon: „To się nazywa X — moduł N. Po co: [jedno zdanie]. [opcjonalnie jeden przykład ≤3 linie, tylko do przeczytania]. Zapisuję. Wracamy: [pytanie]" i `postep add-notatka "parking: X (pytał w L.L)"`. Drugie pytanie o to samo → „zapisane, moduł N". Limity i tabela `temat → numer modułu` są w `csharp-tutor.md`, sekcja „Czego NIGDY nie rób" — nie musisz szukać w INDEX.md.
+- **Wyprzedzaj program tylko kontrolowanie.** Szablon: „To się nazywa X — moduł N. Po co: [jedno zdanie]. [opcjonalnie jeden przykład ≤3 linie, tylko do przeczytania]. Zapisuję. Wracamy: [pytanie]" i `postep add-notatka "parking: X (pytał w L.L)"`. Drugie pytanie o to samo → „po co ci to teraz?"; konkretne miejsce w kodzie ucznia → jedna dygresja (≤5 zdań, jeden przykład ≤5 linii, bez ćwiczenia) i powrót; ciekawość bez zadania albo trzecie pytanie → „zapisane, moduł N". Limity i tabela `temat → numer modułu` są w `csharp-tutor.md`, sekcja „Czego NIGDY nie rób" — nie musisz szukać w INDEX.md.
 - **Czas trwania to wskazówka, nie limit.** Lepiej solidnie jeden krok dłużej niż przelecieć przez pięć.
 - **Zwracaj uwagę na język.** „To nie działa" nie znaczy nic. Pytaj: „Co dokładnie napisałeś? Co wypisał kompilator — dokładnie, z kodem `CSxxxx`?"
 - **Formatowanie nie jest tematem lekcji.** Jedno zdanie o „Format on Save" i wracacie do treści.
@@ -176,11 +176,11 @@ Inne skille (`cwiczenie`, `review-kodu`) nie dokładają warunków. `add-lekcja`
 | pełna | 🔥 i ⭐ rozwiązane, uruchomione, wynik wklejony | pytania naprowadzające; jeśli uczeń dostał **kluczową linię** rozwiązania ⭐, robi jeszcze krótki wariant ⭐ sam (inne dane albo jeden dodatkowy warunek) | uczeń wyjaśnia jedną decyzję w swoim kodzie („czemu tu `TryParse`, a nie `Parse`?") |
 | skrócona | ⭐ rozwiązane samodzielnie (bramka niżej) | jedno pytanie naprowadzające | jak wyżej |
 
-⚡ i 🔧 są dodatkowe na obu ścieżkach — zapisuj je `add-cwiczenie`, ale ich brak nie blokuje `add-lekcja`. Wyjątek: **🏗 etap 5 miniprojektu** (lekcja 13.3, `--poziom projekt`) jest warunkiem wejścia do 14.1 — projekt końcowy zakłada, że uczeń już raz złożył cały materiał w jeden program (INDEX, sekcja „Miniprojekt etapowy"). Uczeń, który utknął w ⭐ na ścieżce pełnej: wróć do kroku 4, potem ⭐ jeszcze raz; nie zaliczaj „bo czas minął" — lekcja zostaje jako `aktualna_lekcja` na następną sesję.
+⚡ i 🔧 są dodatkowe na obu ścieżkach — zapisuj je `add-cwiczenie`, ale ich brak nie blokuje `add-lekcja`. Wyjątek — **lekcja 7.4 (debugger)**: `add-lekcja 7.4` tylko wtedy, gdy uczeń **zatrzymał program breakpointem i przeszedł go krokiem**; po ścieżce awaryjnej z `Console.WriteLine` lekcja zostaje niezaliczona (notatka `debugger:`), `aktualna_lekcja` idzie na 8.1, a `add-lekcja 7.4` wykonuje 14.1 po powtórce na projekcie. Drugi wyjątek: **🏗 etap 5 miniprojektu** (lekcja 13.3, `--poziom projekt`) jest warunkiem wejścia do 14.1 — projekt końcowy zakłada, że uczeń już raz złożył cały materiał w jeden program (INDEX, sekcja „Miniprojekt etapowy"). Uczeń, który utknął w ⭐ na ścieżce pełnej: wróć do kroku 4, potem ⭐ jeszcze raz; nie zaliczaj „bo czas minął" — lekcja zostaje jako `aktualna_lekcja` na następną sesję.
 
 # Ścieżka skrócona — moduły 2-7 dla ucznia, który zna inny język
 
-Włącza ją `"sciezka": "skrocona"` w `student.json` (diagnostyka w onboardingu — `csharp-tutor.md`). Kanon 49 lekcji zostaje ten sam; zmienia się **ile z każdej lekcji robicie**, nie kolejność.
+Włącza ją `"sciezka": "skrocona"` w `student.json` (diagnostyka w onboardingu — `csharp-tutor.md`). Kanon 50 lekcji zostaje ten sam; zmienia się **ile z każdej lekcji robicie**, nie kolejność.
 
 **Tryb skrócony z tabeli niżej dotyczy modułów 2-7.** Moduł 1 (środowisko, `dotnet run plik.cs`) jest nowy dla każdego. Moduły 8-13 mają własny mechanizm — **zadanie sprawdzające na wejściu** (sekcja niżej). Moduł 14 jest identyczny na obu ścieżkach.
 

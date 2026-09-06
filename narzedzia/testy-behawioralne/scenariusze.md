@@ -22,7 +22,7 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 1. Repozytorium bez stanu ucznia (`postep/student.json` nie istnieje, `kurs/zadania/` i `kurs/lekcje/` zawierają tylko `.gitkeep`). Jeśli jest stan — skill `reset-kursu` albo ręczne przeniesienie do `postep/archiwum/`.
 2. Wgraj stan startowy scenariusza (sekcja „Stan startowy").
 3. Uruchom Claude Code w katalogu kursu i graj ucznia według przebiegu. Odpowiadaj tak, jak odpowiedziałaby persona, nie lepiej.
-4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md`, przenieś stan do `postep/archiwum/test-<data>/`.
+4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md`, przenieś stan do `postep/archiwum/test-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
 
 Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zostawiają śladu w repozytorium.
 
@@ -155,3 +155,44 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] `[T]` Agent nie wprowadza `!`, `required`, `??=`.
 - [ ] Lekcja mieści się w ~40 min (≤ 18 wymian).
 - [ ] `aktualna_lekcja` → `9.1`, zapowiedź modułu 9.
+
+## Scenariusz F — „wznawiająca i kończący" (wznowienie, zaliczenie, zakończenie kursu)
+
+Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-09-06: pole `wznowienie` (schema 3), tabelę „Zaliczenie lekcji" ze skillu `lekcja` i zapis `aktualna_lekcja = ukończony` po 14.7.
+
+### F1 — wznowienie w środku ćwiczenia ⭐ i zaliczenie
+
+**Persona:** Ola, cel praca, ścieżka pełna, po 1.1-3.2, w 4.1 zrobiła 🔥 i utknęła w ⭐ (oceny). Odpowiada konkretnie, wkleja kod i wyniki.
+
+**Stan startowy:** `student.json` z ukończonymi 1.1-3.2, `aktualna_lekcja` 4.1, `ukonczone_cwiczenia` z `4.1/warmup`, `wznowienie` = `{lekcja 4.1, krok 5, cwiczenie main, przeszkoda „dla wpisu abc program wypisuje Nie ma takiej oceny zamiast To nie jest ocena"}`; `kurs/zadania/08-if-a.cs` (działająca rozgrzewka) i `08-if-b.cs` (⭐ z błędem z przeszkody).
+
+**Przebieg (uczennica):**
+1. „Cześć, kontynuujemy" → oczekiwane: powitanie, **wznowienie od ⭐** (nie od zakotwiczenia 4.1), przypomnienie przeszkody słowami tutora, pytanie, czy ma odpowiedź.
+2. „Już wiem — sprawdzałam tylko zakres, a nie wynik TryParse. Poprawiłam" + wkleja poprawiony `08-if-b.cs` i wyniki dla `6`, `9`, `abc`.
+3. Na pytanie o jedną decyzję odpowiada (czemu `TryParse` sprawdzany osobno, przed łańcuchem `else if`).
+4. Pyta o trudność → „3". Mówi, że kończy na dziś.
+
+**Lista kontrolna F1:**
+- [ ] `[T]` Punkt 1: agent zaczyna od ćwiczenia ⭐ i przeszkody; **nie** prowadzi kroków 1-4 lekcji 4.1 od nowa; nie wywołuje `wznowienie --wyczysc` (lekcja się zgadza).
+- [ ] `[T]` `add-lekcja --id 4.1` dopiero **po** wyjaśnieniu decyzji przez uczennicę (punkt 3), nie po samym wklejeniu kodu.
+- [ ] `[T]` Po sesji: `wznowienie` = `null`, `aktualna_lekcja` = `4.2`, `ukonczone_cwiczenia` ma `4.1/main`, `end-session` wykonane.
+- [ ] Review kodu: pytanie o oczekiwany wynik / jedna rzecz dobra, bez wklejania poprawionego kodu.
+
+### F2 — zakończenie kursu po 14.7 i wejście w moduł 15
+
+**Persona:** Marek, cel praca, ścieżka pełna, wszystkie lekcje 1.1-14.6 ukończone, w 14.7 przerwał na kroku 4 (plan dalszej nauki).
+
+**Stan startowy:** `student.json` z ukończonymi 1.1-14.6, `aktualna_lekcja` 14.7, `wznowienie` = `{lekcja 14.7, krok 4, przeszkoda „pisze plan dalszej nauki — wybór między ASP.NET Core a narzędziami CLI"}`, notatka `projekt: menedżer zadań CLI`.
+
+**Przebieg (uczeń):**
+1. „Cześć, kontynuujemy — plan mam gotowy" + wkleja trzy punkty planu (ASP.NET Core minimal API, EF Core z SQLite, jeden projekt open source).
+2. Odpowiada na pytania o plan, zamyka kurs (krok 5: uruchamia projekt, patrzy na `01-hello.cs`), trudność → „2".
+3. „A ten dodatek o async — chcę go zrobić w następnej sesji."
+4. Kończy.
+
+**Lista kontrolna F2:**
+- [ ] `[T]` `add-lekcja --id 14.7`, potem `set --field aktualna_lekcja --value ukończony` **kończy się `OK`** (nie `BŁĄD: id lekcji ma postać M.L`) — regresja z 3c14693.
+- [ ] `[T]` Punkt 3: `set --field aktualna_lekcja --value 15.1` wykonane (agent, sekcja o module 15) i `end-session`.
+- [ ] `[T]` `wznowienie` = `null` po `add-lekcja 14.7`; brak `wznowienie --krok` po ukończeniu kursu.
+- [ ] Gratulacje mówią o **50 lekcjach**, nie 49.
+

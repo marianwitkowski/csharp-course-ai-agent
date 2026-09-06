@@ -47,7 +47,7 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 
 | Czas/tydz | Lekcji/tydz | Czas trwania kursu |
 | --------- | ----------- | ------------------ |
-| <2h       | 1           | ~49 tygodni        |
+| <2h       | 1           | ~50 tygodni        |
 | 2-5h      | 2-3         | ~16-24 tygodni     |
 | 5-10h     | 3-5         | ~10-16 tygodni     |
 | 10+h      | 5-7         | ~7-10 tygodni      |

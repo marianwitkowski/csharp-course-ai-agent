@@ -25,8 +25,10 @@ fi
 #   CI-blad: CSxxxx          plik MA nie kompilować się, z tym kodem błędu
 #   CI-ostrzezenie: CSxxxx   kompilacja wypisuje to ostrzeżenie (może być kilka linii)
 #   CI-wejscie: tekst        linia podana na stdin (może być kilka)
-#   CI-wyjscie: tekst        kolejne linie stdout — porównywane dokładnie, w tej kolejności
-#   CI-wyjatek: Nazwa        stderr zawiera tę nazwę wyjątku (bez ścieżek ze stack trace)
+#   CI-wyjscie: tekst        CAŁY stdout, linia po linii — nic mniej, nic więcej (brak deklaracji = stdout pusty)
+#   CI-wyjatek: Nazwa        stderr zawiera tę nazwę wyjątku (bez ścieżek ze stack trace); program MA
+#                            zakończyć się kodem != 0. Bez tej deklaracji kod wyjścia MUSI być 0.
+#                            Przekroczenie limitu czasu jest zawsze błędem.
 #   CI-plik: nazwa=tresc     po uruchomieniu plik `nazwa` w katalogu roboczym ma dokładnie tę treść
 # Kody diagnostyk są porównywane zamiast treści komunikatów (te zależą od języka systemu),
 # a liczby wypisują się w kulturze niezmiennej (`3.5`, nie `3,5`).
@@ -63,22 +65,31 @@ for plik in wiedza/przyklady/zepsute/*.cs; do
     fi
   done <<< "$(klucz ostrzezenie "$plik")"
 
-  (cd "$katalog" && klucz wejscie p.cs | $LIMIT dotnet run p.cs >out.txt 2>err.txt)
+  (cd "$katalog" && klucz wejscie p.cs | $LIMIT dotnet run p.cs >out.txt 2>err.txt; echo $? >kod.txt)
+  kod=$(cat "$katalog/kod.txt")
   # dotnet run powtarza ostrzeżenia kompilatora na stdout — odfiltrowane.
   grep -v ": warning CS" "$katalog/out.txt" > "$katalog/stdout.txt"
 
+  # Całe wyjście, nie tylko początek: dodatkowa linia po poprawnym wyniku też jest rozjazdem.
   oczekiwane=$(klucz wyjscie "$plik")
-  if [ -n "$oczekiwane" ]; then
-    ile=$(echo "$oczekiwane" | wc -l | tr -d ' ')
-    if [ "$(head -n "$ile" "$katalog/stdout.txt")" != "$oczekiwane" ]; then
-      echo "ZEPSUTY WYPISUJE CO INNEGO NIŻ NAGŁÓWEK: $plik"
-      echo "--- oczekiwane"; echo "$oczekiwane"; echo "--- jest"; head -n "$ile" "$katalog/stdout.txt"
-      bledy=$((bledy + 1))
-    fi
+  if [ "$(cat "$katalog/stdout.txt")" != "$oczekiwane" ]; then
+    echo "ZEPSUTY WYPISUJE CO INNEGO NIŻ NAGŁÓWEK: $plik"
+    echo "--- oczekiwane"; echo "$oczekiwane"; echo "--- jest"; cat "$katalog/stdout.txt"
+    bledy=$((bledy + 1))
   fi
   wyjatek=$(klucz wyjatek "$plik")
-  if [ -n "$wyjatek" ] && ! grep -q "$wyjatek" "$katalog/err.txt"; then
-    echo "ZEPSUTY BEZ OCZEKIWANEGO WYJĄTKU $wyjatek: $plik"; bledy=$((bledy + 1))
+  if [ "$kod" -eq 124 ]; then
+    echo "ZEPSUTY PRZEKROCZYŁ LIMIT CZASU: $plik"; bledy=$((bledy + 1))
+  elif [ -n "$wyjatek" ]; then
+    if ! grep -q "$wyjatek" "$katalog/err.txt"; then
+      echo "ZEPSUTY BEZ OCZEKIWANEGO WYJĄTKU $wyjatek: $plik"; bledy=$((bledy + 1))
+    fi
+    if [ "$kod" -eq 0 ]; then
+      echo "ZEPSUTY Z WYJĄTKIEM ZAKOŃCZYŁ SIĘ KODEM 0: $plik"; bledy=$((bledy + 1))
+    fi
+  elif [ "$kod" -ne 0 ]; then
+    echo "ZEPSUTY ZAKOŃCZYŁ SIĘ KODEM $kod, OCZEKIWANO 0: $plik"; head -3 "$katalog/err.txt"
+    bledy=$((bledy + 1))
   fi
   while IFS= read -r wpis; do
     [ -z "$wpis" ] && continue

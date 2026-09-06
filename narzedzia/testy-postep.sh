@@ -73,6 +73,43 @@ przyjmuje "add-cwiczenie projekt"    '"poziom": "projekt"'   add-cwiczenie --lek
 przyjmuje "add-lekcja czyści wznowienie" '"wznowienie": null' add-lekcja --id 4.1 --trudnosc 3
 przyjmuje "wznowienie --wyczysc"     '"wznowienie": null'    wznowienie --wyczysc
 
+# Normalizacja id: 7.04 i 7.4 to ta sama lekcja, zapisana jako 7.4.
+przyjmuje "add-lekcja 7.04"         '"id": "7.4"'             add-lekcja --id 7.04 --trudnosc 2
+P add-lekcja --id 7.4 --trudnosc 3 >/dev/null 2>&1
+if [ "$(grep -c '"id": "7.4"' "$plik")" != "1" ] || grep -q '"id": "7.04"' "$plik"; then
+  echo "FAIL: 7.04 i 7.4 dały dwa wpisy albo zapis bez normalizacji"; bledy=$((bledy + 1))
+else
+  echo "ok: normalizacja — 7.04 + 7.4 = jeden wpis 7.4"
+fi
+przyjmuje "add-cwiczenie 07.4 → 7.4" '"lekcja": "7.4"'        add-cwiczenie --lekcja 07.4 --poziom star
+grep -q '"lekcja": "07.4"' "$plik" && { echo "FAIL: add-cwiczenie zapisał 07.4 bez normalizacji"; bledy=$((bledy + 1)); }
+odrzuca   "add-do-powtorki 99.99"                              add-do-powtorki --temat nic --lekcja 99.99
+przyjmuje "add-do-powtorki 02.03 → 2.3" '"lekcja": "2.3"'     add-do-powtorki --temat norm --lekcja 02.03
+
+# Koniec kursu (14.7 / 15.2): jedyna wartość spoza M.L, tylko w set aktualna_lekcja.
+przyjmuje "set aktualna_lekcja 07.4 → 7.4" '"aktualna_lekcja": "7.4"' set --field aktualna_lekcja --value 07.4
+odrzuca   "set aktualna_lekcja ukonczony (bez ogonków)"       set --field aktualna_lekcja --value ukonczony
+przyjmuje "set aktualna_lekcja ukończony" '"aktualna_lekcja": "ukończony"' set --field aktualna_lekcja --value ukończony
+odrzuca   "wznowienie po ukończeniu kursu"                     wznowienie --krok 2
+odrzuca   "add-lekcja ukończony"                               add-lekcja --id ukończony --trudnosc 1
+przyjmuje "set aktualna_lekcja 15.1 po ukończeniu" '"aktualna_lekcja": "15.1"' set --field aktualna_lekcja --value 15.1
+
+# Struktura: poprawny JSON ze złym typem pola albo bez imienia = uszkodzony stan, nie inny stan.
+kopia=$(cat "$plik")
+python3 - "$plik" <<'PY'
+import json,sys
+p=sys.argv[1]; d=json.load(open(p)); d["ukonczone_lekcje"]="oops"; json.dump(d,open(p,"w"),ensure_ascii=False)
+PY
+odrzuca   "lista zamieniona na tekst"                          add-notatka "x"
+printf '%s\n' "$kopia" > "$plik"
+python3 - "$plik" <<'PY'
+import json,sys
+p=sys.argv[1]; d=json.load(open(p)); del d["imie"]; json.dump(d,open(p,"w"),ensure_ascii=False)
+PY
+odrzuca   "brak pola imie"                                     add-notatka "x"
+printf '%s\n' "$kopia" > "$plik"
+przyjmuje "po przywróceniu kopii zapis działa" '"x"'           add-notatka "x"
+
 # Plik w schemacie 2 (bez klucza wznowienie): migracja przy pierwszym zapisie.
 python3 - "$plik" <<'PY'
 import json,sys

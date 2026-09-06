@@ -347,7 +347,7 @@ Chcesz inny model — zmień tę jedną linię (`opus`, `haiku`, albo `inherit`,
 
 ### Codex
 
-W Codex `csharp_tutor` dziedziczy model i poziom rozumowania z bieżącej sesji. Zmiana modelu wymaga ponownego przejścia testów behawioralnych; wynik należy zapisać z nazwą modelu i wersją klienta Codex.
+W Codex `csharp_tutor` ma model i poziom rozumowania przypięte w `.codex/agents/csharp-tutor.toml` (`model = "gpt-5.6-terra"`, `model_reasoning_effort = "high"`); zmienia się je tam, nie w sesji. Zmiana modelu wymaga ponownego przejścia testów behawioralnych; wynik należy zapisać z nazwą modelu i wersją klienta Codex.
 
 ## Materiały źródłowe
 
