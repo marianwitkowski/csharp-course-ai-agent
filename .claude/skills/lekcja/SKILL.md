@@ -31,7 +31,7 @@ Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` na całą sesję. **Zapisy
 2. **Wczytaj `wiedza/INDEX.md`** — kontekst: co było przed, co będzie po, na czym lekcja bazuje (pole `zalozenia` we frontmatterze)
 3. **Sprawdź `wiedza/AKTUALIZACJE.md`** — pole `aktualizacja` we frontmatterze mówi, czy dla tego modułu jest delta
 4. **Przykłady do eksperymentów — `wiedza/przyklady/kod/`** (pliki `.cs` gotowe do uruchomienia przez ucznia)
-5. Jeśli **brak gotowej lekcji** (wszystkie 49 lekcji jest gotowych — ten punkt dotyczy tematów spoza programu, np. dalszej pracy z uczniem po module 14):
+5. Jeśli **brak gotowej lekcji** (wszystkie 50 lekcji jest gotowych — ten punkt dotyczy tematów spoza programu, np. dalszej pracy z uczniem po module 14):
    - **W trybie student:** improwizuj wg INDEX + AKTUALIZACJE, trzymając strukturę 5 kroków z `wiedza/lekcje/SZABLON-LEKCJI.md`, ale **NIE zapisuj** planu nigdzie poza `kurs/lekcje/` (notatki ucznia). Powiedz: „Lekcja zaimprowizowana. Aby utrwalić jako gotowy plik w `wiedza/lekcje/` → tryb autora."
    - **W trybie autor:** możesz dopisać wygenerowany plan do `wiedza/lekcje/NN.MM-temat.md`
      **Przed zapisaniem przejdź checklistę** z końca `wiedza/lekcje/SZABLON-LEKCJI.md` — siedem punktów, każdy wywiedziony z błędu, który już popełniono w tym kursie. Najważniejszy: każdy komunikat kompilatora i każdy wynik pokazany uczniowi musisz najpierw zobaczyć na własnym ekranie.
@@ -40,6 +40,10 @@ Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` na całą sesję. **Zapisy
 - Gotowa lekcja w `wiedza/lekcje/` to **kanon scenariusza** — sokratejskie podejście już opracowane
 - `AKTUALIZACJE.md` prostuje to, co uczeń znajdzie w starszych poradnikach (`Newtonsoft.Json` → `System.Text.Json`, `class Program { static void Main }` → instrukcje najwyższego poziomu, `ArrayList` → `List<T>`)
 - Pierwszeństwo: **najpierw** uczeń poznaje bieżący, poprawny sposób. Stare formy pokazuj tylko jako „spotkasz to w cudzym kodzie, to znaczy tyle a tyle" — nigdy jako to, czego ma używać.
+
+## C0. Sprawdź wznowienie — czy lekcja była przerwana
+
+Pole `wznowienie` w `student.json` (odczytane w kroku A). `null` → lekcja od początku. Obiekt z `lekcja` równą `aktualna_lekcja` → **zacznij od kroku `krok`**, nie od kroku 1; jeśli `cwiczenie` jest wypełnione, uczeń był w środku tego ćwiczenia — najpierw poproś o aktualny stan pliku. Powiedz uczniowi, gdzie stanęliście, i powtórz `przeszkoda` jego słowami: „Ostatnio zatrzymaliśmy się na eksperymencie z `7 / 2` — zostawiłem cię z pytaniem, czemu wyszło 3. Masz odpowiedź?". Obiekt z **inną** `lekcja` niż `aktualna_lekcja` → nieaktualny, `postep wznowienie --wyczysc` i lekcja od początku.
 
 ## C. Sprawdź parking — czy uczeń pytał już o ten temat
 
@@ -146,8 +150,10 @@ Uczeń pisze rozwiązanie **sam**. Ty robisz review (skill: **review-kodu**) —
    - Kluczowe pytanie z lekcji (to, na które uczeń sam odpowiedział)
    - 2-3 przykłady kodu
    - 1 „pułapka" — to, w czym uczeń się potknął
-2. Wywołaj skill **postep** — zaktualizuj `student.json` (`add-lekcja`, ewentualnie `add-do-powtorki`)
+2. Wywołaj skill **postep** — zaktualizuj `student.json` (`add-lekcja`, ewentualnie `add-do-powtorki`). Warunek `add-lekcja` — sekcja „Zaliczenie lekcji" niżej.
 3. Sekcja **Po lekcji** w pliku lekcji mówi dokładnie, co zapisać i jaka jest następna lekcja
+
+Lekcja **przerwana** przed `add-lekcja` (koniec czasu, uczeń kończy) → `postep wznowienie --krok <1-5> [--cwiczenie <poziom>] --przeszkoda "<jedno zdanie>"` przed `end-session`. `krok` to krok lekcji, na którym stanęliście; `przeszkoda` to konkret, nie ocena: „nie widzi, czemu `7 / 2` daje 3", nie „słabo idzie".
 
 # Twarde zasady
 
@@ -161,11 +167,22 @@ Uczeń pisze rozwiązanie **sam**. Ty robisz review (skill: **review-kodu**) —
 - **Zwracaj uwagę na język.** „To nie działa" nie znaczy nic. Pytaj: „Co dokładnie napisałeś? Co wypisał kompilator — dokładnie, z kodem `CSxxxx`?"
 - **Formatowanie nie jest tematem lekcji.** Jedno zdanie o „Format on Save" i wracacie do treści.
 
+# Zaliczenie lekcji — jedyne miejsce, które to definiuje
+
+Inne skille (`cwiczenie`, `review-kodu`) nie dokładają warunków. `add-lekcja` wolno wywołać, gdy:
+
+| Ścieżka | Wymagane | Pomoc dopuszczalna | Potwierdzenie zrozumienia |
+| --- | --- | --- | --- |
+| pełna | 🔥 i ⭐ rozwiązane, uruchomione, wynik wklejony | pytania naprowadzające; jeśli uczeń dostał **kluczową linię** rozwiązania ⭐, robi jeszcze krótki wariant ⭐ sam (inne dane albo jeden dodatkowy warunek) | uczeń wyjaśnia jedną decyzję w swoim kodzie („czemu tu `TryParse`, a nie `Parse`?") |
+| skrócona | ⭐ rozwiązane samodzielnie (bramka niżej) | jedno pytanie naprowadzające | jak wyżej |
+
+⚡ i 🔧 są dodatkowe na obu ścieżkach — zapisuj je `add-cwiczenie`, ale ich brak nie blokuje `add-lekcja`. Wyjątek: **🏗 etap 5 miniprojektu** (lekcja 13.3, `--poziom projekt`) jest warunkiem wejścia do 14.1 — projekt końcowy zakłada, że uczeń już raz złożył cały materiał w jeden program (INDEX, sekcja „Miniprojekt etapowy"). Uczeń, który utknął w ⭐ na ścieżce pełnej: wróć do kroku 4, potem ⭐ jeszcze raz; nie zaliczaj „bo czas minął" — lekcja zostaje jako `aktualna_lekcja` na następną sesję.
+
 # Ścieżka skrócona — moduły 2-7 dla ucznia, który zna inny język
 
 Włącza ją `"sciezka": "skrocona"` w `student.json` (diagnostyka w onboardingu — `csharp-tutor.md`). Kanon 49 lekcji zostaje ten sam; zmienia się **ile z każdej lekcji robicie**, nie kolejność.
 
-**Dotyczy tylko modułów 2-7.** Moduł 1 (środowisko, `dotnet run plik.cs`) jest nowy dla każdego. Od modułu 8 (klasy, OOP, interfejsy, wyjątki, pliki, LINQ, projekt) ścieżki są identyczne — to, co w C# jest naprawdę własne, nie ma odpowiednika „w twoim języku" na tyle bliskiego, żeby skracać.
+**Tryb skrócony z tabeli niżej dotyczy modułów 2-7.** Moduł 1 (środowisko, `dotnet run plik.cs`) jest nowy dla każdego. Moduły 8-13 mają własny mechanizm — **zadanie sprawdzające na wejściu** (sekcja niżej). Moduł 14 jest identyczny na obu ścieżkach.
 
 | Krok lekcji | Ścieżka pełna | Ścieżka skrócona |
 | --- | --- | --- |
@@ -173,11 +190,20 @@ Włącza ją `"sciezka": "skrocona"` w `student.json` (diagnostyka w onboardingu
 | 2. Mostek | termin + najmniejszy program | jedno zdanie + najmniejszy program; pytanie: „co tu jest inne niż w twoim języku?" |
 | 3. Eksperyment | w całości | **w całości** — tu siedzą zaskoczenia specyficzne dla C#: `7 / 2`, `CS0165`, `CS8600`, `"30" + 5`, `TryParse` zamiast wyjątku, `foreach` po tekście |
 | 4. Pogłębienie | w całości | tylko sekcja **Pułapki** z pliku lekcji, jako lista do przeczytania |
-| 5. Ćwiczenie | 🔥 → ⭐ → ⚡ | od razu **⭐**; ⚡ na życzenie |
+| 5. Ćwiczenie | 🔥 → ⭐ → ⚡ | od razu **⭐**; 🔧 gdy lekcja ma zepsuty plik (proponuj zawsze); ⚡ na życzenie |
 
 Cel: lekcja zamiast 45-60 minut trwa 20-30, a uczeń nie traci **ani jednego** eksperymentu, w którym C# zachowuje się inaczej, niż by oczekiwał.
 
 **Bramka — ⭐ decyduje.** Ćwiczenie ⭐ rozwiązane samodzielnie, bez pomocy poza jednym pytaniem naprowadzającym → lekcja zaliczona, `add-lekcja` normalnie. Uczeń utknął w ⭐ (dwa cykle pytanie → brak postępu) → **dokończ tę lekcję w trybie pełnym**: wróć do kroku 4 z pliku, potem 🔥, potem ⭐ jeszcze raz. Drugie takie utknięcie w module → `postep set --field sciezka --value pelna` i powiedz uczniowi wprost: „Wracamy do pełnego tempa — nie dlatego, że coś jest nie tak, tylko dlatego, że C# różni się od tego, co znasz, w więcej miejscach, niż zakładaliśmy."
+
+## Moduły 8-13 na ścieżce skróconej — zadanie sprawdzające na wejściu
+
+Klasy, interfejsy, wyjątki, pliki i LINQ uczeń innego języka często zna — ale C# ma tu własne zaskoczenia (współdzielenie referencji, `base.ToString()`, `string?`, odroczone wykonanie LINQ), których zadanie nie wykryje. Stąd dwa elementy, których nie wolno pominąć, i jeden wybór.
+
+1. **Zacznij od ⭐ tej lekcji** jako zadania sprawdzającego: „Zanim zaczniemy — spróbuj tego. Jeśli pójdzie gładko, skrócimy lekcję". Uczeń wybiera: robi ⭐ teraz albo woli pełną lekcję. Wybór ucznia jest ostateczny, bez namawiania.
+2. ⭐ rozwiązane samodzielnie (najwyżej jedno pytanie naprowadzające) + uczeń wyjaśnił jedną decyzję → **krok 3 (Eksperyment) w całości**, potem sekcja Pułapki jako lista, potem `add-lekcja`. Kroki 1, 2, 4 pomijasz.
+3. ⭐ nie wyszło albo wyszło z pomocą → **pełna lekcja** od kroku 1, ⭐ jeszcze raz na końcu (bramka jak w modułach 2-7). Bez komentarza o poziomie.
+4. Dwa takie niepowodzenia z rzędu w jednym module → `postep set --field sciezka --value pelna`, tym samym zdaniem co w modułach 2-7.
 
 **Konstrukcje z przyszłych modułów.** Uczeń znający Pythona w module 4 napisze `foreach` albo listę. Ćwiczenia nadal oceniasz według **bieżącej** lekcji — bramka ma sprawdzić konstrukcję z lekcji, nie ogólną biegłość. Ale nie poprawiaj tego jako błędu: „działa; w kursie to moduł 6, dziś sprawdzamy `if`" — i poproś o wersję bez tego. Szczegóły w skillu `review-kodu`.
 

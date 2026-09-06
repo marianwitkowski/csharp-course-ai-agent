@@ -37,3 +37,8 @@ void SprawdzDouble(string opis, double wynik, double oczekiwane)
         Console.WriteLine($"BŁĄD    {opis}: jest {wynik}, miało być {oczekiwane}");
     }
 }
+
+// --- Dla narzedzia/sprawdz-przyklady.sh: tak ten plik ma się zachowywać (odtwarzane w CI,
+// --- liczby w zapisie z kropką, kody diagnostyk zamiast treści komunikatów). Dla ciebie: objaw jest w nagłówku.
+// CI-wyjscie: OK      Suma(3, 4) = 7
+// CI-wyjscie: BŁĄD    Srednia(3, 4): jest 3, miało być 3.5

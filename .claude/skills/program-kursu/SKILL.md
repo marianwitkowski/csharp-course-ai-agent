@@ -1,6 +1,6 @@
 ---
 name: program-kursu
-description: Generuje plik kurs/program.md — spersonalizowany program 14 modułów / 49 lekcji podstaw języka C# i platformy .NET, na podstawie wiedza/INDEX.md. Dostosowuje akcenty do celu ucznia (praca/narzędzia/hobby/szkoła) i deklarowanego tempa. Użyj raz, podczas onboardingu, po krótkim wywiadzie z uczniem.
+description: Generuje plik kurs/program.md — spersonalizowany program 14 modułów / 50 lekcji podstaw języka C# i platformy .NET, na podstawie wiedza/INDEX.md. Dostosowuje akcenty do celu ucznia (praca/narzędzia/hobby/szkoła) i deklarowanego tempa. Użyj raz, podczas onboardingu, po krótkim wywiadzie z uczniem.
 ---
 
 # Cel
@@ -9,7 +9,7 @@ Stworzyć `kurs/program.md` — plan kursu, do którego uczeń i tutor będą wr
 
 # Źródło prawdy
 
-**Zawsze** opieraj plan na pliku `wiedza/INDEX.md`. Nie wymyślaj modułów ani lekcji — tabele w INDEX.md to kanon: **14 modułów, 49 lekcji**.
+**Zawsze** opieraj plan na pliku `wiedza/INDEX.md`. Nie wymyślaj modułów ani lekcji — tabele w INDEX.md to kanon: **14 modułów, 50 lekcji**.
 
 Jeśli `wiedza/INDEX.md` nie istnieje → coś jest nie tak z repozytorium. Powiedz uczniowi i nie generuj programu z pamięci.
 
@@ -24,14 +24,14 @@ Wymagane od ucznia (przed wywołaniem skill):
 # Procedura
 
 1. **Wczytaj** `wiedza/INDEX.md` — źródło struktury kursu
-2. **Skopiuj kanon** (14 modułów, 49 lekcji)
+2. **Skopiuj kanon** (14 modułów, 50 lekcji)
 3. **Personalizuj** akcenty wg celu (patrz niżej)
 4. **Dostosuj tempo** wg dostępnego czasu
 5. **Zapisz** do `kurs/program.md`
 
 # Personalizacja wg celu
 
-Personalizacja dotyczy **akcentów i projektu końcowego**, nie struktury. Wszystkie 49 lekcji zostaje w tej samej kolejności.
+Personalizacja dotyczy **akcentów i projektu końcowego**, nie struktury. Wszystkie 50 lekcji zostaje w tej samej kolejności.
 
 - **Cel: praca (programista .NET)** → mocniej moduły 8-10 (klasy, OOP, interfejsy — to jest to, o co pytają na rozmowach) i 14.4 (testy); projekt: narzędzie przetwarzające dane z pliku, z testami
 - **Cel: narzędzia i automatyzacja** → mocniej moduł 12 (pliki, JSON, argumenty CLI) i 13 (LINQ do przemielenia danych); projekt: narzędzie zastępujące ręczną czynność, którą uczeń faktycznie wykonuje
@@ -54,7 +54,7 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 
 **Uwaga o module 14:** projekt rozciąga się na kilka sesji (lekcja 14.3 jest prowadzona wielokrotnie). Do szacunku doliczaj 2-4 dodatkowe sesje.
 
-**Uwaga o ścieżce skróconej:** lekcje modułów 2-7 (19 lekcji) trwają wtedy 20-30 minut zamiast 45-60 — odejmij od szacunku około 8-10 godzin. W `program.md` dopisz przy nagłówkach modułów 2-7: „*(ścieżka skrócona: eksperymenty i ćwiczenie ⭐; bramka — ⭐ samodzielnie)*". Struktura, numeracja i kolejność lekcji **bez zmian** — skrócona jest lekcja, nie program.
+**Uwaga o ścieżce skróconej:** lekcje modułów 2-7 (20 lekcji) trwają wtedy 20-30 minut zamiast 45-60, a w modułach 8-13 uczeń może skrócić lekcję zadaniem sprawdzającym na wejściu (skill `lekcja`) — tego drugiego nie wliczaj do szacunku, bo zależy od ucznia — odejmij od szacunku około 8-10 godzin. W `program.md` dopisz przy nagłówkach modułów 2-7: „*(ścieżka skrócona: eksperymenty i ćwiczenie ⭐; bramka — ⭐ samodzielnie)*", a przy modułach 8-13: „*(ścieżka skrócona: najpierw ⭐ jako zadanie sprawdzające; udane → tylko eksperymenty i pułapki)*". Struktura, numeracja i kolejność lekcji **bez zmian** — skrócona jest lekcja, nie program.
 
 **Nie sprzedawaj tych liczb jako obietnicy.** Uczeń, który usłyszy „10 tygodni" i po 12 jest w połowie, uzna, że mu nie idzie — a idzie mu normalnie.
 
@@ -64,7 +64,7 @@ Lekcja trwa 40-60 minut plus ćwiczenie.
 # Program kursu C# / .NET — [imię]
 
 **Cel:** [praca / narzędzia / hobby / szkoła]
-**Ścieżka:** [pełna / skrócona w modułach 2-7]
+**Ścieżka:** [pełna / skrócona — moduły 2-7 w trybie skróconym, 8-13 z zadaniem sprawdzającym na wejściu]
 **Tempo:** [X lekcji / tydzień]
 **Rozpoczęto:** YYYY-MM-DD
 **Wersja .NET:** [z srodowisko.dotnet_version] (minimum kursu: 10.0)
@@ -90,7 +90,7 @@ gdzie skończyłeś.
 - Lekcja 2.3: Konwersje typów — `Parse`, `TryParse`
 - Lekcja 2.4: Operatory i wyrażenia
 
-[...kontynuuj wg INDEX.md, wszystkie 14 modułów, 49 lekcji...]
+[...kontynuuj wg INDEX.md, wszystkie 14 modułów, 50 lekcji...]
 
 ## Projekt końcowy (Moduł 14)
 

@@ -2,7 +2,7 @@
 
 Interaktywny kurs podstaw **C#** dla **kompletnie początkujących**, prowadzony przez agenta AI (działającego w Claude Code lub Codex) metodą **sokratejską** — uczeń sam dochodzi do rozwiązań przez pytania naprowadzające.
 
-Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **49 lekcji w 14 modułach**.
+Od `Console.WriteLine("Cześć")` do własnego narzędzia wiersza poleceń z testami: **50 lekcji w 14 modułach**.
 
 ## Czym ten kurs jest, a czym nie jest
 
@@ -88,14 +88,15 @@ Tutor kursu (`csharp-tutor` w Claude Code, `csharp_tutor` w Codex) przeprowadzi 
 │       ├── pomoc/                      # lista komend w czacie
 │       └── postep/                     # śledzenie postępu (narzędzie w C#)
 ├── wiedza/                             # baza wiedzy kursu
-│   ├── INDEX.md                        # struktura 49 lekcji — źródło prawdy
+│   ├── INDEX.md                        # struktura 50 lekcji — źródło prawdy
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
 │   ├── przyklady/zepsute/              # 10 programów z jednym błędem — ćwiczenia „napraw"
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework → .NET 10
 ├── narzedzia/
 │   ├── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)
-│   └── sprawdz-przyklady.sh            # kompilacja wszystkich przykładów .cs i postep.cs
+│   ├── sprawdz-przyklady.sh            # kompilacja przykładów .cs i postep.cs; zepsute uruchamiane i porównywane z nagłówkami CI-
+│   └── testy-postep.sh                 # postep odrzuca błędne operacje bez zmiany student.json
 ├── .github/workflows/walidacja.yml     # to samo w GitHub Actions przy każdym push i PR
 ├── kurs/
 │   ├── JAK-PISAC-KOD.md                # ⬅ przeczytaj na początku: workflow ćwiczeń
@@ -112,7 +113,7 @@ Tutor kursu (`csharp-tutor` w Claude Code, `csharp_tutor` w Codex) przeprowadzi 
 
 Integrację z Codex tworzą `AGENTS.md` (routing), `.codex/agents/csharp-tutor.toml` (definicja agenta) oraz `.agents/skills/` (adaptery istniejących skilli). Kanoniczna treść tutora i skilli nadal znajduje się w `.claude/`, dzięki czemu oba hosty używają tych samych reguł kursu.
 
-## Program kursu — 14 modułów, 49 lekcji
+## Program kursu — 14 modułów, 50 lekcji
 
 | Moduł | Temat | Lekcje |
 | --- | --- | --- |
@@ -132,9 +133,9 @@ Integrację z Codex tworzą `AGENTS.md` (routing), `.codex/agents/csharp-tutor.t
 | 14 | Projekt i dalsze kroki — własne narzędzie, Git, testy, gałęzie i scalanie, AI, mapa ekosystemu | 7 |
 | 15 | **Dodatek po kursie (opcjonalny):** `Task`, `async`/`await`, `Task.WhenAll` — na własnym projekcie, z testami | 2 |
 
-Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md). Moduł 15 nie wlicza się do 49 lekcji kursu — to dwie lekcje dla tych, którzy idą dalej w stronę ASP.NET Core.
+Źródłem prawdy dla struktury jest [`wiedza/INDEX.md`](wiedza/INDEX.md). Moduł 15 nie wlicza się do 50 lekcji kursu — to dwie lekcje dla tych, którzy idą dalej w stronę ASP.NET Core.
 
-> **Stan gotowych scenariuszy:** wszystkie **49 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
+> **Stan gotowych scenariuszy:** wszystkie **50 lekcji** ma napisane pełne scenariusze sokratejskie w `wiedza/lekcje/` — każdy komunikat kompilatora i każdy pokazany wynik został wcześniej uruchomiony na .NET 10. Źródłem prawdy dla struktury kursu jest `wiedza/INDEX.md`.
 
 **Czego w kursie nie ma:** aplikacji okienkowych (Windows Forms, WPF, WinUI), aplikacji webowych (ASP.NET Core, Blazor), baz danych i Entity Framework, wzorców architektonicznych (MVC, MVVM, DDD, DI), własnych typów generycznych, wielowątkowości. `async`/`await` jest w **dodatku** (moduł 15), nie w rdzeniu. To nie przeoczenie — każda z tych rzeczy wymaga fundamentu, który ten kurs buduje. Pełna lista wraz z uzasadnieniami jest w `wiedza/INDEX.md`; mapa dalszych kroków czeka w lekcji 14.7.
 
@@ -196,7 +197,7 @@ Przejście do wyjaśnienia nie jest kwestią wyczucia — agent ma listę sygna�
 | **2. Mostek** | Dopiero teraz pada termin techniczny i najmniejszy działający program |
 | **3. Eksperyment** | Piszesz, uruchamiasz, wklejasz wynik. Po każdym kroku pytanie: „czy tego się spodziewałeś?" |
 | **4. Pogłębienie** | Przypadki brzegowe i celowe psucie kodu, żeby zobaczyć komunikaty błędów |
-| **5. Ćwiczenie** | Zadania w trzech poziomach: 🔥 rozgrzewka, ⭐ główne, ⚡ gwiazdka — a od modułu 4 także 🔧 naprawa: dostajesz cudzy program z jednym błędem i objawem w nagłówku, bez przyczyny |
+| **5. Ćwiczenie** | Zadania w trzech poziomach: 🔥 rozgrzewka, ⭐ główne, ⚡ gwiazdka — a od modułu 4 także 🔧 naprawa: dostajesz cudzy program z jednym błędem i objawem w nagłówku, bez przyczyny. W pięciu lekcjach (5.3, 7.3, 9.4, 12.4, 13.3) dodatkowo 🏗 etap miniprojektu — jeden program „Dziennik nauki", który rośnie razem z tobą aż do projektu końcowego |
 
 Najcenniejszy moment lekcji to ten, w którym program **działa**, ale wypisuje coś innego, niż zakładałeś. Materiały są tak napisane, żeby to prowokować — lekcja o zmiennych kończy się pytaniem, czemu `7 / 2` daje `3`, i **nie odpowiada na nie**. Odpowiedź przychodzi lekcję później, gdy pytanie już zdążyło uwierać.
 

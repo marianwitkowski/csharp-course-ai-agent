@@ -54,7 +54,7 @@ dotnet --list-sdks       # które SDK są zainstalowane
 dotnet --list-runtimes   # które środowiska uruchomieniowe
 ```
 
-**Ważne rozróżnienie:** uczeń może mieć zainstalowane samo **środowisko uruchomieniowe** (runtime) bez **SDK**. Wtedy `dotnet --version` działa, ale `dotnet run` nie. Rozstrzyga `dotnet --list-sdks` — jeśli wypisze pustą listę, brakuje SDK, nie .NET-a jako takiego. Powiedz to uczniowi wprost, bo komunikat błędu tego nie tłumaczy.
+**Ważne rozróżnienie:** uczeń może mieć zainstalowane samo **środowisko uruchomieniowe** (runtime) bez **SDK**. Wtedy `dotnet --version` **nie działa** — zamiast numeru wersji wypisuje błąd o braku SDK — choć `dotnet --list-runtimes` coś pokazuje. Rozstrzyga `dotnet --list-sdks` — jeśli wypisze pustą listę, brakuje SDK, nie .NET-a jako takiego. Powiedz to uczniowi wprost, bo komunikat błędu tego nie tłumaczy.
 
 **Częsty przypadek:** .NET jest zainstalowany, ale nie ma go w `PATH`. Zanim uznasz, że brakuje — sprawdź typowe lokalizacje:
 ```bash
@@ -63,7 +63,7 @@ ls /opt/homebrew/bin/dotnet 2>/dev/null          # macOS, Homebrew na Apple Sili
 ls /usr/share/dotnet/dotnet 2>/dev/null          # Linux, pakiet dystrybucji
 ls "$HOME/.dotnet/dotnet" 2>/dev/null            # instalacja skryptem, per użytkownik
 ```
-Jeśli plik istnieje, a `dotnet --version` nie działa → problem z `PATH`, patrz krok 3B.
+Jeśli plik istnieje, a `dotnet` w ogóle nie jest znane w terminalu → problem z `PATH`, patrz krok 3B. Jeśli `dotnet` odpowiada, ale `--version` narzeka na brak SDK → sam runtime, patrz wyżej.
 
 # Krok 2: instalacja — gałąź wg systemu
 

@@ -14,3 +14,8 @@ catch (FormatException)
 }
 
 Console.WriteLine($"Podwojone: {liczba * 2}");
+
+// --- Dla narzedzia/sprawdz-przyklady.sh: tak ten plik ma się zachowywać (odtwarzane w CI,
+// --- liczby w zapisie z kropką, kody diagnostyk zamiast treści komunikatów). Dla ciebie: objaw jest w nagłówku.
+// CI-wejscie: abc
+// CI-wyjscie: Podaj liczbę: Podwojone: 0

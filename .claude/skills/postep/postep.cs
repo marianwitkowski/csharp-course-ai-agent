@@ -29,17 +29,21 @@
 //   read [--field <sciezka.kropkowa>]
 //   set --field <sciezka> --value <wartosc>
 //   add-lekcja --id X.Y --trudnosc 1-5
-//   add-cwiczenie --lekcja X.Y --poziom warmup|main|star|fix
+//   add-cwiczenie --lekcja X.Y --poziom warmup|main|star|fix|projekt
 //   add-mocna-strona "tekst"
 //   add-do-powtorki --temat T --lekcja X.Y
-//   review-do-powtorki --temat T --wynik ok|zle
+//   review-do-powtorki --temat T --wynik ok|pomoc|zle
 //   due
 //   remove-do-powtorki --temat T
 //   update-srodowisko [--system S] [--dotnet-cmd C] [--dotnet-version V] [--shell SH] [--edytor E]
 //   add-notatka "tekst"
+//   wznowienie --krok 1-5 [--cwiczenie warmup|main|star|fix|projekt] [--przeszkoda "tekst"]
+//   wznowienie --wyczysc
 //   end-session
 //   recovery
 //
+// Schemat 3 (2026-09): obiekt `wznowienie` — gdzie dokładnie przerwano lekcję
+// (krok 1-5, aktywne ćwiczenie, ostatnia przeszkoda). `add-lekcja` czyści go.
 // Schemat 2 (2026-09): pole `sciezka` ("pelna" | "skrocona") i harmonogram
 // powtórek — każdy wpis `do_powtorki` ma `poziom` (0-4) i `next_review`.
 // Plik w schemacie 1 jest migrowany w locie przy pierwszym zapisie.
@@ -48,7 +52,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-const int WersjaSchematu = 2;
+const int WersjaSchematu = 3;
 const int MaxMocnychStron = 7;
 const int MaxNotatek = 40; // wpisy "parking:" muszą przeżyć kilka modułów
 
@@ -86,7 +90,7 @@ var znaneKomendy = new[]
 {
     "init", "read", "set", "add-lekcja", "add-cwiczenie", "add-mocna-strona",
     "add-do-powtorki", "review-do-powtorki", "due", "remove-do-powtorki",
-    "update-srodowisko", "add-notatka", "end-session", "recovery",
+    "update-srodowisko", "add-notatka", "wznowienie", "end-session", "recovery",
 };
 
 if (!znaneKomendy.Contains(komenda))
@@ -119,6 +123,7 @@ try
         case "remove-do-powtorki": RemoveDoPowtorki(reszta); break;
         case "update-srodowisko": UpdateSrodowisko(reszta); break;
         case "add-notatka": AddNotatka(reszta); break;
+        case "wznowienie": Wznowienie(reszta); break;
         case "end-session": EndSession(); break;
         case "recovery": Recovery(); break;
     }
@@ -176,6 +181,7 @@ try
             ["mocne_strony"] = new JsonArray(),
             ["do_powtorki"] = new JsonArray(),
             ["notatki_tutora"] = new JsonArray(),
+            ["wznowienie"] = null,
         };
 
         Directory.CreateDirectory(Path.GetDirectoryName(plikStudent)!);
@@ -210,6 +216,10 @@ try
         }
         var wartosc = f.GetValueOrDefault("value", "");
 
+        if (pole == "aktualna_lekcja")
+        {
+            SprawdzIdLekcji(wartosc);
+        }
         var stan = WczytajStan();
         UstawSciezke(stan, pole, wartosc);
         Zapisz(stan);
@@ -229,6 +239,7 @@ try
         {
             throw new InvalidOperationException("trudnosc musi być liczbą 1-5");
         }
+        SprawdzIdLekcji(id);
 
         var stan = WczytajStan();
         var lekcje = Tablica(stan, "ukonczone_lekcje");
@@ -241,6 +252,7 @@ try
             istniejaca["data"] = Dzisiaj();
             istniejaca["trudnosc_subiektywna"] = trudnosc;
             stan["ostatnia_sesja"] = Dzisiaj();
+            stan["wznowienie"] = null;
             Zapisz(stan);
             Console.WriteLine($"OK: zaktualizowano lekcję {id} (trudność {trudnosc})");
             return;
@@ -253,6 +265,7 @@ try
             ["trudnosc_subiektywna"] = trudnosc,
         });
         stan["ostatnia_sesja"] = Dzisiaj();
+        stan["wznowienie"] = null;
         Zapisz(stan);
         Console.WriteLine($"OK: dopisano lekcję {id} (trudność {trudnosc})");
     }
@@ -264,11 +277,12 @@ try
         {
             throw new InvalidOperationException("brak wymaganego argumentu --lekcja");
         }
+        SprawdzIdLekcji(lekcja);
         var poziom = f.GetValueOrDefault("poziom", "");
-        if (poziom is not ("warmup" or "main" or "star" or "fix"))
+        if (poziom is not ("warmup" or "main" or "star" or "fix" or "projekt"))
         {
             throw new InvalidOperationException(
-                $"poziom musi być warmup, main, star albo fix (dostałem \"{poziom}\")");
+                $"poziom musi być warmup, main, star, fix albo projekt (dostałem \"{poziom}\")");
         }
 
         var stan = WczytajStan();
@@ -358,9 +372,9 @@ try
             throw new InvalidOperationException("brak wymaganego argumentu --temat");
         }
         var wynik = f.GetValueOrDefault("wynik", "");
-        if (wynik is not ("ok" or "zle"))
+        if (wynik is not ("ok" or "pomoc" or "zle"))
         {
-            throw new InvalidOperationException($"wynik musi być ok albo zle (dostałem \"{wynik}\")");
+            throw new InvalidOperationException($"wynik musi być ok, pomoc albo zle (dostałem \"{wynik}\")");
         }
 
         var stan = WczytajStan();
@@ -378,6 +392,16 @@ try
             wpis["next_review"] = ZaDni(odstepyPowtorek[0]);
             Zapisz(stan);
             Console.WriteLine($"OK: {temat} — od nowa, powtórka {wpis["next_review"]}");
+            return;
+        }
+
+        // Odpowiedź po naprowadzeniu: poziom stoi w miejscu, termin przesuwa się
+        // o bieżący odstęp. Rozpoznanie po wskazówce to nie to samo, co odtworzenie.
+        if (wynik == "pomoc")
+        {
+            wpis["next_review"] = ZaDni(odstepyPowtorek[poziom]);
+            Zapisz(stan);
+            Console.WriteLine($"OK: {temat} — z pomocą, poziom {poziom} bez zmian, następna powtórka {wpis["next_review"]}");
             return;
         }
 
@@ -489,6 +513,46 @@ try
         Console.WriteLine("OK: dopisano notatkę tutora");
     }
 
+    // Gdzie przerwano lekcję — żeby następna sesja zaczęła od właściwego kroku,
+    // a nie od numeru lekcji i wolnych notatek. `add-lekcja` czyści to pole.
+    void Wznowienie(string[] a)
+    {
+        var f = Flagi(a, out _);
+        var stan = WczytajStan();
+
+        if (f.ContainsKey("wyczysc"))
+        {
+            stan["wznowienie"] = null;
+            Zapisz(stan);
+            Console.WriteLine("OK: wznowienie wyczyszczone");
+            return;
+        }
+
+        if (!f.TryGetValue("krok", out var tekstKroku)
+            || !int.TryParse(tekstKroku, out var krok) || krok < 1 || krok > 5)
+        {
+            throw new InvalidOperationException("krok musi być liczbą 1-5 (albo podaj --wyczysc)");
+        }
+        var cwiczenie = f.GetValueOrDefault("cwiczenie", "");
+        if (cwiczenie is not ("" or "warmup" or "main" or "star" or "fix" or "projekt"))
+        {
+            throw new InvalidOperationException(
+                $"cwiczenie musi być warmup, main, star, fix albo projekt (dostałem \"{cwiczenie}\")");
+        }
+
+        stan["wznowienie"] = new JsonObject
+        {
+            ["lekcja"] = stan["aktualna_lekcja"]?.GetValue<string>() ?? "",
+            ["krok"] = krok,
+            ["cwiczenie"] = cwiczenie,
+            ["przeszkoda"] = f.GetValueOrDefault("przeszkoda", ""),
+            ["data"] = Dzisiaj(),
+        };
+        Zapisz(stan);
+        Console.WriteLine($"OK: wznowienie — lekcja {stan["wznowienie"]!["lekcja"]}, krok {krok}"
+                          + (cwiczenie.Length > 0 ? $", ćwiczenie {cwiczenie}" : ""));
+    }
+
     void EndSession()
     {
         var stan = WczytajStan();
@@ -583,6 +647,11 @@ try
         {
             stan["sciezka"] = "pelna";
         }
+        // Migracja 2 → 3: klucz `wznowienie` istnieje zawsze (null = lekcja nieprzerwana).
+        if (!stan.ContainsKey("wznowienie"))
+        {
+            stan["wznowienie"] = null;
+        }
         foreach (var wpis in Tablica(stan, "do_powtorki").OfType<JsonObject>())
         {
             wpis["poziom"] ??= 0;
@@ -654,6 +723,22 @@ try
         var nowa = new JsonArray();
         stan[klucz] = nowa;
         return nowa;
+    }
+
+    // Id lekcji „M.L" musi mieć plik wiedza/lekcje/MM.LL-*.md — inaczej agent
+    // zapisałby literówkę („4.11") albo lekcję spoza kursu („99.99") jako ukończoną.
+    void SprawdzIdLekcji(string id)
+    {
+        var czesci = id.Split('.');
+        if (czesci.Length != 2 || !int.TryParse(czesci[0], out var m) || !int.TryParse(czesci[1], out var l))
+        {
+            throw new InvalidOperationException($"id lekcji ma postać M.L, np. 4.1 (dostałem \"{id}\")");
+        }
+        var katalogLekcji = Path.Combine(katalog, "wiedza", "lekcje");
+        if (Directory.GetFiles(katalogLekcji, $"{m:D2}.{l:D2}-*.md").Length == 0)
+        {
+            throw new InvalidOperationException($"lekcja {id} nie istnieje w wiedza/lekcje/");
+        }
     }
 
     void PrzytnijDoOstatnich(JsonObject stan, string klucz, int ile)
@@ -776,10 +861,15 @@ static void UstawSciezke(JsonObject stan, string kropkowa, string wartosc)
         throw new InvalidOperationException(
             $"pole \"{kropkowa}\" nie istnieje (brak klucza \"{ostatni}\")");
     }
-    if (rodzic[ostatni] is JsonValue biezaca && biezaca.GetValueKind() != JsonValueKind.String)
+    if (!(rodzic[ostatni] is JsonValue biezaca && biezaca.GetValueKind() == JsonValueKind.String))
     {
         throw new InvalidOperationException(
-            $"pole \"{kropkowa}\" nie jest tekstem — `set` działa tylko na polach tekstowych");
+            $"pole \"{kropkowa}\" nie jest tekstem — `set` działa tylko na polach tekstowych "
+            + "(listy i obiekty mają własne komendy)");
+    }
+    if (kropkowa == "sciezka" && wartosc is not ("pelna" or "skrocona"))
+    {
+        throw new InvalidOperationException($"sciezka musi być pelna albo skrocona (dostałem \"{wartosc}\")");
     }
 
     rodzic[ostatni] = wartosc;
@@ -810,6 +900,7 @@ static void Uzycie()
                  "add-cwiczenie", "add-do-powtorki", "add-lekcja", "add-mocna-strona",
                  "add-notatka", "due", "end-session", "init", "read", "recovery",
                  "remove-do-powtorki", "review-do-powtorki", "set", "update-srodowisko",
+                 "wznowienie",
              })
     {
         Console.Error.WriteLine($"  {nazwa}");

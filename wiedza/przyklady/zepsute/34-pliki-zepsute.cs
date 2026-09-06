@@ -9,3 +9,8 @@ foreach (string wpis in wpisy)
 }
 
 Console.WriteLine(File.ReadAllText("dziennik.txt"));
+
+// --- Dla narzedzia/sprawdz-przyklady.sh: tak ten plik ma się zachowywać (odtwarzane w CI,
+// --- liczby w zapisie z kropką, kody diagnostyk zamiast treści komunikatów). Dla ciebie: objaw jest w nagłówku.
+// CI-wyjscie: środa: 20 min
+// CI-plik: dziennik.txt=środa: 20 min

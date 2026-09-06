@@ -25,3 +25,7 @@ class Produkt : IOpisywalny
         return $"{nazwa} — {cena} zł";
     }
 }
+
+// --- Dla narzedzia/sprawdz-przyklady.sh: tak ten plik ma się zachowywać (odtwarzane w CI,
+// --- liczby w zapisie z kropką, kody diagnostyk zamiast treści komunikatów). Dla ciebie: objaw jest w nagłówku.
+// CI-blad: CS0535

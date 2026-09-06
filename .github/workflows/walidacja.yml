@@ -20,3 +20,6 @@ jobs:
 
       - name: Przykłady .cs i narzędzie postep kompilują się na .NET 10
         run: bash narzedzia/sprawdz-przyklady.sh
+
+      - name: Narzędzie postep odrzuca błędne operacje bez zmiany stanu
+        run: bash narzedzia/testy-postep.sh

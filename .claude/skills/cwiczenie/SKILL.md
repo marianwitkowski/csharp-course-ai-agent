@@ -17,7 +17,7 @@ Dla każdej lekcji wygeneruj zestaw 3 ćwiczeń:
 | Główne ⭐     | Czy umie złożyć z poznanych klocków              | 15-20 min  | „Pomyśl, zanim napiszesz" |
 | Gwiazdka ⚡   | Wyzwanie — łączy bieżącą lekcję z poprzednimi    | 20-30 min  | „Może być trudne, to OK" |
 
-Uczeń wybiera, ile robi. Minimum: rozgrzewka + główne.
+Uczeń wybiera, ile robi. **Warunek zaliczenia lekcji definiuje skill `lekcja`** (sekcja „Zaliczenie lekcji") — ten skill tylko generuje zadania i nie dokłada własnych warunków.
 
 ## Czwarty poziom — 🔧 naprawa (od modułu 4, w lekcjach, które mają zepsuty plik)
 
@@ -34,9 +34,23 @@ Procedura:
 4. Po naprawie uczeń **uruchamia ponownie** i wkleja wynik; od lekcji 7.1 dodaje sprawdzenie, które przed naprawą mówiło `BŁĄD`.
 5. `postep add-cwiczenie --lekcja X.Y --poziom fix`.
 
-Kolejność: 🔧 po ⭐, przed ⚡. Uczeń, który zrobił ⭐ i 🔧, ma lekcję zaliczoną tak samo jak po ⭐ i ⚡. Na ścieżce skróconej 🔧 jest **obowiązkowe** — to ono najlepiej łapie różnice między C# a językiem, który uczeń zna.
+Kolejność: 🔧 po ⭐, przed ⚡ (i przed 🏗, jeśli lekcja ma etap miniprojektu). Na ścieżce skróconej proponuj 🔧 zawsze, gdy plik istnieje — to ono najlepiej łapie różnice między C# a językiem, który uczeń zna — ale o zaliczeniu decyduje ⭐ (skill `lekcja`).
 
 **Nie mów, gdzie jest błąd.** Nagłówek pliku celowo podaje objaw, nie przyczynę. Jeśli uczeń utknął po dwóch cyklach — zawęź: „w której linii wartość jest jeszcze dobra, a w której już zła?"
+
+## Piąty poziom — 🏗 miniprojekt etapowy (5 lekcji: 5.3, 7.3, 9.4, 12.4, 13.3)
+
+| Poziom | Cel | Czas | Wskazówka |
+| --- | --- | --- | --- |
+| Miniprojekt 🏗 | Jeden program („dziennik nauki") rozwijany przez cały kurs — połączenie umiejętności, nie nowa składnia | 30-60 min | „To twój program — rozwijasz to, co już działa" |
+
+Treść każdego etapu jest **w pliku lekcji** (krok 5, pozycja 🏗) i w `wiedza/INDEX.md`, sekcja „Miniprojekt etapowy" — nie wymyślaj własnych wersji; etap N zakłada dokładnie ten kształt etapu N-1. Uczeń kopiuje poprzedni plik (`kurs/zadania/miniprojekt/etapN.cs`) i przebudowuje. Zapis: `postep add-cwiczenie --lekcja X.Y --poziom projekt`.
+
+Zasady:
+- Nie piszesz kodu za ucznia — jak przy każdym ćwiczeniu. Etap podaje nazwy metod i klas celowo, żeby kolejny etap miał na czym stanąć; reszta jest jego.
+- Każdy etap ma trzy przypadki do sprawdzenia ręcznie i **jedną decyzję do wyjaśnienia** — nie zaliczaj etapu bez tego wyjaśnienia (to ono mierzy zrozumienie, nie działający plik).
+- Etap 5 (13.3) to zadanie integrujące przed modułem 14: **najwyżej jedno pytanie naprowadzające na cały etap**. Uczeń, który utknął, dostaje wskazanie, *w której lekcji* jest odpowiedź, nie odpowiedź. To próba generalna projektu końcowego — o tym, że etap 5 jest bramką do 14.1, decyduje skill `lekcja`.
+- Kolejność w lekcji: 🏗 po ⭐ (i po 🔧, jeśli jest), przed ⚡ — etap jest dłuższy niż gwiazdka, więc gwiazdka zostaje na życzenie.
 
 **Sekcja „Krok 5 — Ćwiczenie" w pliku lekcji zwykle podaje już trzy propozycje.** Zacznij od nich — są dopasowane do materiału. Generuj nowe tylko, gdy uczeń prosi o więcej albo tamte okazały się źle wycelowane.
 

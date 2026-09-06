@@ -19,3 +19,8 @@ else
 {
     Console.WriteLine("to nie jest liczba");
 }
+
+// --- Dla narzedzia/sprawdz-przyklady.sh: tak ten plik ma się zachowywać (odtwarzane w CI,
+// --- liczby w zapisie z kropką, kody diagnostyk zamiast treści komunikatów). Dla ciebie: objaw jest w nagłówku.
+// CI-wejscie: 18
+// CI-wyjscie: Podaj wiek: niepełnoletni

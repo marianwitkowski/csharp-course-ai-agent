@@ -2,7 +2,7 @@
 
 > **Po co ten plik?** To **źródło prawdy** dla struktury kursu: ile jest modułów, ile lekcji, w jakiej kolejności i na czym każda się opiera. Skille `program-kursu` i `lekcja` czytają go w pierwszej kolejności. Jeśli inny plik podaje inną liczbę lekcji — to błąd dokumentacji, nie zmiana programu.
 
-> **Status gotowych lekcji sokratejskich:** 49/49 w `wiedza/lekcje/` — **kurs kompletny**.
+> **Status gotowych lekcji sokratejskich:** 50/50 w `wiedza/lekcje/` — **kurs kompletny**.
 
 > **Uwaga o środowisku:** kurs jest **konsolowy i wieloplatformowy**. Cały kod działa tak samo na macOS, Linuksie i Windows, uruchamiany przez `dotnet`. Nie ma tu Windows Forms, WPF, WinUI ani Web Forms — dlaczego, wyjaśnia sekcja „Czego w kursie nie ma".
 
@@ -14,7 +14,7 @@
 
 | Katalog | Zawartość | Rola |
 | --- | --- | --- |
-| `wiedza/lekcje/` | 49 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
+| `wiedza/lekcje/` | 50 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
 | `wiedza/przyklady/kod/` | minimalne, działające programy `.cs` | materiał do eksperymentów i inspiracja na ćwiczenia |
 | `wiedza/przyklady/zepsute/` | 10 programów z **jednym** błędem każdy, z objawem w nagłówku | ćwiczenia 🔧 naprawa — patrz sekcja „Zepsute programy" |
 | `wiedza/AKTUALIZACJE.md` | delta „.NET Framework (2020) → .NET 10 (2026)" | prostuje to, co uczeń znajdzie w starszych poradnikach |
@@ -25,7 +25,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 
 ---
 
-## Program — 14 modułów, 49 lekcji
+## Program — 14 modułów, 50 lekcji
 
 ### Moduł 1 — Wprowadzenie i środowisko (2)
 
@@ -83,13 +83,14 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 6.3 | `Dictionary<TKey,TValue>` — klucz → wartość | `16-dictionary.cs` | `[moduł 6]` — `TryGetValue` |
 | 6.4 | Tablice wielowymiarowe i tablice tablic | `17-wielowymiarowe.cs` | — |
 
-### Moduł 7 — Metody (3)
+### Moduł 7 — Metody (4)
 
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
 | 7.1 | Metody — parametry, wartość zwracana, `void`; kontrakt metody sprawdzany przez kod (`Sprawdz`) | `18-metody.cs` | — |
 | 7.2 | Parametry domyślne i nazwane; przeciążanie do rozpoznania | `19-parametry.cs` | — |
 | 7.3 | `ref`, `out`, zasięg zmiennych | `20-ref-out.cs` | — |
+| 7.4 | Debugger — breakpoint, F10/F11, panel zmiennych, stos wywołań; kiedy zamiast `Console.WriteLine` | — (krokami przez `18-metody-zepsute.cs`) | — |
 
 > **Testowanie zaczyna się w 7.1, nie w 14.4.** Krok 3.G lekcji 7.1 wprowadza `Sprawdz(opis, wynik, oczekiwane)` — sprawdzenie kontraktu metody napisane z `if` i interpolacji, bez żadnego narzędzia. Uczeń psuje `Dodaj` i widzi, że jedno z trzech sprawdzeń błędu nie łapie — to uczy doboru przypadków wcześniej niż xUnit. Od 7.1 ćwiczenia ⭐ i ⚡ mogą wymagać wywołań `Sprawdz`; xUnit w 14.4 jest wtedy „gotowym `Sprawdz`", nie nową filozofią.
 
@@ -211,7 +212,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 4. Decyzje | 3 |
 | 5. Pętle | 3 |
 | 6. Kolekcje | 4 |
-| 7. Metody | 3 |
+| 7. Metody | 4 |
 | 8. Klasy i obiekty | 5 |
 | 9. Programowanie obiektowe | 4 |
 | 10. Interfejsy | 3 |
@@ -219,11 +220,11 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 12. Pliki i dane | 4 |
 | 13. LINQ | 3 |
 | 14. Projekt i dalsze kroki | 7 |
-| **Razem — kurs** | **49** |
+| **Razem — kurs** | **50** |
 | 15. Dodatek po kursie: asynchroniczność (opcjonalny) | 2 |
-| **Razem — pliki lekcji** | **51** |
+| **Razem — pliki lekcji** | **52** |
 
-**Ten plik jest źródłem prawdy dla liczby 49** (lekcje kursu) i **51** (pliki w `wiedza/lekcje/`, z dodatkiem). Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
+**Ten plik jest źródłem prawdy dla liczby 50** (lekcje kursu) i **52** (pliki w `wiedza/lekcje/`, z dodatkiem). Jeśli inny plik podaje inną liczbę — to błąd dokumentacji.
 
 ---
 
@@ -248,6 +249,20 @@ Każdy plik jest w materiale **do tej lekcji włącznie** — bez konstrukcji z 
 
 Reszta lekcji (moduły 2-3 i pozostałe lekcje modułów 4-13) nie ma jeszcze plików 🔧 — to pierwsza partia; format sprawdzony na dziesięciu.
 
+## Miniprojekt etapowy 🏗 — jeden program przez cały kurs
+
+Przez trzynaście modułów uczeń pisze osobne, jednorazowe ćwiczenia; pierwszy program, który **rośnie**, pojawiał się dopiero w 14.1. Miniprojekt to pięć etapów jednego programu — **dziennika nauki** (sesje: minuty i temat) — dopisanych jako poziom 🏗 do pięciu istniejących lekcji. Każdy etap zaczyna się od skopiowania poprzedniego pliku i przebudowania go tym, co właśnie weszło; nie ma nowej składni, jest łączenie. Pełne treści etapów (wymagania, trzy przypadki do sprawdzenia ręcznie, jedna decyzja do wyjaśnienia) są w kroku 5 tych lekcji. Wszystkie pięć rozwiązano na .NET 10 wyłącznie materiałem z lekcji do danego miejsca.
+
+| Po lekcji | Plik | Zakres | Czego etap dowodzi |
+| --- | --- | --- | --- |
+| 5.3 | `kurs/zadania/miniprojekt/etap1.cs` | `ReadLine` + `TryParse`, `if`, `while` z `break`/`continue`; suma, maksimum, średnia bez list i metod | uczeń składa wejście, walidację, warunki i pętlę w działający program |
+| 7.3 | `etap2.cs` | przebudowa na metody: `SprobujWczytacMinuty(…, out …)`, `Ocena`, `Srednia`; `List<int>`; `Sprawdz` z 7.1 nad pętlą | ten sam program w funkcjach; kontrakt metody sprawdzany kodem; haczyk `CS0128` (brak przeciążania funkcji lokalnych, 7.2) |
+| 9.4 | `etap3.cs` | klasa `Sesja` (właściwości, konstruktor, `override ToString`), statyczny licznik i sumy, `List<Sesja>`, walidacja tematu | własny model danych zamiast luźnych liczb; podział „co w klasie, co poza nią" |
+| 12.4 | `etap4.cs` | JSON między uruchomieniami (`#:property` z 12.3), `args[0]` jako nazwa pliku, `JsonException` bez cichego nadpisania | trwałość danych; statyczny licznik traci sens po wczytaniu — uczeń ma to zauważyć |
+| 13.3 | `etap5.cs` | tryb `raport`: `Sum`/`Average`/`GroupBy`/`OrderByDescending`/`Where`; własny `DziennikException` z jednym `catch` na górze | zadanie integrujące z ograniczoną pomocą (jedno pytanie naprowadzające na cały etap) |
+
+**Etap 5 jest warunkiem wejścia do 14.1.** To próba generalna projektu końcowego: ten sam cykl (wymagania → kod → sprawdzenie przypadków → wyjaśnienie decyzji), ale na programie, który uczeń zna od modułu 5. Kto go przechodzi z jedną wskazówką, jest gotów na moduł 14; kto potrzebuje więcej — wraca do lekcji, którą wskazuje wskazówka, nie do tutora po odpowiedź.
+
 ## Zależności między modułami — czego nie wolno przestawić
 
 Kolejność nie jest przypadkowa. Trzy miejsca są sztywne:
@@ -264,7 +279,7 @@ zależnie od tego, na czym uczniowi zależy.
 
 ## Czego w kursie nie ma (świadome decyzje)
 
-Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 49 lekcji.
+Program XL („C# (.NET) Developer XL") wymienia znacznie więcej niż te 50 lekcji.
 Poniższe tematy są **świadomie** poza kursem dla początkujących — nie jako
 przeoczenie, tylko dlatego, że każdy z nich wymaga fundamentu, który ten kurs
 dopiero buduje.

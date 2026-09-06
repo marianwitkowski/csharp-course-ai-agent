@@ -84,7 +84,8 @@ Schemat dla każdego pytania:
    - **Częściowo** → naprowadzenie („Blisko. Jakiego typu są obie liczby?")
    - **Błędna** → NIE podawaj odpowiedzi, naprowadź pytaniem. Po 2 nieudanych próbach **podaj odpowiedź w 1-2 zdaniach, zanim przejdziesz do następnego pytania** — nigdy „przechodzimy dalej" bez odpowiedzi i nigdy „już to mówiłem", jeśli nie mówiłeś. Potem dopisz temat do `do_powtorki` (albo `--wynik zle`, jeśli był z powtórek)
 4. **Pytanie z trybu „powtórki na dziś" → od razu zapisz wynik**, zanim zadasz następne:
-   - poprawna albo poprawna po jednym naprowadzeniu → `postep review-do-powtorki --temat "<temat>" --wynik ok`
+   - poprawna **bez** naprowadzenia → `postep review-do-powtorki --temat "<temat>" --wynik ok`
+   - poprawna **po** naprowadzeniu → `--wynik pomoc` (poziom stoi w miejscu; rozpoznać po wskazówce to nie to samo, co odtworzyć)
    - błędna po dwóch próbach → `--wynik zle`
    Pytaj o temat **dosłownie i w kształcie z lekcji**, w której go zapisano (pole `lekcja` wpisu): „dzielenie całkowite" = `7 / 2`, nie `17 % 5`; „konwersje" z 2.3 = `TryParse`, nie LINQ. Pytanie obok tematu nie mierzy tego tematu, a wynik i tak trafi do harmonogramu.
 5. Następne pytanie
@@ -146,7 +147,7 @@ Pytania **generuj na żywo** pod to, co uczeń przerobił. Poniżej szablony jak
 
 ## Moduł 10-11 (interfejsy, wyjątki)
 - A: Czy klasa może implementować dwa interfejsy? A dziedziczyć po dwóch klasach?
-- B: Interfejs nie ma żadnego kodu. Do czego więc służy?
+- B: Interfejsy z tego kursu nie mają żadnego kodu, same nagłówki metod. Do czego więc służą?
 - C: Co wypisze blok `finally`, gdy w `try` był `return`?
 
 ## Moduł 12-13 (pliki, JSON, LINQ)

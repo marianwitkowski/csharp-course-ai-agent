@@ -20,3 +20,9 @@ class Kot
         return $"{Imie} ({Wiek} lat)";
     }
 }
+
+// --- Dla narzedzia/sprawdz-przyklady.sh: tak ten plik ma się zachowywać (odtwarzane w CI,
+// --- liczby w zapisie z kropką, kody diagnostyk zamiast treści komunikatów). Dla ciebie: objaw jest w nagłówku.
+// CI-ostrzezenie: CS1717
+// CI-ostrzezenie: CS0649
+// CI-wyjscie: Mruczek (0 lat)

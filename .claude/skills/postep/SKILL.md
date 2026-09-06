@@ -73,15 +73,18 @@ To **jedyne** miejsce, w którym wolno ci uruchomić program w tym repozytorium,
   "do_powtorki": [
     {"temat": "różnica między polem a właściwością", "lekcja": "8.3", "data_zauwazenia": "2026-08-31", "poziom": 0, "next_review": "2026-09-01"}
   ],
-  "notatki_tutora": ["Anna lubi konkretne przykłady z życia", "parking: lista (pytał w 2.1)"]
+  "notatki_tutora": ["Anna lubi konkretne przykłady z życia", "parking: lista (pytał w 2.1)"],
+  "wznowienie": {"lekcja": "4.1", "krok": 3, "cwiczenie": "", "przeszkoda": "nie widzi, czemu 18 daje niepełnoletni", "data": "2026-09-01"}
 }
 ```
 
-**`sciezka`** — `pelna` (domyślnie) albo `skrocona` (uczeń zna inny język; moduły 2-7 w trybie skróconym — patrz skill `lekcja`). Zmiana: `set --field sciezka --value pelna`.
+**`wznowienie`** — `null`, gdy żadna lekcja nie jest przerwana; obiekt, gdy sesja skończyła się w środku lekcji: `krok` (1-5), `cwiczenie` (poziom albo pusty), `przeszkoda` (jedno zdanie tutora). Ustawia komenda `wznowienie`, czyści `add-lekcja` (albo `wznowienie --wyczysc`). Skill `lekcja`, krok 0 C0, zaczyna od tego kroku zamiast od początku.
 
-**`do_powtorki` ma harmonogram.** `poziom` 0-4 i `next_review` (data) — narzędzie liczy je samo w `add-do-powtorki` i `review-do-powtorki`; agent nigdy nie ustawia ich ręcznie. Odstępy: 1 → 3 → 7 → 14 → 30 dni; po piątej udanej powtórce temat znika jako opanowany.
+**`sciezka`** — `pelna` (domyślnie) albo `skrocona` (uczeń zna inny język; moduły 2-7 w trybie skróconym, 8-13 z zadaniem sprawdzającym na wejściu — patrz skill `lekcja`). Zmiana: `set --field sciezka --value pelna`.
 
-**Plik w schemacie 1 jest migrowany automatycznie** przy pierwszym zapisie: dostaje `sciezka: "pelna"`, a stare wpisy `do_powtorki` — `poziom: 0` i `next_review` na dziś (czyli od razu są zaległe).
+**`do_powtorki` ma harmonogram.** `poziom` 0-4 i `next_review` (data) — narzędzie liczy je samo w `add-do-powtorki` i `review-do-powtorki`; agent nigdy nie ustawia ich ręcznie. Odstępy: 1 → 3 → 7 → 14 → 30 dni; po piątej **samodzielnej** powtórce temat znika jako opanowany. Odpowiedź po naprowadzeniu (`--wynik pomoc`) nie podnosi poziomu — powtarza bieżący odstęp.
+
+**Plik w schemacie 1 lub 2 jest migrowany automatycznie** przy pierwszym zapisie: dostaje `sciezka: "pelna"` (1→2), stare wpisy `do_powtorki` — `poziom: 0` i `next_review` na dziś (czyli od razu są zaległe), a klucz `wznowienie: null` (2→3).
 
 **Pola z nowszego schematu są zachowywane.** Narzędzie trzyma stan jako drzewo JSON, a nie jako klasę z polami — klucze, których nie zna, przechodzą przez odczyt i zapis nietknięte. Plik z `schema_version` wyższą niż obsługiwana jest odrzucany, a nie nadpisywany.
 
@@ -148,7 +151,7 @@ P add-lekcja --id "4.1" --trudnosc 3
 
 ```bash
 P add-cwiczenie --lekcja "4.1" --poziom warmup
-# --poziom: warmup | main | star | fix   (odpowiada 🔥 / ⭐ / ⚡ / 🔧)
+# --poziom: warmup | main | star | fix | projekt   (odpowiada 🔥 / ⭐ / ⚡ / 🔧 / 🏗)
 ```
 
 ## Mocne strony / do powtórki
@@ -166,8 +169,9 @@ P remove-do-powtorki --temat "różnica między polem a właściwością"
 
 ```bash
 P due                                                  # tematy, których termin minął albo jest dziś (tylko odczyt)
-P review-do-powtorki --temat "konwersje" --wynik ok    # zaliczone → dłuższy odstęp (1 → 3 → 7 → 14 → 30 dni)
-P review-do-powtorki --temat "konwersje" --wynik zle   # nie → poziom 0, powtórka jutro
+P review-do-powtorki --temat "konwersje" --wynik ok     # samodzielnie → dłuższy odstęp (1 → 3 → 7 → 14 → 30 dni)
+P review-do-powtorki --temat "konwersje" --wynik pomoc  # po naprowadzeniu → poziom bez zmian, ten sam odstęp jeszcze raz
+P review-do-powtorki --temat "konwersje" --wynik zle    # nie → poziom 0, powtórka jutro
 ```
 
 `due` wypisuje tablicę JSON na standardowe wyjście i liczbę na standardowe wyjście błędów. Po piątym `ok` temat jest **usuwany** z `do_powtorki` z komunikatem „opanowane" — nie wołaj wtedy `remove-do-powtorki`. `remove-do-powtorki` zostaje do ręcznego sprzątania (temat wpisany przez pomyłkę).
@@ -231,7 +235,8 @@ Narzędzie szuka najnowszego **działającego** backupu w `postep/backups/`, prz
    - `imie`, `aktualna_lekcja`
    - 2-3 ostatnie wpisy z `ukonczone_lekcje`
    - `do_powtorki` (jeśli niepusta) — i wynik `P due`: tematy zaległe na dziś (niepusta lista → zaproponuj powtórkę, niezależnie od dni przerwy)
-   - `sciezka` — `skrocona` zmienia sposób prowadzenia lekcji w modułach 2-7 (skill `lekcja`)
+   - `sciezka` — `skrocona` zmienia sposób prowadzenia lekcji w modułach 2-13 (skill `lekcja`)
+   - `wznowienie` — niepuste → lekcja przerwana, zacznij od zapisanego kroku (skill `lekcja`, krok 0 C0)
    - liczbę dni od `ostatnia_sesja` (>7 → quiz odświeżający)
    - **`srodowisko.dotnet_cmd`, `srodowisko.dotnet_version`, `srodowisko.system`** — potrzebne w każdej komendzie pokazywanej uczniowi
 5. **Sprawdź `dotnet_version`.** Jeśli < 10.0 → zatrzymaj i wywołaj skill `setup-dotnet` przed lekcją.
@@ -257,8 +262,17 @@ Sekcja **Po lekcji** w pliku lekcji podaje dokładnie, jaka jest następna lekcj
 ## Po każdym ukończonym ćwiczeniu
 
 ```bash
-P add-cwiczenie --lekcja <X.Y> --poziom <warmup|main|star>
+P add-cwiczenie --lekcja <X.Y> --poziom <warmup|main|star|fix|projekt>
 ```
+
+## Lekcja przerwana przed `add-lekcja`
+
+```bash
+P wznowienie --krok 3 --przeszkoda "nie widzi, czemu 7 / 2 daje 3"          # w środku kroku 3
+P wznowienie --krok 5 --cwiczenie main --przeszkoda "TryParse zwraca false"   # w środku ćwiczenia ⭐
+P wznowienie --wyczysc                                                        # gdy wpis jest nieaktualny
+```
+Zawsze **przed** `end-session`. `lekcja` i `data` narzędzie bierze samo z `aktualna_lekcja` i zegara.
 
 ## Moduł 14 — projekt
 
@@ -309,6 +323,7 @@ Powiedz uczniowi:
 - **NIGDY** nie buduj nowego JSON-a „z pamięci" — narzędzie czyta, modyfikuje wskazane pola, zapisuje. To chroni przed utratą pól z przyszłych wersji schematu.
 - **Nie zapominaj o `--`** w wywołaniu. To najczęstsza pomyłka przy `dotnet run`.
 - **Nie wymyślaj danych.** Nie znasz wartości → pytaj ucznia.
+- **Narzędzie odrzuca błędne operacje bez zmiany pliku:** `set` tylko na polach tekstowych (listy i obiekty mają własne komendy), `sciezka` tylko `pelna`/`skrocona`, id lekcji w `add-lekcja`, `add-cwiczenie` i `aktualna_lekcja` musi mieć plik w `wiedza/lekcje/`. Komunikat `BŁĄD:` = nic nie zapisano; popraw argument, nie obchodź narzędzia.
 - **`notatki_tutora` są prywatne** — nie pokazuj bez prośby.
 - **Daty** zawsze ISO `YYYY-MM-DD` — narzędzie robi to samo.
 - **`student.json` jest w `.gitignore`** — to stan konkretnego ucznia, nie część kursu.

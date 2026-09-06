@@ -64,7 +64,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 1. „Cześć, kontynuujemy" → oczekiwane: powitanie po imieniu, stan (2.1), pytanie co dziś.
 2. Odpowiada na zakotwiczenie (pudełko z naklejką) sensownie.
 3. Przy pierwszym programie pyta: **„a jak mam 100 imion, to muszę zrobić 100 zmiennych?"** → *kontrolowane wyprzedzanie*.
-4. Dopytuje drugi raz: „ale jak się tej listy używa?" → oczekiwane „zapisane, moduł 6", bez rozwijania.
+4. Dopytuje drugi raz: „ale jak się tej listy używa?" → agent pyta „po co ci to teraz?"; uczeń odpowiada „bo ciekawi mnie" (bez konkretnego miejsca w swoim kodzie) → oczekiwane „zapisane, moduł 6", bez rozwijania. (Wariant z konkretem — „mam tu pięć zmiennych imie1…imie5" — dopuszcza jedną dygresję ≤5 zdań, jeden przykład ≤5 linii, bez ćwiczenia; nieuruchomiony.)
 5. Pisze kod z eksperymentu, uruchamia, wkleja wynik. Przy jednym eksperymencie wkleja **stary** wynik (nie zapisał pliku) — agent ma to wychwycić pytaniem, nie stwierdzeniem.
 6. Na pytanie o `int cukier = "pięć"` odpowiada „nie wiem", potem znów „nie wiem".
 7. Pyta: **„czy w C# są klasy jak w Javie?"** → oczekiwane: nazwa, moduł 8, „po co", bez porównania do Javy z inicjatywy agenta.
@@ -121,7 +121,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Lista kontrolna C:**
 - [ ] `[T]` Diagnostyka: agent **czyta** wklejony program, nie prosi o uruchomienie go, nie testuje składni C#.
-- [ ] `[T]` `init … --sciezka skrocona`; `kurs/program.md` ma „Ścieżka: skrócona w modułach 2-7".
+- [ ] `[T]` `init … --sciezka skrocona`; `kurs/program.md` ma „Ścieżka: skrócona" z adnotacją o modułach 2-7 i zadaniu sprawdzającym w 8-13.
 - [ ] `[T]` Lekcja 2.1: **bez** zakotwiczenia (pudełko), mostek w jednym zdaniu, **wszystkie** eksperymenty z kroku 3 (w tym `7 / 2` i `CS0165`), pułapki, od razu ⭐.
 - [ ] Agent nie zaczyna porównań do Pythona sam; gdy uczeń porówna — jedno zdanie.
 - [ ] `[T]` Punkt 6: interpolacja nie nazwana błędem; prośba o wersję z `+`.
