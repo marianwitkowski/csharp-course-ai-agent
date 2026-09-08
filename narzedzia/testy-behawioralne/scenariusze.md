@@ -217,3 +217,27 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 - [ ] `[T]` `add-lekcja 8.1` po eksperymentach; `add-cwiczenie 8.1/main`; `aktualna_lekcja` = `8.2`; bez `set sciezka pelna`.
 - [ ] Brak porównań do Pythona z inicjatywy agenta; gdy uczeń porówna — jedno zdanie.
 
+## Scenariusz H — „debugująca" (lekcja 7.4 na gotowym projekcie, VS Code + C# Dev Kit, macOS)
+
+**Persona:** Kasia, cel hobby, ścieżka pełna, po 1.1-7.3, VS Code z C# Dev Kit na macOS, `DOTNET_ROOT` ustawione. Wykonuje polecenia dosłownie, wkleja to, co widzi; przy F11 trafia na systemowe „Pokaż biurko".
+
+**Stan startowy:** `student.json` z ukończonymi 1.1-7.3, `aktualna_lekcja` 7.4, `srodowisko.edytor` = „VS Code", `srodowisko.system` = macOS; pusty `kurs/zadania/` poza `01-hello.cs`. Wklejane wyniki pochodzą z przebiegu na prawdziwym VS Code 1.134 / C# 2.140.9 / Dev Kit 3.20.199 (2026-09-08, `narzedzia/weryfikacja-7.4-vscode.md`).
+
+**Przebieg (uczennica):**
+1. „Cześć, kontynuujemy" → oczekiwane: sprawdzenie edytora, zakotwiczenie (ciasto), pytanie o dotychczasowe `Console.WriteLine`.
+2. Krok 2: kopiuje projekt, wkleja `dotnet run` (`15` / `OK` / `BŁĄD`), otwiera folder w VS Code, potwierdza `Debugger` i `net10.0 | Debug` na pasku stanu.
+3. 3.A: F9 na linii 8, F5 → wkleja listę „Select debugger" (nic nie zaznaczone); po wskazówce przechodzi trzy listy; raportuje Locals `i = 1`, `suma = 0`; F10; F5 ×4; wynik w Debug Console.
+4. 3.B: breakpoint w linii 22, Locals `a = 3`, `b = 4`; wkleja Call Stack dosłownie (`Debugger.dll!Program.<Main>$.__Srednia|0_1(int a, int b)` / `Debugger.dll!Program.<Main>$(string[] args)`); Debug Console `a + b` → `7`, `(a + b) / 2` → `3`; F10 → linia 23, F10 → linia 13 z `…Srednia|0_1 returned`; naprawa `/ 2.0` i `dotnet run` → dwa `OK`.
+5. 3.C: breakpoint w linii 12, F10 → linia 13 i `OK      Suma(3, 4) = 7`; **naciska F11 i pisze, że okno VS Code zjechało z ekranu** (biurko) → oczekiwane: F11 raz jeszcze wraca, wchodzić przyciskiem ↓ albo Run → Step Into; Step Into ×4 → linie 21, 22, 23, 13; ×1 → linia 38 z Locals `opis`, `wynik = 3`, `oczekiwane = 3.5`.
+6. Krok 5: 🔥 (tabliczka mnożenia w `Program.cs`, trzy zatrzymania z wartościami), ⭐ (`Srednia(oceny)` — znajduje `i = 1` przy pierwszym zatrzymaniu, naprawia na `i = 0`, `OK      Srednia(oceny) = 4,25`). Trudność → „3". Kończy.
+
+**Lista kontrolna H:**
+- [ ] `[T]` Tutor **nie** każe tworzyć projektu (`dotnet new`) ani pliku `21-debugger.cs` w `kurs/zadania/`; każe **skopiować** `wiedza/przyklady/debugger/` do `kurs/zadania/debugger/` i otworzyć **ten folder** w VS Code (nie całe repozytorium).
+- [ ] `[T]` Tutor nie kopiuje projektu za uczennicę (0 `cp`/`Copy-Item` na `kurs/zadania/` w transkrypcie), nie uruchamia `dotnet run` na jej kopii.
+- [ ] `[T]` Przy liście „Select debugger": każe wybrać `C#` strzałką/klikiem (nie samym Enterem) i uprzedza o dwóch kolejnych listach albo prowadzi przez nie po wklejeniu.
+- [ ] `[T]` Przy „okno zjechało z ekranu" po F11: rozpoznaje systemowy skrót macOS, każe wrócić F11 i wchodzić przyciskiem ↓ / Run → Step Into; **nie** twierdzi, że debugger się zawiesił.
+- [ ] Wartości wyrażeń: Debug Console (`a + b`) albo najechanie kursorem — jedno z dwóch, bez wykładu o Watch.
+- [ ] `[T]` Call Stack: tutor wyłuskuje `Srednia` na górze i `Main` pod spodem, nie każe rozumieć `<Main>$.__Srednia|0_1`.
+- [ ] `[T]` `add-lekcja 7.4` dopiero po breakpoincie + kroku + stosie (punkty 3-5) i ćwiczeniu ⭐; `aktualna_lekcja` = `8.1`; bez notatki `debugger:` (ścieżka główna zadziałała).
+- [ ] Wymian ≤ 18.
+
