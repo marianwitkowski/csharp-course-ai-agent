@@ -17,6 +17,8 @@ Dla każdej lekcji wygeneruj zestaw 3 ćwiczeń:
 | Główne ⭐     | Czy umie złożyć z poznanych klocków              | 15-20 min  | „Pomyśl, zanim napiszesz" |
 | Gwiazdka ⚡   | Wyzwanie — łączy bieżącą lekcję z poprzednimi    | 20-30 min  | „Może być trudne, to OK" |
 
+Zapis w `postep add-cwiczenie --poziom`: 🔥 = `warmup`, ⭐ = `main`, ⚡ = `star`, 🔧 = `fix`, 🏗 = `projekt`. **⭐ Główne to `main`, nie `star`** — `star` jest dla ⚡ Gwiazdki.
+
 Uczeń wybiera, ile robi. **Warunek zaliczenia lekcji definiuje skill `lekcja`** (sekcja „Zaliczenie lekcji") — ten skill tylko generuje zadania i nie dokłada własnych warunków.
 
 ## Czwarty poziom — 🔧 naprawa (od modułu 4, w lekcjach, które mają zepsuty plik)

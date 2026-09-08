@@ -191,9 +191,11 @@ Rekomendacja dla początkujących (działa na wszystkich systemach):
 Przy pierwszym otwarciu pliku `.cs` rozszerzenie dociągnie narzędzia pomocnicze → **zgódź się**. Da to podpowiedzi, podświetlanie błędów w locie i formatowanie przy zapisie.
 
 Alternatywy:
-- **Rider** (JetBrains, bezpłatny do użytku niekomercyjnego)
-- **Visual Studio** — tylko Windows, ciężkie; kurs go nie potrzebuje, ale jeśli uczeń już go ma, niech używa
-- Jakikolwiek edytor tekstu — **NIE Word, NIE TextEdit w trybie sformatowanym na macOS** (wstawiają znaki, których kompilator nie zrozumie)
+- **Rider** (JetBrains, bezpłatny do użytku niekomercyjnego) — ma debugger, wystarcza na 7.4
+- **Visual Studio** — tylko Windows, ciężkie; kurs go nie potrzebuje, ale jeśli uczeń już go ma, niech używa — ma debugger, wystarcza na 7.4
+- Jakikolwiek edytor tekstu — **NIE Word, NIE TextEdit w trybie sformatowanym na macOS** (wstawiają znaki, których kompilator nie zrozumie) — wystarczy do lekcji 7.3
+
+**Lekcja 7.4 (debugger) wymaga debuggera.** VS Code + C# Dev Kit, Rider albo Visual Studio — każdy z nich się liczy (lekcja jest napisana pod VS Code, w innym IDE uczeń tłumaczy klawisze sam). Uczeń, który wybrał goły edytor, instaluje VS Code **przed 7.4** (darmowy, macOS / Linux / Windows) — powiedz mu to teraz, przy wyborze edytora, nie w 7.4. Zmianę zapisz: `postep update-srodowisko --edytor "VS Code"`. Bez debuggera nie ma zaliczenia 7.4 (skill `lekcja`, „Zaliczenie lekcji").
 
 **Ustawienie warte pięciu sekund:** „Format on Save" w VS Code (Settings → wyszukaj „format on save"). W repozytorium leży `.editorconfig` z konwencjami kursu — edytor go czyta i kod formatuje się sam przy każdym zapisie.
 

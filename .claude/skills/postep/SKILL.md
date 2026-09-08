@@ -152,6 +152,8 @@ P add-lekcja --id "4.1" --trudnosc 3
 ```bash
 P add-cwiczenie --lekcja "4.1" --poziom warmup
 # --poziom: warmup | main | star | fix | projekt   (odpowiada 🔥 / ⭐ / ⚡ / 🔧 / 🏗)
+# UWAGA na nazwy: ⭐ Główne = main, ⚡ Gwiazdka = star. ⭐ to NIE "star" — ta pomyłka
+# zdarzyła się tutorowi w teście (8.1 zapisane jako star zamiast main).
 ```
 
 ## Mocne strony / do powtórki

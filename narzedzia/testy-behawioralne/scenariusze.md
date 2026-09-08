@@ -151,7 +151,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Lista kontrolna D:**
 - [ ] `[T]` Ostrzeżenia cytowane przez agenta zgadzają się z tymi, które uczeń faktycznie wkleja (`CS8600`, `CS8602`, `CS8604`, `CS8618`).
-- [ ] Krok 3.A: agent każe usunąć `if` i zobaczyć, że ostrzeżenie wraca.
+- [ ] Krok 3.A: agent każe usunąć drugi `if` (wariant z `Console.ReadLine()`) i zobaczyć, że `CS8602` wraca. (Przy `imie = "Ala"` z pierwotnej wersji lekcji ostrzeżenie nie wracało — wykrył to tutor w przebiegu D 2026-09-06; lekcja poprawiona.)
 - [ ] `[T]` Agent nie wprowadza `!`, `required`, `??=`.
 - [ ] Lekcja mieści się w ~40 min (≤ 18 wymian).
 - [ ] `aktualna_lekcja` → `9.1`, zapowiedź modułu 9.
@@ -195,4 +195,25 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 - [ ] `[T]` Punkt 3: `set --field aktualna_lekcja --value 15.1` wykonane (agent, sekcja o module 15) i `end-session`.
 - [ ] `[T]` `wznowienie` = `null` po `add-lekcja 14.7`; brak `wznowienie --krok` po ukończeniu kursu.
 - [ ] Gratulacje mówią o **50 lekcjach**, nie 49.
+
+## Scenariusz G — „sprawdzający" (ścieżka skrócona w modułach 8-13, zadanie sprawdzające na wejściu)
+
+**Persona:** Bartek, dwa lata Pythona (skrypty do pracy), cel narzędzia, ścieżka skrócona, po 1.1-7.4. Zna klasy z Pythona, nie zna C#-owych zaskoczeń (współdzielenie referencji, `==` na obiektach, `null` w tablicy obiektów).
+
+**Stan startowy:** `student.json` z `sciezka: skrocona`, ukończone 1.1-7.4, `aktualna_lekcja` 8.1, notatka o Pythonie; `kurs/program.md` z adnotacją o zadaniu sprawdzającym w modułach 8-13.
+
+**Przebieg (uczeń):**
+1. „Cześć, kontynuujemy" → oczekiwane: powitanie, stan (8.1), **propozycja zadania sprawdzającego** (⭐ z 8.1: biblioteka `List<Ksiazka>`) z wyborem: spróbować teraz albo pełna lekcja.
+2. Wybiera próbę; wkleja działający `21-klasy-b.cs` i wyniki (dwie książki z jednym złym rokiem; pusty Enter od razu).
+3. Na pytanie o decyzję odpowiada (np. czemu `najstarsza` startuje od `biblioteka[0]`, a nie od zera).
+4. Przechodzi **wszystkie** eksperymenty z kroku 3 (3.A-3.F), wklejając prawdziwe wyniki; przy 3.D zgaduje **źle** („Mruczek").
+5. Czyta pułapki, pyta o jedną. Trudność → „2". Kończy.
+
+**Lista kontrolna G:**
+- [ ] `[T]` Punkt 1: agent zaczyna od ⭐ jako zadania sprawdzającego i daje wybór; **nie** prowadzi kroku 1 (zakotwiczenie) ani kroku 2 (mostek) przed próbą.
+- [ ] `[T]` Punkty 2-3: udane ⭐ + wyjaśniona decyzja → agent **nie** wraca do kroków 1-2, ale **krok 3 w całości** (wszystkie sekcje A-F; w szczególności 3.D i 3.E) — nie pomija eksperymentów mimo udanego zadania.
+- [ ] `[T]` Punkt 4: zła odpowiedź przy 3.D nie kończy ścieżki skróconej (to jest właśnie zaskoczenie, które ma wyjść) — jedno pytanie naprowadzające, potem fakt.
+- [ ] Pułapki podane jako lista do przeczytania, nie jako krok 4 w całości.
+- [ ] `[T]` `add-lekcja 8.1` po eksperymentach; `add-cwiczenie 8.1/main`; `aktualna_lekcja` = `8.2`; bez `set sciezka pelna`.
+- [ ] Brak porównań do Pythona z inicjatywy agenta; gdy uczeń porówna — jedno zdanie.
 
