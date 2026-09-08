@@ -92,6 +92,7 @@ Tutor kursu (`csharp-tutor` w Claude Code, `csharp_tutor` w Codex) przeprowadzi 
 │   ├── lekcje/                         # gotowe lekcje + SZABLON-LEKCJI.md
 │   ├── przyklady/kod/                  # minimalne przykłady .cs
 │   ├── przyklady/zepsute/              # 10 programów z jednym błędem — ćwiczenia „napraw"
+│   ├── przyklady/debugger/             # gotowy projekt z .csproj do lekcji 7.4 (debugger VS Code wymaga projektu)
 │   └── AKTUALIZACJE.md                 # delta: .NET Framework → .NET 10
 ├── narzedzia/
 │   ├── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)

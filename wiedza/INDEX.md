@@ -90,7 +90,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | 7.1 | Metody — parametry, wartość zwracana, `void`; kontrakt metody sprawdzany przez kod (`Sprawdz`) | `18-metody.cs` | — |
 | 7.2 | Parametry domyślne i nazwane; przeciążanie do rozpoznania | `19-parametry.cs` | — |
 | 7.3 | `ref`, `out`, zasięg zmiennych | `20-ref-out.cs` | — |
-| 7.4 | Debugger — breakpoint, F10/F11, panel zmiennych, stos wywołań; kiedy zamiast `Console.WriteLine` | — (krokami przez `18-metody-zepsute.cs`) | — |
+| 7.4 | Debugger — breakpoint, F10/Step Into, panel zmiennych, stos wywołań; kiedy zamiast `Console.WriteLine` | `debugger/` (gotowy projekt z `.csproj`; kod z `18-metody-zepsute.cs`) | — |
 
 > **Testowanie zaczyna się w 7.1, nie w 14.4.** Krok 3.G lekcji 7.1 wprowadza `Sprawdz(opis, wynik, oczekiwane)` — sprawdzenie kontraktu metody napisane z `if` i interpolacji, bez żadnego narzędzia. Uczeń psuje `Dodaj` i widzi, że jedno z trzech sprawdzeń błędu nie łapie — to uczy doboru przypadków wcześniej niż xUnit. Od 7.1 ćwiczenia ⭐ i ⚡ mogą wymagać wywołań `Sprawdz`; xUnit w 14.4 jest wtedy „gotowym `Sprawdz`", nie nową filozofią.
 

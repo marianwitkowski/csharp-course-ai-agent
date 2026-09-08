@@ -20,6 +20,18 @@ if [ "$bledy" -eq 0 ]; then
   echo "OK: wszystkie przykłady i postep.cs kompilują się"
 fi
 
+# Gotowy projekt do lekcji 7.4: buduje się i wypisuje dokładnie to, co obiecuje lekcja
+# (kultura niezmienna: 3.5, nie 3,5 — jak przy zepsutych niżej).
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+oczekiwane_debugger=$'15\nOK      Suma(3, 4) = 7\nBŁĄD    Srednia(3, 4): jest 3, miało być 3.5'
+wyjscie_debugger=$(cd wiedza/przyklady/debugger && dotnet run 2>&1 | grep -v ": warning CS")
+if [ "$wyjscie_debugger" != "$oczekiwane_debugger" ]; then
+  echo "PROJEKT debugger/ WYPISUJE CO INNEGO NIŻ LEKCJA 7.4:"; echo "$wyjscie_debugger" | head -5
+  bledy=$((bledy + 1))
+else
+  echo "OK: projekt wiedza/przyklady/debugger/ buduje się i wypisuje 15 / OK / BŁĄD"
+fi
+
 # Zepsute programy (ćwiczenia 🔧): nagłówek każdego pliku deklaruje oczekiwane zachowanie
 # liniami `// CI-…`, a skrypt je odtwarza w katalogu tymczasowym:
 #   CI-blad: CSxxxx          plik MA nie kompilować się, z tym kodem błędu

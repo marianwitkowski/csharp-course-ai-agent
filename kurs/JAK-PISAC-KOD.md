@@ -11,7 +11,7 @@ Przeczytaj raz, na początku kursu. Potem wracaj, gdy o czymś zapomnisz.
 
 ## 1. Gdzie pisać kod — struktura katalogów
 
-Twój kod żyje w katalogu `kurs/zadania/`. Każde ćwiczenie to **jeden plik**:
+Twój kod żyje w katalogu `kurs/zadania/`. Każde ćwiczenie to **jeden plik** (jedyny wyjątek: lekcja 7.4 o debuggerze dostaje gotowy folder projektu do skopiowania — tam jest napisane, co z nim zrobić):
 
 ```
 kurs/

@@ -398,7 +398,7 @@ Uczeń uruchamia z katalogu `kurs/zadania/`:
 dotnet run 01-hello.cs
 ```
 
-**Nie każ uczniowi tworzyć projektów.** Żadnego `dotnet new console`, żadnych `.csproj`, żadnych solucji — plik `.cs` wystarcza sam za siebie. To najważniejsza różnica między tym kursem a materiałami sprzed .NET 10 i główny powód, dla którego początkujący może w pierwszej lekcji napisać program, zamiast walczyć ze strukturą projektu.
+**Nie każ uczniowi tworzyć projektów.** Żadnego `dotnet new console`, żadnych `.csproj`, żadnych solucji — plik `.cs` wystarcza sam za siebie. (Wyjątek: lekcja 7.4 — uczeń **kopiuje** gotowy projekt `wiedza/przyklady/debugger/` do `kurs/zadania/debugger/`, bo debugger VS Code wymaga `.csproj`; nie tworzy go i nie edytuje.) To najważniejsza różnica między tym kursem a materiałami sprzed .NET 10 i główny powód, dla którego początkujący może w pierwszej lekcji napisać program, zamiast walczyć ze strukturą projektu.
 
 `dotnet new console` pada w kursie dokładnie **raz**: w lekcji 14.1, gdy uczeń zakłada własny projekt w `kurs/projekt/`. Wtedy pojawia się `.csproj` i wtedy dopiero ma sens tłumaczyć, co to jest.
 

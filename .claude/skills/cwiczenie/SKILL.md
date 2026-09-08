@@ -78,7 +78,7 @@ dotnet run 02-zmienne-a.cs
 
 **Jeden plik = jeden program.** Nie da się umieścić trzech rozwiązań w jednym pliku — każde ma własny ciąg instrukcji najwyższego poziomu. To zresztą dobrze: uczeń widzi trzy osobne, kompletne programy.
 
-**Nie twórz projektów.** Żadnego `dotnet new console`, żadnego `.csproj`, żadnej solucji — do lekcji 14.1, gdzie projekt jest tematem lekcji.
+**Nie twórz projektów.** Żadnego `dotnet new console`, żadnego `.csproj`, żadnej solucji — do lekcji 14.1, gdzie projekt jest tematem lekcji. Jedyny wyjątek: **lekcja 7.4** używa gotowego projektu `wiedza/przyklady/debugger/`, który uczeń **kopiuje** do `kurs/zadania/debugger/` (debugger VS Code nie działa na pliku bez projektu); ćwiczenia 7.4 podmieniają `Program.cs` w tej kopii.
 
 # Format ćwiczenia
 
@@ -154,6 +154,6 @@ Użyj `dotnet_cmd` i konwencji z `system` (Windows: `type` zamiast `cat`, ście�
 
 - **Nigdy nie pisz rozwiązania** w `ZADANIA.md`. Tylko opis i oczekiwane wyjście.
 - **Nie twórz nawet szkieletu** w pliku `.cs` — to plik ucznia. W C# z instrukcjami najwyższego poziomu nie ma zresztą czego szkicować: pierwsza linia, którą uczeń napisze, jest już całym programem. (Sam pusty plik jeszcze nim nie jest — daje `CS5001`, bo nie ma ani jednej instrukcji do wykonania.)
-- **Nie twórz projektów ani plików `.csproj`.** Ćwiczenia to pojedyncze pliki `.cs`. Projekt pojawia się raz, w lekcji 14.1.
+- **Nie twórz projektów ani plików `.csproj`.** Ćwiczenia to pojedyncze pliki `.cs`. Projekt pojawia się w lekcji 14.1 — a wcześniej tylko jako gotowa kopia w 7.4 (patrz wyżej).
 - **Nie uruchamiaj rozwiązania ucznia**, żeby „sprawdzić, czy wychodzi". Poproś o wklejenie wyniku.
 - Jeśli uczeń prosi „daj mi szablon" — odmów miękko: „Wypisz mi w czacie, jakie zmienne będą ci potrzebne i jakiego typu. Kod napiszesz, jak będziesz miał to na papierze."

@@ -183,6 +183,27 @@ Poproś o wklejenie wyniku. To jednocześnie **pierwsze uruchomienie programu w 
 
 > **Uwaga o pierwszym uruchomieniu:** potrwa kilka sekund dłużej niż kolejne. .NET buduje program przy pierwszym `dotnet run` i zapamiętuje wynik w pamięci podręcznej. Uprzedź o tym, bo inaczej uczeń pomyśli, że coś się zawiesiło.
 
+# Krok 4B: `DOTNET_ROOT` — tylko gdy SDK jest w `~/.dotnet` (instalacja skryptem)
+
+`dotnet run` działa zawsze, bo idzie przez polecenie `dotnet` z `PATH`. Ale **zbudowany plik wykonywalny** — a taki uruchamia debugger w VS Code (lekcja 7.4, 14.1) — szuka środowiska .NET sam: przez zmienną `DOTNET_ROOT` albo zarejestrowaną lokalizację (`/etc/dotnet/install_location*` na macOS/Linux). Instalacja skryptem `dotnet-install` do `~/.dotnet` niczego nie rejestruje, więc bez `DOTNET_ROOT` debugger kończy się komunikatem:
+```
+You must install .NET to run this application.
+```
+mimo że `dotnet --version` i `dotnet run` działają. Uczeń nie zobaczy tego przed 7.4 — dlatego sprawdź to **teraz**.
+
+Sprawdzenie (macOS/Linux):
+```bash
+which dotnet          # ~/.dotnet/dotnet → instalacja skryptem, czytaj dalej; /usr/local/share/dotnet/... → pakiet, pomiń ten krok
+echo $DOTNET_ROOT     # puste → do ustawienia
+```
+Naprawa (uczeń wykonuje sam):
+```bash
+echo 'export DOTNET_ROOT=$HOME/.dotnet' >> ~/.zshrc    # zsh (domyślny na macOS); bash → ~/.bashrc
+```
+Potem **nowy terminal**, a VS Code **uruchomiony ponownie** (czyta zmienne z powłoki przy starcie). Zapisz w notatce tutora: `srodowisko: DOTNET_ROOT ustawione` — 7.4 na to liczy. Windows: instalator rejestruje lokalizację sam; przy instalacji skryptem ustaw zmienną środowiskową `DOTNET_ROOT` na folder z `dotnet.exe` w ustawieniach systemu.
+
+Zweryfikowane 2026-09-08 (macOS, SDK 10.0.400 w `~/.dotnet`): bez `DOTNET_ROOT` program pod debuggerem nie startuje, z `DOTNET_ROOT` startuje.
+
 # Krok 5: edytor
 
 Rekomendacja dla początkujących (działa na wszystkich systemach):

@@ -60,7 +60,7 @@ Uczeń pracuje w `kurs/zadania/`. Każde ćwiczenie to **jeden plik `.cs`**. Uru
 dotnet run NN-temat.cs
 ```
 
-Nie każ uczniowi tworzyć projektu. Żadnego `dotnet new console`, żadnego `.csproj` — do lekcji 14.1.
+Nie każ uczniowi tworzyć projektu. Żadnego `dotnet new console`, żadnego `.csproj` — do lekcji 14.1. Wyjątek: 7.4 pracuje na **skopiowanym** gotowym projekcie `kurs/zadania/debugger/` (uruchamianie `dotnet run` z tego katalogu, otwierany w VS Code jako folder) — szczegóły w pliku lekcji.
 
 # Struktura lekcji — 5 kroków
 
