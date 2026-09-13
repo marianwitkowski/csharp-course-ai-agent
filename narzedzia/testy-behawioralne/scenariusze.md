@@ -22,7 +22,7 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 1. Repozytorium bez stanu ucznia (`postep/student.json` nie istnieje, `kurs/zadania/` i `kurs/lekcje/` zawierają tylko `.gitkeep`). Jeśli jest stan — skill `reset-kursu` albo ręczne przeniesienie do `postep/archiwum/`.
 2. Wgraj stan startowy scenariusza (sekcja „Stan startowy").
 3. Uruchom Claude Code w katalogu kursu i graj ucznia według przebiegu. Odpowiadaj tak, jak odpowiedziałaby persona, nie lepiej.
-4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md`, przenieś stan do `postep/archiwum/test-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
+4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md` **poza repozytorium** (u autora: `.kb/testy-behawioralne/`, katalog ignorowany przez git — logi przebiegów zawierają szczegóły środowiska i nie są częścią kursu), dopisz wiersz do tabeli „Historia przebiegów" niżej i przenieś stan do `postep/archiwum/test-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
 
 Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zostawiają śladu w repozytorium.
 
@@ -30,7 +30,18 @@ Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zosta
 
 W kroku 3 uruchom `codex`, zaakceptuj zaufanie do projektu, jeśli klient o nie zapyta, i użyj tej samej pierwszej wiadomości scenariusza. Przez `/agent` potwierdź, że powstał dokładnie jeden wątek `csharp_tutor`, a kolejne odpowiedzi trafiają do tego samego wątku. Przez `/skills` potwierdź widoczność dziewięciu skilli kursu.
 
-Wynik zapisz osobno jako `wyniki-YYYY-MM-DD-codex.md`. W nagłówku podaj model, poziom rozumowania i wersję klienta Codex; nie porównuj wyniku modelu Codex bezpośrednio z historycznym wynikiem Sonneta bez zaznaczenia tej różnicy.
+Bez TUI: `codex exec -s workspace-write --json -o <plik> "<pierwsza wiadomość>"`, kolejne tury `codex exec -s workspace-write --json -o <plik> resume <id-wątku-głównego> - < wiadomosc.txt` (nie `--last` — najnowszy rollout to wątek tutora); jeden wątek i komendy tutora sprawdza się w `~/.codex/sessions/<data>/rollout-*.jsonl` (`spawn_agent`, `exec_command`, `apply_patch`). Wynik zapisz osobno jako `wyniki-YYYY-MM-DD-codex.md`. W nagłówku podaj model, poziom rozumowania i wersję klienta Codex; nie porównuj wyniku modelu Codex bezpośrednio z historycznym wynikiem Sonneta bez zaznaczenia tej różnicy.
+
+## Historia przebiegów
+
+Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozytorium. Tu tylko werdykt z datą, hostem i modelem.
+
+| Data | Scenariusze | Host / model tutora | Wynik |
+| --- | --- | --- | --- |
+| 2026-09-03 | A, B, C, D, E (trzy przebiegi, poprawki między nimi) | Claude Code / Sonnet | wszystkie PASS po poprawkach (B i C miały FAIL w pierwszym przebiegu) |
+| 2026-09-06 | F1, F2, A1, A2 (parking, wznowienie, zakończenie kursu); ślepa regresja E, B, C1, C2, D, G | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; A2 z zastrzeżeniem (tutor przeczytał częściowy plik wyników w drzewie) |
+| 2026-09-08 | H (lekcja 7.4 na gotowym projekcie, VS Code, macOS) | Claude Code / Sonnet | PASS |
+| 2026-09-08 | F1 | Codex 0.153.0 / model z `.codex/agents/csharp-tutor.toml`, tryb `codex exec` | PASS, jeden wątek `csharp_tutor`, komendy `postep` poprawne; tutor nie dopytał o decyzję przed zaliczeniem (uczennica wyjaśniła sama) |
 
 ## Wynik scenariusza: PASS albo FAIL
 

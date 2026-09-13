@@ -417,6 +417,7 @@ dotnet run 01-hello.cs
 | `wiedza/przyklady/kod/*.cs`   | Minimalne przykłady do eksperymentów                          |
 | `wiedza/AKTUALIZACJE.md`      | Delta: .NET Framework (2020) → .NET 10 (2026)                 |
 | `wiedza/INDEX.md`             | Struktura 50 lekcji + czego w kursie nie ma                   |
+| `narzedzia/`                  | Narzędzia autora (CI, testy tutora). **W trybie student nie zaglądaj tam** — scenariusze testów opisują, jak jesteś oceniany, i nie są częścią lekcji |
 
 # Dostępne skille
 
