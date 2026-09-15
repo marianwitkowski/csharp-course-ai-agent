@@ -73,7 +73,7 @@ Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozyto
 | 2026-09-06 | F1, F2, A1, A2 (parking, wznowienie, zakończenie kursu); ślepa regresja E, B, C1, C2, D, G | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; A2 z zastrzeżeniem (tutor przeczytał częściowy plik wyników w drzewie) |
 | 2026-09-08 | H (lekcja 7.4 na gotowym projekcie, VS Code, macOS) | Claude Code / Sonnet | PASS |
 | 2026-09-08 | F1 | Codex 0.153.0 / model z `.codex/agents/csharp-tutor.toml`, tryb `codex exec` | PASS, jeden wątek `csharp_tutor`, komendy `postep` poprawne; tutor nie dopytał o decyzję przed zaliczeniem (uczennica wyjaśniła sama) |
-| 2026-09-15 | A, B, F1, F2, G (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; F1 powtórzony po poprawieniu fikstury `08-if-b.cs`, tutor rozpoznał test po `git status` i mimo to nie zajrzał do `narzedzia/`; A, F2 i G na czystym drzewie już bez rozpoznania |
+| 2026-09-15 | A, B, D, E, F1, F2, G (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji twardych; jedna miękka w D (21 wymian zamiast 18 — limit podniesiony). F1 powtórzony po poprawieniu fikstury `08-if-b.cs`; dwa wycieki środowiska testowego wykryte i zamknięte: `git status` (F1) i prefiks `test-` w nazwie archiwum (E) |
 
 ## Wynik scenariusza: PASS albo FAIL
 
@@ -175,7 +175,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Persona:** dowolna; istotny jest stan, nie uczeń.
 
-**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh E` — brak `postep/student.json`; w `postep/archiwum/test-<data>/` leży kompletny stan innego przebiegu (Piotr, 8.5).
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh E` — brak `postep/student.json`; w `postep/archiwum/<znacznik czasu>/` leży kompletny stan innego przebiegu (Piotr, 8.5). Katalog nazywa się jak po prawdziwym `reset-kursu`, **bez** słowa „test" — w przebiegu 2026-09-15 tutor odczytał prefiks `test-` i powiedział uczniowi, że to pozostałości po testowaniu kursu.
 
 **Przebieg (uczeń):** „cześć, kontynuujemy".
 
@@ -196,7 +196,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] `[T]` Ostrzeżenia cytowane przez agenta zgadzają się z tymi, które uczeń faktycznie wkleja (`CS8600`, `CS8602`, `CS8604`, `CS8618`).
 - [ ] Krok 3.A: agent każe usunąć drugi `if` (wariant z `Console.ReadLine()`) i zobaczyć, że `CS8602` wraca. (Przy `imie = "Ala"` z pierwotnej wersji lekcji ostrzeżenie nie wracało — wykrył to tutor w przebiegu D 2026-09-06; lekcja poprawiona.)
 - [ ] `[T]` Agent nie wprowadza `!`, `required`, `??=`.
-- [ ] Lekcja mieści się w ~40 min (≤ 18 wymian).
+- [ ] Lekcja mieści się w ~30 wymianach. (Przebieg 2026-09-15 zajął 21 wymian przy tutorze, który nie skrócił ani jednej z sześciu sekcji kroku 3 — poprzedni limit 18 był za ciasny dla tej lekcji.)
 - [ ] `aktualna_lekcja` → `9.1`, zapowiedź modułu 9.
 
 ## Scenariusz F — „wznawiająca i kończący" (wznowienie, zaliczenie, zakończenie kursu)

@@ -17,7 +17,6 @@ set -eu
 scenariusz="${1:-}"
 korzen="${KURS_ROOT:-$(pwd)}"
 seeds="$korzen/narzedzia/testy-behawioralne/seeds"
-dzis=$(date +%F)
 
 if [ -z "$scenariusz" ]; then
   echo "użycie: bash narzedzia/testy-behawioralne/seed.sh <A|B|D|E|F1|F2|G|H>" >&2
@@ -116,11 +115,14 @@ PYB
     P end-session
     program narzedzia "2-5"
     historia 70 3
-    archiwum="$korzen/postep/archiwum/test-$dzis"
+    # Nazwa jak z reset-kursu (znacznik czasu), NIE "test-..." — w przebiegu E z 2026-09-15
+    # tutor odczytał prefiks "test" i powiedział uczniowi, że to pozostałości po testowaniu kursu.
+    archiwum="$korzen/postep/archiwum/$(date +%Y-%m-%d-%H-%M-%S)"
     mkdir -p "$archiwum"
     mv "$plik" "$archiwum/student.json"
     mv "$korzen/kurs/program.md" "$archiwum/program.md"
     echo "Scenariusz E: stan Piotra w $archiwum, student.json NIE istnieje (tak ma być)."
+    echo "  (nazwa katalogu jak po prawdziwym reset-kursu — bez slowa \"test\")"
     ;;
 
   F1) # Ola, lekcja 4.1 przerwana w ćwiczeniu ⭐
