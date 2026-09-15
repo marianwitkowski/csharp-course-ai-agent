@@ -153,6 +153,11 @@ PYB
     P end-session
     program praca "5-10"
     historia 150 0
+    # Krok 5 lekcji 14.7 każe uczniowi uruchomić własny projekt i spojrzeć na pierwszy program,
+    # więc oba muszą istnieć. Projekt jest prawdziwy i się buduje — wyniki mają być z uruchomienia.
+    zadanie "$korzen/wiedza/przyklady/kod/01-hello.cs" 01-hello.cs
+    mkdir -p "$korzen/kurs/projekt"
+    cp "$seeds"/projekt/* "$korzen/kurs/projekt/"
     ;;
 
   G)  # Bartek, ścieżka skrócona, wchodzi w moduł 8 z zadaniem sprawdzającym
