@@ -98,13 +98,13 @@ json.dump(s, open(plik, "w", encoding='utf-8'), ensure_ascii=False, indent=2)
 PYB
     ;;
 
-  D)  # Adam, po 1.1-8.4, wchodzi w 8.5; do_powtorki puste
-    P init --imie Adam --cel praca --tempo "5-10" \
+  D)  # Piotr, po 1.1-8.4, wchodzi w 8.5; do_powtorki puste
+    P init --imie Piotr --cel szkola --tempo "5-10" \
            --system macOS --dotnet-cmd dotnet --dotnet-version 10.0.100
     lekcje_do 8.4
     P set --field aktualna_lekcja --value 8.5
     P end-session
-    program praca "5-10"
+    program szkola "5-10"
     historia 70 0
     ;;
 
@@ -123,8 +123,8 @@ PYB
     echo "Scenariusz E: stan Piotra w $archiwum, student.json NIE istnieje (tak ma być)."
     ;;
 
-  F1) # Zosia, lekcja 4.1 przerwana w ćwiczeniu ⭐
-    P init --imie Zosia --cel hobby --tempo "<2" \
+  F1) # Ola, lekcja 4.1 przerwana w ćwiczeniu ⭐
+    P init --imie Ola --cel praca --tempo "<2" \
            --system macOS --dotnet-cmd dotnet --dotnet-version 10.0.100
     lekcje_do 3.2
     P set --field aktualna_lekcja --value 4.1
@@ -132,7 +132,7 @@ PYB
     P wznowienie --krok 5 --cwiczenie main \
       --przeszkoda "dla wpisu abc program wypisuje Nie ma takiej oceny zamiast To nie jest ocena"
     P end-session
-    program hobby "<2"
+    program praca "<2"
     historia 40 0
     # Fikstury są czystym kodem ucznia — bez nagłówków zdradzających test.
     # 08-if-a.cs: działająca rozgrzewka. 08-if-b.cs: ćwiczenie ⭐ z błędem z `przeszkoda` —
@@ -142,8 +142,8 @@ PYB
     zadanie "$seeds/08-if-b.cs" 08-if-b.cs
     ;;
 
-  F2) # Michał, koniec kursu — 14.7 przerwana w kroku 4
-    P init --imie Michał --cel narzedzia --tempo "5-10" \
+  F2) # Marek, koniec kursu — 14.7 przerwana w kroku 4
+    P init --imie Marek --cel praca --tempo "5-10" \
            --system Linux --dotnet-cmd dotnet --dotnet-version 10.0.100
     lekcje_do 14.6
     P set --field aktualna_lekcja --value 14.7
@@ -151,30 +151,30 @@ PYB
     P wznowienie --krok 4 \
       --przeszkoda "pisze plan dalszej nauki — wybór między ASP.NET Core a narzędziami CLI"
     P end-session
-    program narzedzia "5-10"
+    program praca "5-10"
     historia 150 0
     ;;
 
-  G)  # Ola, ścieżka skrócona, wchodzi w moduł 8 z zadaniem sprawdzającym
-    P init --imie Ola --cel narzedzia --tempo "5-10" \
+  G)  # Bartek, ścieżka skrócona, wchodzi w moduł 8 z zadaniem sprawdzającym
+    P init --imie Bartek --cel narzedzia --tempo "5-10" \
            --system macOS --dotnet-cmd dotnet --dotnet-version 10.0.100
     P set --field sciezka --value skrocona
     lekcje_do 7.4
     P set --field aktualna_lekcja --value 8.1
-    P add-notatka "Ola programuje w Pythonie od roku, hobbystycznie"
+    P add-notatka "Bartek pisze w Pythonie od dwóch lat, skrypty do pracy"
     P end-session
     program narzedzia "5-10" skrocona
     historia 50 0
     ;;
 
-  H)  # Hania, lekcja 7.4 (debugger) na macOS z VS Code
-    P init --imie Hania --cel praca --tempo "2-5" \
+  H)  # Kasia, lekcja 7.4 (debugger) na macOS z VS Code
+    P init --imie Kasia --cel hobby --tempo "2-5" \
            --system macOS --dotnet-cmd dotnet --dotnet-version 10.0.100
     P update-srodowisko --edytor "VS Code"
     lekcje_do 7.3
     P set --field aktualna_lekcja --value 7.4
     P end-session
-    program praca "2-5"
+    program hobby "2-5"
     historia 60 0
     zadanie "$korzen/wiedza/przyklady/kod/01-hello.cs" 01-hello.cs
     ;;

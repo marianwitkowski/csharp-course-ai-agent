@@ -1,16 +1,21 @@
-// Lekcja 4.1 — rozgrzewka: pogoda
+// Lekcja 4.1 — rozgrzewka: wiek
 
-int temperatura = 7;
+Console.Write("Podaj wiek: ");
+string wpis = Console.ReadLine();
 
-if (temperatura < 0)
+int wiek;
+if (int.TryParse(wpis, out wiek))
 {
-    Console.WriteLine("Mróz");
-}
-else if (temperatura < 15)
-{
-    Console.WriteLine("Chłodno");
+    if (wiek >= 18)
+    {
+        Console.WriteLine("Pełnoletni");
+    }
+    else
+    {
+        Console.WriteLine("Niepełnoletni");
+    }
 }
 else
 {
-    Console.WriteLine("Ciepło");
+    Console.WriteLine("To nie jest liczba");
 }

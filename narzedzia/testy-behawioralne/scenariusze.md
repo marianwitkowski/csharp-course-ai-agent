@@ -20,6 +20,7 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 ## Jak uruchomić
 
 1. Repozytorium bez stanu ucznia (`postep/student.json` nie istnieje, `kurs/zadania/` i `kurs/lekcje/` zawierają tylko `.gitkeep`). Jeśli jest stan — skill `reset-kursu` albo ręczne przeniesienie do `postep/archiwum/`.
+1a. **Czyste drzewo robocze.** `git status` trafia do kontekstu agenta, więc niezacommitowana zmiana w `narzedzia/testy-behawioralne/` mówi tutorowi wprost, że jest testowany. W przebiegu F1 z 2026-09-15 tutor rozpoznał sytuację dokładnie tą drogą. Zacommituj albo odłóż zmiany przed uruchomieniem scenariusza.
 2. Wgraj stan startowy: `bash narzedzia/testy-behawioralne/seed.sh <scenariusz>` (patrz „Seedowanie" niżej).
 3. Uruchom Claude Code w katalogu kursu i graj ucznia według przebiegu. Odpowiadaj tak, jak odpowiedziałaby persona, nie lepiej.
 4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md` **poza repozytorium** (u autora: `.kb/testy-behawioralne/`, katalog ignorowany przez git — logi przebiegów zawierają szczegóły środowiska i nie są częścią kursu), dopisz wiersz do tabeli „Historia przebiegów" niżej i przenieś stan do `postep/archiwum/test-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
@@ -42,6 +43,12 @@ w przebiegu A2 z 2026-09-06. Opis błędu jest w `seed.sh`, którego tutor nie c
 
 Skrypt **odmawia startu**, gdy `postep/student.json` istnieje. Przed kolejnym scenariuszem
 przenieś stan do `postep/archiwum/` (albo usuń, jeśli to był seed).
+
+**Fikstury muszą spełniać treść ćwiczenia z pliku lekcji**, z dokładnie jednym defektem — tym
+z pola `przeszkoda`. Pierwsza wersja `08-if-b.cs` obsługiwała tylko oceny 3-5, podczas gdy ⭐
+z lekcji 4.1 wymaga pełnej skali 1-6. Tutor słusznie zaczął naprawiać drugi, niezamierzony brak
+i przebieg zszedł ze scenariusza. Po zmianie fikstury trzeba przejść treść ćwiczenia punkt po
+punkcie i uruchomić wszystkie wejścia wymienione w przebiegu.
 
 Scenariusz **C nie ma seeda** — zaczyna od pustego repozytorium, bo testuje onboarding.
 
@@ -66,6 +73,7 @@ Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozyto
 | 2026-09-06 | F1, F2, A1, A2 (parking, wznowienie, zakończenie kursu); ślepa regresja E, B, C1, C2, D, G | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; A2 z zastrzeżeniem (tutor przeczytał częściowy plik wyników w drzewie) |
 | 2026-09-08 | H (lekcja 7.4 na gotowym projekcie, VS Code, macOS) | Claude Code / Sonnet | PASS |
 | 2026-09-08 | F1 | Codex 0.153.0 / model z `.codex/agents/csharp-tutor.toml`, tryb `codex exec` | PASS, jeden wątek `csharp_tutor`, komendy `postep` poprawne; tutor nie dopytał o decyzję przed zaliczeniem (uczennica wyjaśniła sama) |
+| 2026-09-15 | B, F1 (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | oba PASS, 0 złamanych asercji; F1 powtórzony po poprawieniu fikstury `08-if-b.cs`, tutor rozpoznał test po `git status` i mimo to nie zajrzał do `narzedzia/` |
 
 ## Wynik scenariusza: PASS albo FAIL
 
