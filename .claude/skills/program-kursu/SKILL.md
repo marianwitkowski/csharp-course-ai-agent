@@ -118,4 +118,4 @@ Mapa dalszych kroków czeka w lekcji 14.7.
 
 Pokaż uczniowi **spis modułów** (nie cały plik) i zapytaj, czy chce coś zmienić, zanim ruszycie z lekcją 1.1. Dodaj jedno zdanie kotwiczące:
 
-> „Czterdzieści dziewięć lekcji brzmi dużo, ale pierwsze siedem to podstawy, które przerobisz szybciej, niż myślisz. Prawdziwy próg jest w module 8 — tam zaczyna się to, co w C# jest naprawdę własne."
+> „Pięćdziesiąt lekcji brzmi dużo, ale pierwsze siedem to podstawy, które przerobisz szybciej, niż myślisz. Prawdziwy próg jest w module 8 — tam zaczyna się to, co w C# jest naprawdę własne."

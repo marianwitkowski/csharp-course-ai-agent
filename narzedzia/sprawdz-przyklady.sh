@@ -4,6 +4,7 @@
 # Błąd kompilacji = kod wyjścia 1. Ostrzeżenia są dozwolone — dwa przykłady
 # (07-wejscie.cs: CS8600, 21-klasy.cs: CS8618) pokazują je celowo.
 # Uruchomienie z katalogu głównego repozytorium:  bash narzedzia/sprawdz-przyklady.sh
+# Wymaga: .NET SDK (>=10); limit czasu korzysta z `timeout`, `gtimeout` albo `perl` (w tej kolejności).
 set -u
 export DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_UI_LANGUAGE=en
 
@@ -45,7 +46,20 @@ fi
 # Kody diagnostyk są porównywane zamiast treści komunikatów (te zależą od języka systemu),
 # a liczby wypisują się w kulturze niezmiennej (`3.5`, nie `3,5`).
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
-if command -v timeout >/dev/null 2>&1; then LIMIT="timeout 120"; else LIMIT=""; fi
+# Limit czasu na uruchomienie. macOS nie ma `timeout`; z coreutils bywa `gtimeout`,
+# a bez nich zostaje perlowy `alarm` (przeżywa `exec`, więc ubija właściwy proces).
+if command -v timeout >/dev/null 2>&1; then
+  limit() { timeout "$@"; }
+elif command -v gtimeout >/dev/null 2>&1; then
+  limit() { gtimeout "$@"; }
+else
+  limit() { perl -e 'alarm shift; exec @ARGV' "$@"; }
+fi
+# `timeout` zwraca 124, perlowy `alarm` ubija sygnałem SIGALRM — powłoka widzi 142.
+przekroczony_czas() { [ "$1" -eq 124 ] || [ "$1" -eq 142 ]; }
+# ponytail: limit ubija `dotnet run`, ale nie program, który ten uruchomił — po przekroczeniu
+# limitu zostaje sierota (tak samo zachowuje się GNU `timeout` bez `--kill-after` i grup procesów).
+# Skrypt to wykrywa i zgłasza błąd; gdyby kiedyś przeszkadzało, dorzuć `setsid` i zabijanie grupy.
 
 klucz() { grep "^// CI-$1: " "$2" | sed "s#^// CI-$1: ##"; }
 
@@ -55,7 +69,7 @@ for plik in wiedza/przyklady/zepsute/*.cs; do
   fi
   katalog=$(mktemp -d)
   cp "$plik" "$katalog/p.cs"
-  budowa=$($LIMIT dotnet build "$katalog/p.cs" 2>&1); kod=$?
+  budowa=$(limit 120 dotnet build "$katalog/p.cs" 2>&1); kod=$?
 
   blad=$(klucz blad "$plik")
   if [ -n "$blad" ]; then
@@ -77,7 +91,7 @@ for plik in wiedza/przyklady/zepsute/*.cs; do
     fi
   done <<< "$(klucz ostrzezenie "$plik")"
 
-  (cd "$katalog" && klucz wejscie p.cs | $LIMIT dotnet run p.cs >out.txt 2>err.txt; echo $? >kod.txt)
+  (cd "$katalog" && klucz wejscie p.cs | limit 120 dotnet run p.cs >out.txt 2>err.txt; echo $? >kod.txt)
   kod=$(cat "$katalog/kod.txt")
   # dotnet run powtarza ostrzeżenia kompilatora na stdout — odfiltrowane.
   grep -v ": warning CS" "$katalog/out.txt" > "$katalog/stdout.txt"
@@ -90,7 +104,7 @@ for plik in wiedza/przyklady/zepsute/*.cs; do
     bledy=$((bledy + 1))
   fi
   wyjatek=$(klucz wyjatek "$plik")
-  if [ "$kod" -eq 124 ]; then
+  if przekroczony_czas "$kod"; then
     echo "ZEPSUTY PRZEKROCZYŁ LIMIT CZASU: $plik"; bledy=$((bledy + 1))
   elif [ -n "$wyjatek" ]; then
     if ! grep -q "$wyjatek" "$katalog/err.txt"; then

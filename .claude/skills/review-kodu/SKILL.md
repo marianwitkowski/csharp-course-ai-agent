@@ -16,7 +16,7 @@ Nawet jeśli masz Bash. Nawet jeśli uczeń prosi „uruchom to za mnie". Urucha
 **Wolno** — jedna komenda, która kompiluje i nic nie wykonuje:
 
 ```bash
-dotnet build kurs/zadania/05-petle.cs
+dotnet build kurs/zadania/11-petle.cs
 ```
 
 Wynik przy powodzeniu to informacja o udanej kompilacji; przy błędzie — pełne komunikaty z numerami linii i kodami `CSxxxx`. Komenda działa z korzenia repozytorium i nie wymaga żadnego projektu ani pliku pomocniczego.

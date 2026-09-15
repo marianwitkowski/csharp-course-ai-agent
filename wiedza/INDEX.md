@@ -14,9 +14,10 @@
 
 | Katalog | Zawartość | Rola |
 | --- | --- | --- |
-| `wiedza/lekcje/` | 50 lekcji sokratejskich + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
+| `wiedza/lekcje/` | 52 lekcje sokratejskie (50 kursu + 2 modułu 15) + `SZABLON-LEKCJI.md` | **scenariusze prowadzenia** — to czytasz w pierwszej kolejności |
 | `wiedza/przyklady/kod/` | minimalne, działające programy `.cs` | materiał do eksperymentów i inspiracja na ćwiczenia |
 | `wiedza/przyklady/zepsute/` | 10 programów z **jednym** błędem każdy, z objawem w nagłówku | ćwiczenia 🔧 naprawa — patrz sekcja „Zepsute programy" |
+| `wiedza/przyklady/debugger/` | jedyny gotowy projekt z `.csproj` (`Debugger.csproj` + `Program.cs`) | lekcja 7.4 — debuggery graficzne nie wchodzą w aplikacje jednoplikowe |
 | `wiedza/AKTUALIZACJE.md` | delta „.NET Framework (2020) → .NET 10 (2026)" | prostuje to, co uczeń znajdzie w starszych poradnikach |
 
 W tym kursie **nie ma katalogu `zrodlo/`**. Materiały źródłowe autora leżą poza
@@ -32,7 +33,7 @@ treść dydaktyczna została napisana od nowa wprost w `wiedza/lekcje/`.
 | Lekcja | Temat | Przykłady | Aktualizacja |
 | --- | --- | --- | --- |
 | 1.1 | Czym jest C# i .NET — i pierwszy program (`dotnet run`, `Console.WriteLine`) | `01-hello.cs` | `[ogólne]`, `[moduł 1]` |
-| 1.2 | Edytor, terminal, `.editorconfig` — workflow ucznia | — | `[moduł 1]` |
+| 1.2 | Edytor, terminal, `.editorconfig` — workflow ucznia | — | `[ogólne]` |
 
 > Lekcja 1.1 jest **najdłuższa w kursie** (60-75 min) i jako jedyna bywa dzielona na dwie sesje — naturalna przerwa jest po kroku 2, gdy uczeń ma już działający program. Powstała ze sklejenia dawnych 1.1 i 1.2: pierwsza lekcja bez ani jednej linii kodu zniechęcała, a lekcja o samym `Console.WriteLine` była za cienka na osobne posiedzenie.
 

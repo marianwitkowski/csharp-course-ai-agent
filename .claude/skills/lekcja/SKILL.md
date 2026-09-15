@@ -34,7 +34,7 @@ Zapamiętaj `dotnet_cmd`, `dotnet_version` i `system` na całą sesję. **Zapisy
 5. Jeśli **brak gotowej lekcji** (wszystkie 50 lekcji jest gotowych — ten punkt dotyczy tematów spoza programu, np. dalszej pracy z uczniem po module 14):
    - **W trybie student:** improwizuj wg INDEX + AKTUALIZACJE, trzymając strukturę 5 kroków z `wiedza/lekcje/SZABLON-LEKCJI.md`, ale **NIE zapisuj** planu nigdzie poza `kurs/lekcje/` (notatki ucznia). Powiedz: „Lekcja zaimprowizowana. Aby utrwalić jako gotowy plik w `wiedza/lekcje/` → tryb autora."
    - **W trybie autor:** możesz dopisać wygenerowany plan do `wiedza/lekcje/NN.MM-temat.md`
-     **Przed zapisaniem przejdź checklistę** z końca `wiedza/lekcje/SZABLON-LEKCJI.md` — siedem punktów, każdy wywiedziony z błędu, który już popełniono w tym kursie. Najważniejszy: każdy komunikat kompilatora i każdy wynik pokazany uczniowi musisz najpierw zobaczyć na własnym ekranie.
+     **Przed zapisaniem przejdź checklistę** z końca `wiedza/lekcje/SZABLON-LEKCJI.md` — jedenaście punktów, każdy wywiedziony z błędu, który już popełniono w tym kursie. Najważniejszy: każdy komunikat kompilatora i każdy wynik pokazany uczniowi musisz najpierw zobaczyć na własnym ekranie.
 
 **Zasada łączenia źródeł:**
 - Gotowa lekcja w `wiedza/lekcje/` to **kanon scenariusza** — sokratejskie podejście już opracowane

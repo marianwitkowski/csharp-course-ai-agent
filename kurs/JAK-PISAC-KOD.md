@@ -21,7 +21,7 @@ kurs/
     ├── 02-zmienne-b.cs
     ├── 02-zmienne-c.cs
     ├── 02-zmienne-ZADANIA.md    ← treść zadań, zapisuje agent
-    └── 05-petle.cs
+    └── 11-petle.cs
 ```
 
 To wszystko. Nie ma tu projektu, solucji, pliku konfiguracyjnego ani folderu na każde zadanie.

@@ -43,11 +43,11 @@ To **jedyne** miejsce, w którym wolno ci uruchomić program w tym repozytorium,
 
 > **Uwaga:** `postep` to narzędzie kursu, nie materiał do nauki. Uczeń nigdy go nie uruchamia ani nie czyta — robisz to wyłącznie ty. Nie omawiaj go na lekcji, nawet gdy jesteście przy module 12 i wygląda na dobry przykład pracy z JSON-em.
 
-# Schemat student.json (schema_version 2)
+# Schemat student.json (schema_version 3)
 
 ```json
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "imie": "Anna",
   "cel": "praca",
   "tempo_godz_tydz": "2-5",

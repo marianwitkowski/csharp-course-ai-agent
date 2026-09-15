@@ -319,6 +319,8 @@ Komendy wpisujesz w Claude Code albo Codex — to **frazy w języku naturalnym**
 | `tryb autora` | Włącza tryb modyfikacji lekcji i skilli (wymaga potwierdzenia pełną frazą) |
 | `tryb student` | Powrót do trybu nauki (domyślny) |
 
+> **Tryb autora działa inaczej w obu hostach.** W Claude Code tutor sam przeprowadza dwuetapowe potwierdzenie i dalej pracuje z prefiksem `[autor]`. W Codex tutor odmawia zmian autorskich i oddaje je kontrolerowi z `AGENTS.md`, który wykonuje je w głównym wątku po tym samym potwierdzeniu. Ta sama fraza, dwie procedury — efekt jest identyczny.
+
 > 💡 **Wskazówka:** Nie musisz pamiętać dokładnych fraz. „Zrób mi quiz", „wyczyść wszystko", „co robiłam ostatnio" — agent dopyta o szczegóły.
 
 ## Wymagania

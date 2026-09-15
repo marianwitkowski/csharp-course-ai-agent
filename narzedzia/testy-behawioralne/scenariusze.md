@@ -20,11 +20,35 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 ## Jak uruchomić
 
 1. Repozytorium bez stanu ucznia (`postep/student.json` nie istnieje, `kurs/zadania/` i `kurs/lekcje/` zawierają tylko `.gitkeep`). Jeśli jest stan — skill `reset-kursu` albo ręczne przeniesienie do `postep/archiwum/`.
-2. Wgraj stan startowy scenariusza (sekcja „Stan startowy").
+2. Wgraj stan startowy: `bash narzedzia/testy-behawioralne/seed.sh <scenariusz>` (patrz „Seedowanie" niżej).
 3. Uruchom Claude Code w katalogu kursu i graj ucznia według przebiegu. Odpowiadaj tak, jak odpowiedziałaby persona, nie lepiej.
 4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md` **poza repozytorium** (u autora: `.kb/testy-behawioralne/`, katalog ignorowany przez git — logi przebiegów zawierają szczegóły środowiska i nie są częścią kursu), dopisz wiersz do tabeli „Historia przebiegów" niżej i przenieś stan do `postep/archiwum/test-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
 
 Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zostawiają śladu w repozytorium.
+
+### Seedowanie
+
+```bash
+bash narzedzia/testy-behawioralne/seed.sh A     # A B D E F1 F2 G H
+```
+
+Skrypt buduje stan **przez narzędzie `postep`**, tą samą drogą, którą chodzi tutor — więc seed
+sprawdza przy okazji protokół zapisu. `kurs/program.md` powstaje z `wiedza/INDEX.md`, nie z kopii,
+więc nie może rozjechać się z kanonem 50 lekcji. Pliki `.cs` „ucznia" leżą w `seeds/`
+(`08-if-b.cs` zawiera celowy błąd ze scenariusza F1). **Fikstury są czystym kodem ucznia** —
+bez nagłówków mówiących, że to test, co znaczy ten błąd albo czego oczekuje lista kontrolna.
+Tutor czyta `kurs/zadania/` i taki nagłówek zdradziłby mu asercję, dokładnie jak plik wyników
+w przebiegu A2 z 2026-09-06. Opis błędu jest w `seed.sh`, którego tutor nie czyta.
+
+Skrypt **odmawia startu**, gdy `postep/student.json` istnieje. Przed kolejnym scenariuszem
+przenieś stan do `postep/archiwum/` (albo usuń, jeśli to był seed).
+
+Scenariusz **C nie ma seeda** — zaczyna od pustego repozytorium, bo testuje onboarding.
+
+Jeden wyjątek od reguły „stan tylko przez `postep`": **daty**. `postep` świadomie nie ma komendy
+ustawiającej datę wstecz — gdyby miał, tutor mógłby manipulować harmonogramem powtórek i historią
+ucznia. Bez cofania dat każdy seed wyglądałby jak „26 lekcji ukończonych dzisiaj", na co tutor
+mógłby zareagować i zepsuć przebieg. Robi to `seeds/rozloz-daty.py`, raz, na gotowym pliku.
 
 ### Wariant Codex
 
@@ -69,7 +93,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Persona:** Kuba, hobby, po lekcjach 1.1-1.2, ciekawski, pyta o rzeczy z przyszłości, dwa razy odpowiada „nie wiem", raz nie zapisuje pliku przed uruchomieniem.
 
-**Stan startowy:** `seed-A.json` → `postep/student.json`; `program-A.md` → `kurs/program.md`; `01-hello.cs` → `kurs/zadania/01-hello.cs`.
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh A` — Kuba, hobby, ukończone 1.1-1.2, `aktualna_lekcja` 2.1, `kurs/program.md`, `kurs/zadania/01-hello.cs`.
 
 **Przebieg (uczeń):**
 1. „Cześć, kontynuujemy" → oczekiwane: powitanie po imieniu, stan (2.1), pytanie co dziś.
@@ -96,7 +120,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Persona:** Marta, cel praca, 9 dni przerwy, trzy tematy w `do_powtorki`, z których **dwa są zaległe** (`next_review` w przeszłości), jeden nie. Odpowiada dobrze na jedno pytanie, źle na drugie.
 
-**Stan startowy:** `seed-B.json` → `postep/student.json`.
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh B` — Marta, praca, ostatnia sesja 9 dni temu, trzy tematy w `do_powtorki`: „dzielenie całkowite" (poziom 1, termin 4 dni temu), „Parse kontra TryParse" (poziom 0, termin 2 dni temu) i „enum jako typ" (termin za 5 dni, więc poza `due`).
 
 **Przebieg (uczeń):**
 1. „Cześć, wracam po przerwie" → oczekiwane: agent woła `postep due`, proponuje powtórkę **dwóch** tematów (nie trzech), wspomina o przerwie.
@@ -106,10 +130,10 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 5. Po powtórce mówi: „to lecimy z lekcją" → 4.2 zaczyna się normalnie; scenariusz kończy się po kroku 2 lekcji.
 
 **Lista kontrolna B:**
-- [ ] `[T]` Agent wywołał `postep due` (nie liczył dat z JSON-a w głowie) i pytał tylko o dwa zaległe tematy; temat z `next_review` 2026-09-20 pominięty.
+- [ ] `[T]` Agent wywołał `postep due` (nie liczył dat z JSON-a w głowie) i pytał tylko o dwa zaległe tematy; „enum jako typ" (termin w przyszłości) pominięty.
 - [ ] Pytania w kształcie z lekcji 2.3, jedno naraz.
 - [ ] `[T]` Po pytaniu 3: `review-do-powtorki --temat "dzielenie całkowite" --wynik ok` → poziom 2, termin +7 dni.
-- [ ] `[T]` Po pytaniu 4: dwie próby naprowadzenia, potem **podana odpowiedź** i `--wynik zle` → poziom 0, termin jutro.
+- [ ] `[T]` Po pytaniu 4 (temat „Parse kontra TryParse"): dwie próby naprowadzenia, potem **podana odpowiedź** i `--wynik zle` → poziom 0, termin jutro.
 - [ ] `[T]` Odpowiedź **nie** pada wcześniej niż po drugiej nieudanej próbie — pierwsza błędna odpowiedź dostaje naprowadzenie, nie rozwiązanie (asercja przeciw nadmiernej korekcie po poprawce z 2026-09-03).
 - [ ] `[T]` Brak `remove-do-powtorki`, brak `set` na `next_review`.
 - [ ] Brak punktacji („1/2", „50%").
@@ -119,7 +143,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Persona:** Ola, zna Pythona (rok hobbystycznie), cel narzędzia. Programuje sprawnie, w module 2 nudzi się na zakotwiczeniach. W ćwiczeniu ⭐ używa `f"..."`-podobnej składni z pamięci i raz sięga po pętlę, której jeszcze nie było.
 
-**Stan startowy:** brak `student.json` (onboarding od zera). `dotnet --version` działa.
+**Stan startowy:** brak — scenariusz C zaczyna od zera, nie seeduj go. `dotnet --version` musi działać.
 
 **Przebieg (uczeń):**
 1. „ucz mnie C#" → onboarding.
@@ -143,7 +167,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Persona:** dowolna; istotny jest stan, nie uczeń.
 
-**Stan startowy:** brak `postep/student.json`; w `postep/archiwum/test-*/` leży kompletny stan innego przebiegu (np. Piotr, 8.5).
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh E` — brak `postep/student.json`; w `postep/archiwum/test-<data>/` leży kompletny stan innego przebiegu (Piotr, 8.5).
 
 **Przebieg (uczeń):** „cześć, kontynuujemy".
 
@@ -156,7 +180,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 
 **Persona:** Piotr, cel szkoła, po 8.4, trudności 3-4, potrzebuje jednego naprowadzenia na krok. Nie zna `null` głębiej niż „żaden obiekt".
 
-**Stan startowy:** `student.json` z ukończonymi 1.1-8.4, `aktualna_lekcja` 8.5, pusta `do_powtorki`.
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh D` — `student.json` z ukończonymi 1.1-8.4, `aktualna_lekcja` 8.5, pusta `do_powtorki`.
 
 **Przebieg (uczeń):** przechodzi lekcję 8.5 zgodnie ze scenariuszem, wklejając prawdziwe wyniki `dotnet build`/`dotnet run`; przy `CS8604` pyta „to jest błąd czy nie?".
 
@@ -175,7 +199,7 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 
 **Persona:** Ola, cel praca, ścieżka pełna, po 1.1-3.2, w 4.1 zrobiła 🔥 i utknęła w ⭐ (oceny). Odpowiada konkretnie, wkleja kod i wyniki.
 
-**Stan startowy:** `student.json` z ukończonymi 1.1-3.2, `aktualna_lekcja` 4.1, `ukonczone_cwiczenia` z `4.1/warmup`, `wznowienie` = `{lekcja 4.1, krok 5, cwiczenie main, przeszkoda „dla wpisu abc program wypisuje Nie ma takiej oceny zamiast To nie jest ocena"}`; `kurs/zadania/08-if-a.cs` (działająca rozgrzewka) i `08-if-b.cs` (⭐ z błędem z przeszkody).
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh F1` — `student.json` z ukończonymi 1.1-3.2, `aktualna_lekcja` 4.1, `ukonczone_cwiczenia` z `4.1/warmup`, `wznowienie` = `{lekcja 4.1, krok 5, cwiczenie main, przeszkoda „dla wpisu abc program wypisuje Nie ma takiej oceny zamiast To nie jest ocena"}`; `kurs/zadania/08-if-a.cs` (działająca rozgrzewka) i `08-if-b.cs` (⭐ z błędem z przeszkody).
 
 **Przebieg (uczennica):**
 1. „Cześć, kontynuujemy" → oczekiwane: powitanie, **wznowienie od ⭐** (nie od zakotwiczenia 4.1), przypomnienie przeszkody słowami tutora, pytanie, czy ma odpowiedź.
@@ -193,7 +217,7 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 
 **Persona:** Marek, cel praca, ścieżka pełna, wszystkie lekcje 1.1-14.6 ukończone, w 14.7 przerwał na kroku 4 (plan dalszej nauki).
 
-**Stan startowy:** `student.json` z ukończonymi 1.1-14.6, `aktualna_lekcja` 14.7, `wznowienie` = `{lekcja 14.7, krok 4, przeszkoda „pisze plan dalszej nauki — wybór między ASP.NET Core a narzędziami CLI"}`, notatka `projekt: menedżer zadań CLI`.
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh F2` — `student.json` z ukończonymi 1.1-14.6, `aktualna_lekcja` 14.7, `wznowienie` = `{lekcja 14.7, krok 4, przeszkoda „pisze plan dalszej nauki — wybór między ASP.NET Core a narzędziami CLI"}`, notatka `projekt: menedżer zadań CLI`.
 
 **Przebieg (uczeń):**
 1. „Cześć, kontynuujemy — plan mam gotowy" + wkleja trzy punkty planu (ASP.NET Core minimal API, EF Core z SQLite, jeden projekt open source).
@@ -211,7 +235,7 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 
 **Persona:** Bartek, dwa lata Pythona (skrypty do pracy), cel narzędzia, ścieżka skrócona, po 1.1-7.4. Zna klasy z Pythona, nie zna C#-owych zaskoczeń (współdzielenie referencji, `==` na obiektach, `null` w tablicy obiektów).
 
-**Stan startowy:** `student.json` z `sciezka: skrocona`, ukończone 1.1-7.4, `aktualna_lekcja` 8.1, notatka o Pythonie; `kurs/program.md` z adnotacją o zadaniu sprawdzającym w modułach 8-13.
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh G` — `student.json` z `sciezka: skrocona`, ukończone 1.1-7.4, `aktualna_lekcja` 8.1, notatka o Pythonie; `kurs/program.md` z adnotacją o zadaniu sprawdzającym w modułach 8-13.
 
 **Przebieg (uczeń):**
 1. „Cześć, kontynuujemy" → oczekiwane: powitanie, stan (8.1), **propozycja zadania sprawdzającego** (⭐ z 8.1: biblioteka `List<Ksiazka>`) z wyborem: spróbować teraz albo pełna lekcja.
@@ -232,7 +256,7 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 
 **Persona:** Kasia, cel hobby, ścieżka pełna, po 1.1-7.3, VS Code z C# Dev Kit na macOS, `DOTNET_ROOT` ustawione. Wykonuje polecenia dosłownie, wkleja to, co widzi; przy F11 trafia na systemowe „Pokaż biurko".
 
-**Stan startowy:** `student.json` z ukończonymi 1.1-7.3, `aktualna_lekcja` 7.4, `srodowisko.edytor` = „VS Code", `srodowisko.system` = macOS; pusty `kurs/zadania/` poza `01-hello.cs`. Wklejane wyniki pochodzą z przebiegu na prawdziwym VS Code 1.134 / C# 2.140.9 / Dev Kit 3.20.199 (2026-09-08, `narzedzia/weryfikacja-7.4-vscode.md`).
+**Stan startowy:** `bash narzedzia/testy-behawioralne/seed.sh H` — `student.json` z ukończonymi 1.1-7.3, `aktualna_lekcja` 7.4, `srodowisko.edytor` = „VS Code", `srodowisko.system` = macOS; pusty `kurs/zadania/` poza `01-hello.cs`. Wklejane wyniki pochodzą z przebiegu na prawdziwym VS Code 1.134 / C# 2.140.9 / Dev Kit 3.20.199 (2026-09-08, `narzedzia/weryfikacja-7.4-vscode.md`).
 
 **Przebieg (uczennica):**
 1. „Cześć, kontynuujemy" → oczekiwane: sprawdzenie edytora, zakotwiczenie (ciasto), pytanie o dotychczasowe `Console.WriteLine`.

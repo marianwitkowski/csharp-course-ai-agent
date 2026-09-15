@@ -27,7 +27,15 @@ PLIKI.sort.each do |plik|
       nazwa = File.basename(File.dirname(plik))
       zrodlo = ".claude/skills/#{nazwa}/SKILL.md"
       usterki << "#{plik}: brak kanonicznego skilla #{zrodlo}" unless File.exist?(zrodlo)
-      usterki << "#{plik}: brak odwołania do #{zrodlo}" unless linie.join("\n").include?("../../../#{zrodlo}")
+      odwolanie = linie.join("\n")[%r{\.\./[^`\s"']+SKILL\.md}]
+      if odwolanie.nil?
+        usterki << "#{plik}: brak odwołania do #{zrodlo}"
+      else
+        # Nie wystarczy, że ciąg jest w tekście — ścieżka musi się rozwiązać z katalogu adaptera.
+        cel = File.expand_path(odwolanie, File.dirname(File.expand_path(plik)))
+        usterki << "#{plik}: odwołanie #{odwolanie} nie prowadzi do #{zrodlo}" unless cel == File.expand_path(zrodlo)
+        usterki << "#{plik}: odwołanie #{odwolanie} wskazuje nieistniejący plik" unless File.exist?(cel)
+      end
     end
   elsif !plik.end_with?("SZABLON-LEKCJI.md")
     %w[lekcja tytul modul czas_min zalozenia].each { |k| usterki << "#{plik}: brak pola #{k}" unless dane[k] }

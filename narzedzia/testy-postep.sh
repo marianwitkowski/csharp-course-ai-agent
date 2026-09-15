@@ -2,6 +2,7 @@
 # Testy narzędzia postep: błędna operacja NIE zmienia student.json.
 # Działa na tymczasowym katalogu z pustymi plikami lekcji — nie dotyka postep/ w repozytorium.
 # Uruchomienie z katalogu głównego:  bash narzedzia/testy-postep.sh
+# Wymaga: .NET SDK (>=10) oraz `python3` — trzy testy psują JSON-a i muszą go najpierw poprawnie zapisać.
 set -u
 export DOTNET_NOLOGO=1 DOTNET_CLI_TELEMETRY_OPTOUT=1 DOTNET_CLI_UI_LANGUAGE=en
 
