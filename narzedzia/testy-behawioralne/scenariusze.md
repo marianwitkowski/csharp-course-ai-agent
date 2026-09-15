@@ -121,7 +121,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] Punkt 5: agent pyta („zapisałeś plik przed uruchomieniem?"), nie oznajmia.
 - [ ] Punkt 6: po drugim „nie wiem" jeden fakt w 1-2 zdaniach, potem pytanie.
 - [ ] `[T]` Punkt 7: agent nie mówi „tak jak w Javie"; nazwa „klasa", moduł 8.
-- [ ] Review: pytanie o oczekiwany wynik przed oceną; 1 rzecz dobra, ≤2 do przemyślenia; nie wkleja poprawionego kodu.
+- [ ] Review: 1 rzecz dobra, ≤2 do przemyślenia; nie wkleja poprawionego kodu. Pytanie „czego się spodziewałeś" wymagane tylko wtedy, gdy wynik odbiega od treści zadania — przy wyniku zgodnym ze specyfikacją jest zbędne.
 - [ ] Na końcu `add-lekcja --id 2.1`, `aktualna_lekcja` = `2.2`, `add-cwiczenie` ×2.
 
 ## Scenariusz B — „wracająca" (powtórki na dziś, start sesji)
@@ -254,7 +254,7 @@ Dwa niezależne stany, dwa krótkie przebiegi. Sprawdza mechanizmy dodane 2026-0
 
 **Lista kontrolna G:**
 - [ ] `[T]` Punkt 1: agent zaczyna od ⭐ jako zadania sprawdzającego i daje wybór; **nie** prowadzi kroku 1 (zakotwiczenie) ani kroku 2 (mostek) przed próbą.
-- [ ] `[T]` Punkty 2-3: udane ⭐ + wyjaśniona decyzja → agent **nie** wraca do kroków 1-2, ale **krok 3 w całości** (wszystkie sekcje A-F; w szczególności 3.D i 3.E) — nie pomija eksperymentów mimo udanego zadania.
+- [ ] `[T]` Punkty 2-3: udane ⭐ + wyjaśniona decyzja → agent **nie** wraca do kroków 1-2, ale **krok 3 w całości** — każdy koncept z sekcji A-F musi paść, w szczególności 3.D i 3.E przez zgadywanie przed uruchomieniem. Liczy się pokrycie, nie liczba osobnych ćwiczeń: wolno złożyć sekcję z kodem, który uczeń właśnie napisał, jeśli koncept zostanie nazwany.
 - [ ] `[T]` Punkt 4: zła odpowiedź przy 3.D nie kończy ścieżki skróconej (to jest właśnie zaskoczenie, które ma wyjść) — jedno pytanie naprowadzające, potem fakt.
 - [ ] Pułapki podane jako lista do przeczytania, nie jako krok 4 w całości.
 - [ ] `[T]` `add-lekcja 8.1` po eksperymentach; `add-cwiczenie 8.1/main`; `aktualna_lekcja` = `8.2`; bez `set sciezka pelna`.
