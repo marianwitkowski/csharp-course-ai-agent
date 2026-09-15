@@ -6,6 +6,25 @@ on:
   pull_request:
 
 jobs:
+  lint:
+    # Konfiguracja Trunka (.trunk/) jest lokalna dla autora i nie wchodzi do repozytorium,
+    # więc te dwa lintery, jedyne dotyczące plików kursu, muszą działać tutaj.
+    # Wersje trzymane zgodnie z .trunk/trunk.yaml.
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Skrypty powłoki (shellcheck)
+        run: shellcheck narzedzia/*.sh narzedzia/testy-behawioralne/*.sh
+
+      - name: Definicje workflow (actionlint)
+        env:
+          WERSJA: 1.7.12
+        run: |
+          curl -fsSL "https://github.com/rhysd/actionlint/releases/download/v${WERSJA}/actionlint_${WERSJA}_linux_amd64.tar.gz" \
+            | tar -xz actionlint
+          ./actionlint
+
   walidacja:
     runs-on: ubuntu-latest
     steps:

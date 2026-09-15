@@ -38,3 +38,7 @@ Thumbs.db
 .vscode/
 *.swp
 *~
+
+# Konfiguracja Trunka jest lokalna dla autora — lint dla wszystkich robi CI
+# (zadanie "lint" w .github/workflows/walidacja.yml).
+.trunk/

@@ -98,8 +98,8 @@ Tutor kursu (`csharp-tutor` w Claude Code, `csharp_tutor` w Codex) przeprowadzi 
 │   ├── sprawdz-frontmatter.rb          # walidacja nagłówków YAML lekcji, skilli i agenta (dla autora)
 │   ├── sprawdz-przyklady.sh            # kompilacja przykładów .cs i postep.cs; zepsute uruchamiane i porównywane z nagłówkami CI-
 │   ├── testy-postep.sh                 # postep odrzuca błędne operacje bez zmiany student.json
-│   └── testy-behawioralne/             # scenariusze testów tutora z asercjami; logi przebiegów poza repo, werdykty w tabeli
-├── .github/workflows/walidacja.yml     # to samo w GitHub Actions przy każdym push i PR
+│   └── testy-behawioralne/             # scenariusze testów tutora z asercjami + seed.sh; logi przebiegów poza repo, werdykty w tabeli
+├── .github/workflows/walidacja.yml     # to samo w GitHub Actions przy każdym push i PR, plus shellcheck i actionlint
 ├── kurs/
 │   ├── JAK-PISAC-KOD.md                # ⬅ przeczytaj na początku: workflow ćwiczeń
 │   ├── program.md                      # Twój program kursu (powstanie po onboardingu)
