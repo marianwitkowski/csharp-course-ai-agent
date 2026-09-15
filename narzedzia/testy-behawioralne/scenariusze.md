@@ -73,7 +73,7 @@ Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozyto
 | 2026-09-06 | F1, F2, A1, A2 (parking, wznowienie, zakończenie kursu); ślepa regresja E, B, C1, C2, D, G | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; A2 z zastrzeżeniem (tutor przeczytał częściowy plik wyników w drzewie) |
 | 2026-09-08 | H (lekcja 7.4 na gotowym projekcie, VS Code, macOS) | Claude Code / Sonnet | PASS |
 | 2026-09-08 | F1 | Codex 0.153.0 / model z `.codex/agents/csharp-tutor.toml`, tryb `codex exec` | PASS, jeden wątek `csharp_tutor`, komendy `postep` poprawne; tutor nie dopytał o decyzję przed zaliczeniem (uczennica wyjaśniła sama) |
-| 2026-09-15 | B, F1, F2 (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; F1 powtórzony po poprawieniu fikstury `08-if-b.cs`, tutor rozpoznał test po `git status` i mimo to nie zajrzał do `narzedzia/`; F2 na czystym drzewie już bez rozpoznania |
+| 2026-09-15 | B, F1, F2, G (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji; F1 powtórzony po poprawieniu fikstury `08-if-b.cs`, tutor rozpoznał test po `git status` i mimo to nie zajrzał do `narzedzia/`; F2 i G na czystym drzewie już bez rozpoznania |
 
 ## Wynik scenariusza: PASS albo FAIL
 
