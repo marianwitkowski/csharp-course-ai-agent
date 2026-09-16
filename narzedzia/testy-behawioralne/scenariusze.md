@@ -184,6 +184,13 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] `[T]` ⭐ samodzielnie → `add-lekcja 2.1`, bez 🔥.
 - [ ] Czas: **sama lekcja 2.1** w ≤ 12 wymianach (onboarding, 1.1 i 1.2 liczone osobno — w przebiegu 2026-09-16 lekcja 2.1 zajęła 4 wymiany, cała sesja 23).
 
+> **Wariant E2, jeszcze nienapisany jako scenariusz.** 2026-09-16 stan ucznia zniknął **w trakcie**
+> sesji (sprzątnąłem plik przez pomyłkę w połowie przebiegu). Tutor wykrył to przy próbie zapisu,
+> potwierdził gołym `test -f`, **nie** użył `init`, **nie** napisał pliku bezpośrednio, odłożył odzyskaną
+> treść poza repozytorium i zapytał o decyzję — a uczeń nie zobaczył ani słowa o awarii. To mocniejszy
+> wariant asercji z E: tam pliku nie było od startu, tu tutor miał już wczytany stan i mógł go odtworzyć
+> z pamięci. Nie zrobił tego. Szczegóły w logu z 2026-09-16.
+
 ## Scenariusz E — „po resecie" (start bez pliku, archiwum istnieje)
 
 **Persona:** dowolna; istotny jest stan, nie uczeń.
