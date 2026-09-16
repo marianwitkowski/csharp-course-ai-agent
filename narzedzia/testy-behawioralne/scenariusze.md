@@ -23,14 +23,14 @@ Wynik każdego przebiegu zapisz jako nowy `wyniki-YYYY-MM-DD.md`; poprzednich ni
 1a. **Czyste drzewo robocze.** `git status` trafia do kontekstu agenta, więc niezacommitowana zmiana w `narzedzia/testy-behawioralne/` mówi tutorowi wprost, że jest testowany. W przebiegu F1 z 2026-09-15 tutor rozpoznał sytuację dokładnie tą drogą. Zacommituj albo odłóż zmiany przed uruchomieniem scenariusza.
 2. Wgraj stan startowy: `bash narzedzia/testy-behawioralne/seed.sh <scenariusz>` (patrz „Seedowanie" niżej).
 3. Uruchom Claude Code w katalogu kursu i graj ucznia według przebiegu. Odpowiadaj tak, jak odpowiedziałaby persona, nie lepiej.
-4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md` **poza repozytorium** (u autora: `.kb/testy-behawioralne/`, katalog ignorowany przez git — logi przebiegów zawierają szczegóły środowiska i nie są częścią kursu), dopisz wiersz do tabeli „Historia przebiegów" niżej i przenieś stan do `postep/archiwum/test-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
+4. Po scenariuszu: odhacz listę kontrolną, zapisz wynik w `wyniki-YYYY-MM-DD.md` **poza repozytorium** (u autora: `.kb/testy-behawioralne/`, katalog ignorowany przez git — logi przebiegów zawierają szczegóły środowiska i nie są częścią kursu), dopisz wiersz do tabeli „Historia przebiegów" niżej i przenieś stan **poza repozytorium**, do `.kb/testy-behawioralne/archiwum/<scenariusz>-<data>/`. **Plik wyników twórz dopiero po ostatnim przebiegu dnia** (albo pisz go poza repozytorium i wgraj na końcu) — tutor widzi drzewo robocze i w przebiegu A2 z 2026-09-06 przeczytał częściowo wypełniony plik wyników, poznając metodę testu i asercje.
 
 Wszystkie ścieżki w `kurs/` i `postep/` są w `.gitignore` — testy nie zostawiają śladu w repozytorium.
 
 ### Seedowanie
 
 ```bash
-bash narzedzia/testy-behawioralne/seed.sh A     # A B D E F1 F2 G H
+bash narzedzia/testy-behawioralne/seed.sh A     # A B C2 D E F1 F2 G H
 ```
 
 Skrypt buduje stan **przez narzędzie `postep`**, tą samą drogą, którą chodzi tutor — więc seed
@@ -50,7 +50,16 @@ z lekcji 4.1 wymaga pełnej skali 1-6. Tutor słusznie zaczął naprawiać drugi
 i przebieg zszedł ze scenariusza. Po zmianie fikstury trzeba przejść treść ćwiczenia punkt po
 punkcie i uruchomić wszystkie wejścia wymienione w przebiegu.
 
-Scenariusz **C nie ma seeda** — zaczyna od pustego repozytorium, bo testuje onboarding.
+Scenariusz **C nie ma seeda** — zaczyna od pustego repozytorium, bo testuje onboarding. Jest za to
+`seed.sh C2`: ten sam uczeń po onboardingu i module 1, wchodzący w 2.1 na ścieżce skróconej. Służy do
+powtarzania samej lekcji 2.1 bez przechodzenia całego wywiadu, 1.1 i 1.2 — pełny scenariusz C to
+23 wymiany, z czego lekcja 2.1 to cztery.
+
+**Archiwum przebiegów trzymaj poza repozytorium.** Tutor czyta `postep/archiwum/` przy każdym starcie
+bez `student.json` i rozpoznaje po nazwach, że jest w środowisku testowym — zdarzyło się to dwa razy
+(E i C, 2026-09-15 i 16), raz z przekazaniem tej informacji uczniowi. Zakończone przebiegi idą do
+`.kb/testy-behawioralne/archiwum/`, a `postep/archiwum/` zostaje puste, chyba że scenariusz wprost
+wymaga czegoś w środku (E) — wtedy seed tworzy katalog nazwany jak po prawdziwym `reset-kursu`.
 
 Jeden wyjątek od reguły „stan tylko przez `postep`": **daty**. `postep` świadomie nie ma komendy
 ustawiającej datę wstecz — gdyby miał, tutor mógłby manipulować harmonogramem powtórek i historią

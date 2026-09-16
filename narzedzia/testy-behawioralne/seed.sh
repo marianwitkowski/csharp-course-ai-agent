@@ -19,7 +19,7 @@ korzen="${KURS_ROOT:-$(pwd)}"
 seeds="$korzen/narzedzia/testy-behawioralne/seeds"
 
 if [ -z "$scenariusz" ]; then
-  echo "użycie: bash narzedzia/testy-behawioralne/seed.sh <A|B|D|E|F1|F2|G|H>" >&2
+  echo "użycie: bash narzedzia/testy-behawioralne/seed.sh <A|B|C2|D|E|F1|F2|G|H>" >&2
   echo "scenariusze C (onboarding od zera) nie mają stanu startowego — nie seeduj." >&2
   exit 2
 fi
@@ -65,6 +65,21 @@ case "$scenariusz" in
     P end-session
     program hobby "2-5"
     historia 10 0
+    zadanie "$korzen/wiedza/przyklady/kod/01-hello.cs" 01-hello.cs
+    ;;
+
+  C2) # Ola, ścieżka skrócona, po 1.1-1.2, wchodzi w 2.1 — skrót scenariusza C bez onboardingu
+    P init --imie Ola --cel narzedzia --tempo "5-10" \
+           --system macOS --dotnet-cmd dotnet --dotnet-version 10.0.100
+    P set --field sciezka --value skrocona
+    lekcje_do 1.2
+    P set --field aktualna_lekcja --value 2.1
+    P add-cwiczenie --lekcja 1.1 --poziom warmup
+    P add-cwiczenie --lekcja 1.1 --poziom main
+    P add-notatka "Ola pisze w Pythonie od roku, hobbystycznie; diagnostyka wejsciowa zaliczona"
+    P end-session
+    program narzedzia "5-10" skrocona
+    historia 12 0
     zadanie "$korzen/wiedza/przyklady/kod/01-hello.cs" 01-hello.cs
     ;;
 
@@ -187,7 +202,7 @@ PYB
     ;;
 
   *)
-    echo "nieznany scenariusz: $scenariusz (dostępne: A B D E F1 F2 G H)" >&2
+    echo "nieznany scenariusz: $scenariusz (dostępne: A B C2 D E F1 F2 G H)" >&2
     exit 2
     ;;
 esac
