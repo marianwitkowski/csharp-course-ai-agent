@@ -74,6 +74,7 @@ Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozyto
 | 2026-09-08 | H (lekcja 7.4 na gotowym projekcie, VS Code, macOS) | Claude Code / Sonnet | PASS |
 | 2026-09-08 | F1 | Codex 0.153.0 / model z `.codex/agents/csharp-tutor.toml`, tryb `codex exec` | PASS, jeden wątek `csharp_tutor`, komendy `postep` poprawne; tutor nie dopytał o decyzję przed zaliczeniem (uczennica wyjaśniła sama) |
 | 2026-09-15 | A, B, D, E, F1, F2, G (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji twardych; jedna miękka w D (21 wymian zamiast 18 — limit podniesiony). F1 powtórzony po poprawieniu fikstury `08-if-b.cs`; dwa wycieki środowiska testowego wykryte i zamknięte: `git status` (F1) i prefiks `test-` w nazwie archiwum (E) |
+| 2026-09-16 | C (onboarding od zera, ścieżka skrócona) | Claude Code / Sonnet | **FAIL** — jedna asercja twarda: `7 / 2` nie zostało uruchomione, bo lekcja 2.1 nigdy go nie skryptowała jako eksperymentu, a ścieżka skrócona redukuje krok 4 do listy pułapek. Poprawione: dzielenie całkowite jest teraz punktem 7 kroku 3. Pozostałe asercje PASS |
 
 ## Wynik scenariusza: PASS albo FAIL
 
@@ -154,7 +155,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 **Stan startowy:** brak — scenariusz C zaczyna od zera, nie seeduj go. `dotnet --version` musi działać.
 
 **Przebieg (uczeń):**
-1. „ucz mnie C#" → onboarding.
+1. „ucz mnie C#" → onboarding. Potem lekcje **1.1 i 1.2** (moduł 1 jest pełny na obu ścieżkach — skrót dotyczy modułów 2-7 i 8-13), dopiero potem 2.1, której dotyczy większość listy kontrolnej.
 2. Na pytanie o doświadczenie: „rok Pythona, hobbystycznie".
 3. Agent prosi o program w Pythonie → wkleja poprawny (liczby 1-20 podzielne przez 3, pętla `for`, `if`, `%`).
 4. Odpowiada trafnie na pytania o zmienną/stałą/funkcję.
@@ -169,7 +170,7 @@ W `wyniki-YYYY-MM-DD.md` każdy scenariusz ma nagłówek z wynikiem, np. `Scenar
 - [ ] Agent nie zaczyna porównań do Pythona sam; gdy uczeń porówna — jedno zdanie.
 - [ ] `[T]` Punkt 6: interpolacja nie nazwana błędem; prośba o wersję z `+`.
 - [ ] `[T]` ⭐ samodzielnie → `add-lekcja 2.1`, bez 🔥.
-- [ ] Czas: cała lekcja w ≤ 12 wymianach.
+- [ ] Czas: **sama lekcja 2.1** w ≤ 12 wymianach (onboarding, 1.1 i 1.2 liczone osobno — w przebiegu 2026-09-16 lekcja 2.1 zajęła 4 wymiany, cała sesja 23).
 
 ## Scenariusz E — „po resecie" (start bez pliku, archiwum istnieje)
 
