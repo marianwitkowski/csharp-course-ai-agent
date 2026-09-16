@@ -86,6 +86,7 @@ Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozyto
 | 2026-09-16 | C (onboarding od zera, ścieżka skrócona) | Claude Code / Sonnet | **FAIL** — jedna asercja twarda: `7 / 2` nie zostało uruchomione, bo lekcja 2.1 nigdy go nie skryptowała jako eksperymentu, a ścieżka skrócona redukuje krok 4 do listy pułapek. Poprawione: dzielenie całkowite jest teraz punktem 7 kroku 3. Pozostałe asercje PASS |
 | 2026-09-16 | powtórka lekcji 2.1 na ścieżce skróconej (`seed.sh C2`) | Claude Code / Sonnet | PASS — poprawka po C potwierdzona: `7 / 2` uruchomione jako eksperyment kroku 3, tutor nie wyjaśnił mimo bezpośredniego pytania. Pierwszy przebieg z pustym `postep/archiwum/` — bez śladu rozpoznania środowiska testowego |
 | 2026-09-16 | kontrola reguły o rodzaju gramatycznym (`seed.sh C2`) | Claude Code / Sonnet | PASS — cztery wiadomości, zero form przeszłych z rodzajem, także przy „nie wiem". Przed regułą ten sam tutor pisał „nie dałeś" do uczennicy albo zgadywał „napisałaś" z imienia |
+| 2026-09-16 | kontrola lekcji 8.5 po przetłumaczeniu komunikatów (`seed.sh D`) | Claude Code / Sonnet | PASS — cytaty `CS8600` i `CS8602` w lekcji zgodne co do znaku z wyjściem kompilatora. Wcześniej lekcja miała je po angielsku, a tutor podawał polskie z własnej wiedzy |
 
 ## Wynik scenariusza: PASS albo FAIL
 
