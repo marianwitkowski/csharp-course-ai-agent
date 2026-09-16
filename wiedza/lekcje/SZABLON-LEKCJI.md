@@ -225,6 +225,13 @@ ruby narzedzia/sprawdz-frontmatter.rb
 
 Sprawdza też: unikalność numeru lekcji, zgodność numeru z nazwą pliku, istnienie plików z pola `przyklady`. Uruchom przed każdym commitem, który dotyka nagłówka.
 
+## 12. Pytania do ucznia w formie działającej dla każdego
+
+Polski czas przeszły zdradza płeć: „co zobaczyłeś?" wyklucza połowę uczniów. Pisz pytania w czasie
+teraźniejszym („co widzisz?"), bezosobowo („w tej linii brakuje średnika") albo przez rzeczownik
+(„twoja poprawka"). Tam, gdzie się nie da bez kalectwa językowego, zostaw formę męską — tutor ma
+regułę, żeby ją przeformułować — ale nie rób tego domyślnie z lenistwa.
+
 ## Ostatni przebieg — komendy zbiorcze
 
 ```sh
@@ -242,4 +249,4 @@ Sprawdź jeszcze, czy pole `zalozenia` we frontmatterze wymienia **wszystkie** l
 ruby narzedzia/sprawdz-frontmatter.rb    # nagłówek YAML (punkt 11)
 ```
 
-Lekcja jest gotowa, gdy wszystkie jedenaście punktów przechodzi, a każdy wynik pokazany uczniowi widziałeś na własnym ekranie.
+Lekcja jest gotowa, gdy wszystkie dwanaście punktów przechodzi, a każdy wynik pokazany uczniowi widzisz na własnym ekranie.
