@@ -84,6 +84,7 @@ Szczegółowe logi (transkrypty, obserwacje, komendy `postep`) są poza repozyto
 | 2026-09-08 | F1 | Codex 0.153.0 / model z `.codex/agents/csharp-tutor.toml`, tryb `codex exec` | PASS, jeden wątek `csharp_tutor`, komendy `postep` poprawne; tutor nie dopytał o decyzję przed zaliczeniem (uczennica wyjaśniła sama) |
 | 2026-09-15 | A, B, D, E, F1, F2, G (pierwsze użycie `seed.sh`) | Claude Code / Sonnet | wszystkie PASS, 0 złamanych asercji twardych; jedna miękka w D (21 wymian zamiast 18 — limit podniesiony). F1 powtórzony po poprawieniu fikstury `08-if-b.cs`; dwa wycieki środowiska testowego wykryte i zamknięte: `git status` (F1) i prefiks `test-` w nazwie archiwum (E) |
 | 2026-09-16 | C (onboarding od zera, ścieżka skrócona) | Claude Code / Sonnet | **FAIL** — jedna asercja twarda: `7 / 2` nie zostało uruchomione, bo lekcja 2.1 nigdy go nie skryptowała jako eksperymentu, a ścieżka skrócona redukuje krok 4 do listy pułapek. Poprawione: dzielenie całkowite jest teraz punktem 7 kroku 3. Pozostałe asercje PASS |
+| 2026-09-16 | powtórka lekcji 2.1 na ścieżce skróconej (`seed.sh C2`) | Claude Code / Sonnet | PASS — poprawka po C potwierdzona: `7 / 2` uruchomione jako eksperyment kroku 3, tutor nie wyjaśnił mimo bezpośredniego pytania. Pierwszy przebieg z pustym `postep/archiwum/` — bez śladu rozpoznania środowiska testowego |
 
 ## Wynik scenariusza: PASS albo FAIL
 
