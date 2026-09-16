@@ -82,7 +82,7 @@ if [ "$(grep -c '"id": "7.4"' "$plik")" != "1" ] || grep -q '"id": "7.04"' "$pli
 else
   echo "ok: normalizacja — 7.04 + 7.4 = jeden wpis 7.4"
 fi
-przyjmuje "add-cwiczenie 07.4 → 7.4" '"lekcja": "7.4"'        add-cwiczenie --lekcja 07.4 --poziom star
+przyjmuje "add-cwiczenie 07.4 → 7.4" '"lekcja": "7.4"'        add-cwiczenie --lekcja 07.4 --poziom bonus
 grep -q '"lekcja": "07.4"' "$plik" && { echo "FAIL: add-cwiczenie zapisał 07.4 bez normalizacji"; bledy=$((bledy + 1)); }
 odrzuca   "add-do-powtorki 99.99"                              add-do-powtorki --temat nic --lekcja 99.99
 przyjmuje "add-do-powtorki 02.03 → 2.3" '"lekcja": "2.3"'     add-do-powtorki --temat norm --lekcja 02.03
@@ -116,8 +116,23 @@ python3 - "$plik" <<'PY'
 import json,sys
 p=sys.argv[1]; d=json.load(open(p)); d["schema_version"]=2; del d["wznowienie"]; json.dump(d,open(p,"w"))
 PY
-przyjmuje "migracja 2 → 3"          '"schema_version": 3'    add-notatka "test"
+przyjmuje "migracja 2 → 3"          '"schema_version": 4'    add-notatka "test"
 przyjmuje "migracja dodaje wznowienie" '"wznowienie": null'  read
+
+# Plik w schemacie 3: poziom cwiczenia `star` ma zmienic nazwe na `bonus` — i w liscie
+# ukonczonych cwiczen, i w polu wznowienie.cwiczenie. Stara nazwa mylila sie z ⭐ (main).
+python3 - "$plik" <<'PY'
+import json,sys
+p=sys.argv[1]; d=json.load(open(p))
+d["schema_version"]=3
+d["ukonczone_cwiczenia"]=[{"lekcja":"7.4","poziom":"star","data":"2026-09-01"}]
+d["wznowienie"]={"lekcja":"7.4","krok":5,"cwiczenie":"star","przeszkoda":"x","data":"2026-09-01"}
+json.dump(d,open(p,"w"),ensure_ascii=False)
+PY
+przyjmuje "migracja 3 → 4"                    '"schema_version": 4'  add-notatka "m4"
+przyjmuje "migracja star → bonus w cwiczeniach" '"poziom": "bonus"'  read
+przyjmuje "migracja star → bonus we wznowieniu" '"cwiczenie": "bonus"' read
+odrzuca   "poziom star juz nieznany"          add-cwiczenie --lekcja 7.4 --poziom star
 
 # Uszkodzony JSON: narzędzie ma odmówić, nie nadpisać.
 echo '{"schema_version": 2, "imie": ' > "$plik"

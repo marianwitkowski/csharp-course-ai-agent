@@ -29,7 +29,7 @@
 //   read [--field <sciezka.kropkowa>]
 //   set --field <sciezka> --value <wartosc>
 //   add-lekcja --id X.Y --trudnosc 1-5
-//   add-cwiczenie --lekcja X.Y --poziom warmup|main|star|fix|projekt
+//   add-cwiczenie --lekcja X.Y --poziom warmup|main|bonus|fix|projekt
 //   add-mocna-strona "tekst"
 //   add-do-powtorki --temat T --lekcja X.Y
 //   review-do-powtorki --temat T --wynik ok|pomoc|zle
@@ -37,7 +37,7 @@
 //   remove-do-powtorki --temat T
 //   update-srodowisko [--system S] [--dotnet-cmd C] [--dotnet-version V] [--shell SH] [--edytor E]
 //   add-notatka "tekst"
-//   wznowienie --krok 1-5 [--cwiczenie warmup|main|star|fix|projekt] [--przeszkoda "tekst"]
+//   wznowienie --krok 1-5 [--cwiczenie warmup|main|bonus|fix|projekt] [--przeszkoda "tekst"]
 //   wznowienie --wyczysc
 //   end-session
 //   recovery
@@ -52,7 +52,7 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
-const int WersjaSchematu = 3;
+const int WersjaSchematu = 4;
 const string KursUkonczony = "ukończony";
 const int MaxMocnychStron = 7;
 const int MaxNotatek = 40; // wpisy "parking:" muszą przeżyć kilka modułów
@@ -291,10 +291,10 @@ try
         }
         lekcja = SprawdzIdLekcji(lekcja);
         var poziom = f.GetValueOrDefault("poziom", "");
-        if (poziom is not ("warmup" or "main" or "star" or "fix" or "projekt"))
+        if (poziom is not ("warmup" or "main" or "bonus" or "fix" or "projekt"))
         {
             throw new InvalidOperationException(
-                $"poziom musi być warmup, main, star, fix albo projekt (dostałem \"{poziom}\")");
+                $"poziom musi być warmup, main, bonus, fix albo projekt (dostałem \"{poziom}\")");
         }
 
         var stan = WczytajStan();
@@ -547,10 +547,10 @@ try
             throw new InvalidOperationException("krok musi być liczbą 1-5 (albo podaj --wyczysc)");
         }
         var cwiczenie = f.GetValueOrDefault("cwiczenie", "");
-        if (cwiczenie is not ("" or "warmup" or "main" or "star" or "fix" or "projekt"))
+        if (cwiczenie is not ("" or "warmup" or "main" or "bonus" or "fix" or "projekt"))
         {
             throw new InvalidOperationException(
-                $"cwiczenie musi być warmup, main, star, fix albo projekt (dostałem \"{cwiczenie}\")");
+                $"cwiczenie musi być warmup, main, bonus, fix albo projekt (dostałem \"{cwiczenie}\")");
         }
 
         var aktualna = stan["aktualna_lekcja"]?.GetValue<string>() ?? "";
@@ -671,6 +671,20 @@ try
         if (!stan.ContainsKey("wznowienie"))
         {
             stan["wznowienie"] = null;
+        }
+        // Migracja 3 → 4: poziom ćwiczenia `star` zmienia nazwę na `bonus`. Stara nazwa myliła
+        // się z ⭐ (Główne = `main`), bo „star" znaczy „gwiazdka" — a ⚡ Gwiazdka to właśnie `star`.
+        // Pomyłka zdarzyła się tutorowi w teście behawioralnym 2026-09-06.
+        foreach (var wpis in Tablica(stan, "ukonczone_cwiczenia").OfType<JsonObject>())
+        {
+            if (wpis["poziom"]?.GetValue<string>() == "star")
+            {
+                wpis["poziom"] = "bonus";
+            }
+        }
+        if (stan["wznowienie"] is JsonObject wzn && wzn["cwiczenie"]?.GetValue<string>() == "star")
+        {
+            wzn["cwiczenie"] = "bonus";
         }
         foreach (var wpis in Tablica(stan, "do_powtorki").OfType<JsonObject>())
         {

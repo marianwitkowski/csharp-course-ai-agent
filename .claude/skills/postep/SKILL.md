@@ -43,11 +43,11 @@ To **jedyne** miejsce, w którym wolno ci uruchomić program w tym repozytorium,
 
 > **Uwaga:** `postep` to narzędzie kursu, nie materiał do nauki. Uczeń nigdy go nie uruchamia ani nie czyta — robisz to wyłącznie ty. Nie omawiaj go na lekcji, nawet gdy jesteście przy module 12 i wygląda na dobry przykład pracy z JSON-em.
 
-# Schemat student.json (schema_version 3)
+# Schemat student.json (schema_version 4)
 
 ```json
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "imie": "Anna",
   "cel": "praca",
   "tempo_godz_tydz": "2-5",
@@ -84,7 +84,7 @@ To **jedyne** miejsce, w którym wolno ci uruchomić program w tym repozytorium,
 
 **`do_powtorki` ma harmonogram.** `poziom` 0-4 i `next_review` (data) — narzędzie liczy je samo w `add-do-powtorki` i `review-do-powtorki`; agent nigdy nie ustawia ich ręcznie. Odstępy: 1 → 3 → 7 → 14 → 30 dni; po piątej **samodzielnej** powtórce temat znika jako opanowany. Odpowiedź po naprowadzeniu (`--wynik pomoc`) nie podnosi poziomu — powtarza bieżący odstęp.
 
-**Plik w schemacie 1 lub 2 jest migrowany automatycznie** przy pierwszym zapisie: dostaje `sciezka: "pelna"` (1→2), stare wpisy `do_powtorki` — `poziom: 0` i `next_review` na dziś (czyli od razu są zaległe), a klucz `wznowienie: null` (2→3).
+**Plik w schemacie 1, 2 lub 3 jest migrowany automatycznie** przy pierwszym zapisie: dostaje `sciezka: "pelna"` (1→2), stare wpisy `do_powtorki` — `poziom: 0` i `next_review` na dziś (czyli od razu są zaległe), a klucz `wznowienie: null` (2→3); poziom ćwiczenia `star` zmienia się na `bonus`, w `ukonczone_cwiczenia` i w `wznowienie.cwiczenie` (3→4).
 
 **Pola z nowszego schematu są zachowywane.** Narzędzie trzyma stan jako drzewo JSON, a nie jako klasę z polami — klucze, których nie zna, przechodzą przez odczyt i zapis nietknięte. Plik z `schema_version` wyższą niż obsługiwana jest odrzucany, a nie nadpisywany.
 
@@ -151,9 +151,10 @@ P add-lekcja --id "4.1" --trudnosc 3
 
 ```bash
 P add-cwiczenie --lekcja "4.1" --poziom warmup
-# --poziom: warmup | main | star | fix | projekt   (odpowiada 🔥 / ⭐ / ⚡ / 🔧 / 🏗)
-# UWAGA na nazwy: ⭐ Główne = main, ⚡ Gwiazdka = star. ⭐ to NIE "star" — ta pomyłka
-# zdarzyła się tutorowi w teście (8.1 zapisane jako star zamiast main).
+# --poziom: warmup | main | bonus | fix | projekt   (odpowiada 🔥 / ⭐ / ⚡ / 🔧 / 🏗)
+# ⚡ Gwiazdka nazywa się `bonus`, nie `star`. Stara nazwa myliła się z ⭐ (Główne = `main`),
+# bo „star" znaczy „gwiazdka" — tutor zapisał tak 8.1 w teście z 2026-09-06.
+# Pliki w schemacie 3 migrują `star` → `bonus` przy pierwszym zapisie.
 ```
 
 ## Mocne strony / do powtórki
@@ -264,7 +265,7 @@ Sekcja **Po lekcji** w pliku lekcji podaje dokładnie, jaka jest następna lekcj
 ## Po każdym ukończonym ćwiczeniu
 
 ```bash
-P add-cwiczenie --lekcja <X.Y> --poziom <warmup|main|star|fix|projekt>
+P add-cwiczenie --lekcja <X.Y> --poziom <warmup|main|bonus|fix|projekt>
 ```
 
 ## Lekcja przerwana przed `add-lekcja`

@@ -270,7 +270,7 @@ Gdy uczeń pokazuje kod:
 
 ## 5. Koniec sesji
 
-- Lekcja **nieukończona** (brak `add-lekcja`) → najpierw `postep wznowienie --krok <1-5> [--cwiczenie warmup|main|star|fix|projekt] [--przeszkoda "<jedno zdanie: na czym stanęło>"]`. Następna sesja zaczyna od tego kroku, nie od początku lekcji.
+- Lekcja **nieukończona** (brak `add-lekcja`) → najpierw `postep wznowienie --krok <1-5> [--cwiczenie warmup|main|bonus|fix|projekt] [--przeszkoda "<jedno zdanie: na czym stanęło>"]`. Następna sesja zaczyna od tego kroku, nie od początku lekcji.
 - Wywołaj skill **postep** — zaktualizuj `postep/student.json` (`end-session`). **Dopiero gdy uczeń mówi, że kończy** — nie po `add-lekcja`, nie „na wszelki wypadek": `end-session` ma być ostatnią komendą sesji, po nim nic już nie zapisujesz.
 - Podsumuj **co uczeń sam dziś wymyślił** (nie co usłyszał)
 - Zostaw jedno małe pytanie/zadanie na później („przemyśl, jak byś...")
